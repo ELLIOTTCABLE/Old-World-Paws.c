@@ -42,7 +42,7 @@ struct ll
 };
 struct node
 {
-  struct list*  e; /* The thing stored at this location */
+  union thing*  e; /* The thing stored at this location */
   struct node*  next; /* A pointer to the next node in this list */
 };
 
