@@ -51,13 +51,21 @@ struct node
 struct ll     ll__create();
 void          ll__affix (struct ll, union thing);
 struct node*  ll__at    (struct ll, ll_size);
-
 struct /* ll_methods */
 {
   struct ll     (*create)();
   void          (*affix) (struct ll, union thing);
   struct node*  (*at)    (struct ll, ll_size);
 } const ll = { ll__create, ll__affix, ll__at };
+
+struct node* node__create   (union thing*);
+void         node__attach_to(struct node, struct node*);
+struct /* node_methods */
+{
+  struct node* (*create)   (union thing*);
+  void         (*attach_to)(struct node, struct node*);
+} const node = { node__create, node__attach_to };
+
 
 /* ### Method Implementations ### */
 
@@ -100,6 +108,26 @@ struct node* ll__at(struct ll this, ll_size index)
     last = last->next;
   
   return last;
+}
+
+/* This method creates a new `node` for a given `thing`. `next` will also be
+ * initialized to a `NULL` pointer.
+ * 
+ * Expects a `thing` as an argument, to be stored on this `node` as `e`.
+ */
+struct node* node__create(union thing* thing)
+{
+  struct node this;
+  
+  this.e    = thing;
+  this.next = NULL;
+  
+  return &this;
+}
+
+void node__attach_to(struct node this, struct node* to)
+{
+  to->e = &this;
 }
 
 
