@@ -85,10 +85,15 @@ struct ll ll__create()
 /* This method affixes a new child onto a ll.
  * 
  * Takes two arguments, the affixee, and something to be appended as a child.
+ *--
+ * FIXME: Wouldn’t this be ridiculously slow? It has to iterate through the
+ * *entire* `ll` before it can affix something.
  */
-void ll__affix(struct ll this, union thing thing)
+void ll__affix(struct ll this, union thing something)
 {
+  struct node* somenode = node.create(thing);
   
+  node.attach_to( ll.at(this, this.length-1), somenode );
 }
 
 /* This method returns a pointer to the node at a given index in an `ll`.
@@ -102,9 +107,7 @@ struct node* ll__at(struct ll this, ll_size index)
    * *not* an empty list). */
   struct node* last = this.root;
   
-  /* We iterate starting at `i = 1`, because `last` will already point to the
-   * first `node` in the list, if it has any `node`s at all. */
-  for(ll_size i = 1; i < this.length; ++i)
+  for(ll_size i = 0; i < index; ++i)
     last = last->next;
   
   return last;
