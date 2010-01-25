@@ -82,7 +82,9 @@ void list__append(struct list this, struct list element)
   list.last(this);
 }
 
-/* FIXME: This currently returns an object. `list__append()`  */
+/* FIXME: This currently returns an object. `list__append()` needs a node, so
+ *        it can update `next` to point to a new node.
+ */
 struct list list__last(struct list this)
 {
   struct node* last_node = this.naughty;
