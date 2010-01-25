@@ -48,14 +48,16 @@ struct node
 
 /* ### Declarations ### */
 
-struct ll   ll__create(           union thing[]);
-void        ll__affix (struct ll, union thing);
+struct ll     ll__create(           union thing[]);
+void          ll__affix (struct ll, union thing);
+struct node*  ll__at    (struct ll, ll_size);
 
 struct /* ll_methods */
 {
-  struct ll   (*create)(           union thing[]);
-  void        (*affix) (struct ll, union thing);
-} const ll = { ll__create, ll__affix };
+  struct ll     (*create)(           union thing[]);
+  void          (*affix) (struct ll, union thing);
+  struct node*  (*at)    (struct ll, ll_size);
+} const ll = { ll__create, ll__affix, ll__at };
 
 /* ### Methods ### */
 
@@ -85,6 +87,25 @@ struct ll ll__create_(union thing children[], bool is_naughty)
 void ll__affix(struct ll this, union thing thing)
 {
   
+}
+
+/* This method returns a pointer to the node at a given index in an `ll`.
+ * 
+ * Takes two arguments, the indexee (`this`), and an integer `index`.
+ */
+struct node* ll__at(struct ll this, ll_size index)
+{
+  /* This will give us either a `NULL` pointer (if this has no root, i.e. is
+   * an empty list), or the first `node` (if this *has* a `root`, i.e. is
+   * *not* an empty list). */
+  struct node* last = this.root;
+  
+  /* We iterate starting at `i = 1`, because `last` will already point to the
+   * first `node` in the list, if it has any `node`s at all. */
+  for(ll_size i = 1; i < this.length; ++i)
+    last = last->next;
+  
+  return last;
 }
 
 
