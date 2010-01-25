@@ -2,31 +2,31 @@
 #include <stdbool.h>
 
 union  thing; /* A union representing any core Paws datatype */
-struct list; /* The actual struct representing Paws’ core datatype */
+
 struct ll; /* The data storage system (a linked-list) behind `list` */
-struct node; /* A single node of the linked-list consisting a ll */
+struct node; /* A single node of the linked-list consisting a `ll` */
+
+struct list; /* The actual struct representing Paws’ core datatype,
+              * `infrastructure list`.
+              * NOTE: Most methods return `union thing`s instead! You’ll have
+              *       to manually retreive the `list` from that union. */
 
 union thing
 {
   struct list*  list;
 };
 
-/* ======================
-= `infrastructure list` =
-====================== */
+/* =====
+= `ll` =
+===== */
 
-/* `infrastructure list`, the core data element of Paws, is here implemented
- * as a linked-list, referencing other `list`s as elements.
+/* ### Data Types & Structures ### */
+
+/* This implements a pseudo-linked-list structure that is the data storage
+ * system responsible for `infrastructure list`, and every other core
+ * datatype based thereupon.
  * 
- * For now, we’re not considering the storage of native data types, such as
- * `infrastructure string` and `infrastructure numeric`. That could get messy.
- */
-struct list
-{
-  struct ll*  naughty; /* The ll behind this `list` */
-};
-
-/* NOTE: This is not a traditional linked-list. We don’t iterate elements
+ * NOTE: This is not a traditional linked-list. We don’t iterate elements
  *       until reaching a NULL pointer; instead, we store (and maintain) the
  *       length (in nodes) and iterate based on that. This means that
  *       ‘trailing nodes’ (or, if you’re morbid, ‘zombie nodes’) can occur -
@@ -37,16 +37,16 @@ struct list
 typedef unsigned long int ll_size;
 struct ll
 {
-  struct node*  root; /* The first node in this ll */
-  ll_size       length; /* The total number of nodes in this ll */
+  struct node*  root; /* A pointer to the first `node` in this `ll` */
+  ll_size       length; /* The total number of `node`s in this `ll` */
 };
 struct node
 {
-  union thing*  e; /* The thing stored at this location */
-  struct node*  next; /* A pointer to the next node in this list */
+  union thing*  e; /* The `thing` stored at this location in the `ll` */
+  struct node*  next; /* A pointer to the next `node` in the `ll` */
 };
 
-/* ### Declarations ### */
+/* ### Method Declarations ### */
 
 struct ll     ll__create(           union thing[]);
 void          ll__affix (struct ll, union thing);
@@ -59,7 +59,7 @@ struct /* ll_methods */
   struct node*  (*at)    (struct ll, ll_size);
 } const ll = { ll__create, ll__affix, ll__at };
 
-/* ### Methods ### */
+/* ### Method Implementations ### */
 
 /* This method initializes a new ll, with no nodes.
  * 
@@ -107,6 +107,22 @@ struct node* ll__at(struct ll this, ll_size index)
   
   return last;
 }
+
+
+/* ======================
+= `infrastructure list` =
+====================== */
+
+/* `infrastructure list`, the core data element of Paws, is here implemented
+ * as a linked-list, referencing other `list`s as elements.
+ * 
+ * For now, we’re not considering the storage of native data types, such as
+ * `infrastructure string` and `infrastructure numeric`. That could get messy.
+ */
+struct list
+{
+  struct ll*  naughty; /* The ll behind this `list` */
+};
 
 
 /* =======
