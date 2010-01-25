@@ -117,17 +117,18 @@ struct node* ll__at(struct ll this, ll_size index)
  */
 struct node* node__create(union thing* thing)
 {
-  struct node this;
+  /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
+  struct node* this = malloc(sizeof(struct node));
   
-  this.e    = thing;
-  this.next = NULL;
+  this->e    = thing;
+  this->next = NULL;
   
-  return &this;
+  return this;
 }
 
 void node__attach_to(struct node this, struct node* to)
 {
-  to->e = &this;
+  to->next = &this;
 }
 
 
