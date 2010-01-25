@@ -1,11 +1,19 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+union  thing; /* A union representing any core Paws datatype */
+struct list; /* The actual struct representing Paws’ core datatype */
+struct ll; /* The data storage system (a linked-list) behind `list` */
+struct node; /* A single node of the linked-list consisting a ll */
+
+union thing
+{
+  struct list*  list;
+};
+
 /* ======================
 = `infrastructure list` =
 ====================== */
-
-/* ### Types & Structures ### */
 
 /* `infrastructure list`, the core data element of Paws, is here implemented
  * as a linked-list, referencing other `list`s as elements.
@@ -13,84 +21,70 @@
  * For now, we’re not considering the storage of native data types, such as
  * `infrastructure string` and `infrastructure numeric`. That could get messy.
  */
-struct list; /* The actual struct representing Paws’ core datatype */
-struct node; /* A single node of the linked-list consisting a `list` */
-
-#define LIST_LENGTH_TYPE unsigned long int
 struct list
 {
-  struct node* naughty; /* A pointer to this’s root node */
-  LIST_LENGTH_TYPE length; /* The current length of this linked list */
+  struct ll*  naughty; /* The ll behind this `list` */
 };
 
+/* NOTE: This is not a traditional linked-list. We don’t iterate elements
+ *       until reaching a NULL pointer; instead, we store (and maintain) the
+ *       length (in nodes) and iterate based on that. This means that
+ *       ‘trailing nodes’ (or, if you’re morbid, ‘zombie nodes’) can occur -
+ *       nodes appearing *after* the node at the last index (as according to
+ *       our stored length). This is acceptable; they’ll simply be dropped
+ *       when we append elements by adding a new link to the last node.
+ */
+typedef unsigned long int length;
+struct ll
+{
+  struct node*  root; /* The first node in this ll */
+  length        length; /* The total number of nodes in this ll */
+};
 struct node
 {
-  struct list* e; /* The `list` stored at this location in the linked-list */
-  struct node* next; /* A pointer to the next node in this list */
+  struct list*  e; /* The thing stored at this location */
+  struct node*  next; /* A pointer to the next node in this list */
 };
 
 /* ### Declarations ### */
 
-struct list list__create(struct list[]);
-void        list__append(struct list, struct list);
-struct list list__last(struct list);
+struct ll   ll__create(union thing[]);
+void        ll__affix(struct ll, union thing);
 
-struct list list__create_(struct list[], bool);
-struct /* list_methods */
+struct /* ll_methods */
 {
-  struct list (*create)(struct list[]);
-  void        (*append)(struct list, struct list);
-  struct list (*last)(struct list);
-} const list = { list__create, list__append, list__last };
+  struct ll   (*create)(union thing[]);
+  void        (*affix)(struct ll, union thing);
+} const ll = { ll__create, ll__affix };
 
 /* ### Methods ### */
 
-/* This method returns a new struct representing an `infrastructure list`.
- * It also initializes an empty naughty `list`, and assigns it to this `list`.
+/* This method initializes a new ll, with no nodes.
  * 
  * Takes a single argument, an array of children to add to this list once it
  * is created (as a convenience). If you don’t wish to add any children at
  * creation-time, pass a `NULL` pointer.
  */
-
-struct list list__create(struct list children[])
-  { return list__create_(children, false); }
-struct list list__create_(struct list children[], bool is_naughty)
+struct ll ll__create_(union thing[], bool);
+struct ll ll__create(union thing children[])
+  { return ll__create_(children, false); }
+struct ll ll__create_(union thing children[], bool is_naughty)
 {
-  struct list this;
-  struct list this_naughty;
-  struct node this_naughty_node;
+  struct ll this;
   
-  /* TODO: Use a node-creation function? */
-  this_naughty = is_naughty ? this : list__create_(NULL, true);
-  this_naughty_node.e    = &this_naughty;
-  this_naughty_node.next = NULL;
-  
-  this.naughty = &this_naughty_node;
-  this.length  = 1;
+  this.root   = NULL;
+  this.length = 0;
   
   return this;
 }
 
-/* This method affixes a new child onto our `list`.
+/* This method affixes a new child onto a ll.
  * 
- * Takes two arguments, the affixee, and another `list` to be appended as a
- * child.
+ * Takes two arguments, the affixee, and something to be appended as a child.
  */
-void list__append(struct list this, struct list element)
+void ll__affix(struct ll this, union thing thing)
 {
-  list.last(this);
-}
-
-/* FIXME: This currently returns an object. `list__append()` needs a node, so
- *        it can update `next` to point to a new node.
- */
-struct list list__last(struct list this)
-{
-  struct node* last_node = this.naughty;
-  for(LIST_LENGTH_TYPE i = 1; i < this.length; ++i)
-    last_node = last_node->next;
-  return *last_node->e;
+  
 }
 
 
@@ -100,9 +94,9 @@ struct list list__last(struct list this)
 
 int main()
 {
-  struct list root;
+  struct ll root;
   
-  root = list.create(NULL);
+  root = ll.create(NULL);
   
   return 0;
 }
