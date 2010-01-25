@@ -48,29 +48,23 @@ struct node
 
 /* ### Method Declarations ### */
 
-struct ll     ll__create(           union thing[]);
+struct ll     ll__create();
 void          ll__affix (struct ll, union thing);
 struct node*  ll__at    (struct ll, ll_size);
 
 struct /* ll_methods */
 {
-  struct ll     (*create)(           union thing[]);
+  struct ll     (*create)();
   void          (*affix) (struct ll, union thing);
   struct node*  (*at)    (struct ll, ll_size);
 } const ll = { ll__create, ll__affix, ll__at };
 
 /* ### Method Implementations ### */
 
-/* This method initializes a new ll, with no nodes.
- * 
- * Takes a single argument, an array of children to add to this list once it
- * is created (as a convenience). If you don’t wish to add any children at
- * creation-time, pass a `NULL` pointer.
+/* This method initializes a new ll, with no nodes. The `root` is set to a
+ * `NULL` pointer.
  */
-struct ll ll__create_(union thing[], bool);
-struct ll ll__create(union thing children[])
-  { return ll__create_(children, false); }
-struct ll ll__create_(union thing children[], bool is_naughty)
+struct ll ll__create()
 {
   struct ll this;
   
