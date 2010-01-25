@@ -34,11 +34,11 @@ struct list
  *       our stored length). This is acceptable; they’ll simply be dropped
  *       when we append elements by adding a new link to the last node.
  */
-typedef unsigned long int length;
+typedef unsigned long int ll_size;
 struct ll
 {
   struct node*  root; /* The first node in this ll */
-  length        length; /* The total number of nodes in this ll */
+  ll_size       length; /* The total number of nodes in this ll */
 };
 struct node
 {
