@@ -48,13 +48,13 @@ struct node
 
 /* ### Declarations ### */
 
-struct ll   ll__create(union thing[]);
-void        ll__affix(struct ll, union thing);
+struct ll   ll__create(           union thing[]);
+void        ll__affix (struct ll, union thing);
 
 struct /* ll_methods */
 {
-  struct ll   (*create)(union thing[]);
-  void        (*affix)(struct ll, union thing);
+  struct ll   (*create)(           union thing[]);
+  void        (*affix) (struct ll, union thing);
 } const ll = { ll__create, ll__affix };
 
 /* ### Methods ### */
