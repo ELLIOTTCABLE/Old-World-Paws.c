@@ -157,6 +157,8 @@ void node__affix(node this, node affixee) {
 = `infrastructure list` =
 ====================== */
 
+/* ### Data Types & Structures ### */
+
 /* `infrastructure list`, the core data element of Paws, is here implemented
  * as a linked-list, referencing other `list`s as elements.
  * 
@@ -164,8 +166,50 @@ void node__affix(node this, node affixee) {
  * `infrastructure string` and `infrastructure numeric`. That could get messy.
  */
 struct list {
-  ll      naughty; /* The `ll` behind this `list` */
+  ll      content; /* The `ll` behind this `list` */
 };
+
+/* ### Method Declarations ### */
+
+list  list__create    ();
+thing list__to_thing  (list);
+struct /* node_methods */ {
+  list  (*create)   ();
+  thing (*to_thing) (list);
+} const List = { list__create, list__to_thing };
+
+/* ### Method Implementations ### */
+
+/* This method allocates a new `infrastructure list`, and returns a pointer to
+ * a `struct list`.
+ */
+list _list__create(bool);
+list  list__create() { return
+     _list__create(false); }
+list _list__create(bool is_naughty) {
+  list this = malloc(sizeof(struct list)), naughty;
+  
+  this->content = LL.create();
+  
+  naughty = is_naughty? this:List.create(true);
+  
+  LL.affix( this->content, Node.create(List.to_thing(naughty)) );
+  
+  return this;
+}
+
+/* This method wraps a pointer to a `struct list` into a new `thing` union,
+ * and returns that union.
+ */
+thing list__to_thing(list this) {
+  /* FIXME: Do we need to `malloc()` this? We’re returning-by-value, not
+   *        by-reference… but I’m still not sure. */
+  /* thing wrapper = malloc(sizeof(union thing)); */
+  thing wrapper;
+  wrapper.list = this;
+  
+  return wrapper;
+}
 
 
 /* =======
@@ -173,9 +217,7 @@ struct list {
 ======= */
 
 int main() {
-  ll root;
   
-  root = LL.create();
   
   return 0;
 }
