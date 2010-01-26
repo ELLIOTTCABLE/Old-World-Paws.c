@@ -173,10 +173,12 @@ struct list {
 
 list  list__create    ();
 thing list__to_thing  (list);
+void  list__affix     (list, thing);
 struct /* node_methods */ {
   list  (*create)   ();
   thing (*to_thing) (list);
-} const List = { list__create, list__to_thing };
+  void  (*affix) (list, thing);
+} const List = { list__create, list__to_thing, list__affix };
 
 /* ### Method Implementations ### */
 
@@ -208,6 +210,10 @@ thing list__to_thing(list this) {
   wrapper.list = this;
   
   return wrapper;
+}
+
+void list__affix(list this, thing affixee) {
+  LL.affix(this->content, Node.create(affixee));
 }
 
 
