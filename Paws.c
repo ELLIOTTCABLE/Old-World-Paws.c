@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+typedef unsigned long int ll_size;
+
 /* Generally speaking, we provide *three* things for every core datatype:
  * 
  * - A `struct`, which stores the data relevant to that datatype. These can be
@@ -27,22 +29,22 @@
  * For convenience, we also provide a `union thing`, which is a combined type
  * for a pointer to any core datatype’s `struct`. This is typedef’d as well
  * (also to `thing`), but directly, not as a pointer (since it is intended to
- * *contain* pointers).
+ * *contain* pointers). Quite a few core API methods return this, or expect
+ * one of these, instead of a particular type’s struct.
  */
 
-union thing; /* A union representing any core Paws datatype */
+        union thing; /* A union representing any core Paws datatype */
 typedef union thing thing;
 
-struct ll; /* The data storage system (a linked-list) behind `list` */
-struct node; /* A single node of the linked-list consisting a `ll` */
-typedef struct ll* ll;
-typedef struct node* node;
+        struct ll; /* The data storage system (a linked-list) behind `list` */
+        struct node; /* A single node of the linked-list consisting a `ll` */
+typedef struct ll*    ll;
+typedef struct node*  node;
 
-struct list; /* The type behind `infrastructure list`. */
+        struct list; /* The type behind `infrastructure list`. */
 typedef struct list* list;
 
-union thing
-{
+union thing {
   list list;
 };
 
@@ -64,36 +66,31 @@ union thing
  *       our stored length). This is acceptable; they’ll simply be dropped
  *       when we append elements by adding a new link to the last node.
  */
-typedef unsigned long int ll_size;
-struct ll
-{
-  node          root; /* A pointer to the first `node` in this `ll` */
-  ll_size       length; /* The total number of `node`s in this `ll` */
+struct ll {
+  node    root; /* A pointer to the first `node` in this `ll` */
+  ll_size length; /* The total number of `node`s in this `ll` */
 };
-struct node
-{
-  thing         e; /* The `thing` stored at this location in the `ll` */
-  node          next; /* A pointer to the next `node` in the `ll` */
+struct node {
+  thing   e; /* The `thing` stored at this location in the `ll` */
+  node    next; /* A pointer to the next `node` in the `ll` */
 };
 
 /* ### Method Declarations ### */
 
-ll            ll__create();
-void          ll__affix (ll, node);
-node          ll__at    (ll, ll_size);
-struct /* ll_methods */
-{
-  ll            (*create)();
-  void          (*affix) (ll, node);
-  node          (*at)    (ll, ll_size);
+ll    ll__create  ();
+void  ll__affix   (ll, node);
+node  ll__at      (ll, ll_size);
+struct /* ll_methods */ {
+  ll    (*create) ();
+  void  (*affix)  (ll, node);
+  node  (*at)     (ll, ll_size);
 } const LL = { ll__create, ll__affix, ll__at };
 
-node         node__create   (thing);
-void         node__attach_to(node, node);
-struct /* node_methods */
-{
-  node         (*create)   (thing);
-  void         (*attach_to)(node, node);
+node  node__create    (thing);
+void  node__attach_to (node, node);
+struct /* node_methods */ {
+  node  (*create)     (thing);
+  void  (*attach_to)  (node, node);
 } const Node = { node__create, node__attach_to };
 
 
@@ -102,8 +99,7 @@ struct /* node_methods */
 /* This method initializes a new ll, with no nodes. The `root` is set to a
  * `NULL` pointer.
  */
-ll ll__create()
-{
+ll ll__create() {
   ll this = malloc(sizeof(struct ll));
   
   this->root   = NULL;
@@ -119,17 +115,14 @@ ll ll__create()
  * FIXME: Wouldn’t this be ridiculously slow? It has to iterate through the
  * *entire* `ll` before it can affix something.
  */
-void ll__affix(ll this, node affixee)
-{
-  Node.attach_to( LL.at(this, this->length-1), affixee );
-}
+void ll__affix(ll this, node affixee) {
+  Node.attach_to( LL.at(this, this->length-1), affixee ); }
 
 /* This method returns a pointer to the node at a given index in an `ll`.
  * 
  * Takes two arguments, the indexee (`this`), and an integer `index`.
  */
-node ll__at(ll this, ll_size index)
-{
+node ll__at(ll this, ll_size index) {
   /* This will give us either a `NULL` pointer (if this has no root, i.e. is
    * an empty list), or the first `node` (if this *has* a `root`, i.e. is
    * *not* an empty list). */
@@ -146,8 +139,7 @@ node ll__at(ll this, ll_size index)
  * 
  * Expects a `thing` as an argument, to be stored on this `node` as `e`.
  */
-node node__create(thing thing)
-{
+node node__create(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   node this = malloc(sizeof(struct node));
   
@@ -157,10 +149,8 @@ node node__create(thing thing)
   return this;
 }
 
-void node__attach_to(node this, node to)
-{
-  to->next = this;
-}
+void node__attach_to(node this, node to) {
+  to->next = this; }
 
 
 /* ======================
@@ -173,9 +163,8 @@ void node__attach_to(node this, node to)
  * For now, we’re not considering the storage of native data types, such as
  * `infrastructure string` and `infrastructure numeric`. That could get messy.
  */
-struct list
-{
-  ll naughty; /* The ll behind this `list` */
+struct list {
+  ll      naughty; /* The `ll` behind this `list` */
 };
 
 
@@ -183,8 +172,7 @@ struct list
 = main() =
 ======= */
 
-int main()
-{
+int main() {
   ll root;
   
   root = LL.create();
