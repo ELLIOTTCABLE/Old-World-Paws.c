@@ -110,13 +110,14 @@ ll ll__create() {
 
 /* This method affixes a new child onto a ll.
  * 
- * Takes two arguments, the affixee, and something to be appended as a child.
+ * Takes two arguments, the affixee (`this`), and a node to be appended as
+ * a child.
  *--
  * FIXME: Wouldn’t this be ridiculously slow? It has to iterate through the
  * *entire* `ll` before it can affix something.
  */
 void ll__affix(ll this, node affixee) {
-  Node.affix( affixee, LL.at(this, this->length-1) ); }
+  Node.affix( LL.at(this, this->length-1), affixee ); }
 
 /* This method returns a pointer to the node at a given index in an `ll`.
  * 
