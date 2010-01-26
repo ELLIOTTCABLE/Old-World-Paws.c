@@ -191,8 +191,7 @@ list _list__create(bool is_naughty) {
   
   this->content = LL.create();
   
-  naughty = is_naughty? this:List.create(true);
-  
+  naughty = is_naughty? this:_list__create(true);
   LL.affix( this->content, Node.create(List.to_thing(naughty)) );
   
   return this;
