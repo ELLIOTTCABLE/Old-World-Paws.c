@@ -223,7 +223,14 @@ void list__affix(list this, thing child) {
 ======= */
 
 int main() {
+  list root_list = List.create(),
+     first_child = List.create(),
+        subchild = List.create(),
+    second_child = List.create();
   
+  List.affix(first_child, List.to_thing(subchild));
+  List.affix(root_list, List.to_thing(first_child));
+  List.affix(root_list, List.to_thing(second_child));
   
   return 0;
 }
