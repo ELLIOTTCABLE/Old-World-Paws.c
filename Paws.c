@@ -117,7 +117,11 @@ ll ll__create() {
  * *entire* `ll` before it can affix something.
  */
 void ll__affix(ll this, node child) {
-  Node.affix( LL.at(this, this->length-1), child ); }
+  if (this->length < 1)
+    this->root = child;
+  else
+    Node.affix( LL.at(this, this->length-1), child );
+}
 
 /* This method returns a pointer to the node at a given index in an `ll`.
  * 
