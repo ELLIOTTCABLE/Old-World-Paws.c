@@ -81,17 +81,17 @@ ll    ll__create  ();
 void  ll__affix   (ll, node);
 node  ll__at      (ll, ll_size);
 struct /* ll_methods */ {
-  ll    (*create) ();
-  void  (*affix)  (ll, node);
-  node  (*at)     (ll, ll_size);
+  ll    (*create)   ();
+  void  (*affix)    (ll, node);
+  node  (*at)       (ll, ll_size);
 } const LL = { ll__create, ll__affix, ll__at };
 
-node  node__create    (thing);
-void  node__attach_to (node, node);
+node  node__create  (thing);
+void  node__affix   (node, node);
 struct /* node_methods */ {
-  node  (*create)     (thing);
-  void  (*attach_to)  (node, node);
-} const Node = { node__create, node__attach_to };
+  node  (*create) (thing);
+  void  (*affix)  (node, node);
+} const Node = { node__create, node__affix };
 
 
 /* ### Method Implementations ### */
@@ -116,7 +116,7 @@ ll ll__create() {
  * *entire* `ll` before it can affix something.
  */
 void ll__affix(ll this, node affixee) {
-  Node.attach_to( LL.at(this, this->length-1), affixee ); }
+  Node.affix( affixee, LL.at(this, this->length-1) ); }
 
 /* This method returns a pointer to the node at a given index in an `ll`.
  * 
@@ -149,8 +149,8 @@ node node__create(thing thing) {
   return this;
 }
 
-void node__attach_to(node this, node to) {
-  to->next = this; }
+void node__affix(node this, node affixee) {
+  this->next = affixee; }
 
 
 /* ======================
