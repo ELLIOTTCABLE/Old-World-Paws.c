@@ -116,8 +116,8 @@ ll ll__create() {
  * FIXME: Wouldn’t this be ridiculously slow? It has to iterate through the
  * *entire* `ll` before it can affix something.
  */
-void ll__affix(ll this, node affixee) {
-  Node.affix( LL.at(this, this->length-1), affixee ); }
+void ll__affix(ll this, node child) {
+  Node.affix( LL.at(this, this->length-1), child ); }
 
 /* This method returns a pointer to the node at a given index in an `ll`.
  * 
@@ -150,8 +150,8 @@ node node__create(thing thing) {
   return this;
 }
 
-void node__affix(node this, node affixee) {
-  this->next = affixee; }
+void node__affix(node this, node other) {
+  this->next = other; }
 
 
 /* ======================
@@ -213,8 +213,8 @@ thing list__to_thing(list this) {
   return wrapper;
 }
 
-void list__affix(list this, thing affixee) {
-  LL.affix(this->content, Node.create(affixee));
+void list__affix(list this, thing child) {
+  LL.affix(this->content, Node.create(child));
 }
 
 
