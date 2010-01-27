@@ -245,5 +245,12 @@ int main() {
   List.affix(root_list, List.to_thing(first_child));
   List.affix(root_list, List.to_thing(second_child));
   
-  return 0;
+  if (false
+  ||  List.at(root_list, 1).list != first_child
+  ||  List.at(root_list, 2).list != second_child
+  ||  List.at(root_list, 2).list != second_child
+  )
+    return(1);
+  
+  return(0);
 }
