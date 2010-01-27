@@ -218,8 +218,7 @@ thing list__to_thing(list this) {
 }
 
 void list__affix(list this, thing child) {
-  LL.affix(this->content, Node.create(child));
-}
+  LL.affix(this->content, Node.create(child)); }
 
 
 /* =======
