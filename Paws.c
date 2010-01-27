@@ -180,11 +180,13 @@ struct list {
 list  list__create    ();
 thing list__to_thing  (list);
 void  list__affix     (list, thing);
+thing list__at        (list, ll_size);
 struct /* node_methods */ {
   list  (*create)   ();
   thing (*to_thing) (list);
-  void  (*affix) (list, thing);
-} const List = { list__create, list__to_thing, list__affix };
+  void  (*affix)    (list, thing);
+  thing (*at)       (list, ll_size);
+} const List = { list__create, list__to_thing, list__affix, list__at };
 
 /* ### Method Implementations ### */
 
@@ -220,6 +222,13 @@ thing list__to_thing(list this) {
 
 void list__affix(list this, thing child) {
   LL.affix(this->content, Node.create(child)); }
+
+thing list__at(list this, ll_size index) {
+  ll content = this->content;
+  node result_node = LL.at(content, index);
+  thing result = result_node->e;
+  return result;
+}
 
 
 /* =======
