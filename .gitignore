@@ -1,8 +1,8 @@
 # All executables
 *
 !*.*
+*.o
 
 # Intermediary forms
 *.i
-*.o
 *.s
