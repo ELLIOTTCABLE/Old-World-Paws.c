@@ -79,7 +79,7 @@ struct ll {
   ll_size length; /* The total number of `node`s in this `ll` */
 };
 struct node {
-  thing   e; /* The `thing` stored at this location in the `ll` */
+  thing   thing; /* The `thing` stored at this location in the `ll` */
   node    next; /* A pointer to the next `node` in the `ll` */
   node    previous; /* A pointer to the previous `node` in the `ll` */
 };
@@ -213,7 +213,7 @@ node node__create(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   node this = malloc(sizeof(struct node));
   
-  this->e        = thing;
+  this->thing    = thing;
   this->next     = NULL;
   this->previous = NULL;
   
@@ -344,7 +344,7 @@ void list__affix(list this, thing child) {
   LL.affix(this->content, Node.create(child)); }
 
 thing list__at(list this, ll_size index) { return
-  LL.at(this->content, index)->e; }
+  LL.at(this->content, index)->thing; }
 
 
 /* =======
