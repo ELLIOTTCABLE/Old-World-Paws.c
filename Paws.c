@@ -37,12 +37,12 @@ typedef unsigned long int ll_size;
         union thing; /* A union representing any core Paws datatype */
 typedef union thing thing;
 
-        struct ll; /* The data storage system (a linked-list) behind `list` */
-        struct node; /* A single node of the linked-list consisting a `ll` */
+        struct ll; /* Our data storage system (a doubly-linked-list) */
+        struct node; /* A single node of an `ll` */
 typedef struct ll*    ll;
 typedef struct node*  node;
 
-        struct list; /* The type behind `infrastructure list`. */
+        struct list; /* The struct behind `infrastructure list`. */
 typedef struct list* list;
 
 union thing {
@@ -55,94 +55,152 @@ union thing {
 
 /* ### Data Types & Structures ### */
 
-/* This implements a pseudo-linked-list structure that is the data storage
- * system responsible for `infrastructure list`, and every other core
+/* This implements a pseudo-‘doubly-linked list’ structure that is the data
+ * storage system responsible for `infrastructure list`, and every other core
  * datatype based thereupon.
  * 
- * NOTE: This is not a traditional linked-list. We don’t iterate elements
- *       until reaching a NULL pointer; instead, we store (and maintain) the
+ * Note: This is not a traditional linked list. We don’t iterate elements
+ *       until reaching a `NULL` pointer; instead, we store (and maintain) the
  *       length (in nodes) and iterate based on that. This means that
  *       ‘trailing nodes’ (or, if you’re morbid, ‘zombie nodes’) can occur -
- *       nodes appearing *after* the node at the last index (as according to
- *       our stored length). This is acceptable; they’ll simply be dropped
- *       when we append elements by adding a new link to the last node.
+ *       nodes appearing before/after the `node` at the last/first index (that
+ *       is, according to our stored `length`). This is currently considered
+ *       acceptable; they’ll simply be dropped when we affix/prefix elements
+ *       (as that process replaces the pointer to the next/previous node.)
  */
 struct ll {
-  node    root; /* A pointer to the first `node` in this `ll` */
+  node    first; /* A pointer to the first `node` in this `ll` */
+  node    last; /* A pointer to the last `node` in this `ll` */
   ll_size length; /* The total number of `node`s in this `ll` */
 };
 struct node {
   thing   e; /* The `thing` stored at this location in the `ll` */
   node    next; /* A pointer to the next `node` in the `ll` */
+  node    previous; /* A pointer to the previous `node` in the `ll` */
 };
 
 /* ### Method Declarations ### */
 
 ll    ll__create  ();
+void  ll__anterior_insert   (ll, node, ll_size);
+void  ll__posterior_insert  (ll, node, ll_size);
+void  ll__prefix  (ll, node);
 void  ll__affix   (ll, node);
 node  ll__at      (ll, ll_size);
 struct /* ll_methods */ {
-  ll    (*create)   ();
-  void  (*affix)    (ll, node);
-  node  (*at)       (ll, ll_size);
-} const LL = { ll__create, ll__affix, ll__at };
+  ll    (*create) ();
+  void  (*anterior_insert)  (ll, node, ll_size);
+  void  (*posterior_insert) (ll, node, ll_size);
+  void  (*prefix) (ll, node);
+  void  (*affix)  (ll, node);
+  node  (*at)     (ll, ll_size);
+} const LL = {
+  ll__create,
+  ll__anterior_insert,
+  ll__posterior_insert,
+  ll__prefix,
+  ll__affix,
+  ll__at
+};
 
 node  node__create  (thing);
+void  node__prefix  (node, node);
 void  node__affix   (node, node);
 struct /* node_methods */ {
   node  (*create) (thing);
+  void  (*prefix) (node, node);
   void  (*affix)  (node, node);
-} const Node = { node__create, node__affix };
+} const Node = { node__create, node__prefix, node__affix };
 
 
 /* ### Method Implementations ### */
 
-/* This method initializes a new ll, with no nodes. The `root` is set to a
- * `NULL` pointer.
+/* This method initializes a new ll, with no nodes. The `first` and `last` are
+ * set to `NULL` pointers, and `length` is initialized to zero.
  */
 ll ll__create() {
   ll this = malloc(sizeof(struct ll));
   
-  this->root   = NULL;
+  this->first  = NULL;
+  this->last   = NULL;
   this->length = 0;
   
   return this;
 }
 
-/* This method affixes a new child onto a ll.
+void ll__anterior_insert(ll this, node child, ll_size index) {
+  if (index == this->length - 1)
+    /* TODO: Error condition, cannot anterior-insert at last position */;
+  else {
+    Node.prefix(LL.at(this, index), child);
+    this->length++;
+  }
+}
+
+void ll__posterior_insert(ll this, node child, ll_size index) {
+  if (index == 0)
+    /* TODO: Error condition, cannot posterior-insert at first position */;
+  else {
+    Node.affix(LL.at(this, index - 1), child);
+    this->length++;
+  }
+}
+
+/* This method prefixes a new child `node` onto an `ll`. This will ensure that
+ * the first element in the `ll`, after the appending, is the new node.
  * 
- * Takes two arguments, the affixee (`this`), and a node to be appended as
- * a child.
- *--
- * FIXME: Wouldn’t this be ridiculously slow? It has to iterate through the
- * *entire* `ll` before it can affix something.
+ * Takes two arguments, the prefixee (`this`), and a `node` to be prefixed
+ * onto it as a child.
  */
-void ll__affix(ll this, node child) {
+void ll__prefix(ll this, node child) {
   if (this->length < 1)
-    this->root = child;
+    this->last = child;
   else
-    Node.affix( LL.at(this, this->length-1), child );
+    Node.prefix( this->first, child );
+  this->first = child;
   this->length++;
 }
 
-/* This method returns a pointer to the node at a given index in an `ll`.
+/* This method affixes a new child `node` onto an `ll`. This will ensure that
+ * the last element in the `ll`, after the appending, is the new node.
+ * 
+ * Takes two arguments, the affixee (`this`), and a `node` to be affixed onto
+ * it as a child.
+ */
+void ll__affix(ll this, node child) {
+  if (this->length < 1)
+    this->first = child;
+  else
+    Node.affix( this->last, child );
+  this->last = child;
+  this->length++;
+}
+
+/* This method returns a `node` at a given index in an `ll`.
  * 
  * Takes two arguments, the indexee (`this`), and an integer `index`.
  */
 node ll__at(ll this, ll_size index) {
-  /* This will give us either a `NULL` pointer (if this has no root, i.e. is
-   * an empty list), or the first `node` (if this *has* a `root`, i.e. is
-   * *not* an empty list). */
-  node last = this->root;
+  node result;
   
-  for(ll_size i = 0; i < index; ++i)
-    last = last->next;
+  if (index >= this->length)
+    return NULL;
   
-  return last;
+  if (index <= this->length / 2) {
+    result = this->first;
+    for (ll_size i = 0; i < index; ++i)
+      result = result->next;
+  } else {
+    result = this->last;
+    for (ll_size i = this->length - 1; i > index; --i)
+      result = result->next;
+  }
+  
+  return result;
 }
 
-/* This method creates a new `node` for a given `thing`. `next` will also be
- * initialized to a `NULL` pointer.
+/* This method creates a new `node` for a given `thing`. `next` and `previous`
+ * will also be initialized to a `NULL` pointer.
  * 
  * Expects a `thing` as an argument, to be stored on this `node` as `e`.
  */
@@ -150,14 +208,54 @@ node node__create(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   node this = malloc(sizeof(struct node));
   
-  this->e    = thing;
-  this->next = NULL;
+  this->e        = thing;
+  this->next     = NULL;
+  this->previous = NULL;
   
   return this;
 }
 
+/* This method inserts another node *before* this node in the chain of a
+ * linked list.
+ * 
+ * If there’s already a node attached before this node, and there *isn’t* one
+ * attached before the node being inserted, then that next-node will be
+ * affixed to our new node, thus keeping the chain intact if possible.
+ * 
+ * Note: See the notes on `Node.affix()`.
+ */
+void node__prefix(node this, node other) {
+  if (this->previous != NULL)
+    if (other->previous == NULL)
+      node__prefix(other, this->previous);
+    else
+      this->previous->next = NULL;
+  
+  other->next     = this;
+  this->previous  = other;
+}
+
+/* This method inserts another node *after* this node in the chain of a
+ * linked list.
+ * 
+ * If there’s already a node attached after this node, and there *isn’t* one
+ * attached after the node being inserted, then that next-node will be
+ * affixed to our new node, thus keeping the chain intact if possible.
+ * 
+ * Note: Realize that due to that copy-next mechanic, you can splice
+ *       node-strings on top of eachother, but all nodes *after* this node in
+ *       the original chain will be lost.
+ */
 void node__affix(node this, node other) {
-  this->next = other; }
+  if (this->next != NULL)
+    if (other->next == NULL)
+      node__affix(other, this->next);
+    else
+      this->next->previous = NULL;
+  
+  other->previous = this;
+  this->next      = other;
+}
 
 
 /* ======================
@@ -180,14 +278,25 @@ struct list {
 
 list  list__create    ();
 thing list__to_thing  (list);
+void  list__insert    (list, thing, ll_size);
+void  list__prefix    (list, thing);
 void  list__affix     (list, thing);
 thing list__at        (list, ll_size);
 struct /* node_methods */ {
   list  (*create)   ();
   thing (*to_thing) (list);
+  void  (*insert)   (list, thing, ll_size);
+  void  (*prefix)   (list, thing);
   void  (*affix)    (list, thing);
   thing (*at)       (list, ll_size);
-} const List = { list__create, list__to_thing, list__affix, list__at };
+} const List = {
+  list__create,
+  list__to_thing,
+  list__insert,
+  list__prefix,
+  list__affix,
+  list__at
+};
 
 /* ### Method Implementations ### */
 
@@ -221,15 +330,17 @@ thing list__to_thing(list this) {
   return wrapper;
 }
 
+void list__insert(list this, thing child, ll_size index) {
+  LL.posterior_insert(this->content, Node.create(child), index); }
+
+void list__prefix(list this, thing child) {
+  LL.prefix(this->content, Node.create(child)); }
+
 void list__affix(list this, thing child) {
   LL.affix(this->content, Node.create(child)); }
 
-thing list__at(list this, ll_size index) {
-  ll content = this->content;
-  node result_node = LL.at(content, index);
-  thing result = result_node->e;
-  return result;
-}
+thing list__at(list this, ll_size index) { return
+  LL.at(this->content, index)->e; }
 
 
 /* =======
