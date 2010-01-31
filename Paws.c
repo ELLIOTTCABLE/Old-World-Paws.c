@@ -34,8 +34,8 @@ typedef unsigned long int ll_size;
  * one of these, instead of a particular type’s struct.
  */
 
-        union thing; /* A union representing any core Paws datatype */
-typedef union thing thing;
+        struct thing; /* A union representing any core Paws datatype */
+typedef struct thing* thing;
 
         struct ll; /* Our data storage system (a doubly-linked-list) */
         struct node; /* A single node of an `ll` */
@@ -45,8 +45,13 @@ typedef struct node*  node;
         struct list; /* The struct behind `infrastructure list`. */
 typedef struct list* list;
 
-union thing {
-  list list;
+struct thing {
+  enum /* isa’s */ {
+    LIST
+  } isa;
+  union /* thing’s */ {
+    list list;
+  } pointer;
 };
 
 /* =====
@@ -321,11 +326,10 @@ list _list__create(bool is_naughty) {
  * and returns that union.
  */
 thing list__to_thing(list this) {
-  /* FIXME: Do we need to `malloc()` this? We’re returning-by-value, not
-   *        by-reference… but I’m still not sure. */
-  /* thing wrapper = malloc(sizeof(union thing)); */
-  thing wrapper;
-  wrapper.list = this;
+  thing wrapper = malloc(sizeof(struct thing)); 
+  
+  wrapper->isa  = LIST;
+  wrapper->pointer.list = this;
   
   return wrapper;
 }
@@ -360,7 +364,7 @@ void pretty_print_list(list this) {
 
 void pretty_print(thing this) {
   /* TODO: Support non-`list` `thing`s */
-  pretty_print_list(this.list);
+  pretty_print_list(this->pointer.list);
 }
 
 int main() {
@@ -377,9 +381,9 @@ int main() {
   printf("\n");
   
   if (false
-  ||  List.at(root_list, 1).list != first_child
-  ||  List.at(root_list, 2).list != second_child
-  ||  List.at(root_list, 2).list != second_child
+  ||  List.at(root_list, 1)->pointer.list != first_child
+  ||  List.at(root_list, 2)->pointer.list != second_child
+  ||  List.at(root_list, 2)->pointer.list != second_child
   )
     return(1);
   
