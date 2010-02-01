@@ -1,9 +1,7 @@
+#include "list.h"
+
 #include <stdlib.h>
 #include <stdbool.h>
-
-#ifndef LIST_H_INCLUDED
-#  include "list.h"
-#endif
 
 /* ======================
 = `infrastructure list` =

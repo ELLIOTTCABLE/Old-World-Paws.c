@@ -1,12 +1,10 @@
-#include <stdlib.h>
-
-#ifndef NUMERIC_H_INCLUDED
-#  include "numeric.h"
-#endif
+#include "numeric.h"
 
 #ifndef LIST_H_INCLUDED
 #  include "../list/list.h"
 #endif
+
+#include <stdlib.h>
 
 /* =========================
 = `infrastructure numeric` =

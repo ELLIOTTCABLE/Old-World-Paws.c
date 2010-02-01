@@ -1,8 +1,6 @@
-#include <stdlib.h>
+#include "ll.h"
 
-#ifndef LL_H_INCLUDED
-#  include "ll.h"
-#endif
+#include <stdlib.h>
 
 /* =====
 = `ll` =

@@ -7,7 +7,7 @@
 #ifndef LIST_H_INCLUDED
 #  include "list/list.h"
 #endif
-#ifndef LIST_H_INCLUDED
+#ifndef NUMERIC_H_INCLUDED
 #  include "numeric/numeric.h"
 #endif
 
