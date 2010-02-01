@@ -1,4 +1,7 @@
+#include <stdlib.h>
+#include <stdbool.h>
 #include <stdio.h>
+
 #include "Source/Paws.h"
 
 void pretty_print(thing);

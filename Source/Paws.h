@@ -1,8 +1,5 @@
 #define PAWS_H_INCLUDED
 
-#include <stdlib.h>
-#include <stdbool.h>
-
 typedef unsigned long int ll_size;
 
 /* Generally speaking, we provide *three* things for every core datatype:

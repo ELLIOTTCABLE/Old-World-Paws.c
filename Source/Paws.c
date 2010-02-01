@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdbool.h>
+
 #ifndef PAWS_H_INCLUDED
 #  include "Paws.h"
 #endif
