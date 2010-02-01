@@ -1,4 +1,6 @@
-#include "Paws.h"
+#ifndef PAWS_H_INCLUDED
+#  include "Paws.h"
+#endif
 
 /* =====
 = `ll` =
