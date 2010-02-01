@@ -12,6 +12,7 @@
 /* ### Method Declarations ### */
 
 list  list__create    (void);
+list  list__create_naughty  (void);
 thing list__to_thing  (list);
 void  list__insert    (list, thing, ll_size);
 void  list__prefix    (list, thing);
@@ -21,6 +22,7 @@ thing list__at        (list, ll_size);
 struct List_methods const
 List = {
   list__create,
+  list__create_naughty,
   list__to_thing,
   list__insert,
   list__prefix,
@@ -34,14 +36,19 @@ List = {
  * a `struct list`.
  */
 list _list__create(bool);
+
 list  list__create(void) { return
      _list__create(false); }
+
+list  list__create_naughty(void) { return
+     _list__create(true); }
+
 list _list__create(bool is_naughty) {
   list this = malloc(sizeof(struct list)), naughty;
   
   this->content = LL.create();
   
-  naughty = is_naughty? this:_list__create(true);
+  naughty = is_naughty? this:List.create_naughty();
   LL.affix( this->content, Node.create(List.to_thing(naughty)) );
   
   return this;

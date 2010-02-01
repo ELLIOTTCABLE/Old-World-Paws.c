@@ -27,6 +27,7 @@ struct list {
 
 struct List_methods {
   list  (*create)   (void);
+  list  (*create_naughty) (void);
   thing (*to_thing) (list);
   void  (*insert)   (list, thing, ll_size);
   void  (*prefix)   (list, thing);
