@@ -1,5 +1,12 @@
 #define TYPES_H_INCLUDED
 
+/* This file exists simply to pre-declare some structs and types used
+ * throughout the rest of the Paws.o codebase.
+ * 
+ * You should never have a reason to include or use this file; it’s included
+ * everywhere it is necessary.
+ */
+
 typedef unsigned long int ll_size;
 
         struct ll; /* Our data storage system (a doubly-linked-list) */
