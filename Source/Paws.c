@@ -6,6 +6,34 @@
 = `ll` =
 ===== */
 
+/* ### Method Declarations ### */
+
+ll    ll__create  ();
+void  ll__anterior_insert   (ll, node, ll_size);
+void  ll__posterior_insert  (ll, node, ll_size);
+void  ll__prefix  (ll, node);
+void  ll__affix   (ll, node);
+node  ll__at      (ll, ll_size);
+
+struct LL_methods const
+LL = {
+  ll__create,
+  ll__anterior_insert,
+  ll__posterior_insert,
+  ll__prefix,
+  ll__affix,
+  ll__at
+};
+
+node  node__create  (thing);
+void  node__prefix  (node, node);
+void  node__affix   (node, node);
+
+struct Node_methods const
+Node = { node__create, node__prefix, node__affix };
+
+/* ### Method Implementations ### */
+
 /* This method initializes a new ll, with no nodes. The `first` and `last` are
  * set to `NULL` pointers, and `length` is initialized to zero.
  */
@@ -152,6 +180,27 @@ void node__affix(node this, node other) {
 /* ======================
 = `infrastructure list` =
 ====================== */
+
+/* ### Method Declarations ### */
+
+list  list__create    ();
+thing list__to_thing  (list);
+void  list__insert    (list, thing, ll_size);
+void  list__prefix    (list, thing);
+void  list__affix     (list, thing);
+thing list__at        (list, ll_size);
+
+struct List_methods const
+List = {
+  list__create,
+  list__to_thing,
+  list__insert,
+  list__prefix,
+  list__affix,
+  list__at
+};
+
+/* ### Method Implementations ### */
 
 /* This method allocates a new `infrastructure list`, and returns a pointer to
  * a `struct list`.
