@@ -1,7 +1,7 @@
+#define PAWS_H_INCLUDED
+
 #include <stdlib.h>
 #include <stdbool.h>
-
-#define PAWS_H_INCLUDED
 
 typedef unsigned long int ll_size;
 

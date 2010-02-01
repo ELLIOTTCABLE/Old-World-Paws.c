@@ -1,8 +1,5 @@
 #include <stdio.h>
-
-#ifndef PAWS_H_INCLUDED
-#  include "Source/Paws.h"
-#endif
+#include "Source/Paws.h"
 
 void pretty_print(thing);
 
