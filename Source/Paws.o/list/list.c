@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 #ifndef LIST_H_INCLUDED
-#  include "List.h"
+#  include "list.h"
 #endif
 
 /* ======================
