@@ -6,9 +6,9 @@
 
 void pretty_print(thing);
 
-void pretty_print_list(list this) {
+void pretty_print_list(list this) { ll_size i;
   printf("(");
-  for(ll_size i = 1; i < this->content->length; ++i) {
+  for (i = 1; i < this->content->length; ++i) {
     if (i > 1) printf(", ");
     pretty_print(List.at(this, i));
   }
@@ -20,7 +20,7 @@ void pretty_print(thing this) {
   pretty_print_list(this->pointer.list);
 }
 
-int main() {
+int main(void) {
   list root_list = List.create(),
      first_child = List.create(),
         subchild = List.create(),

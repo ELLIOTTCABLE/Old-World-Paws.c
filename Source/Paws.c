@@ -8,7 +8,7 @@
 
 /* ### Method Declarations ### */
 
-ll    ll__create  ();
+ll    ll__create  (void);
 void  ll__anterior_insert   (ll, node, ll_size);
 void  ll__posterior_insert  (ll, node, ll_size);
 void  ll__prefix  (ll, node);
@@ -37,7 +37,7 @@ Node = { node__create, node__prefix, node__affix };
 /* This method initializes a new ll, with no nodes. The `first` and `last` are
  * set to `NULL` pointers, and `length` is initialized to zero.
  */
-ll ll__create() {
+ll ll__create(void) {
   ll this = malloc(sizeof(struct ll));
   
   this->first  = NULL;
@@ -99,19 +99,20 @@ void ll__affix(ll this, node child) {
  * 
  * Takes two arguments, the indexee (`this`), and an integer `index`.
  */
-node ll__at(ll this, ll_size index) {
-  node result;
+node ll__at(ll this, ll_size index) { node result; ll_size i;
   
   if (index >= this->length)
     return NULL;
   
   if (index <= this->length / 2) {
     result = this->first;
-    for (ll_size i = 0; i < index; ++i)
+    
+    for (i = 0; i < index; ++i)
       result = result->next;
   } else {
     result = this->last;
-    for (ll_size i = this->length - 1; i > index; --i)
+    
+    for (i = this->length - 1; i > index; --i)
       result = result->next;
   }
   
@@ -183,7 +184,7 @@ void node__affix(node this, node other) {
 
 /* ### Method Declarations ### */
 
-list  list__create    ();
+list  list__create    (void);
 thing list__to_thing  (list);
 void  list__insert    (list, thing, ll_size);
 void  list__prefix    (list, thing);
@@ -206,7 +207,7 @@ List = {
  * a `struct list`.
  */
 list _list__create(bool);
-list  list__create() { return
+list  list__create(void) { return
      _list__create(false); }
 list _list__create(bool is_naughty) {
   list this = malloc(sizeof(struct list)), naughty;

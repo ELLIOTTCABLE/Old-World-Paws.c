@@ -89,7 +89,7 @@ struct node {
 /* ### Method Declarations ### */
 
 struct LL_methods {
-  ll    (*create) ();
+  ll    (*create) (void);
   void  (*anterior_insert)  (ll, node, ll_size);
   void  (*posterior_insert) (ll, node, ll_size);
   void  (*prefix) (ll, node);
@@ -123,7 +123,7 @@ struct list {
 /* ### Method Declarations ### */
 
 struct List_methods {
-  list  (*create)   ();
+  list  (*create)   (void);
   thing (*to_thing) (list);
   void  (*insert)   (list, thing, ll_size);
   void  (*prefix)   (list, thing);
