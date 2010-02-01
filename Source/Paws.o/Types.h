@@ -10,17 +10,22 @@ typedef struct node*  node;
         struct list; /* The struct behind `infrastructure list`. */
 typedef struct list* list;
 
+        struct numeric; /* The struct behind `infrastructure numeric`. */
+typedef struct numeric* numeric;
+
         struct thing; /* A union representing any core Paws datatype */
 typedef struct thing* thing;
 
 struct thing {
   
   enum /* isa’s */ {
-    LIST
+    LIST,
+    NUMERIC
   } isa;
   
   union /* thing’s */ {
     list list;
+    numeric numeric;
   } pointer;
   
 };

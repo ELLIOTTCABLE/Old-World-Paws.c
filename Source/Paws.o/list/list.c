@@ -32,8 +32,8 @@ List = {
 
 /* ### Method Implementations ### */
 
-/* This method allocates a new `infrastructure list`, and returns a pointer to
- * a `struct list`.
+/* This method allocates a new `infrastructure list`, and returns a C `list`
+ * (a pointer to a C `struct list`.)
  */
 list _list__create(bool);
 

@@ -7,6 +7,9 @@
 #ifndef LIST_H_INCLUDED
 #  include "list/list.h"
 #endif
+#ifndef LIST_H_INCLUDED
+#  include "numeric/numeric.h"
+#endif
 
 /* Generally speaking, we provide *three* things for every core datatype:
  * 

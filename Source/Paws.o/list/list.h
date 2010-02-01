@@ -15,12 +15,9 @@
 
 /* `infrastructure list`, the core data element of Paws, is here implemented
  * as a linked-list, referencing other `list`s as elements.
- * 
- * For now, we’re not considering the storage of native data types, such as
- * `infrastructure string` and `infrastructure numeric`. That could get messy.
  */
 struct list {
-  ll      content; /* The `ll` behind this `list` */
+  ll  content; /* The `ll` behind this `list` */
 };
 
 /* ### Method Declarations ### */
