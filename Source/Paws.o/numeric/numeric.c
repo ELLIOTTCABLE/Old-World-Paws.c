@@ -14,7 +14,7 @@
 
 /* ### Method Declarations ### */
 
-numeric numeric__create    (void);
+numeric numeric__create    (int);
 thing   numeric__to_thing  (numeric);
 
 struct Numeric_methods const
@@ -28,12 +28,14 @@ Numeric = {
 /* This method allocates a new `infrastructure numeric`, and returns a
  * C `numeric` (a pointer to a C `struct numeric`.)
  */
-numeric numeric__create(void) {
+numeric numeric__create(int native) {
   numeric this = malloc(sizeof(struct numeric));
   
   this->content = LL.create();
   LL.affix( this->content,
     Node.create(List.to_thing( List.create_naughty() )) );
+  
+  this->native = native;
   
   return this;
 }
