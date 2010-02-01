@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "Source/Paws.h"
+#include "Paws.o/Paws.h"
 
 void pretty_print(thing);
 

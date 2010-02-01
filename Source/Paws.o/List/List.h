@@ -1,12 +1,11 @@
 #define LIST_H_INCLUDED
 
+#ifndef TYPES_H_INCLUDED
+#  include "../Types.h"
+#endif
 #ifndef LL_H_INCLUDED
 #  include "LL.h"
 #endif
-#ifndef TYPES_H_INCLUDED
-#  include "Types.h"
-#endif
-
 
 /* ======================
 = `infrastructure list` =
