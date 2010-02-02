@@ -1,10 +1,10 @@
 #define NUMERIC_H_INCLUDED
 
 #ifndef TYPES_H_INCLUDED
-#  include "../Types.h"
+#  include "Paws.o/Types.h"
 #endif
 #ifndef LL_H_INCLUDED
-#  include "../Core/ll.h"
+#  include "Paws.o/Core/ll.h"
 #endif
 
 /* =========================

@@ -46,8 +46,3 @@ bool ll__test_affix(void) {
 bool ll__test_at(void) {
   return true;
 }
-
-int main(void) {
-  
-  return 0;
-}

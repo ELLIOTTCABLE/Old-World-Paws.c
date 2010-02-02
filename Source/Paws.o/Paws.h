@@ -1,7 +1,7 @@
 #define PAWS_H_INCLUDED
 
 #ifndef TYPES_H_INCLUDED
-#  include "Types.h"
+#  include "Paws.o/Types.h"
 #endif
 
 #ifndef LIST_H_INCLUDED
