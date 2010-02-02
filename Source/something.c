@@ -17,7 +17,8 @@ void pretty_print_list(list this) { ll_size i;
 
 void pretty_print(thing this) {
   /* TODO: Support non-`list` `thing`s */
-  pretty_print_list(this->pointer.list);
+  if (this->isa == LIST)
+    pretty_print_list(this->pointer.list);
 }
 
 int main(void) {

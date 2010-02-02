@@ -28,11 +28,11 @@ struct thing {
   enum /* isa’s */ {
     LIST,
     NUMERIC
-  } isa;
+  } const isa;
   
   union /* thing’s */ {
     list list;
     numeric numeric;
-  } pointer;
+  } const pointer;
   
 };

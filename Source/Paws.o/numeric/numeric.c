@@ -5,6 +5,7 @@
 #endif
 
 #include <stdlib.h>
+#include <string.h>
 
 /* =========================
 = `infrastructure numeric` =
@@ -42,10 +43,13 @@ numeric numeric__create(int native) {
  * and returns that union.
  */
 thing numeric__to_thing(numeric this) {
-  thing wrapper = malloc(sizeof(struct thing)); 
+  thing location = malloc(sizeof(struct thing));
+  struct thing wrapper = {
+    .isa = NUMERIC,
+    .pointer = { .numeric = this }
+  };
   
-  wrapper->isa  = NUMERIC;
-  wrapper->pointer.numeric = this;
+  memcpy(&wrapper, location, sizeof(struct thing));
   
-  return wrapper;
+  return location;
 }

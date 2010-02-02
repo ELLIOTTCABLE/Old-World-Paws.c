@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 /* ======================
 = `infrastructure list` =
@@ -56,12 +57,15 @@ list _list__create(bool is_naughty) {
  * and returns that union.
  */
 thing list__to_thing(list this) {
-  thing wrapper = malloc(sizeof(struct thing)); 
+  thing location = malloc(sizeof(struct thing));
+  struct thing wrapper = {
+    .isa = LIST,
+    .pointer = { .list = this }
+  };
   
-  wrapper->isa  = LIST;
-  wrapper->pointer.list = this;
+  memcpy(location, &wrapper, sizeof(struct thing));
   
-  return wrapper;
+  return location;
 }
 
 void list__insert(list this, thing child, ll_size index) {
