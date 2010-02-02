@@ -49,7 +49,7 @@ thing numeric__to_thing(numeric this) {
     .pointer = { .numeric = this }
   };
   
-  memcpy(&wrapper, location, sizeof(struct thing));
+  memcpy(location, &wrapper, sizeof(struct thing));
   
   return location;
 }
