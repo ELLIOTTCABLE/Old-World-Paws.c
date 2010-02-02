@@ -3,6 +3,7 @@
 !*.o/
 
 # Intermediary forms
+*.dSYM/
 *.i
 !*.i/
 *.s
