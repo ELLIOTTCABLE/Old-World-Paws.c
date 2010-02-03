@@ -35,7 +35,7 @@ void cest__enroll(cest a_cest) {
   }
 }
 
-cest cest__create(char name[], char namespace[], bool (*function)(void)) {
+cest cest__create(char namespace[], char name[], bool (*function)(void)) {
   /* LEAK: All up in yo’ beeswax, leakin’ like a sieve! \m/ ^.^ \m/ */
   cest this = malloc(sizeof(struct cest));
   
