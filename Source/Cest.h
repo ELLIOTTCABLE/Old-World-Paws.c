@@ -10,6 +10,10 @@
     Cest.enroll(Cest.create(#NAMESPACE, #NAME, NAMESPACE ## __test__ ## NAME)); } \
   bool NAMESPACE ## __test__ ## NAME()
 
+#define ASSERT(FACT) \
+  if (!(FACT)) \
+    return false
+
         struct cest;
 typedef struct cest* cest;
 
