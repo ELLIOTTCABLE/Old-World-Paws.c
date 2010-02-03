@@ -29,10 +29,12 @@ struct cest_node {
 
 struct Cest {
   /* General functions */
-  void  (*enroll) (cest);
+  void  (*enroll)   (cest);
+  bool  (*run_all)  (void);
   
   /* `struct cest` methods */
-  cest  (*create) (char[], char[], bool (*)(void));
+  cest  (*create)   (char[], char[], bool (*)(void));
+  bool  (*execute)  (cest);
   
   /* Data storage */
   struct cest_node* first;
