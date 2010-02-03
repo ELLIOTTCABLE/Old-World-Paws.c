@@ -18,7 +18,21 @@ struct Cest Cest = {
 };
 
 void cest__enroll(cest a_cest) {
+  struct cest_node*   current = NULL;
+  struct cest_node    this_node = { .cest = a_cest, .next = NULL };
+  /* LEAK: Moar! */
+  struct cest_node*   this = malloc(sizeof(struct cest_node));
+  memcpy(this, &this_node, sizeof(struct cest_node));
   
+  if (Cest.first == NULL)
+    Cest.first = this;
+  else {
+    current = Cest.first;
+    while (current->next != NULL)
+      current = current->next;
+    
+    current->next = this;
+  }
 }
 
 cest cest__create(char name[], char namespace[], bool (*function)(void)) {

@@ -22,18 +22,18 @@ struct cest {
 /* For now, we implement a shitty global linked-list of tests to run. Not my
  * favourite implementation, but it will serve for the moment.
  */
-        struct cest_node;
-typedef struct cest_node* cest_node;
-
 struct cest_node {
-  cest      cest;
-  cest_node next;
+  cest                cest;
+  struct cest_node*   next;
 };
 
 struct Cest {
+  /* General functions */
   void  (*enroll) (cest);
   
+  /* `struct cest` methods */
   cest  (*create) (char[], char[], bool (*)(void));
   
-  cest_node first;
+  /* Data storage */
+  struct cest_node* first;
 } extern Cest;
