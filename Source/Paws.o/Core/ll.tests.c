@@ -6,14 +6,39 @@
 #  include "Cest.h"
 #endif
 
-CEST(node, create) {
+CEST(LL, create) {
   return true;
 }
 
-CEST(node, prefix) {
+CEST(LL, anterior_insert) {
   return true;
 }
 
-CEST(node, affix) {
+CEST(LL, posterior_insert) {
+  return true;
+}
+
+CEST(LL, prefix) {
+  return true;
+}
+
+CEST(LL, affix) {
+  return true;
+}
+
+CEST(LL, at) {
+  return true;
+}
+
+
+CEST(Node, create) {
+  return true;
+}
+
+CEST(Node, prefix) {
+  return true;
+}
+
+CEST(Node, affix) {
   return true;
 }
