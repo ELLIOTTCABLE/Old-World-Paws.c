@@ -10,6 +10,9 @@
 #  include "Cest.h"
 #endif
 
+#define A_LIST \
+  List.to_thing(List.create())
+
 CEST(LL, create) {
   return true;
 }
@@ -38,7 +41,7 @@ CEST(LL, at) {
 CEST(Node, create) {
   node a_node;
   
-  a_node = Node.create( List.to_thing(List.create()) );
+  a_node = Node.create( A_LIST );
   ASSERT(a_node->next == NULL);
   ASSERT(a_node->previous == NULL);
   
