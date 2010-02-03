@@ -4,11 +4,11 @@
 
 #define constructor __attribute__((constructor))
 #define CEST(NAMESPACE, FUNCTION) \
-  static bool NAMESPACE ## __test__ ## FUNCTION ## (); \
-  static inline constructor void Cest_registerer_for__ \
-          ## NAMESPACE ## __test__ ## FUNCTION ## () { \
+  static bool NAMESPACE ## __test__ ## FUNCTION(); \
+  static /* inline */ constructor void Cest_registerer_for__ \
+          ## NAMESPACE ## __test__ ## FUNCTION() { \
     Cest.enroll(Cest.create(#NAMESPACE, #FUNCTION, NAMESPACE ## __test__ ## FUNCTION)); } \
-  bool NAMESPACE ## __test__ ## FUNCTION ## ()
+  bool NAMESPACE ## __test__ ## FUNCTION()
 
         struct cest;
 typedef struct cest* cest;
