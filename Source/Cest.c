@@ -10,7 +10,7 @@
 void  cest__enroll  (cest);
 cest  cest__create  (char[], char[], bool (*)(void));
 
-struct Cest const Cest = {
+struct Cest Cest = {
   cest__enroll,
   cest__create,
   

@@ -36,4 +36,4 @@ struct Cest {
   cest  (*create) (char[], char[], bool (*)(void));
   
   cest_node first;
-} const extern Cest;
+} extern Cest;
