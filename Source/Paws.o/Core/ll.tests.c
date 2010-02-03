@@ -1,6 +1,10 @@
 #include "ll.c"
 
 #include <stdbool.h>
+/* FIXME: These shouldn’t depend on `list.c` */
+#ifndef LIST_H_INCLUDED
+#  include "Paws.o/list/list.h"
+#endif
 
 #ifndef CEST_H_INCLUDED
 #  include "Cest.h"
@@ -32,6 +36,12 @@ CEST(LL, at) {
 
 
 CEST(Node, create) {
+  node a_node;
+  
+  a_node = Node.create( List.to_thing(List.create()) );
+  ASSERT(a_node->next == NULL);
+  ASSERT(a_node->previous == NULL);
+  
   return true;
 }
 
