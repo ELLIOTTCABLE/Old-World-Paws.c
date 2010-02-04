@@ -13,12 +13,12 @@
 
 /* ### Method Declarations ### */
 
-numeric numeric__create    (int);
+numeric Numeric__create    (int);
 thing   numeric__to_thing  (numeric);
 
 struct Numeric_methods const
 Numeric = {
-  numeric__create,
+  Numeric__create,
   numeric__to_thing
 };
 
@@ -27,7 +27,7 @@ Numeric = {
 /* This method allocates a new `infrastructure numeric`, and returns a
  * C `numeric` (a pointer to a C `struct numeric`.)
  */
-numeric numeric__create(int native) {
+numeric Numeric__create(int native) {
   numeric this = malloc(sizeof(struct numeric));
   
   this->content = LL.create();

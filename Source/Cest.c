@@ -17,23 +17,23 @@ ANSIEscapes = {
   .reset  = CSI "0"  SGR
 };
 
-void  cest__enroll  (cest);
-bool  cest__run_all (void);
+void  Cest__enroll  (cest);
+bool  Cest__run_all (void);
 
-cest  cest__create  (char[], char[], bool (*)(void));
+cest  Cest__create  (char[], char[], bool (*)(void));
 bool  cest__execute (cest);
 
 struct Cest Cest = {
-  .enroll   = cest__enroll,
-  .run_all  = cest__run_all,
+  .enroll   = Cest__enroll,
+  .run_all  = Cest__run_all,
   
-  .create   = cest__create,
+  .create   = Cest__create,
   .execute  = cest__execute,
   
   .first = NULL
 };
 
-void cest__enroll(cest a_cest) {
+void Cest__enroll(cest a_cest) {
   struct cest_node*   current = NULL;
   struct cest_node    this_node = { .cest = a_cest, .next = NULL };
   /* LEAK: Moar! */
@@ -51,7 +51,7 @@ void cest__enroll(cest a_cest) {
   }
 }
 
-bool cest__run_all(void) {
+bool Cest__run_all(void) {
   bool return_value; int  total, succeeded;
   
   cest                current;
@@ -75,7 +75,7 @@ bool cest__run_all(void) {
   return !(succeeded < total);
 }
 
-cest cest__create(char namespace[], char name[], bool (*function)(void)) {
+cest Cest__create(char namespace[], char name[], bool (*function)(void)) {
   /* LEAK: All up in yo’ beeswax, leakin’ like a sieve! \m/ ^.^ \m/ */
   cest this = malloc(sizeof(struct cest));
   

@@ -8,7 +8,7 @@
 
 /* ### Method Declarations ### */
 
-ll    ll__create  (void);
+ll    LL__create  (void);
 void  ll__anterior_insert   (ll, node, ll_size);
 void  ll__posterior_insert  (ll, node, ll_size);
 void  ll__prefix  (ll, node);
@@ -17,7 +17,7 @@ node  ll__at      (ll, ll_size);
 
 struct LL_methods const
 LL = {
-  ll__create,
+  LL__create,
   ll__anterior_insert,
   ll__posterior_insert,
   ll__prefix,
@@ -25,19 +25,19 @@ LL = {
   ll__at
 };
 
-node  node__create  (thing);
+node  Node__create  (thing);
 void  node__prefix  (node, node);
 void  node__affix   (node, node);
 
 struct Node_methods const
-Node = { node__create, node__prefix, node__affix };
+Node = { Node__create, node__prefix, node__affix };
 
 /* ### Method Implementations ### */
 
 /* This method initializes a new ll, with no nodes. The `first` and `last` are
  * set to `NULL` pointers, and `length` is initialized to zero.
  */
-ll ll__create(void) {
+ll LL__create(void) {
   ll this = malloc(sizeof(struct ll));
   
   this->first  = NULL;
@@ -126,7 +126,7 @@ node ll__at(ll this, ll_size index) { node result; ll_size i;
  * 
  * Expects a `thing` as an argument, to be stored on this `node` as `e`.
  */
-node node__create(thing thing) {
+node Node__create(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   node this = malloc(sizeof(struct node));
   
