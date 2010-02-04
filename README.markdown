@@ -14,9 +14,17 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/numeric/numeric.c \
-      Source/something.c && ./something.o
+      Source/something.c && \
+    ./something.o
     
     # The cests (‘tests’) for `ll`
     C -O0 -std=c89 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/list/list.c \
-      Source/Paws.o/Core/ll.tests.c && ./ll.tests.o
+      Source/Paws.o/Core/ll.tests.c && \
+    ./ll.tests.o
+    
+    # Run `gdb` against the tests for `ll`
+    C -O0 -std=c89 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
+      Source/Paws.o/list/list.c \
+      Source/Paws.o/Core/ll.tests.c && \
+    gdb -q -se ./ll.tests.o
