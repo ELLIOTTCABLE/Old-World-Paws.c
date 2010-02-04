@@ -18,11 +18,11 @@
  * unsigned, actual-index type.
  */
 #if defined(ULONG_MAX) && defined(LLONG_MIN) && defined(LLONG_MAX) && \
-    LLONG_MIN <= -(ULONG_MAX) && ULONG_MAX <= LLONG_MAX
+    -(LLONG_MIN+1) > (ULONG_MAX-1) && ULONG_MAX <= LLONG_MAX
   typedef   unsigned    long int   ll_usize;
   typedef   signed long long int   ll_ssize;
 #elif defined(UINT_MAX) && defined(LONG_MIN) && defined(LONG_MAX) && \
-      LONG_MIN <= -(UINT_MAX) && UINT_MAX <= LONG_MAX
+      -(LONG_MIN+1) > (UINT_MAX-1) && UINT_MAX <= LONG_MAX
   typedef   unsigned    int   ll_usize;
   typedef   signed long int   ll_ssize;
 #else
