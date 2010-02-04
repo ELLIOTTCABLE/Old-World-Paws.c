@@ -23,8 +23,11 @@ struct list {
 /* ### Method Declarations ### */
 
 struct List_methods {
-  list  (*create)   (void);
+  /* `List` functions */
+  list  (*create)         (void);
   list  (*create_naughty) (void);
+  
+  /* `struct list` methods */
   thing (*to_thing) (list);
   void  (*insert)   (list, thing, ll_usize);
   void  (*prefix)   (list, thing);

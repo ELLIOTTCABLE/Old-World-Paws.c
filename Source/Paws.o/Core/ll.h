@@ -60,7 +60,10 @@ struct node {
 /* ### Method Declarations ### */
 
 struct LL_methods {
+  /* `LL` functions */
   ll    (*create) (void);
+  
+  /* `struct ll` methods */
   void  (*anterior_insert)  (ll, node, ll_ssize);
   void  (*posterior_insert) (ll, node, ll_ssize);
   void  (*prefix) (ll, node);
@@ -69,7 +72,10 @@ struct LL_methods {
 } const extern LL;
 
 struct Node_methods {
+  /* `Node` functions */
   node  (*create) (thing);
+  
+  /* `struct node` methods */
   void  (*prefix) (node, node);
   void  (*affix)  (node, node);
 } const extern Node;

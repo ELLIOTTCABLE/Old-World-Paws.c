@@ -19,18 +19,18 @@ ANSIEscapes = {
 
 void  Cest__enroll  (cest);
 bool  Cest__run_all (void);
-
 cest  Cest__create  (char[], char[], bool (*)(void));
+
 bool  cest__execute (cest);
 
 struct Cest Cest = {
   .enroll   = Cest__enroll,
   .run_all  = Cest__run_all,
-  
   .create   = Cest__create,
+  
   .execute  = cest__execute,
   
-  .first = NULL
+  .first    = NULL
 };
 
 void Cest__enroll(cest a_cest) {

@@ -12,21 +12,22 @@
 
 list  List__create    (void);
 list  List__create_naughty  (void);
+
 thing list__to_thing  (list);
 void  list__insert    (list, thing, ll_usize);
 void  list__prefix    (list, thing);
 void  list__affix     (list, thing);
 thing list__at        (list, ll_usize);
 
-struct List_methods const
-List = {
-  List__create,
-  List__create_naughty,
-  list__to_thing,
-  list__insert,
-  list__prefix,
-  list__affix,
-  list__at
+struct List_methods const List = {
+  .create         = List__create,
+  .create_naughty = List__create_naughty,
+  
+  .to_thing = list__to_thing,
+  .insert   = list__insert,
+  .prefix   = list__prefix,
+  .affix    = list__affix,
+  .at       = list__at
 };
 
 /* ### Method Implementations ### */

@@ -32,14 +32,14 @@ struct cest_node {
 };
 
 struct Cest {
-  /* General functions */
+  /* `Cest` functions */
   void  (*enroll)   (cest);
   bool  (*run_all)  (void);
+  cest  (*create)   (char[], char[], bool (*)(void));
   
   /* `struct cest` methods */
-  cest  (*create)   (char[], char[], bool (*)(void));
   bool  (*execute)  (cest);
   
-  /* Data storage */
+  /* Data elements */
   struct cest_node* first;
 } extern Cest;

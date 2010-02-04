@@ -26,6 +26,9 @@ struct numeric {
 /* ### Method Declarations ### */
 
 struct Numeric_methods {
+  /* `Numeric` functions */
   numeric (*create)   (int);
+  
+  /* `struct numeric` methods */
   thing   (*to_thing) (numeric);
 } const Numeric;

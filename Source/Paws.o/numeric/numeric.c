@@ -14,12 +14,13 @@
 /* ### Method Declarations ### */
 
 numeric Numeric__create    (int);
+
 thing   numeric__to_thing  (numeric);
 
-struct Numeric_methods const
-Numeric = {
-  Numeric__create,
-  numeric__to_thing
+struct Numeric_methods const Numeric = {
+  .create   = Numeric__create,
+  
+  .to_thing = numeric__to_thing
 };
 
 /* ### Method Implementations ### */

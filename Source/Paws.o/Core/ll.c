@@ -9,28 +9,34 @@
 /* ### Method Declarations ### */
 
 ll    LL__create  (void);
+
 void  ll__anterior_insert   (ll, node, ll_ssize);
 void  ll__posterior_insert  (ll, node, ll_ssize);
 void  ll__prefix  (ll, node);
 void  ll__affix   (ll, node);
 node  ll__at      (ll, ll_ssize);
 
-struct LL_methods const
-LL = {
-  LL__create,
-  ll__anterior_insert,
-  ll__posterior_insert,
-  ll__prefix,
-  ll__affix,
-  ll__at
+struct LL_methods const LL = {
+  .create = LL__create,
+  
+  .anterior_insert  = ll__anterior_insert,
+  .posterior_insert = ll__posterior_insert,
+  .prefix = ll__prefix,
+  .affix  = ll__affix,
+  .at     = ll__at
 };
 
 node  Node__create  (thing);
+
 void  node__prefix  (node, node);
 void  node__affix   (node, node);
 
-struct Node_methods const
-Node = { Node__create, node__prefix, node__affix };
+struct Node_methods const Node = {
+  .create = Node__create,
+  
+  .prefix = node__prefix,
+  .affix = node__affix
+};
 
 /* ### Method Implementations ### */
 
