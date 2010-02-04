@@ -98,6 +98,8 @@ void ll__affix(ll this, node child) {
 /* This method returns a `node` at a given index in an `ll`.
  * 
  * Takes two arguments, the indexee (`this`), and an integer `index`.
+ *--
+ * TODO: Negative indices
  */
 node ll__at(ll this, ll_size index) { node result; ll_size i;
   
