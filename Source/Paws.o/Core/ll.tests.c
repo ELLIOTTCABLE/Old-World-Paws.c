@@ -25,16 +25,16 @@ CEST(LL, create) {
 }
 
 /*
-CEST(LL, anterior_insert) {
+CEST(ll, anterior_insert) {
   return true;
 }
 
-CEST(LL, posterior_insert) {
+CEST(ll, posterior_insert) {
   return true;
 }
 */
 
-CEST(LL, prefix) {
+CEST(ll, prefix) {
   ll    a_ll;
   node  node1, node2, node3;
   
@@ -61,7 +61,7 @@ CEST(LL, prefix) {
   return true;
 }
 
-CEST(LL, affix) {
+CEST(ll, affix) {
   ll    a_ll;
   node  node1, node2, node3;
   
@@ -88,7 +88,7 @@ CEST(LL, affix) {
   return true;
 }
 
-CEST(LL, at) {
+CEST(ll, at) {
   ll    a_ll;
   node  node1, node2, node3;
   
@@ -121,7 +121,7 @@ CEST(Node, create) {
   return true;
 }
 
-CEST(Node, prefix) {
+CEST(node, prefix) {
   node  node1, node2, node3,
         nodeA, nodeB, nodeC;
   
@@ -185,7 +185,7 @@ CEST(Node, prefix) {
   return true;
 }
 
-CEST(Node, affix) {
+CEST(node, affix) {
   node  node1, node2, node3,
         nodeA, nodeB, nodeC;
   
