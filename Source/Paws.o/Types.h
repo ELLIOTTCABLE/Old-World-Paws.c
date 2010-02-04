@@ -7,8 +7,6 @@
  * everywhere it is necessary.
  */
 
-typedef unsigned long int ll_size;
-
         struct ll; /* Our data storage system (a doubly-linked-list) */
         struct node; /* A single node of an `ll` */
 typedef struct ll*    ll;

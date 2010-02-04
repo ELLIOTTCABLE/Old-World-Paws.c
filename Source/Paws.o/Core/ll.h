@@ -10,6 +10,8 @@
 
 /* ### Data Types & Structures ### */
 
+typedef   unsigned long int   ll_size;
+
 /* This implements a pseudo-‘doubly-linked list’ structure that is the data
  * storage system responsible for `infrastructure list`, and every other core
  * datatype based thereupon.
