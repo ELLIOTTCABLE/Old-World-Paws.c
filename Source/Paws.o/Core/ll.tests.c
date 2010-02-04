@@ -48,7 +48,7 @@ CEST(LL, at) {
 
 
 CEST(Node, create) {
-  node a_node;
+  node  a_node;
   
   a_node = Node.create( A_LIST );
   ASSERT( a_node->next     == NULL );
@@ -58,8 +58,8 @@ CEST(Node, create) {
 }
 
 CEST(Node, prefix) {
-  node node1, node2, node3,
-       nodeA, nodeB, nodeC;
+  node  node1, node2, node3,
+        nodeA, nodeB, nodeC;
   
   node1 = Node.create(A_LIST),
   node2 = Node.create(A_LIST),
@@ -122,8 +122,8 @@ CEST(Node, prefix) {
 }
 
 CEST(Node, affix) {
-  node node1, node2, node3,
-       nodeA, nodeB, nodeC;
+  node  node1, node2, node3,
+        nodeA, nodeB, nodeC;
   
   node1 = Node.create(A_LIST),
   node2 = Node.create(A_LIST),
