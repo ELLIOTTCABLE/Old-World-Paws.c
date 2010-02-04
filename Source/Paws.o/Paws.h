@@ -1,13 +1,13 @@
-#define PAWS_H_INCLUDED
+#define PAWS_H
 
-#ifndef TYPES_H_INCLUDED
+#ifndef TYPES_H
 #  include "Paws.o/Types.h"
 #endif
 
-#ifndef LIST_H_INCLUDED
+#ifndef LIST_H
 #  include "list/list.h"
 #endif
-#ifndef NUMERIC_H_INCLUDED
+#ifndef NUMERIC_H
 #  include "numeric/numeric.h"
 #endif
 

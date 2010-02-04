@@ -1,4 +1,4 @@
-#define TYPES_H_INCLUDED
+#define TYPES_H
 
 /* This file exists simply to pre-declare some structs and types used
  * throughout the rest of the Paws.o codebase.

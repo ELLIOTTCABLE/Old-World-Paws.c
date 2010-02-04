@@ -1,8 +1,8 @@
-#define LL_H_INCLUDED
+#define LL_H
 
 #include <limits.h>
 
-#ifndef TYPES_H_INCLUDED
+#ifndef TYPES_H
 #  include "Paws.o/Types.h"
 #endif
 

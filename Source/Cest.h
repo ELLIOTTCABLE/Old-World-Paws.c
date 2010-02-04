@@ -1,4 +1,4 @@
-#define CEST_H_INCLUDED
+#define CEST_H
 
 #include <stdbool.h>
 

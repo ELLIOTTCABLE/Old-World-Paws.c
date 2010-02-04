@@ -1,6 +1,6 @@
 #include "numeric.h"
 
-#ifndef LIST_H_INCLUDED
+#ifndef LIST_H
 #  include "../list/list.h"
 #endif
 
