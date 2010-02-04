@@ -29,8 +29,8 @@
   /* This is (more than) a bit extreme, but as far as I can tell, necessary.
    * Unindexable elements are unacceptable.
    */
-  typedef   signed      int   ll_usize;
-  typedef   signed      int   ll_ssize;
+  typedef   signed int   ll_usize;
+  typedef   signed int   ll_ssize;
 #endif
 
 /* This implements a pseudo-‘doubly-linked list’ structure that is the data
