@@ -13,11 +13,18 @@
 #define A_LIST \
   List.to_thing(List.create())
 
-/*
 CEST(LL, create) {
+  ll a_ll;
+  
+  a_ll = LL.create();
+  ASSERT(a_ll->first == NULL);
+  ASSERT(a_ll->last == NULL);
+  ASSERT(a_ll->length == 0);
+  
   return true;
 }
 
+/*
 CEST(LL, anterior_insert) {
   return true;
 }
