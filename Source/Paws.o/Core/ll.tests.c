@@ -36,15 +36,56 @@ CEST(LL, posterior_insert) {
 CEST(LL, prefix) {
   return true;
 }
+*/
 
 CEST(LL, affix) {
+  ll    a_ll;
+  node  node1, node2, node3;
+  
+  node1 = Node.create(A_LIST);
+  node2 = Node.create(A_LIST);
+  node3 = Node.create(A_LIST);
+  
+  a_ll = LL.create();
+  LL.affix(a_ll, node1);
+  ASSERT( a_ll->length   == 1     );
+  ASSERT( a_ll->first    == node1 );
+  ASSERT( a_ll->last     == node1 );
+  
+  LL.affix(a_ll, node2);
+  ASSERT( a_ll->length == 2       );
+  ASSERT( a_ll->first  == node1   );
+  ASSERT( a_ll->last   == node2   );
+  
+  LL.affix(a_ll, node3);
+  ASSERT( a_ll->length == 3       );
+  ASSERT( a_ll->first  == node1   );
+  ASSERT( a_ll->last   == node3   );
+  
   return true;
 }
 
 CEST(LL, at) {
+  ll    a_ll;
+  node  node1, node2, node3;
+  
+  a_ll = LL.create();
+  ASSERT( LL.at(a_ll,  5) == NULL );
+  ASSERT( LL.at(a_ll,  1) == NULL );
+  ASSERT( LL.at(a_ll,  0) == NULL );
+  ASSERT( LL.at(a_ll, -1) == NULL );
+  ASSERT( LL.at(a_ll, -5) == NULL );
+  
+  node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
+  node2 = Node.create(A_LIST); LL.affix(a_ll, node2);
+  node3 = Node.create(A_LIST); LL.affix(a_ll, node3);
+  
+  ASSERT( LL.at(a_ll, 0) == node1 ); /* FAIL */
+  ASSERT( LL.at(a_ll, 1) == node2 ); /* FAIL */
+  ASSERT( LL.at(a_ll, 2) == node3 ); /* FAIL */
+  
   return true;
 }
-*/
 
 
 CEST(Node, create) {
