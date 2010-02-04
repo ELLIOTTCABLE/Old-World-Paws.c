@@ -8,6 +8,15 @@
 #define STRCPY(TO, FROM) \
   strncpy(TO, FROM, sizeof(TO)); TO[sizeof(TO) - 1] = '\0'
 
+#define CSI "\033["
+#define SGR "m"
+static const struct { char red[6]; char green[6]; char reset[6]; }
+ANSIEscapes = {
+  .red    = CSI "31" SGR,
+  .green  = CSI "32" SGR,
+  .reset  = CSI "0"  SGR
+};
+
 void  cest__enroll  (cest);
 bool  cest__run_all (void);
 
@@ -51,8 +60,9 @@ bool cest__run_all(void) {
     current = current_node->cest;
     
     return_value = Cest.execute(current);
-    printf("%s/%s: %s\n", current->namespace, current->name,
-      return_value ? "pass" : "fail");
+    printf("%s%s/%s%s\n",
+      return_value ? ANSIEscapes.green : ANSIEscapes.red,
+      current->namespace, current->name, ANSIEscapes.reset);
     
     failed = !return_value || failed;
   }
