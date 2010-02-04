@@ -1,9 +1,9 @@
 #define NUMERIC_H
 
-#ifndef TYPES_H
+#if !defined(TYPES_H)
 #  include "Paws.o/Types.h"
 #endif
-#ifndef LL_H
+#if !defined(LL_H)
 #  include "Paws.o/Core/ll.h"
 #endif
 

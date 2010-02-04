@@ -2,11 +2,11 @@
 
 #include <stdbool.h>
 /* FIXME: These shouldn’t depend on `list.c` */
-#ifndef LIST_H
+#if !defined(LIST_H)
 #  include "Paws.o/list/list.h"
 #endif
 
-#ifndef CEST_H
+#if !defined(CEST_H)
 #  include "Cest.h"
 #endif
 

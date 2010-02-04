@@ -2,7 +2,7 @@
 
 #include <limits.h>
 
-#ifndef TYPES_H
+#if !defined(TYPES_H)
 #  include "Paws.o/Types.h"
 #endif
 
