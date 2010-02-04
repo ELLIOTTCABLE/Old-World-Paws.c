@@ -26,8 +26,8 @@ struct List_methods {
   list  (*create)   (void);
   list  (*create_naughty) (void);
   thing (*to_thing) (list);
-  void  (*insert)   (list, thing, ll_size);
+  void  (*insert)   (list, thing, ll_usize);
   void  (*prefix)   (list, thing);
   void  (*affix)    (list, thing);
-  thing (*at)       (list, ll_size);
+  thing (*at)       (list, ll_usize);
 } const List;

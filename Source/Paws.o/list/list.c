@@ -13,10 +13,10 @@
 list  List__create    (void);
 list  List__create_naughty  (void);
 thing list__to_thing  (list);
-void  list__insert    (list, thing, ll_size);
+void  list__insert    (list, thing, ll_usize);
 void  list__prefix    (list, thing);
 void  list__affix     (list, thing);
-thing list__at        (list, ll_size);
+thing list__at        (list, ll_usize);
 
 struct List_methods const
 List = {
@@ -68,7 +68,7 @@ thing list__to_thing(list this) {
   return location;
 }
 
-void list__insert(list this, thing child, ll_size index) {
+void list__insert(list this, thing child, ll_usize index) {
   LL.posterior_insert(this->content, Node.create(child), index); }
 
 void list__prefix(list this, thing child) {
@@ -77,5 +77,5 @@ void list__prefix(list this, thing child) {
 void list__affix(list this, thing child) {
   LL.affix(this->content, Node.create(child)); }
 
-thing list__at(list this, ll_size index) { return
+thing list__at(list this, ll_usize index) { return
   LL.at(this->content, index)->thing; }

@@ -9,11 +9,11 @@
 /* ### Method Declarations ### */
 
 ll    LL__create  (void);
-void  ll__anterior_insert   (ll, node, ll_size);
-void  ll__posterior_insert  (ll, node, ll_size);
+void  ll__anterior_insert   (ll, node, ll_ssize);
+void  ll__posterior_insert  (ll, node, ll_ssize);
 void  ll__prefix  (ll, node);
 void  ll__affix   (ll, node);
-node  ll__at      (ll, ll_size);
+node  ll__at      (ll, ll_ssize);
 
 struct LL_methods const
 LL = {
@@ -47,7 +47,8 @@ ll LL__create(void) {
   return this;
 }
 
-void ll__anterior_insert(ll this, node child, ll_size index) {
+/* TODO: Negative indicies */
+void ll__anterior_insert(ll this, node child, ll_ssize index) {
   if (index == this->length - 1)
     /* TODO: Error condition, cannot anterior-insert at last position */;
   else {
@@ -56,7 +57,8 @@ void ll__anterior_insert(ll this, node child, ll_size index) {
   }
 }
 
-void ll__posterior_insert(ll this, node child, ll_size index) {
+/* TODO: Negative indicies */
+void ll__posterior_insert(ll this, node child, ll_ssize index) {
   if (index == 0)
     /* TODO: Error condition, cannot posterior-insert at first position */;
   else {
@@ -101,7 +103,7 @@ void ll__affix(ll this, node child) {
  *--
  * TODO: Negative indices
  */
-node ll__at(ll this, ll_size index) { node result; ll_size i;
+node ll__at(ll this, ll_ssize index) { node result; ll_usize i;
   
   if (index >= this->length || index < -this->length)
     return NULL;
