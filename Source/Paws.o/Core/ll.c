@@ -148,8 +148,10 @@ void node__prefix(node this, node other) {
   if (this->previous != NULL)
     if (other->previous == NULL)
       node__prefix(other, this->previous);
-    else
+    else {
       this->previous->next = NULL;
+      if (other->next != NULL)
+        other->next->previous = NULL; }
   
   other->next     = this;
   this->previous  = other;
@@ -170,8 +172,10 @@ void node__affix(node this, node other) {
   if (this->next != NULL)
     if (other->next == NULL)
       node__affix(other, this->next);
-    else
+    else {
       this->next->previous = NULL;
+      if (other->previous != NULL)
+        other->previous->next = NULL; }
   
   other->previous = this;
   this->next      = other;
