@@ -103,8 +103,11 @@ void ll__affix(ll this, node child) {
  */
 node ll__at(ll this, ll_size index) { node result; ll_size i;
   
-  if (index >= this->length)
+  if (index >= this->length || index < -this->length)
     return NULL;
+  if (index < 0)
+    index += this->length;
+  
   
   if (index <= this->length / 2) {
     result = this->first;
