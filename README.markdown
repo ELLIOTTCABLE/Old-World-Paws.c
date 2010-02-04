@@ -10,13 +10,13 @@ a bit of a clusterfuck of a tool, so… these:
     C() { eval local last="\$$#"; last=${last##*/}; clang -o "${last%.*}.o" "$@" }
     
     # `something.c`, an old random example
-    C -std=c89 -O0 -Wall -pedantic-errors -ISource \
+    C -O0 -std=c89 -pedantic-errors -Wall -ISource \
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/numeric/numeric.c \
       Source/something.c && ./something.o
     
     # The cests (‘tests’) for `ll`
-    C -std=c89 -O0 -Wall -pedantic-errors -ISource Source/Cest.c \
+    C -O0 -std=c89 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/Core/ll.tests.c && ./ll.tests.o
