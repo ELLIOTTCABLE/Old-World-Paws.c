@@ -52,22 +52,27 @@ void cest__enroll(cest a_cest) {
 }
 
 bool cest__run_all(void) {
-  bool return_value, failed = false;
+  bool return_value; int  total, succeeded;
   
   cest                current;
   struct cest_node*   current_node = Cest.first;
-  for (; current_node != NULL; current_node = current_node->next) {
+  
+  for (total = 0, succeeded = 0; current_node != NULL;
+       total++,                  current_node = current_node->next) {
     current = current_node->cest;
-    
     return_value = Cest.execute(current);
+    succeeded += return_value;
+    
     printf("%s%s/%s%s\n",
       return_value ? ANSIEscapes.green : ANSIEscapes.red,
       current->namespace, current->name, ANSIEscapes.reset);
-    
-    failed = !return_value || failed;
   }
   
-  return !failed;
+  printf("%s%d successes%s (of %d)\n",
+    succeeded < total ? ANSIEscapes.red : ANSIEscapes.green,
+    succeeded, ANSIEscapes.reset, total);
+  
+  return !(succeeded < total);
 }
 
 cest cest__create(char namespace[], char name[], bool (*function)(void)) {
