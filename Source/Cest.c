@@ -63,9 +63,9 @@ bool Cest__run_all(void) {
     return_value = Cest.execute(current);
     succeeded += return_value;
     
-    printf("%s%s/%s%s\n",
+    printf("%s.%s%s%s()\n", current->namespace,
       return_value ? ANSIEscapes.green : ANSIEscapes.red,
-      current->namespace, current->name, ANSIEscapes.reset);
+      current->name, ANSIEscapes.reset);
   }
   
   printf("%s%d successes%s (of %d)\n",
