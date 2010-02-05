@@ -31,4 +31,4 @@ struct Numeric {
   
   /* `struct numeric` methods */
   thing   (*to_thing) (numeric);
-} const Numeric;
+} const extern Numeric;

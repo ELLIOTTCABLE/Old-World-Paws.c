@@ -33,4 +33,4 @@ struct List {
   void  (*prefix)   (list, thing);
   void  (*affix)    (list, thing);
   thing (*at)       (list, ll_usize);
-} const List;
+} const extern List;
