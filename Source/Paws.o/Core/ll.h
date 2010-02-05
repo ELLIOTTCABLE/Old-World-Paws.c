@@ -2,8 +2,8 @@
 
 #include <limits.h>
 
-#if !defined(TYPES_H)
-#  include "Paws.o/Types.h"
+#if !defined(CORE_H)
+#  include "Paws.o/Core/Core.h"
 #endif
 
 /* =====

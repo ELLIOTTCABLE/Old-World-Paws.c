@@ -1,7 +1,7 @@
 #include "numeric.h"
 
 #if !defined(LIST_H)
-#  include "../list/list.h"
+#  include "Paws.o/list/list.h"
 #endif
 
 #include <stdlib.h>

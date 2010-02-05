@@ -1,14 +1,14 @@
 #define PAWS_H
 
-#if !defined(TYPES_H)
-#  include "Paws.o/Types.h"
+#if !defined(CORE_H)
+#  include "Paws.o/Core/Core.h"
 #endif
 
 #if !defined(LIST_H)
-#  include "list/list.h"
+#  include "Paws.o/list/list.h"
 #endif
 #if !defined(NUMERIC_H)
-#  include "numeric/numeric.h"
+#  include "Paws.o/numeric/numeric.h"
 #endif
 
 /* Generally speaking, we provide *three* things for every core datatype:
