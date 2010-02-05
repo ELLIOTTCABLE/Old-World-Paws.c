@@ -18,7 +18,8 @@
  * unsigned, actual-index type.
  *--
  * FIXME: `-(LLONG_MIN+1) > (ULONG_MAX-1)` may not work for compilers with
- *        1’s-complement integer-type representations.
+ *        1’s-complement integer-type representations. See:
+ * http://stackoverflow.com/questions/2203819/how-can-i-determine-the-relationship-of-c-integer-type-min-maxes-in-the-preproces
  */
 #if defined(ULONG_MAX) && defined(LLONG_MIN) && defined(LLONG_MAX) && \
     -(LLONG_MIN+1) > (ULONG_MAX-1) && ULONG_MAX <= LLONG_MAX
