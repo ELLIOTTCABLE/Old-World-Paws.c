@@ -16,6 +16,9 @@
  * various methods allow negative indicies; therefore, our signed (‘indexing’)
  * type must be able to just as many positive *and* negative integers as our
  * unsigned, actual-index type.
+ *--
+ * FIXME: `-(LLONG_MIN+1) > (ULONG_MAX-1)` may not work for compilers with
+ *        1’s-complement integer-type representations.
  */
 #if defined(ULONG_MAX) && defined(LLONG_MIN) && defined(LLONG_MAX) && \
     -(LLONG_MIN+1) > (ULONG_MAX-1) && ULONG_MAX <= LLONG_MAX
