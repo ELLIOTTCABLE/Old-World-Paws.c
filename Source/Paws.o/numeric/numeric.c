@@ -17,7 +17,7 @@ numeric Numeric__create    (int);
 
 thing   numeric__to_thing  (numeric);
 
-struct Numeric const Numeric = {
+struct Numeric_methods const Numeric = {
   .create   = Numeric__create,
   
   .to_thing = numeric__to_thing
