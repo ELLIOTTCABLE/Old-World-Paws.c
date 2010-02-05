@@ -22,7 +22,7 @@ struct list {
 
 /* ### Method Declarations ### */
 
-struct List_methods {
+struct List {
   /* `List` functions */
   list  (*create)         (void);
   list  (*create_naughty) (void);

@@ -16,7 +16,7 @@ void  ll__prefix  (ll, node);
 void  ll__affix   (ll, node);
 node  ll__at      (ll, ll_ssize);
 
-struct LL_methods const LL = {
+struct LL const LL = {
   .create = LL__create,
   
   .anterior_insert  = ll__anterior_insert,
@@ -31,7 +31,7 @@ node  Node__create  (thing);
 void  node__prefix  (node, node);
 void  node__affix   (node, node);
 
-struct Node_methods const Node = {
+struct Node const Node = {
   .create = Node__create,
   
   .prefix = node__prefix,

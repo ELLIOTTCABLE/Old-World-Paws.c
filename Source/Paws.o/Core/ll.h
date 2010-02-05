@@ -63,7 +63,7 @@ struct node {
 
 /* ### Method Declarations ### */
 
-struct LL_methods {
+struct LL {
   /* `LL` functions */
   ll    (*create) (void);
   
@@ -75,7 +75,7 @@ struct LL_methods {
   node  (*at)     (ll, ll_ssize);
 } const extern LL;
 
-struct Node_methods {
+struct Node {
   /* `Node` functions */
   node  (*create) (thing);
   

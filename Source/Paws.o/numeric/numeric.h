@@ -25,7 +25,7 @@ struct numeric {
 
 /* ### Method Declarations ### */
 
-struct Numeric_methods {
+struct Numeric {
   /* `Numeric` functions */
   numeric (*create)   (int);
   
