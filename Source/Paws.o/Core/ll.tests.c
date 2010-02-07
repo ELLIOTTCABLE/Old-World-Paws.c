@@ -3,11 +3,11 @@
 #include <stdbool.h>
 /* FIXME: These shouldn’t depend on `list.c` */
 #if !defined(LIST_H)
-#  include "Paws.o/list/list.h"
+# include "Paws.o/list/list.h"
 #endif
 
 #if !defined(CEST_H)
-#  include "Cest.h"
+# include "Cest.h"
 #endif
 
 #define A_LIST \
