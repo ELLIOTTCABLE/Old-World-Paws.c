@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 
+
 /* =====
 = `ll` =
 ===== */
@@ -16,7 +17,8 @@ void  ll__prefix  (ll, node);
 void  ll__affix   (ll, node);
 node  ll__at      (ll, ll_ssize);
 
-struct LL_methods const LL = {
+struct Paws__Node const Node;
+struct Paws__LL const LL = {
   .create = LL__create,
   
   .anterior_insert  = ll__anterior_insert,
@@ -26,17 +28,6 @@ struct LL_methods const LL = {
   .at     = ll__at
 };
 
-node  Node__create  (thing);
-
-void  node__prefix  (node, node);
-void  node__affix   (node, node);
-
-struct Node_methods const Node = {
-  .create = Node__create,
-  
-  .prefix = node__prefix,
-  .affix = node__affix
-};
 
 /* ### Method Implementations ### */
 
@@ -131,6 +122,28 @@ node ll__at(ll this, ll_ssize index) { node result; ll_usize i;
   
   return result;
 }
+
+
+/* =======
+= `node` =
+======= */
+
+/* ### Method Declarations ### */
+
+node  Node__create  (thing);
+
+void  node__prefix  (node, node);
+void  node__affix   (node, node);
+
+struct Paws__Node const Node = {
+  .create = Node__create,
+  
+  .prefix = node__prefix,
+  .affix = node__affix
+};
+
+
+/* ### Method Implementations ### */
 
 /* This method creates a new `node` for a given `thing`. `next` and `previous`
  * will also be initialized to a `NULL` pointer.

@@ -1,8 +1,11 @@
 #include "list.h"
 
+#include "Paws.o/Paws.h"
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+
 
 /* ======================
 = `infrastructure list` =
@@ -19,7 +22,7 @@ void  list__prefix    (list, thing);
 void  list__affix     (list, thing);
 thing list__at        (list, ll_usize);
 
-struct List_methods const List = {
+struct Paws__List const List = {
   .create         = List__create,
   .create_naughty = List__create_naughty,
   
@@ -29,6 +32,9 @@ struct List_methods const List = {
   .affix    = list__affix,
   .at       = list__at
 };
+void constructor Paws__register_List(void) {
+  Paws.List = List; }
+
 
 /* ### Method Implementations ### */
 

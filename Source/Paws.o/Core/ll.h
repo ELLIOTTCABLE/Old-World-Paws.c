@@ -1,10 +1,10 @@
 #define LL_H
 
-#include <limits.h>
-
-#if !defined(CORE_H)
-#  include "Paws.o/Core/Core.h"
+#if !defined(TYPES_H)
+# include "Paws.o/Core/Types.h"
 #endif
+
+#include <limits.h>
 
 /* =====
 = `ll` =
@@ -51,19 +51,19 @@
  *       (as that process replaces the pointer to the next/previous node.)
  */
 struct ll {
-  node    first; /* A pointer to the first `node` in this `ll` */
-  node    last; /* A pointer to the last `node` in this `ll` */
-  ll_usize length; /* The total number of `node`s in this `ll` */
+  node      first; /* A pointer to the first `node` in this `ll` */
+  node      last; /* A pointer to the last `node` in this `ll` */
+  ll_usize  length; /* The total number of `node`s in this `ll` */
 };
 struct node {
-  thing   thing; /* The `thing` stored at this location in the `ll` */
-  node    next; /* A pointer to the next `node` in the `ll` */
-  node    previous; /* A pointer to the previous `node` in the `ll` */
+  thing thing; /* The `thing` stored at this location in the `ll` */
+  node  next; /* A pointer to the next `node` in the `ll` */
+  node  previous; /* A pointer to the previous `node` in the `ll` */
 };
 
 /* ### Method Declarations ### */
 
-struct LL_methods {
+struct Paws__LL {
   /* `LL` functions */
   ll    (*create) (void);
   
@@ -73,13 +73,19 @@ struct LL_methods {
   void  (*prefix) (ll, node);
   void  (*affix)  (ll, node);
   node  (*at)     (ll, ll_ssize);
-} const extern LL;
+};
+#if !defined(EXTERNALIZE)
+  struct Paws__LL extern const LL;
+#endif
 
-struct Node_methods {
+struct Paws__Node {
   /* `Node` functions */
   node  (*create) (thing);
   
   /* `struct node` methods */
   void  (*prefix) (node, node);
   void  (*affix)  (node, node);
-} const extern Node;
+};
+#if !defined(EXTERNALIZE)
+  struct Paws__Node extern const Node;
+#endif

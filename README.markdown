@@ -11,7 +11,7 @@ a bit of a clusterfuck of a tool, so… these:
     
     # `something.c`, an old random example
     C -O0 -std=c99 -pedantic-errors -Wall -ISource \
-      Source/Paws.o/Core/Core.c \
+      Source/Paws.o/Paws.c \
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/numeric/numeric.c \
@@ -20,14 +20,14 @@ a bit of a clusterfuck of a tool, so… these:
     
     # The cests (‘tests’) for `ll`
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
-      Source/Paws.o/Core/Core.c \
+      Source/Paws.o/Paws.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/Core/ll.tests.c && \
     ./ll.tests.o
     
     # Run `gdb` against the tests for `ll`
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
-      Source/Paws.o/Core/Core.c \
+      Source/Paws.o/Paws.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/Core/ll.tests.c && \
     gdb -q -se ./ll.tests.o

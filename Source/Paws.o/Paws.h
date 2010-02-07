@@ -1,15 +1,23 @@
 #define PAWS_H
 
-#if !defined(CORE_H)
-#  include "Paws.o/Core/Core.h"
+#if !defined(INTERNALIZE)
+# define EXTERNALIZE
+#endif
+# if !defined(LIST_H)
+#  include "Paws.o/list/list.h"
+# endif
+# if !defined(NUMERIC_H)
+#  include "Paws.o/numeric/numeric.h"
+# endif
+#if !defined(INTERNALIZE)
+# undef EXTERNALIZE
 #endif
 
-#if !defined(LIST_H)
-#  include "Paws.o/list/list.h"
-#endif
-#if !defined(NUMERIC_H)
-#  include "Paws.o/numeric/numeric.h"
-#endif
+// It seems this is broken, at least in `clang`
+// #if __has_feature(attribute_constructor)
+# define constructor __attribute__((constructor))
+// #endif
+
 
 /* Generally speaking, we provide *three* things for every core datatype:
  * 
@@ -40,3 +48,9 @@
  * *contain* pointers). Quite a few core API methods return this, or expect
  * one of these, instead of a particular type’s struct.
  */
+struct Paws {
+  struct Paws__List     List;
+  struct Paws__Numeric  Numeric;
+};
+
+struct Paws extern Paws;

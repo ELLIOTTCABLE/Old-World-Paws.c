@@ -1,11 +1,13 @@
 #define LIST_H
 
-#if !defined(CORE_H)
-#  include "Paws.o/Core/Core.h"
+#if !defined(TYPES_H)
+# include "Paws.o/Core/Types.h"
 #endif
+
 #if !defined(LL_H)
-#  include "Paws.o/Core/ll.h"
+# include "Paws.o/Core/ll.h"
 #endif
+
 
 /* ======================
 = `infrastructure list` =
@@ -20,9 +22,10 @@ struct list {
   ll  content; /* The `ll` behind this `list` */
 };
 
+
 /* ### Method Declarations ### */
 
-struct List_methods {
+struct Paws__List {
   /* `List` functions */
   list  (*create)         (void);
   list  (*create_naughty) (void);
@@ -33,4 +36,7 @@ struct List_methods {
   void  (*prefix)   (list, thing);
   void  (*affix)    (list, thing);
   thing (*at)       (list, ll_usize);
-} const extern List;
+};
+#if !defined(EXTERNALIZE)
+  struct Paws__List extern const List;
+#endif

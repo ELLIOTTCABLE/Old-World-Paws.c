@@ -1,11 +1,14 @@
 #include "numeric.h"
 
 #if !defined(LIST_H)
-#  include "Paws.o/list/list.h"
+# include "Paws.o/list/list.h"
 #endif
+
+#include "Paws.o/Paws.h"
 
 #include <stdlib.h>
 #include <string.h>
+
 
 /* =========================
 = `infrastructure numeric` =
@@ -17,11 +20,14 @@ numeric Numeric__create    (int);
 
 thing   numeric__to_thing  (numeric);
 
-struct Numeric_methods const Numeric = {
+struct Paws__Numeric const Numeric = {
   .create   = Numeric__create,
   
   .to_thing = numeric__to_thing
 };
+void constructor Paws__register_Numeric(void) {
+  Paws.Numeric = Numeric; }
+
 
 /* ### Method Implementations ### */
 

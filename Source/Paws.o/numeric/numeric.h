@@ -1,11 +1,13 @@
 #define NUMERIC_H
 
-#if !defined(CORE_H)
-#  include "Paws.o/Core/Core.h"
+#if !defined(TYPES_H)
+# include "Paws.o/Core/Types.h"
 #endif
+
 #if !defined(LL_H)
-#  include "Paws.o/Core/ll.h"
+# include "Paws.o/Core/ll.h"
 #endif
+
 
 /* =========================
 = `infrastructure numeric` =
@@ -23,12 +25,16 @@ struct numeric {
   int native;
 };
 
+
 /* ### Method Declarations ### */
 
-struct Numeric_methods {
+struct Paws__Numeric {
   /* `Numeric` functions */
   numeric (*create)   (int);
   
   /* `struct numeric` methods */
   thing   (*to_thing) (numeric);
-} const extern Numeric;
+};
+#if !defined(EXTERNALIZE)
+  struct Paws__Numeric extern const Numeric;
+#endif
