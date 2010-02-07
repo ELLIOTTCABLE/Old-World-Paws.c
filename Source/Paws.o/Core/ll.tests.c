@@ -26,15 +26,55 @@ CEST(LL, create) {
   return true;
 }
 
-/*
 CEST(ll, anterior_insert) {
+  ll a_ll;
+  node  node1, node2, node3,
+        nodeA, nodeB, nodeC;
+  
+  a_ll = LL.create();
+  
+  node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
+  node2 = Node.create(A_LIST); LL.affix(a_ll, node2);
+  node3 = Node.create(A_LIST); LL.affix(a_ll, node3);
+  
+  nodeA = Node.create(A_LIST);
+  
+  /* TODO: Error condition */
+  LL.anterior_insert(a_ll, nodeA, 0);
+  ASSERT( LL.at(a_ll, 0) == node1 );
+  
+  LL.anterior_insert(a_ll, nodeA, 1);
+  ASSERT( LL.at(a_ll, 0) == node1 );
+  ASSERT( LL.at(a_ll, 1) == nodeA );
+  ASSERT( LL.at(a_ll, 2) == node2 );
+  
   return true;
 }
 
 CEST(ll, posterior_insert) {
+  ll a_ll;
+  node  node1, node2, node3,
+        nodeA, nodeB, nodeC;
+  
+  a_ll = LL.create();
+  
+  node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
+  node2 = Node.create(A_LIST); LL.affix(a_ll, node2);
+  node3 = Node.create(A_LIST); LL.affix(a_ll, node3);
+  
+  nodeA = Node.create(A_LIST);
+  
+  /* TODO: Error condition */
+  LL.posterior_insert(a_ll, nodeA, a_ll->length - 1);
+  ASSERT( LL.at(a_ll, 0) == node1 );
+  
+  LL.posterior_insert(a_ll, nodeA, 1);
+  ASSERT( LL.at(a_ll, 0) == node1 );
+  ASSERT( LL.at(a_ll, 1) == nodeA );
+  ASSERT( LL.at(a_ll, 2) == node2 );
+  
   return true;
 }
-*/
 
 CEST(ll, prefix) {
   ll    a_ll;

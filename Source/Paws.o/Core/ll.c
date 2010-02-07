@@ -46,20 +46,20 @@ ll LL__create(void) {
 
 /* TODO: Negative indicies */
 void ll__anterior_insert(ll this, node child, ll_ssize index) {
-  if (index == this->length - 1)
-    /* TODO: Error condition, cannot anterior-insert at last position */;
+  if (index <= 0)
+    /* TODO: Error condition, cannot anterior-insert at first position */;
   else {
-    Node.prefix(LL.at(this, index), child);
+    Node.affix(LL.at(this, index - 1), child);
     this->length++;
   }
 }
 
 /* TODO: Negative indicies */
 void ll__posterior_insert(ll this, node child, ll_ssize index) {
-  if (index == 0)
-    /* TODO: Error condition, cannot posterior-insert at first position */;
+  if (index >= this->length - 1)
+    /* TODO: Error condition, cannot posterior-insert at last position */;
   else {
-    Node.affix(LL.at(this, index - 1), child);
+    Node.prefix(LL.at(this, index), child);
     this->length++;
   }
 }
