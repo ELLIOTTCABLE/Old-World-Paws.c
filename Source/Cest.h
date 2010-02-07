@@ -14,6 +14,7 @@
   if (!(FACT)) \
     return false
 
+
         struct cest;
 typedef struct cest* cest;
 

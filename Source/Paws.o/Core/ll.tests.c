@@ -1,6 +1,5 @@
 #include "ll.c"
 
-#include <stdbool.h>
 /* FIXME: These shouldn’t depend on `list.c` */
 #if !defined(LIST_H)
 # include "Paws.o/list/list.h"
@@ -10,8 +9,11 @@
 # include "Cest.h"
 #endif
 
+#include <stdbool.h>
+
 #define A_LIST \
   List.to_thing(List.create())
+
 
 CEST(LL, create) {
   ll a_ll;
