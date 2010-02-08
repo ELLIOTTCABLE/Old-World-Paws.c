@@ -9,8 +9,6 @@
 # include "Cest.h"
 #endif
 
-#include <stdbool.h>
-
 #define A_LIST \
   List.to_thing(List.create())
 
