@@ -71,3 +71,59 @@ CEST(list, insert) {
   
   return true;
 }
+
+CEST(list, prefix) {
+  list  a_list = List.create();
+  thing thing1 = List.to_thing(List.create()),
+        thing2 = List.to_thing(List.create()),
+        thing3 = List.to_thing(List.create());
+  
+  /* This is a somewhat unusual situation… it shouldn’t often show up in
+   * practice, but we’re going to remove the naughty, and reset the list to a
+   * blank state, before proceeding. */
+  a_list->content->first = NULL;
+  a_list->content->last = NULL;
+  a_list->content->length = 0;
+  
+  List.prefix(a_list, thing3);
+  ASSERT( List.at(a_list, 0) == thing3 );
+  ASSERT( a_list->content->length == 1 );
+  
+  List.prefix(a_list, thing2);
+  ASSERT( List.at(a_list, 0) == thing2 );
+  ASSERT( a_list->content->length == 2 );
+  
+  List.prefix(a_list, thing1);
+  ASSERT( List.at(a_list, 0) == thing1 );
+  ASSERT( a_list->content->length == 3 );
+  
+  return true;
+}
+
+CEST(list, affix) {
+  list  a_list = List.create();
+  thing thing1 = List.to_thing(List.create()),
+        thing2 = List.to_thing(List.create()),
+        thing3 = List.to_thing(List.create());
+  
+  /* This is a somewhat unusual situation… it shouldn’t often show up in
+   * practice, but we’re going to remove the naughty, and reset the list to a
+   * blank state, before proceeding. */
+  a_list->content->first = NULL;
+  a_list->content->last = NULL;
+  a_list->content->length = 0;
+  
+  List.affix(a_list, thing1);
+  ASSERT( List.at(a_list, 0) == thing1 );
+  ASSERT( a_list->content->length == 1 );
+  
+  List.affix(a_list, thing2);
+  ASSERT( List.at(a_list, 1) == thing2 );
+  ASSERT( a_list->content->length == 2 );
+  
+  List.affix(a_list, thing3);
+  ASSERT( List.at(a_list, 2) == thing3 );
+  ASSERT( a_list->content->length == 3 );
+  
+  return true;
+}
