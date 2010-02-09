@@ -32,10 +32,10 @@ struct Paws__List {
   
   /* `struct list` methods */
   thing (*to_thing) (list);
-  void  (*insert)   (list, thing, ll_usize);
+  void  (*insert)   (list, thing, ll_ssize);
   void  (*prefix)   (list, thing);
   void  (*affix)    (list, thing);
-  thing (*at)       (list, ll_usize);
+  thing (*at)       (list, ll_ssize);
 };
 #if !defined(EXTERNALIZE)
   struct Paws__List extern const List;
