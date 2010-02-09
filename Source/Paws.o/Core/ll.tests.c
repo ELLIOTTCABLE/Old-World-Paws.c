@@ -63,7 +63,7 @@ CEST(ll, posterior_insert) {
   nodeA = Node.create(A_LIST);
   
   /* TODO: Error condition */
-  LL.posterior_insert(a_ll, nodeA, a_ll->length - 1);
+  LL.posterior_insert(a_ll, nodeA, a_ll->length);
   ASSERT( LL.at(a_ll, 0) == node1 );
   
   LL.posterior_insert(a_ll, nodeA, 1);
