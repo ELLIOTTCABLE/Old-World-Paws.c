@@ -25,10 +25,9 @@ CEST(List, create) {
 }
 
 CEST(list, to_thing) {
-  list  a_list;
+  list  a_list = List.create();
   thing a_thing;
   
-  a_list = List.create();
   a_thing = List.to_thing(a_list);
   ASSERT( a_thing->isa          == LIST   );
   ASSERT( a_thing->pointer.list == a_list );
