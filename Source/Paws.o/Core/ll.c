@@ -56,7 +56,7 @@ void ll__anterior_insert(ll this, node child, ll_ssize index) {
 
 /* TODO: Negative indicies */
 void ll__posterior_insert(ll this, node child, ll_ssize index) {
-  if (index >= this->length - 1)
+  if (index + 1 >= this->length)
     /* TODO: Error condition, cannot posterior-insert at last position */;
   else {
     Node.prefix(LL.at(this, index), child);
