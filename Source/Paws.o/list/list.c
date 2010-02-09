@@ -76,7 +76,13 @@ thing list__to_thing(list this) {
 }
 
 void list__insert(list this, thing child, ll_usize index) {
-  LL.posterior_insert(this->content, Node.create(child), index); }
+  if (index == 0)
+    List.prefix(this, child);
+  else if(index == this->content->length)
+    List.affix (this, child);
+  else
+    LL.posterior_insert(this->content, Node.create(child), index);
+}
 
 void list__prefix(list this, thing child) {
   LL.prefix(this->content, Node.create(child)); }
