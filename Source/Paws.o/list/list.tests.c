@@ -37,12 +37,10 @@ CEST(list, to_thing) {
 
 CEST(list, insert) {
   list  a_list = List.create();
-  thing thing1, thing2, thing3, thing4;
-  
-  thing1 = List.to_thing(List.create());
-  thing2 = List.to_thing(List.create());
-  thing3 = List.to_thing(List.create());
-  thing4 = List.to_thing(List.create());
+  thing thing1 = List.to_thing(List.create()),
+        thing2 = List.to_thing(List.create()),
+        thing3 = List.to_thing(List.create()),
+        thing4 = List.to_thing(List.create());
   
   /* This is a somewhat unusual situation… it shouldn’t often show up in
    * practice, but we’re going to remove the naughty, and reset the list to a
