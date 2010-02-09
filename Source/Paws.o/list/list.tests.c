@@ -127,3 +127,44 @@ CEST(list, affix) {
   
   return true;
 }
+
+CEST(list, at) {
+  list  a_list = List.create();
+  
+  /* This is a somewhat unusual situation… it shouldn’t often show up in
+   * practice, but we’re going to remove the naughty, and reset the list to a
+   * blank state, before proceeding. */
+  a_list->content->first = NULL;
+  a_list->content->last = NULL;
+  a_list->content->length = 0;
+  
+  /* Empty `list`s */
+  ASSERT( List.at(a_list,  5) == NULL );
+  ASSERT( List.at(a_list,  1) == NULL );
+  ASSERT( List.at(a_list,  0) == NULL );
+  ASSERT( List.at(a_list, -1) == NULL );
+  ASSERT( List.at(a_list, -5) == NULL );
+  
+  thing thing1, thing2, thing3;
+  thing1 = List.to_thing(List.create()); List.affix(a_list, thing1);
+  thing2 = List.to_thing(List.create()); List.affix(a_list, thing2);
+  thing3 = List.to_thing(List.create()); List.affix(a_list, thing3);
+  
+  /* Positive indicies */
+  ASSERT( List.at(a_list,  0) == thing1 );
+  ASSERT( List.at(a_list,  1) == thing2 );
+  ASSERT( List.at(a_list,  2) == thing3 );
+  
+  /* Negative indicies */
+  ASSERT( List.at(a_list, -1) == thing3 );
+  ASSERT( List.at(a_list, -2) == thing2 );
+  ASSERT( List.at(a_list, -3) == thing1 );
+  
+  /* OOB indicies */
+  ASSERT( List.at(a_list,  5) == NULL );
+  ASSERT( List.at(a_list,  4) == NULL );
+  ASSERT( List.at(a_list, -4) == NULL );
+  ASSERT( List.at(a_list, -5) == NULL );
+  
+  return true;
+}
