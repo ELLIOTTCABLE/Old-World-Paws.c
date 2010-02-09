@@ -90,5 +90,10 @@ void list__prefix(list this, thing child) {
 void list__affix(list this, thing child) {
   LL.affix(this->content, Node.create(child)); }
 
-thing list__at(list this, ll_ssize index) { return
-  LL.at(this->content, index)->thing; }
+thing list__at(list this, ll_ssize index) {
+  node element = LL.at(this->content, index);
+  if (element == NULL)
+    return NULL;
+  else
+    return element->thing;
+}
