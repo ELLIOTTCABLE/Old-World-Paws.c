@@ -17,10 +17,10 @@ list  List__create    (void);
 list  List__create_naughty  (void);
 
 thing list__to_thing  (list);
-void  list__insert    (list, thing, ll_ssize);
+void  list__insert    (list, thing, ll_size);
 void  list__prefix    (list, thing);
 void  list__affix     (list, thing);
-thing list__at        (list, ll_ssize);
+thing list__at        (list, ll_size);
 
 struct Paws__List const List = {
   .create         = List__create,
@@ -75,7 +75,7 @@ thing list__to_thing(list this) {
   return location;
 }
 
-void list__insert(list this, thing child, ll_ssize index) {
+void list__insert(list this, thing child, ll_size index) {
   if (index == 0)
     List.prefix(this, child);
   else if(index == this->content->length)
@@ -90,7 +90,7 @@ void list__prefix(list this, thing child) {
 void list__affix(list this, thing child) {
   LL.affix(this->content, Node.create(child)); }
 
-thing list__at(list this, ll_ssize index) {
+thing list__at(list this, ll_size index) {
   node element = LL.at(this->content, index);
   if (element == NULL)
     return NULL;

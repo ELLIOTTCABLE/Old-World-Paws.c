@@ -11,11 +11,11 @@
 
 ll    LL__create  (void);
 
-void  ll__anterior_insert   (ll, node, ll_ssize);
-void  ll__posterior_insert  (ll, node, ll_ssize);
+void  ll__anterior_insert   (ll, node, ll_size);
+void  ll__posterior_insert  (ll, node, ll_size);
 void  ll__prefix  (ll, node);
 void  ll__affix   (ll, node);
-node  ll__at      (ll, ll_ssize);
+node  ll__at      (ll, ll_size);
 
 struct Paws__Node const Node;
 struct Paws__LL const LL = {
@@ -44,9 +44,8 @@ ll LL__create(void) {
   return this;
 }
 
-/* TODO: Negative indicies */
-void ll__anterior_insert(ll this, node child, ll_ssize index) {
-  if (index <= 0)
+void ll__anterior_insert(ll this, node child, ll_size index) {
+  if (index == 0)
     /* TODO: Error condition, cannot anterior-insert at first position */;
   else {
     Node.affix(LL.at(this, index - 1), child);
@@ -54,9 +53,8 @@ void ll__anterior_insert(ll this, node child, ll_ssize index) {
   }
 }
 
-/* TODO: Negative indicies */
-void ll__posterior_insert(ll this, node child, ll_ssize index) {
-  if (index >= this->length)
+void ll__posterior_insert(ll this, node child, ll_size index) {
+  if (index == this->length)
     /* TODO: Error condition, cannot posterior-insert at last position */;
   else {
     Node.prefix(LL.at(this, index), child);
@@ -97,16 +95,11 @@ void ll__affix(ll this, node child) {
 /* This method returns a `node` at a given index in an `ll`.
  * 
  * Takes two arguments, the indexee (`this`), and an integer `index`.
- *--
- * TODO: Negative indices
  */
-node ll__at(ll this, ll_ssize index) { node result; ll_usize i;
+node ll__at(ll this, ll_size index) { node result; ll_size i;
   
-  if (index >= this->length || index < -(ll_ssize)this->length)
+  if (index >= this->length)
     return NULL;
-  if (index < 0)
-    index += this->length;
-  
   
   if (index <= this->length / 2) {
     result = this->first;

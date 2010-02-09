@@ -142,8 +142,6 @@ CEST(list, at) {
   ASSERT( List.at(a_list,  5) == NULL );
   ASSERT( List.at(a_list,  1) == NULL );
   ASSERT( List.at(a_list,  0) == NULL );
-  ASSERT( List.at(a_list, -1) == NULL );
-  ASSERT( List.at(a_list, -5) == NULL );
   
   thing thing1, thing2, thing3;
   thing1 = List.to_thing(List.create()); List.affix(a_list, thing1);
@@ -155,16 +153,9 @@ CEST(list, at) {
   ASSERT( List.at(a_list,  1) == thing2 );
   ASSERT( List.at(a_list,  2) == thing3 );
   
-  /* Negative indicies */
-  ASSERT( List.at(a_list, -1) == thing3 );
-  ASSERT( List.at(a_list, -2) == thing2 );
-  ASSERT( List.at(a_list, -3) == thing1 );
-  
   /* OOB indicies */
   ASSERT( List.at(a_list,  5) == NULL );
   ASSERT( List.at(a_list,  4) == NULL );
-  ASSERT( List.at(a_list, -4) == NULL );
-  ASSERT( List.at(a_list, -5) == NULL );
   
   return true;
 }

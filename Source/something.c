@@ -7,7 +7,7 @@
 
 void pretty_print(thing);
 
-void pretty_print_list(list this) { ll_usize i;
+void pretty_print_list(list this) { ll_size i;
   printf("(");
   for (i = 1; i < this->content->length; ++i) {
     if (i > 1) printf(", ");

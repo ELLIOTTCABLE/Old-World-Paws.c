@@ -119,8 +119,6 @@ CEST(ll, at) {
   ASSERT( LL.at(a_ll,  5) == NULL );
   ASSERT( LL.at(a_ll,  1) == NULL );
   ASSERT( LL.at(a_ll,  0) == NULL );
-  ASSERT( LL.at(a_ll, -1) == NULL );
-  ASSERT( LL.at(a_ll, -5) == NULL );
   
   node  node1, node2, node3;
   node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
@@ -132,16 +130,9 @@ CEST(ll, at) {
   ASSERT( LL.at(a_ll,  1) == node2 );
   ASSERT( LL.at(a_ll,  2) == node3 );
   
-  /* Negative indicies */
-  ASSERT( LL.at(a_ll, -1) == node3 );
-  ASSERT( LL.at(a_ll, -2) == node2 );
-  ASSERT( LL.at(a_ll, -3) == node1 );
-  
   /* OOB indicies */
   ASSERT( LL.at(a_ll,  5) == NULL );
   ASSERT( LL.at(a_ll,  4) == NULL );
-  ASSERT( LL.at(a_ll, -4) == NULL );
-  ASSERT( LL.at(a_ll, -5) == NULL );
   
   return true;
 }
