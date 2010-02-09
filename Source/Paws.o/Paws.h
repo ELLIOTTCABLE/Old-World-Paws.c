@@ -49,8 +49,8 @@
  * one of these, instead of a particular type’s struct.
  */
 struct Paws {
-  struct Paws__List     List;
-  struct Paws__Numeric  Numeric;
+  struct E(List)    List;
+  struct E(Numeric) Numeric;
 };
 
 struct Paws extern Paws;

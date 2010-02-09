@@ -19,22 +19,22 @@
  * implemented natively with C `int` types. It provides no methods for
  * floating-point arithmetic.
  */
-struct numeric {
-  ll  content; /* The `ll` behind this `numeric`’s `list` interface */
+struct E(numeric) {
+  E(ll) content; /* The `ll` behind this `numeric`’s `list` interface */
   /* TODO: Support floating-point values. */
-  int native;
+  int   native;
 };
 
 
 /* ### Method Declarations ### */
 
-struct Paws__Numeric {
+struct E(Numeric) {
   /* `Numeric` functions */
-  numeric (*create)   (int);
+  E(numeric)  (*create)   ( int );
   
   /* `struct numeric` methods */
-  thing   (*to_thing) (numeric);
+  E(thing)    (*to_thing) ( E(numeric) );
 };
 #if !defined(EXTERNALIZE)
-  struct Paws__Numeric extern const Numeric;
+  struct E(Numeric) extern const Numeric;
 #endif

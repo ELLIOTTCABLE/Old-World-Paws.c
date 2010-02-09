@@ -22,7 +22,7 @@ void  list__prefix    (list, thing);
 void  list__affix     (list, thing);
 thing list__at        (list, ll_size);
 
-struct Paws__List const List = {
+struct List const List = {
   .create         = List__create,
   .create_naughty = List__create_naughty,
   

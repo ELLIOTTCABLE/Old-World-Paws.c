@@ -1,5 +1,14 @@
 #define TYPES_H
 
+#if defined(EXTERNALIZE)
+      /* Heh. Heheh. */
+# define E(NAME) \
+    Paws__ ## NAME
+#else
+# define E(NAME) \
+    NAME
+#endif
+
 /* This file exists simply to pre-declare some structs and types used
  * throughout the rest of the Paws.o codebase.
  * 
@@ -7,30 +16,30 @@
  * everywhere it is necessary.
  */
 
-        struct ll; /* Our data storage system (a doubly-linked-list) */
-        struct node; /* A single node of an `ll` */
-typedef struct ll*    ll;
-typedef struct node*  node;
+        struct E(ll); /* Our data storage system (a doubly-linked-list) */
+        struct E(node); /* A single node of an `ll` */
+typedef struct E(ll)*    E(ll);
+typedef struct E(node)*  E(node);
 
-        struct list; /* The struct behind `infrastructure list`. */
-typedef struct list* list;
+        struct E(list); /* The struct behind `infrastructure list`. */
+typedef struct E(list)* E(list);
 
-        struct numeric; /* The struct behind `infrastructure numeric`. */
-typedef struct numeric* numeric;
+        struct E(numeric); /* The struct behind `infrastructure numeric`. */
+typedef struct E(numeric)* E(numeric);
 
-        struct thing; /* A union representing any core Paws datatype */
-typedef struct thing* thing;
+        struct E(thing); /* A union representing any core Paws datatype */
+typedef struct E(thing)* E(thing);
 
-struct thing {
+struct E(thing) {
   
   enum /* isa’s */ {
-    LIST,
-    NUMERIC
+    E(LIST),
+    E(NUMERIC)
   } const isa;
   
   union /* thing’s */ {
-    list list;
-    numeric numeric;
+    E(list)     list;
+    E(numeric)  numeric;
   } const pointer;
   
 };

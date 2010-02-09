@@ -5,9 +5,9 @@
 #include <stdio.h>
 
 
-void pretty_print(thing);
+void pretty_print(Paws__thing);
 
-void pretty_print_list(list this) { ll_size i;
+void pretty_print_list(Paws__list this) { Paws__ll_size i;
   printf("(");
   for (i = 1; i < this->content->length; ++i) {
     if (i > 1) printf(", ");
@@ -16,18 +16,18 @@ void pretty_print_list(list this) { ll_size i;
   printf(")");
 }
 
-void pretty_print(thing this) {
+void pretty_print(Paws__thing this) {
   /* TODO: Support non-`list` `thing`s */
-  if (this->isa == LIST)
+  if (this->isa == Paws__LIST)
     pretty_print_list(this->pointer.list);
 }
 
 
 int main(void) {
-  list root_list = Paws.List.create(),
-     first_child = Paws.List.create(),
-        subchild = Paws.List.create(),
-    second_child = Paws.List.create();
+  Paws__list root_list = Paws.List.create(),
+           first_child = Paws.List.create(),
+              subchild = Paws.List.create(),
+          second_child = Paws.List.create();
   
   Paws.List.affix(first_child, Paws.List.to_thing(subchild));
   Paws.List.affix(root_list, Paws.List.to_thing(first_child));

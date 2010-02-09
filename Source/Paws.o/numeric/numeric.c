@@ -20,7 +20,7 @@ numeric Numeric__create    (int);
 
 thing   numeric__to_thing  (numeric);
 
-struct Paws__Numeric const Numeric = {
+struct Numeric const Numeric = {
   .create   = Numeric__create,
   
   .to_thing = numeric__to_thing
