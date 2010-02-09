@@ -24,7 +24,7 @@ CEST(List, create) {
   return true;
 }
 
-CEST(List, to_thing) {
+CEST(list, to_thing) {
   list  a_list;
   thing a_thing;
   
