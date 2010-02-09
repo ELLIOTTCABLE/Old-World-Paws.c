@@ -34,3 +34,42 @@ CEST(list, to_thing) {
   
   return true;
 }
+
+CEST(list, insert) {
+  list  a_list = List.create();
+  thing thing1, thing2, thing3, thing4;
+  
+  thing1 = List.to_thing(List.create());
+  thing2 = List.to_thing(List.create());
+  thing3 = List.to_thing(List.create());
+  thing4 = List.to_thing(List.create());
+  
+  /* This is a somewhat unusual situation… it shouldn’t often show up in
+   * practice, but we’re going to remove the naughty, and reset the list to a
+   * blank state, before proceeding. */
+  a_list->content->first = NULL;
+  a_list->content->last = NULL;
+  a_list->content->length = 0;
+  
+  /* Insert into empty list */
+  List.insert(a_list, thing2, 0);
+  ASSERT( List.at(a_list, 0) == thing2 );
+  ASSERT( a_list->content->length == 1 );
+  
+  /* Insert onto the front of list */
+  List.insert(a_list, thing1, 0);
+  ASSERT( List.at(a_list, 0) == thing1 );
+  ASSERT( a_list->content->length == 2 );
+  
+  /* Insert onto the end of list */
+  List.insert(a_list, thing4, 2);
+  ASSERT( List.at(a_list, 2) == thing4 );
+  ASSERT( a_list->content->length == 3 );
+  
+  /* Insert into list */
+  List.insert(a_list, thing3, 2);
+  ASSERT( List.at(a_list, 2) == thing3 );
+  ASSERT( a_list->content->length == 4 );
+  
+  return true;
+}
