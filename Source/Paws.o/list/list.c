@@ -39,7 +39,7 @@ void constructor Paws__register_List(void) {
 /* ### Method Implementations ### */
 
 /* This method allocates a new `infrastructure list`, and returns a C `list`
- * (a pointer to a C `struct list`.)
+ * (a pointer to a `struct list`.)
  */
 list _List__create(bool);
 

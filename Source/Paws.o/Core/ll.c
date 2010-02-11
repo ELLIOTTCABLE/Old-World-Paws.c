@@ -31,8 +31,8 @@ struct LL const LL = {
 
 /* ### Method Implementations ### */
 
-/* This method initializes a new ll, with no nodes. The `first` and `last` are
- * set to `NULL` pointers, and `length` is initialized to zero.
+/* This method initializes a new `ll`, with no nodes. The `first` and `last`
+ * are set to `NULL` pointers, and `length` is initialized to zero.
  */
 ll LL__create(void) {
   ll this = malloc(sizeof(struct ll));

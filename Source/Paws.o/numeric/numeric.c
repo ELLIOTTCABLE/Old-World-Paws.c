@@ -32,7 +32,10 @@ void constructor Paws__register_Numeric(void) {
 /* ### Method Implementations ### */
 
 /* This method allocates a new `infrastructure numeric`, and returns a
- * C `numeric` (a pointer to a C `struct numeric`.)
+ * C `numeric` (a pointer to a `struct numeric`.)
+ *--
+ * TODO: Global-uniqueness. We need to cache already-created `numeric`s
+ *       somewhere, and retreive them when necessary.
  */
 numeric Numeric__create(int native) {
   numeric this = malloc(sizeof(struct numeric));
