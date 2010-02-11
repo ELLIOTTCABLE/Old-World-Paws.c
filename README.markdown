@@ -22,6 +22,7 @@ a bit of a clusterfuck of a tool, so… these:
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
+      Source/Paws.o/numeric/numeric.tests.c \
       Source/Paws.o/Paws.tests.c && \
     ./Paws.tests.o
     
@@ -29,5 +30,6 @@ a bit of a clusterfuck of a tool, so… these:
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
+      Source/Paws.o/numeric/numeric.tests.c \
       Source/Paws.o/Paws.tests.c && \
     gdb -q -se ./Paws.tests.o
