@@ -34,6 +34,7 @@ struct E(Numeric) {
   
   /* `struct numeric` methods */
   E(thing)    (*to_thing) ( E(numeric) );
+  int         (*native)   ( E(numeric) );
 };
 #if !defined(EXTERNALIZE)
   struct E(Numeric) extern const Numeric;

@@ -16,14 +16,16 @@
 
 /* ### Method Declarations ### */
 
-numeric Numeric__create    (int);
+numeric Numeric__create   (int);
 
-thing   numeric__to_thing  (numeric);
+thing   numeric__to_thing (numeric);
+int     numeric__native   (numeric);
 
 struct Numeric const Numeric = {
   .create   = Numeric__create,
   
-  .to_thing = numeric__to_thing
+  .to_thing = numeric__to_thing,
+  .native   = numeric__native
 };
 void constructor Paws__register_Numeric(void) {
   Paws.Numeric = Numeric; }
@@ -62,4 +64,9 @@ thing numeric__to_thing(numeric this) {
   memcpy(location, &wrapper, sizeof(struct thing));
   
   return location;
+}
+
+/* This method returns a native C `int` for a given `list`. */
+int numeric__native(numeric this) {
+  return this->native;
 }
