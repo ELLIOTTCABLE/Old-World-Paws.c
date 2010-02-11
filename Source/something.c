@@ -1,7 +1,6 @@
 #include "Paws.o/Paws.h"
 
 #include <stdlib.h>
-#include <stdbool.h>
 #include <stdio.h>
 
 
@@ -35,13 +34,6 @@ int main(void) {
   
   pretty_print_list(root_list);
   printf("\n");
-  
-  if (false
-  ||  Paws.List.at(root_list, 1)->pointer.list != first_child
-  ||  Paws.List.at(root_list, 2)->pointer.list != second_child
-  ||  Paws.List.at(root_list, 2)->pointer.list != second_child
-  )
-    return(1);
   
   return(0);
 }
