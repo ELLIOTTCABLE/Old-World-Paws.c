@@ -38,3 +38,17 @@ CEST(string, to_thing) {
   
   return true;
 }
+
+CEST(string, native) {
+  string  a_string;
+  
+  a_string = String.create("foo", 4);
+  ASSERT( strcmp(String.native(a_string), "foo") == 0 );
+  
+  a_string = String.create(
+    "May the forces of evil become confused on the way to your house.", 65);
+  ASSERT( strcmp(String.native(a_string),
+    "May the forces of evil become confused on the way to your house.") == 0 );
+  
+  return true;
+}

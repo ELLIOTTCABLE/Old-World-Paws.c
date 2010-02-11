@@ -23,11 +23,13 @@
 string  String__create     (char[], string_size);
 
 thing   string__to_thing  (string);
+char*   string__native    (string);
 
 struct String const String = {
   .create   = String__create,
   
-  .to_thing = string__to_thing
+  .to_thing = string__to_thing,
+  .native   = string__native
 };
 void constructor Paws__register_String(void) {
   Paws.String = String; }
@@ -75,4 +77,17 @@ thing string__to_thing(string this) {
   memcpy(location, &wrapper, sizeof(struct thing));
   
   return location;
+}
+
+/* This method returns a pointer to a C string of UTF-8 characters for a given
+ * `list`.
+ * 
+ * It is important to note that strings are assumed-unmodifiable, so you
+ * shouldn’t modify the returned C string in any way.
+ */
+char* string__native(string this) {
+  if (this->bytes <= sizeof(this->native.short_array))
+    return this->native.short_array;
+  else
+    return this->native.otherwise.long_array;
 }
