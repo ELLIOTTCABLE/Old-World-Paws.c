@@ -23,6 +23,13 @@ typedef  unsigned long long int  E(string_size);
 struct E(string) {
   E(ll)           content; /* The `ll` behind this `string`’s `list` interface */
   
+  /* This complex nested structure provides a very efficient storage for very
+   * short byte strings (anything less than (usually) twelve bytes, including
+   * the `NULL` terminator). This is because those short-strings are stored
+   * inline in the struct, instead of in another memory location; this also
+   * allows for a single cache entry. If the string is *longer* than that, it
+   * is stored in another memory location, and a pointer is stored in the
+   * equivalent space instead. */
   union {
     struct packed {
       char*           long_array;
