@@ -17,10 +17,13 @@ CEST(String, create) {
   
   a_string = String.create("bar", 4);
   ASSERT( strcmp(a_string->native.short_array, "bar") == 0 );
+  ASSERT( a_string->bytes == 4 );
   
-  a_string = String.create("A whole new world!", 19);
+  a_string = String.create(
+    "May the forces of evil become confused on the way to your house.", 65);
   ASSERT( strcmp(a_string->native.otherwise.long_array,
-    "A whole new world!") == 0 );
+    "May the forces of evil become confused on the way to your house.") == 0 );
+  ASSERT( a_string->bytes == 65 );
   
   return true;
 }
