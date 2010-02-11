@@ -20,7 +20,6 @@ a bit of a clusterfuck of a tool, so… these:
     
     # The cests (‘tests’) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
-      Source/Paws.o/Paws.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
       Source/Paws.o/Paws.tests.c && \
@@ -28,7 +27,6 @@ a bit of a clusterfuck of a tool, so… these:
     
     # Run `gdb` against the tests for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
-      Source/Paws.o/Paws.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
       Source/Paws.o/Paws.tests.c && \
