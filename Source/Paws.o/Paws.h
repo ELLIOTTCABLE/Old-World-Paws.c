@@ -9,13 +9,19 @@
 # if !defined(NUMERIC_H)
 #   include "Paws.o/numeric/numeric.h"
 # endif
+# if !defined(STRING_H)
+#   include "Paws.o/string/string.h"
+# endif
 #if !defined(INTERNALIZE)
 # undef EXTERNALIZE
 #endif
 
 // It seems this is broken, at least in `clang`
 // #if __has_feature(attribute_constructor)
-# define constructor __attribute__((constructor))
+# define  constructor __attribute__((constructor))
+// #endif
+// #if __has_feature(attribute_packed)
+# define  packed      __attribute__((packed))
 // #endif
 
 
@@ -51,6 +57,7 @@
 struct Paws {
   struct E(List)    List;
   struct E(Numeric) Numeric;
+  struct E(String) String;
 };
 
 struct Paws extern Paws;

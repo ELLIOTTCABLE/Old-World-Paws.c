@@ -15,6 +15,7 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/numeric/numeric.c \
+      Source/Paws.o/string/string.c \
       Source/something.c && \
     ./something.o
     
@@ -23,6 +24,7 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
       Source/Paws.o/numeric/numeric.tests.c \
+      Source/Paws.o/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \
     ./Paws.tests.o
     
@@ -31,5 +33,6 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
       Source/Paws.o/numeric/numeric.tests.c \
+      Source/Paws.o/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \
     gdb -q -se ./Paws.tests.o
