@@ -20,9 +20,9 @@ void pretty_print_numeric(Paws__numeric this) {
 }
 
 void pretty_print_string(Paws__string this) {
-  printf("\u201C");
+  printf("\xE2\x80\x9C"); /* U+201C, "LEFT DOUBLE QUOTATION MARK" */
   printf("%s", Paws.String.native(this));
-  printf("\u201D");
+  printf("\xE2\x80\x9D"); /* U+201D, "RIGHT DOUBLE QUOTATION MARK" */
 }
 
 void pretty_print(Paws__thing this) {
