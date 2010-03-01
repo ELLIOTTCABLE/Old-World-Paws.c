@@ -5,7 +5,7 @@
 #endif
 
 #if !defined(LL_H)
-# include "Paws.o/Core/ll.h"
+# include "Paws.o/list/list.h"
 #endif
 
 
@@ -50,6 +50,12 @@ struct E(String) {
   /* `struct numeric` methods */
   E(thing)  (*to_thing) ( E(string) this );
   char*     (*native)   ( E(string) this );
+  
+  /* inherited `struct list` methods */
+  void      (*insert)   ( E(string) this, E(thing) child, E(ll_size) index );
+  void      (*prefix)   ( E(string) this, E(thing) child );
+  void      (*affix)    ( E(string) this, E(thing) child );
+  E(thing)  (*at)       ( E(string) this, E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(String) extern const String;
