@@ -45,11 +45,11 @@ struct E(LL) {
   E(ll)   (*create) (void);
   
   /* `struct ll` methods */
-    void  (*anterior_insert)  ( E(ll), E(node), E(ll_size) );
-    void  (*posterior_insert) ( E(ll), E(node), E(ll_size) );
-    void  (*prefix) ( E(ll), E(node) );
-    void  (*affix)  ( E(ll), E(node) );
-  E(node) (*at)     ( E(ll), E(ll_size) );
+    void  (*anterior_insert)  ( E(ll) this, E(node) child, E(ll_size) index );
+    void  (*posterior_insert) ( E(ll) this, E(node) child, E(ll_size) index );
+    void  (*prefix) ( E(ll) this, E(node) child );
+    void  (*affix)  ( E(ll) this, E(node) child );
+  E(node) (*at)     ( E(ll) this, E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(LL) extern const LL;
@@ -57,11 +57,11 @@ struct E(LL) {
 
 struct E(Node) {
   /* `Node` functions */
-  E(node) (*create) ( E(thing) );
+  E(node) (*create) ( E(thing) thing );
   
   /* `struct node` methods */
-    void  (*prefix) ( E(node), E(node) );
-    void  (*affix)  ( E(node), E(node) );
+    void  (*prefix) ( E(node) this, E(node) other );
+    void  (*affix)  ( E(node) this, E(node) other );
 };
 #if !defined(EXTERNALIZE)
   struct E(Node) extern const Node;

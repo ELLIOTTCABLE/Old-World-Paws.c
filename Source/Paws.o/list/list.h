@@ -31,11 +31,11 @@ struct E(List) {
   E(list) (*create_naughty) (void);
   
   /* `struct list` methods */
-  E(thing)  (*to_thing) ( E(list) );
-    void    (*insert)   ( E(list), E(thing), E(ll_size) );
-    void    (*prefix)   ( E(list), E(thing) );
-    void    (*affix)    ( E(list), E(thing) );
-  E(thing)  (*at)       ( E(list), E(ll_size) );
+  E(thing)  (*to_thing) ( E(list) this );
+  void      (*insert)   ( E(list) this, E(thing) child, E(ll_size) index );
+  void      (*prefix)   ( E(list) this, E(thing) child );
+  void      (*affix)    ( E(list) this, E(thing) child );
+  E(thing)  (*at)       ( E(list) this, E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(List) extern const List;

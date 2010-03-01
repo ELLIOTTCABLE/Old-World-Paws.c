@@ -45,11 +45,11 @@ struct E(string) {
 
 struct E(String) {
   /* `String` functions */
-  E(string) (*create)   ( char[], E(string_size) );
+  E(string) (*create)   ( char native[], E(string_size) bytes );
   
   /* `struct numeric` methods */
-  E(thing)  (*to_thing) ( E(string) );
-  char*     (*native)   ( E(string) );
+  E(thing)  (*to_thing) ( E(string) this );
+  char*     (*native)   ( E(string) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(String) extern const String;

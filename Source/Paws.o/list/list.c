@@ -13,14 +13,14 @@
 
 /* ### Method Declarations ### */
 
-list  List__create    (void);
+list  List__create          (void);
 list  List__create_naughty  (void);
 
-thing list__to_thing  (list);
-void  list__insert    (list, thing, ll_size);
-void  list__prefix    (list, thing);
-void  list__affix     (list, thing);
-thing list__at        (list, ll_size);
+thing list__to_thing  (list this);
+void  list__insert    (list this, thing child, ll_size index);
+void  list__prefix    (list this, thing child);
+void  list__affix     (list this, thing child);
+thing list__at        (list this, ll_size index);
 
 struct List const List = {
   .create         = List__create,

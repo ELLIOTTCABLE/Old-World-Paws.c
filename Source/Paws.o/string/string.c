@@ -20,10 +20,10 @@
 
 /* ### Method Declarations ### */
 
-string  String__create     (char[], string_size);
+string  String__create     (char native[], string_size bytes);
 
-thing   string__to_thing  (string);
-char*   string__native    (string);
+thing   string__to_thing  (string this);
+char*   string__native    (string this);
 
 struct String const String = {
   .create   = String__create,

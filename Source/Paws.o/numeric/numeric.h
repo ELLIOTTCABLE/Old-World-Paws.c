@@ -30,11 +30,11 @@ struct E(numeric) {
 
 struct E(Numeric) {
   /* `Numeric` functions */
-  E(numeric)  (*create)   ( int );
+  E(numeric)  (*create)   ( int native );
   
   /* `struct numeric` methods */
-  E(thing)    (*to_thing) ( E(numeric) );
-  int         (*native)   ( E(numeric) );
+  E(thing)    (*to_thing) ( E(numeric) this );
+  int         (*native)   ( E(numeric) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(Numeric) extern const Numeric;

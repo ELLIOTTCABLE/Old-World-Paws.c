@@ -16,10 +16,10 @@
 
 /* ### Method Declarations ### */
 
-numeric Numeric__create   (int);
+numeric Numeric__create   (int native);
 
-thing   numeric__to_thing (numeric);
-int     numeric__native   (numeric);
+thing   numeric__to_thing (numeric this);
+int     numeric__native   (numeric this);
 
 struct Numeric const Numeric = {
   .create   = Numeric__create,

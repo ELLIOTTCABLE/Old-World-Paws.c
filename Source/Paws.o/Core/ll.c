@@ -11,11 +11,11 @@
 
 ll    LL__create  (void);
 
-void  ll__anterior_insert   (ll, node, ll_size);
-void  ll__posterior_insert  (ll, node, ll_size);
-void  ll__prefix  (ll, node);
-void  ll__affix   (ll, node);
-node  ll__at      (ll, ll_size);
+void  ll__anterior_insert   (ll this, node child, ll_size index);
+void  ll__posterior_insert  (ll this, node child, ll_size index);
+void  ll__prefix  (ll this, node child);
+void  ll__affix   (ll this, node child);
+node  ll__at      (ll this, ll_size index);
 
 struct Node const Node;
 struct LL const LL = {
@@ -123,10 +123,10 @@ node ll__at(ll this, ll_size index) { node result; ll_size i;
 
 /* ### Method Declarations ### */
 
-node  Node__create  (thing);
+node  Node__create  (thing thin);
 
-void  node__prefix  (node, node);
-void  node__affix   (node, node);
+void  node__prefix  (node this, node other);
+void  node__affix   (node this, node other);
 
 struct Node const Node = {
   .create = Node__create,
