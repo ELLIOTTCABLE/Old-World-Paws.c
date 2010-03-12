@@ -184,10 +184,8 @@ void pop__dealloc_scope(struct pop_scope_node *this) {
 void pop__close(pop this) {
   switch (this->state) {
     case PROCESSING_SCOPES:
-      this->state++;
       break;
     case CONSTRUCTING_AST:
-      this->state++;
       pop__dealloc_scope(this->scope);
       free(this->scope);
       this->scope = NULL;
@@ -199,6 +197,7 @@ void pop__close(pop this) {
       break;
   }
   
+  this->state++;
   return;
 }
 
