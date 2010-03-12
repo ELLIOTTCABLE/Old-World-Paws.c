@@ -159,6 +159,13 @@ void pop__process_file(pop this, char const filename[]) {
   return;
 }
 
+/* Private method that deallocates the memory used in a `pop_scope_node` */
+void pop__dealloc_scope(struct pop_scope_node *this) {
+  for (int i = 0; i < this->size; ++i)
+    pop__dealloc_scope(this->children + i);
+  free(this->children);
+}
+
 /* This function preforms three disparate actions, depending on the state of
  * the `pop`. The first time you call this function on a `pop`, you’re
  * indicating that you have reached the end of the data you intend to process.
@@ -181,7 +188,9 @@ void pop__close(pop this) {
       break;
     case CONSTRUCTING_AST:
       this->state++;
-      /* TODO: This. */
+      pop__dealloc_scope(this->scope);
+      free(this->scope);
+      this->scope = NULL;
       
       break;
     case PROCESSING_COMPLETE:
