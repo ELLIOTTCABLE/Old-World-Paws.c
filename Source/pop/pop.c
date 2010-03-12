@@ -131,6 +131,8 @@ void pop__process(pop this, char *data, pop_size bytes) {
     return;
   } else {
     /* TODO: This. */
+    
+    return;
   }
 }
 
@@ -166,7 +168,24 @@ void pop__process_file(pop this, char const filename[]) {
  * done with the `pop`, and the entire thing (including the AST) will be
  * deallocated and destroyed. Only do this when you no longer require access
  * to the constructed AST. */
-void pop__close(pop this) { this->state++; }
+void pop__close(pop this) {
+  switch (this->state) {
+    case PROCESSING_SCOPES:
+      this->state++;
+      break;
+    case CONSTRUCTING_AST:
+      this->state++;
+      /* TODO: This. */
+      
+      break;
+    case PROCESSING_COMPLETE:
+      /* TODO: This. */
+      
+      break;
+  }
+  
+  return;
+}
 
 
 int main(int count, char const **arguments) {
