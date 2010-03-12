@@ -15,7 +15,7 @@ typedef struct pop {
     
     ast_size size; /* The number of nested scopes */
     struct pop_scope_node *children; /* An array of nested scopes */
-  } scope;
+  } *scope;
   
   struct pop_ast_node {
     enum {
@@ -27,7 +27,7 @@ typedef struct pop {
     
     ast_size size; /* Either the number of characters in the textual content, or the number of child nodes */
     void *content; /* A pointer to either the textual content of the node, or an array of children nodes */
-  } ast;
+  } *ast;
   
 } *pop;
 

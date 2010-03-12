@@ -39,18 +39,24 @@ pop POP__create(void) {
   this->seen = 0;
   this->size = 0;
   
+  
+  this->scope = malloc(sizeof(struct pop_scope_node));
+  
   /* This *would* represent a `{}` literal, anywhere but at the root. */
-  this->scope.marker_length = 0;
-  this->scope.start = 0;
-  this->scope.end = 0;
+  this->scope->marker_length = 0;
+  this->scope->start = 0;
+  this->scope->end = 0;
   
-  this->scope.size = 0;
-  this->scope.children = NULL;
+  this->scope->size = 0;
+  this->scope->children = NULL;
   
-  this->ast.type = DOCUMENT_NODE;
   
-  this->ast.size = 0;
-  this->ast.content = NULL;
+  this->ast = malloc(sizeof(struct pop_ast_node));
+  
+  this->ast->type = DOCUMENT_NODE;
+  
+  this->ast->size = 0;
+  this->ast->content = NULL;
   
   return this;
 }
@@ -70,19 +76,19 @@ void pop__process(pop this, char *data, pop_size bytes) {
     } stack;
     stack.size = 1;
     stack.content = malloc(sizeof(struct pop_scope_node*));
-    stack.content[0] = &this->scope;
+    stack.content[0] = this->scope;
     
     struct pop_scope_node *s;
     while (s = stack.content[stack.size - 1],
       s->size != 0 && s->children[s->size - 1].end == 0) {
         stack.content = realloc(stack.content,
           sizeof(struct pop_scope_node*) * ++stack.size);
-        stack.content[stack.size - 1] = &(s->children[s->size - 1]);
+        stack.content[stack.size - 1] = s->children + (s->size - 1);
       }
     
     /* Now we iterate over the character data given us, building upon our
      * existing scope tree. */
-    for (pop_size i = 0; i < bytes; ++i, ++this->seen, ++this->size, ++this->scope.end) {
+    for (pop_size i = 0; i < bytes; ++i, ++this->seen, ++this->size, ++this->scope->end) {
       if (data[i] == '{') {
         /* If we see an opening bracket, we’re going to create a new scope,
          * store it on the currently ‘open’ scope (off the top of the stack),
@@ -103,7 +109,7 @@ void pop__process(pop this, char *data, pop_size bytes) {
         /* FIXME: Is this safe? `current_scope` hasn’t been re-defined by the
          *        time we reference it, correct? */
         current_scope = stack.content[stack.size - 1] =
-          &(current_scope->children[current_scope->size - 1]);
+          current_scope->children + (current_scope->size - 1);
         
         /* Finally, we initialize the *data* for the new scope’s memory */
         current_scope->marker_length = 0;
