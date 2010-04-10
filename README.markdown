@@ -7,6 +7,18 @@ Using
 Can’t really be arsed learning `make` right now, not to mention it seems like
 a bit of a clusterfuck of a tool, so… these:
 
+    # to compile `Paws.o`
+    clang -O0 -std=c99 -pedantic-errors -Wall -ISource \
+      Source/Paws.o/Paws.c \
+      Source/Paws.o/Core/ll.c \
+      Source/Paws.o/list/list.c \
+      Source/Paws.o/numeric/numeric.c \
+      Source/Paws.o/string/string.c \
+      Source/Paws.o/Paws.o.c \
+      -o Paws.o && \
+    ./Paws.o
+    
+    
     C() { eval local last="\$$#"; last=${last##*/}; clang -o "${last%.*}.o" "$@" }
     
     # to compile `pop`
@@ -18,6 +30,7 @@ a bit of a clusterfuck of a tool, so… these:
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource \
       Source/pop/pop.c && \
     gdb -q -se ./pop.o
+    # use `run something.paws`
     
     # `something.c`, an old random example
     C -O0 -std=c99 -pedantic-errors -Wall -ISource \
@@ -29,7 +42,8 @@ a bit of a clusterfuck of a tool, so… these:
       Source/something.c && \
     ./something.o
     
-    # The cests (‘tests’) for Paws
+    
+    # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
@@ -46,3 +60,4 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \
     gdb -q -se ./Paws.tests.o
+    # use `run`
