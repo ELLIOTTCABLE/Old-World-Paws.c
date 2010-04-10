@@ -20,15 +20,15 @@
 
 /* ### Method Declarations ### */
 
-string  String__create     (char native[], string_size bytes);
+string  String__create    (char native[], string_size bytes);
 
 thing   string__to_thing  (string this);
 char*   string__native    (string this);
 
-void string__insert(string this, thing child, ll_size index);
-void string__prefix(string this, thing child);
-void string__affix(string this, thing child);
-thing string__at(string this, ll_size index);
+void    string__insert    (string this, thing child, ll_size index);
+void    string__prefix    (string this, thing child);
+void    string__affix     (string this, thing child);
+thing   string__at        (string this, ll_size index);
 
 struct String const String = {
   .create   = String__create,
