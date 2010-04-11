@@ -58,7 +58,7 @@ string String__create(char native[], string_size bytes) {
   
   this->content = LL.create();
   LL.affix( this->content,
-    Node.create(List.to_thing( List.create_naughty() )) );
+    Element.create(List.to_thing( List.create_naughty() )) );
   
   this->bytes = bytes;
   if (bytes <= sizeof(this->native.short_array)) {

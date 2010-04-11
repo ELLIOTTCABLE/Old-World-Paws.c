@@ -14,7 +14,7 @@
 
 
 CEST(LL, create) {
-  ll a_ll;
+  ll  a_ll;
   
   a_ll = LL.create();
   ASSERT( a_ll->first  == NULL );
@@ -25,89 +25,89 @@ CEST(LL, create) {
 }
 
 CEST(ll, anterior_insert) {
-  ll a_ll = LL.create();
-  node node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
-  node node2 = Node.create(A_LIST); LL.affix(a_ll, node2);
-  node node3 = Node.create(A_LIST); LL.affix(a_ll, node3);
+  ll        a_ll = LL.create();
+  element   element1 = Element.create(A_LIST); LL.affix(a_ll, element1);
+  element   element2 = Element.create(A_LIST); LL.affix(a_ll, element2);
+  element   element3 = Element.create(A_LIST); LL.affix(a_ll, element3);
   
-  node nodeA = Node.create(A_LIST);
+  element elementA = Element.create(A_LIST);
   
   /* TODO: Error condition */
-  LL.anterior_insert(a_ll, nodeA, 0);
-  ASSERT( LL.at(a_ll, 0) == node1 );
+  LL.anterior_insert(a_ll, elementA, 0);
+  ASSERT( LL.at(a_ll, 0) == element1 );
   
-  LL.anterior_insert(a_ll, nodeA, 1);
-  ASSERT( LL.at(a_ll, 0) == node1 );
-  ASSERT( LL.at(a_ll, 1) == nodeA );
-  ASSERT( LL.at(a_ll, 2) == node2 );
+  LL.anterior_insert(a_ll, elementA, 1);
+  ASSERT( LL.at(a_ll, 0) == element1 );
+  ASSERT( LL.at(a_ll, 1) == elementA );
+  ASSERT( LL.at(a_ll, 2) == element2 );
   
   return true;
 }
 
 CEST(ll, posterior_insert) {
-  ll a_ll = LL.create();
-  node node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
-  node node2 = Node.create(A_LIST); LL.affix(a_ll, node2);
-  node node3 = Node.create(A_LIST); LL.affix(a_ll, node3);
+  ll        a_ll = LL.create();
+  element   element1 = Element.create(A_LIST); LL.affix(a_ll, element1);
+  element   element2 = Element.create(A_LIST); LL.affix(a_ll, element2);
+  element   element3 = Element.create(A_LIST); LL.affix(a_ll, element3);
   
-  node nodeA = Node.create(A_LIST);
+  element elementA = Element.create(A_LIST);
   
   /* TODO: Error condition */
-  LL.posterior_insert(a_ll, nodeA, a_ll->length);
-  ASSERT( LL.at(a_ll, 0) == node1 );
+  LL.posterior_insert(a_ll, elementA, a_ll->length);
+  ASSERT( LL.at(a_ll, 0) == element1 );
   
-  LL.posterior_insert(a_ll, nodeA, 1);
-  ASSERT( LL.at(a_ll, 0) == node1 );
-  ASSERT( LL.at(a_ll, 1) == nodeA );
-  ASSERT( LL.at(a_ll, 2) == node2 );
+  LL.posterior_insert(a_ll, elementA, 1);
+  ASSERT( LL.at(a_ll, 0) == element1 );
+  ASSERT( LL.at(a_ll, 1) == elementA );
+  ASSERT( LL.at(a_ll, 2) == element2 );
   
   return true;
 }
 
 CEST(ll, prefix) {
   ll    a_ll = LL.create();
-  node node1 = Node.create(A_LIST),
-       node2 = Node.create(A_LIST),
-       node3 = Node.create(A_LIST);
+  element   element1 = Element.create(A_LIST),
+            element2 = Element.create(A_LIST),
+            element3 = Element.create(A_LIST);
   
-  LL.prefix(a_ll, node3);
-  ASSERT( a_ll->length == 1     );
-  ASSERT( a_ll->first  == node3 );
-  ASSERT( a_ll->last   == node3 );
+  LL.prefix(a_ll, element3);
+  ASSERT( a_ll->length == 1        );
+  ASSERT( a_ll->first  == element3 );
+  ASSERT( a_ll->last   == element3 );
   
-  LL.prefix(a_ll, node2);
-  ASSERT( a_ll->length == 2     );
-  ASSERT( a_ll->first  == node2 );
-  ASSERT( a_ll->last   == node3 );
+  LL.prefix(a_ll, element2);
+  ASSERT( a_ll->length == 2        );
+  ASSERT( a_ll->first  == element2 );
+  ASSERT( a_ll->last   == element3 );
   
-  LL.prefix(a_ll, node1);
-  ASSERT( a_ll->length == 3     );
-  ASSERT( a_ll->first  == node1 );
-  ASSERT( a_ll->last   == node3 );
+  LL.prefix(a_ll, element1);
+  ASSERT( a_ll->length == 3        );
+  ASSERT( a_ll->first  == element1 );
+  ASSERT( a_ll->last   == element3 );
   
   return true;
 }
 
 CEST(ll, affix) {
   ll    a_ll = LL.create();
-  node node1 = Node.create(A_LIST),
-       node2 = Node.create(A_LIST),
-       node3 = Node.create(A_LIST);
+  element   element1 = Element.create(A_LIST),
+            element2 = Element.create(A_LIST),
+            element3 = Element.create(A_LIST);
   
-  LL.affix(a_ll, node1);
-  ASSERT( a_ll->length == 1     );
-  ASSERT( a_ll->first  == node1 );
-  ASSERT( a_ll->last   == node1 );
+  LL.affix(a_ll, element1);
+  ASSERT( a_ll->length == 1        );
+  ASSERT( a_ll->first  == element1 );
+  ASSERT( a_ll->last   == element1 );
   
-  LL.affix(a_ll, node2);
-  ASSERT( a_ll->length == 2     );
-  ASSERT( a_ll->first  == node1 );
-  ASSERT( a_ll->last   == node2 );
+  LL.affix(a_ll, element2);
+  ASSERT( a_ll->length == 2        );
+  ASSERT( a_ll->first  == element1 );
+  ASSERT( a_ll->last   == element2 );
   
-  LL.affix(a_ll, node3);
-  ASSERT( a_ll->length == 3     );
-  ASSERT( a_ll->first  == node1 );
-  ASSERT( a_ll->last   == node3 );
+  LL.affix(a_ll, element3);
+  ASSERT( a_ll->length == 3        );
+  ASSERT( a_ll->first  == element1 );
+  ASSERT( a_ll->last   == element3 );
   
   return true;
 }
@@ -120,15 +120,15 @@ CEST(ll, at) {
   ASSERT( LL.at(a_ll,  1) == NULL );
   ASSERT( LL.at(a_ll,  0) == NULL );
   
-  node  node1, node2, node3;
-  node1 = Node.create(A_LIST); LL.affix(a_ll, node1);
-  node2 = Node.create(A_LIST); LL.affix(a_ll, node2);
-  node3 = Node.create(A_LIST); LL.affix(a_ll, node3);
+  element   element1, element2, element3;
+  element1 = Element.create(A_LIST); LL.affix(a_ll, element1);
+  element2 = Element.create(A_LIST); LL.affix(a_ll, element2);
+  element3 = Element.create(A_LIST); LL.affix(a_ll, element3);
   
   /* Positive indicies */
-  ASSERT( LL.at(a_ll,  0) == node1 );
-  ASSERT( LL.at(a_ll,  1) == node2 );
-  ASSERT( LL.at(a_ll,  2) == node3 );
+  ASSERT( LL.at(a_ll,  0) == element1 );
+  ASSERT( LL.at(a_ll,  1) == element2 );
+  ASSERT( LL.at(a_ll,  2) == element3 );
   
   /* OOB indicies */
   ASSERT( LL.at(a_ll,  5) == NULL );
@@ -138,23 +138,23 @@ CEST(ll, at) {
 }
 
 
-CEST(Node, create) {
-  node  a_node;
+CEST(Element, create) {
+  element  a_element;
   
-  a_node = Node.create( A_LIST );
-  ASSERT( a_node->next     == NULL );
-  ASSERT( a_node->previous == NULL );
+  a_element = Element.create( A_LIST );
+  ASSERT( a_element->next     == NULL );
+  ASSERT( a_element->previous == NULL );
   
   return true;
 }
 
-CEST(node, prefix) {
-  node  node1 = Node.create(A_LIST),
-        node2 = Node.create(A_LIST),
-        node3 = Node.create(A_LIST),
-        nodeA = Node.create(A_LIST),
-        nodeB = Node.create(A_LIST),
-        nodeC = Node.create(A_LIST);
+CEST(element, prefix) {
+  element   element1 = Element.create(A_LIST),
+            element2 = Element.create(A_LIST),
+            element3 = Element.create(A_LIST),
+            elementA = Element.create(A_LIST),
+            elementB = Element.create(A_LIST),
+            elementC = Element.create(A_LIST);
   
   
   /* A basic single prefix */
@@ -165,9 +165,9 @@ CEST(node, prefix) {
    * 
    * > [***] node1 node3
    */
-  Node.prefix(node3, node1);
-  ASSERT( node1->previous == NULL  && node1->next == node3 );
-  ASSERT( node3->previous == node1 && node3->next == NULL  );
+  Element.prefix(element3, element1);
+  ASSERT( element1->previous == NULL     && element1->next == element3 );
+  ASSERT( element3->previous == element1 && element3->next == NULL     );
   
   
   /* A single prefix that pushes old nodes */
@@ -178,14 +178,14 @@ CEST(node, prefix) {
    * 
    * > [***] node1 node2 node3
    */
-  Node.prefix(node3, node2);
-  ASSERT( node1->previous == NULL  && node1->next == node2 );
-  ASSERT( node2->previous == node1 && node2->next == node3 );
-  ASSERT( node3->previous == node2 && node3->next == NULL  );
+  Element.prefix(element3, element2);
+  ASSERT( element1->previous == NULL     && element1->next == element2 );
+  ASSERT( element2->previous == element1 && element2->next == element3 );
+  ASSERT( element3->previous == element2 && element3->next == NULL     );
   
   
-  Node.affix(nodeA, nodeB);
-  Node.affix(nodeB, nodeC);
+  Element.affix(elementA, elementB);
+  Element.affix(elementB, elementC);
   
   /* A splicing-prefix that pushes old nodes */
   /* > [***] node1 node2 node3
@@ -196,26 +196,26 @@ CEST(node, prefix) {
    * > [***] nodeA nodeB node2 node3
    *   [***] node1   …   [***] nodeC
    */
-  Node.prefix(node2, nodeB);
-  ASSERT( nodeA->previous == NULL  && nodeA->next == nodeB );
-  ASSERT( nodeB->previous == nodeA && nodeB->next == node2 );
-  ASSERT( node2->previous == nodeB && node2->next == node3 );
-  ASSERT( node3->previous == node2 && node3->next == NULL  );
+  Element.prefix(element2, elementB);
+  ASSERT( elementA->previous == NULL     && elementA->next == elementB );
+  ASSERT( elementB->previous == elementA && elementB->next == element2 );
+  ASSERT( element2->previous == elementB && element2->next == element3 );
+  ASSERT( element3->previous == element2 && element3->next == NULL     );
   
-  ASSERT( nodeC->previous != nodeB );
-  ASSERT( node1->next     != node2 );
+  ASSERT( elementC->previous != elementB );
+  ASSERT( element1->next     != element2 );
   
   
   return true;
 }
 
-CEST(node, affix) {
-  node  node1 = Node.create(A_LIST),
-        node2 = Node.create(A_LIST),
-        node3 = Node.create(A_LIST),
-        nodeA = Node.create(A_LIST),
-        nodeB = Node.create(A_LIST),
-        nodeC = Node.create(A_LIST);
+CEST(element, affix) {
+  element   element1 = Element.create(A_LIST),
+            element2 = Element.create(A_LIST),
+            element3 = Element.create(A_LIST),
+            elementA = Element.create(A_LIST),
+            elementB = Element.create(A_LIST),
+            elementC = Element.create(A_LIST);
   
   
   /* A basic single affix */
@@ -226,9 +226,9 @@ CEST(node, affix) {
    * 
    * > node1 node3 [***]
    */
-  Node.affix(node1, node3);
-  ASSERT( node1->previous == NULL  && node1->next == node3 );
-  ASSERT( node3->previous == node1 && node3->next == NULL  );
+  Element.affix(element1, element3);
+  ASSERT( element1->previous == NULL     && element1->next == element3 );
+  ASSERT( element3->previous == element1 && element3->next == NULL     );
   
   
   /* A single affix that pushes old nodes */
@@ -239,14 +239,14 @@ CEST(node, affix) {
    * 
    * > node1 node2 node3 [***]
    */
-  Node.affix(node1, node2);
-  ASSERT( node1->previous == NULL  && node1->next == node2 );
-  ASSERT( node2->previous == node1 && node2->next == node3 );
-  ASSERT( node3->previous == node2 && node3->next == NULL  );
+  Element.affix(element1, element2);
+  ASSERT( element1->previous == NULL     && element1->next == element2 );
+  ASSERT( element2->previous == element1 && element2->next == element3 );
+  ASSERT( element3->previous == element2 && element3->next == NULL     );
   
   
-  Node.affix(nodeA, nodeB);
-  Node.affix(nodeB, nodeC);
+  Element.affix(elementA, elementB);
+  Element.affix(elementB, elementC);
   
   /* A splicing-affix that pushes old nodes */
   /* > node1 node2 node3 [***]
@@ -257,14 +257,14 @@ CEST(node, affix) {
    * > node1 node2 nodeB nodeC [***]
    *   nodeA [***]   …   node3 [***]
    */
-  Node.affix(node2, nodeB);
-  ASSERT( node1->previous == NULL  && node1->next == node2 );
-  ASSERT( node2->previous == node1 && node2->next == nodeB );
-  ASSERT( nodeB->previous == node2 && nodeB->next == nodeC );
-  ASSERT( nodeC->previous == nodeB && nodeC->next == NULL  );
+  Element.affix(element2, elementB);
+  ASSERT( element1->previous == NULL     && element1->next == element2 );
+  ASSERT( element2->previous == element1 && element2->next == elementB );
+  ASSERT( elementB->previous == element2 && elementB->next == elementC );
+  ASSERT( elementC->previous == elementB && elementC->next == NULL     );
   
-  ASSERT( node3->previous != node2 );
-  ASSERT( nodeA->next     != nodeB );
+  ASSERT( element3->previous != element2 );
+  ASSERT( elementA->next     != elementB );
   
   
   return true;

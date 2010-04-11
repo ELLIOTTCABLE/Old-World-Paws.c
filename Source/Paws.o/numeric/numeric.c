@@ -54,7 +54,7 @@ numeric Numeric__create(int native) {
   
   this->content = LL.create();
   LL.affix( this->content,
-    Node.create(List.to_thing( List.create_naughty() )) );
+    Element.create(List.to_thing( List.create_naughty() )) );
   
   this->native = native;
   

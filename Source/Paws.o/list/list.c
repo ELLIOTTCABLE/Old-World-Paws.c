@@ -55,7 +55,7 @@ list _List__create(bool is_naughty) {
   this->content = LL.create();
   
   naughty = is_naughty? this:List.create_naughty();
-  LL.affix( this->content, Node.create(List.to_thing(naughty)) );
+  LL.affix( this->content, Element.create(List.to_thing(naughty)) );
   
   return this;
 }
@@ -81,17 +81,17 @@ void list__insert(list this, thing child, ll_size index) {
   else if(index == this->content->length)
     List.affix (this, child);
   else
-    LL.posterior_insert(this->content, Node.create(child), index);
+    LL.posterior_insert(this->content, Element.create(child), index);
 }
 
 void list__prefix(list this, thing child) {
-  LL.prefix(this->content, Node.create(child)); }
+  LL.prefix(this->content, Element.create(child)); }
 
 void list__affix(list this, thing child) {
-  LL.affix(this->content, Node.create(child)); }
+  LL.affix(this->content, Element.create(child)); }
 
 thing list__at(list this, ll_size index) {
-  node element = LL.at(this->content, index);
+  element element = LL.at(this->content, index);
   if (element == NULL)
     return NULL;
   else

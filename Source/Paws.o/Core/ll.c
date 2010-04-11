@@ -11,13 +11,13 @@
 
 ll    LL__create  (void);
 
-void  ll__anterior_insert   (ll this, node child, ll_size index);
-void  ll__posterior_insert  (ll this, node child, ll_size index);
-void  ll__prefix  (ll this, node child);
-void  ll__affix   (ll this, node child);
-node  ll__at      (ll this, ll_size index);
+void      ll__anterior_insert   (ll this, element child, ll_size index);
+void      ll__posterior_insert  (ll this, element child, ll_size index);
+void      ll__prefix  (ll this, element child);
+void      ll__affix   (ll this, element child);
+element   ll__at      (ll this, ll_size index);
 
-struct Node const Node;
+struct Element const Element;
 struct LL const LL = {
   .create = LL__create,
   
@@ -31,7 +31,7 @@ struct LL const LL = {
 
 /* ### Method Implementations ### */
 
-/* This method initializes a new `ll`, with no nodes. The `first` and `last`
+/* This method initializes a new `ll`, with no elements. The `first` and `last`
  * are set to `NULL` pointers, and `length` is initialized to zero.
  */
 ll LL__create(void) {
@@ -44,59 +44,59 @@ ll LL__create(void) {
   return this;
 }
 
-void ll__anterior_insert(ll this, node child, ll_size index) {
+void ll__anterior_insert(ll this, element child, ll_size index) {
   if (index == 0)
     /* TODO: Error condition, cannot anterior-insert at first position */;
   else {
-    Node.affix(LL.at(this, index - 1), child);
+    Element.affix(LL.at(this, index - 1), child);
     this->length++;
   }
 }
 
-void ll__posterior_insert(ll this, node child, ll_size index) {
+void ll__posterior_insert(ll this, element child, ll_size index) {
   if (index == this->length)
     /* TODO: Error condition, cannot posterior-insert at last position */;
   else {
-    Node.prefix(LL.at(this, index), child);
+    Element.prefix(LL.at(this, index), child);
     this->length++;
   }
 }
 
-/* This method prefixes a new child `node` onto an `ll`. This will ensure that
- * the first element in the `ll`, after the appending, is the new node.
+/* This method prefixes a new child `element` onto an `ll`. This will ensure
+ * that the first element in the `ll`, after the appending, is the new one.
  * 
- * Takes two arguments, the prefixee (`this`), and a `node` to be prefixed
+ * Takes two arguments, the prefixee (`this`), and a `element` to be prefixed
  * onto it as a child.
  */
-void ll__prefix(ll this, node child) {
+void ll__prefix(ll this, element child) {
   if (this->length < 1)
     this->last = child;
   else
-    Node.prefix( this->first, child );
+    Element.prefix( this->first, child );
   this->first = child;
   this->length++;
 }
 
-/* This method affixes a new child `node` onto an `ll`. This will ensure that
- * the last element in the `ll`, after the appending, is the new node.
+/* This method affixes a new child `element` onto an `ll`. This will ensure
+ * that the last element in the `ll`, after the appending, is the new one.
  * 
- * Takes two arguments, the affixee (`this`), and a `node` to be affixed onto
- * it as a child.
+ * Takes two arguments, the affixee (`this`), and a `element` to be affixed
+ * onto it as a child.
  */
-void ll__affix(ll this, node child) {
+void ll__affix(ll this, element child) {
   if (this->length < 1)
     this->first = child;
   else
-    Node.affix( this->last, child );
+    Element.affix( this->last, child );
   this->last = child;
   this->length++;
 }
 
-/* This method returns a `node` at a given index in an `ll`.
+/* This method returns a `element` at a given index in an `ll`.
  * 
  * Takes two arguments, the indexee (`this`), and an integer `index`.
  */
-node ll__at(ll this, ll_size index) { node result; ll_size i;
+element ll__at(ll this, ll_size index) { element result; ll_size i;
   
   if (index >= this->length)
     return NULL;
@@ -117,35 +117,35 @@ node ll__at(ll this, ll_size index) { node result; ll_size i;
 }
 
 
-/* =======
-= `node` =
-======= */
+/* ==========
+= `element` =
+========== */
 
 /* ### Method Declarations ### */
 
-node  Node__create  (thing thin);
+element   Element__create  (thing thing);
 
-void  node__prefix  (node this, node other);
-void  node__affix   (node this, node other);
+void      element__prefix  (element this, element other);
+void      element__affix   (element this, element other);
 
-struct Node const Node = {
-  .create = Node__create,
+struct Element const Element = {
+  .create = Element__create,
   
-  .prefix = node__prefix,
-  .affix = node__affix
+  .prefix = element__prefix,
+  .affix = element__affix
 };
 
 
 /* ### Method Implementations ### */
 
-/* This method creates a new `node` for a given `thing`. `next` and `previous`
- * will also be initialized to a `NULL` pointer.
+/* This method creates a new `element` for a given `thing`. `next` and
+ * `previous` will also be initialized to a `NULL` pointer.
  * 
- * Expects a `thing` as an argument, to be stored on this `node` as `e`.
+ * Expects a `thing` as an argument, to be stored on this `element` as `e`.
  */
-node Node__create(thing thing) {
+element Element__create(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
-  node this = malloc(sizeof(struct node));
+  element this = malloc(sizeof(struct element));
   
   this->thing    = thing;
   this->next     = NULL;
@@ -154,19 +154,20 @@ node Node__create(thing thing) {
   return this;
 }
 
-/* This method inserts another node *before* this node in the chain of a
+/* This method inserts another element *before* this element in the chain of a
  * linked list.
  * 
- * If there’s already a node attached before this node, and there *isn’t* one
- * attached before the node being inserted, then that next-node will be
- * affixed to our new node, thus keeping the chain intact if possible.
+ * If there’s already a element attached before this element, and there
+ * *isn’t* one attached before the element being inserted, then that next-
+ * element will be affixed to our new element, thus keeping the chain intact
+ * if possible.
  * 
- * Note: See the notes on `Node.affix()`.
+ * Note: See the notes on `Element.affix()`.
  */
-void node__prefix(node this, node other) {
+void element__prefix(element this, element other) {
   if (this->previous != NULL)
     if (other->previous == NULL)
-      node__prefix(other, this->previous);
+      element__prefix(other, this->previous);
     else {
       this->previous->next = NULL;
       if (other->next != NULL)
@@ -176,21 +177,21 @@ void node__prefix(node this, node other) {
   this->previous  = other;
 }
 
-/* This method inserts another node *after* this node in the chain of a
+/* This method inserts another element *after* this element in the chain of a
  * linked list.
  * 
- * If there’s already a node attached after this node, and there *isn’t* one
- * attached after the node being inserted, then that next-node will be
- * affixed to our new node, thus keeping the chain intact if possible.
+ * If there’s already a element attached after this element, and there *isn’t*
+ * one attached after the element being inserted, then that next-element will
+ * be affixed to our new element, thus keeping the chain intact if possible.
  * 
  * Note: Realize that due to that copy-next mechanic, you can splice
- *       node-strings on top of eachother, but all nodes *after* this node in
- *       the original chain will be lost.
+ *       element-strings on top of eachother, but all elements *after* this
+ *       element in the original chain will be lost.
  */
-void node__affix(node this, node other) {
+void element__affix(element this, element other) {
   if (this->next != NULL)
     if (other->next == NULL)
-      node__affix(other, this->next);
+      element__affix(other, this->next);
     else {
       this->next->previous = NULL;
       if (other->previous != NULL)
