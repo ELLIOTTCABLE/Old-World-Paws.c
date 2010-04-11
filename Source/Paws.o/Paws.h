@@ -6,6 +6,9 @@
 # if !defined(LIST_H)
 #   include "Paws.o/list/list.h"
 # endif
+# if !defined(ROUTINE_H)
+#   include "Paws.o/routine/routine.h"
+# endif
 # if !defined(NUMERIC_H)
 #   include "Paws.o/numeric/numeric.h"
 # endif
@@ -55,9 +58,10 @@
  * one of these, instead of a particular type’s struct.
  */
 struct Paws {
-  struct E(List)    List;
-  struct E(Numeric) Numeric;
-  struct E(String)  String;
+  struct E(List)      List;
+  struct E(Routine)   Routine;
+  struct E(Numeric)   Numeric;
+  struct E(String)    String;
 };
 
 struct Paws extern Paws;
