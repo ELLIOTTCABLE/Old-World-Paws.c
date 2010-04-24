@@ -57,7 +57,7 @@
 struct Paws {
   struct E(List)    List;
   struct E(Numeric) Numeric;
-  struct E(String) String;
+  struct E(String)  String;
 };
 
 struct Paws extern Paws;

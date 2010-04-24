@@ -17,7 +17,7 @@
  */
 
         struct E(ll); /* Our data storage system (a doubly-linked-list) */
-        struct E(element); /* A single node of an `ll` */
+        struct E(element); /* A single element of an `ll` */
 typedef struct E(ll)*       E(ll);
 typedef struct E(element)*  E(element);
 
