@@ -71,7 +71,12 @@ CEST(node, at) {
 }
 
 CEST(node, native) {
-  return false;
+  node    a_word;
+  
+  a_word = Node.create_word("foo", 4);
+  ASSERT( strcmp(Node.native(a_word), "foo") == 0 );
+  
+  return true;
 }
 
 CEST(node, instantiate) {

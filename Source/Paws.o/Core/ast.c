@@ -109,7 +109,7 @@ node node__at(node this, node_size index) {
 }
 
 char* node__native(node this) {
-  return NULL;
+  return this->content;
 }
 
 node node__instantiate(node this) {
