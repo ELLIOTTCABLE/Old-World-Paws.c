@@ -61,3 +61,29 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Paws.tests.c && \
     gdb -q -se ./Paws.tests.o
     # use `run`
+
+Conventions
+-----------
+Several coding conventions used in this project:
+
+### Commit labels
+Some commits are ‘labeled’ by space-seperated words in parenthesis at the
+start of the commit message. You can filter the commit list by these words.
+Some of the more common ones:
+
+- `minor`: A commit with little or no consequence, for instance typo fixes,
+  tiny source-code spacing changes, and so forth. Filtering these out will
+  provide you with a much cleaner commit list, with no real loss of useful
+  information.
+- `api`: A change that affects the public API of the naming in a major way
+  (i.e. changing the name of a public method or function, or re-arranging
+  functions in some way); filtering against these will provide you a fairly
+  comprehensive list of changes which will probably affect you during an
+  upgrade.
+- `tests`: Only affects the tests, does not change any implementation.
+- `incomplete`: Most commits to this project are required to be ‘stand-alone’;
+  that is, the project should at least compile, if not pass all tests, at any
+  commit you decide to `git checkout`. Filtering out this label will provide
+  with a list of commits that should be *somewhat* safe to compile against.
+- `doc`: Only affects the documentation, does not change any implementation or
+  the test suite.
