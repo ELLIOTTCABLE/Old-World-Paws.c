@@ -12,6 +12,7 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Paws.c \
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
+      Source/Paws.o/Core/ast.c \
       Source/Paws.o/routine/routine.c \
       Source/Paws.o/numeric/numeric.c \
       Source/Paws.o/string/string.c \
@@ -38,6 +39,7 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Paws.c \
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
+      Source/Paws.o/Core/ast.c \
       Source/Paws.o/routine/routine.c \
       Source/Paws.o/numeric/numeric.c \
       Source/Paws.o/string/string.c \
@@ -49,6 +51,7 @@ a bit of a clusterfuck of a tool, so… these:
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
+      Source/Paws.o/Core/ast.tests.c \
       Source/Paws.o/routine/routine.tests.c \
       Source/Paws.o/numeric/numeric.tests.c \
       Source/Paws.o/string/string.tests.c \
@@ -59,6 +62,7 @@ a bit of a clusterfuck of a tool, so… these:
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
+      Source/Paws.o/Core/ast.tests.c \
       Source/Paws.o/routine/routine.tests.c \
       Source/Paws.o/numeric/numeric.tests.c \
       Source/Paws.o/string/string.tests.c \

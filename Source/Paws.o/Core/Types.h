@@ -24,6 +24,11 @@ typedef struct E(element)*  E(element);
         struct E(list); /* The struct behind `infrastructure list`. */
 typedef struct E(list)*     E(list);
 
+        struct E(ast); /* Our code storage system (an abstract syntax tree) */
+        struct E(node); /* A single node of an `ast` */
+typedef struct E(ast)*      E(ast);
+typedef struct E(node)*     E(node);
+
         struct E(routine); /* The struct behind `infrastructure routine`. */
 typedef struct E(routine)*  E(routine);
 

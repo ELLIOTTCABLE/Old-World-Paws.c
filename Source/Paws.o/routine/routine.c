@@ -16,15 +16,15 @@
 
 /* ### Method Declarations ### */
 
-routine             Routine__create     (struct ast_node *scope_node);
+routine   Routine__create     (node scope);
 
-thing               routine__to_thing   (routine this);
-struct ast_node*    routine__native     (routine this);
+thing     routine__to_thing   (routine this);
+node      routine__native     (routine this);
 
-void                routine__insert     (routine this, thing child, ll_size index);
-void                routine__prefix     (routine this, thing child);
-void                routine__affix      (routine this, thing child);
-thing               routine__at         (routine this,              ll_size index);
+void      routine__insert     (routine this, thing child, ll_size index);
+void      routine__prefix     (routine this, thing child);
+void      routine__affix      (routine this, thing child);
+thing     routine__at         (routine this,              ll_size index);
 
 struct Routine const Routine = {
   .create     = Routine__create,
@@ -45,15 +45,14 @@ void constructor Paws__register_Routine(void) { Paws.Routine = Routine; }
 /* This method allocates a new `infrastructure routine`, and returns a
  * C `routine` (a pointer to a `struct routine`.)
  */
-routine Routine__create(struct ast_node *scope_node) {
+routine Routine__create(node scope) {
   routine this = malloc(sizeof(struct routine));
   
   this->content = LL.create();
   LL.affix( this->content,
     Element.create(List.to_thing( List.create_naughty() )) );
   
-  /* TODO: Create separate files with ast-manipulation functions; and copy the
-   *       parameter node into our data structure. */
+  /* TODO: Copy the parameter node into our data structure. */
   
   return this;
 }
@@ -74,8 +73,8 @@ thing routine__to_thing(routine this) {
 }
 
 /* This method returns a pointer to the AST struct for a given `routine`. */
-struct ast_node* routine__native(routine this) {
-  return this->ast;
+node routine__native(routine this) {
+  return this->scope;
 }
 
 void  routine__insert(routine this, thing child, ll_size index) {
