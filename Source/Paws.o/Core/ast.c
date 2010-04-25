@@ -87,6 +87,8 @@ node Node__create_word(char *content, node_size bytes) {
   STRCPY(copy, content, bytes);
   this->content = copy;
   
+  this->size = bytes;
+  
   return this;
 }
 
