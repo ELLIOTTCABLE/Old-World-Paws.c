@@ -10,14 +10,21 @@ CEST(List, create) {
   a_list = List.create();
   ASSERT( a_list->content->length == 1 );
   
-  /* We use the `LL` interface here, so as not to depend upon `List.at()`.
-   * FIXME: This really evidences how horrid this `thing` API is.
-  a_naughty = List.at(a_list, 0)->pointer.list;
-  ASSERT( List.at(a_naughty, 0)->isa == LIST );
-  ASSERT( List.at(a_naughty, 0)->pointer.list == a_naughty );
-   */
+  ASSERT( LL.at(a_list->content, 0)->thing->isa == LIST );
   
   a_naughty = LL.at(a_list->content, 0)->thing->pointer.list;
+  ASSERT( LL.at(a_naughty->content, 0)->thing->isa == LIST );
+  ASSERT( LL.at(a_naughty->content, 0)->thing->pointer.list == a_naughty );
+  
+  return true;
+}
+
+CEST(List, create_naughty) {
+  list a_naughty;
+  
+  a_naughty = List.create_naughty();
+  ASSERT( a_naughty->content->length == 1 );
+  
   ASSERT( LL.at(a_naughty->content, 0)->thing->isa == LIST );
   ASSERT( LL.at(a_naughty->content, 0)->thing->pointer.list == a_naughty );
   
