@@ -32,6 +32,7 @@ struct Node const Node = {
   .create_expression    = Node__create_expression,
   .create_word          = Node__create_word,
   
+  .insert               = node__insert,
   .prefix               = node__prefix,
   .affix                = node__affix,
   .at                   = node__at,
