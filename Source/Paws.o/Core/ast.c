@@ -94,25 +94,74 @@ node Node__create_word(char *content, node_size bytes) {
 }
 
 void node__insert(node this, node child, node_size index) {
+  /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
+     TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`.
+     TODO: Flip a nut if `size` is smaller than `index`.
+     TODO: Merge `Node.prefix()` and `Node.affix()` into this. */
   
+  node *children = malloc(sizeof(node) * this->size + 1);
+  
+  memcpy(children + 0,         (node *)this->content,         sizeof(node) * index);
+       *(children + index) =           child;
+  memcpy(children + index + 1, (node *)this->content + index, sizeof(node) * (this->size - index));
+  
+  this->content = children;
+  this->size++;
 }
 
 void node__prefix(node this, node child) {
+  /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
+     TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`. */
   
+  node *children = malloc(sizeof(node) * this->size + 1);
+  memcpy(children + 1, this->content, sizeof(node) * this->size);
+  children[0] = child;
+  
+  this->content = children;
+  this->size++;
 }
 
 void node__affix(node this, node child) {
+  /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
+     TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`. */
   
+  node *children = malloc(sizeof(node) * this->size + 1);
+  memcpy(children, this->content, sizeof(node) * this->size);
+  children[this->size] = child;
+  
+  this->content = children;
+  this->size++;
 }
 
 node node__at(node this, node_size index) {
-  return this; /* lol */
+  /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
+     TODO: Flip a nut if `size` is smaller than `index`. */
+  
+  return *((node *)this->content + index);
 }
 
 char* node__native(node this) {
+  /* TODO: Flip a nut if `this` isn’t a `WORD`. */
+  
   return this->content;
 }
 
 node node__instantiate(node this) {
-  return this; /* lol */
+  node new;
+  
+  if (this->type == WORD)
+    new = Node.create_word(this->content, this->size);
+  else {
+    /* FIXME: If we use `Node.create_word()` here, we should use
+              `Node.create_scope()` and `Node.create_expression()` as well. */
+    new = Node.create(this->type);
+    node *children = malloc(sizeof(node) * this->size);
+    for (node_size i = 0; i < this->size; ++i)
+      children[i] = Node.instantiate(((node *)this->content)[i]);
+    new->content = children; new->size = this->size;
+  }
+  
+  new->archetype = this;
+  
+  return new;
 }

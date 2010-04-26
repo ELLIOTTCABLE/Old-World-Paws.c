@@ -26,10 +26,10 @@ struct E(node) {
   E(ast_size)     start; /* The character index of the start of this node */
   E(ast_size)     end; /* The character index of the end of this node */
   
-  E(node)        *archetype; /* The prototype of this node. */ 
+  E(node)         archetype; /* The prototype of this node. */ 
   
   E(node_size)    size; /* The number of child nodes, or the bytes in this `WORD` */
-    void         *content; /* A pointer to the first child node, or to the cstring */
+    void         *content; /* A meta-pointer to the first child node, or to the cstring */
 };
 
 /* ### Method Declarations ### */

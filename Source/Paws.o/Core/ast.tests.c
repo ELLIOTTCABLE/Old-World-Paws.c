@@ -55,19 +55,93 @@ CEST(Node, create_word) {
 }
 
 CEST(node, insert) {
-  return false;
+  node    parent = Node.create_expression(),
+          child1 = Node.create_word("foo", 4),
+          child2 = Node.create_word("bar", 4),
+          child3 = Node.create_word("baz", 4);
+  
+  
+  Node.insert(parent, child1, 0);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( parent->size == 1 );
+  
+  Node.insert(parent, child3, 1);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( *((node *)parent->content + 1) == child3 );
+  ASSERT( parent->size == 2 );
+  
+  Node.insert(parent, child2, 1);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( *((node *)parent->content + 1) == child2 );
+  ASSERT( *((node *)parent->content + 2) == child3 );
+  ASSERT( parent->size == 3 );
+  
+  return true;
 }
 
 CEST(node, prefix) {
-  return false;
+  node    parent = Node.create_expression(),
+          child1 = Node.create_word("foo", 4),
+          child2 = Node.create_word("bar", 4),
+          child3 = Node.create_word("baz", 4);
+  
+  Node.prefix(parent, child3);
+  ASSERT( *((node *)parent->content + 0) == child3 );
+  ASSERT( parent->size == 1 );
+  
+  Node.prefix(parent, child2);
+  ASSERT( *((node *)parent->content + 0) == child2 );
+  ASSERT( *((node *)parent->content + 1) == child3 );
+  ASSERT( parent->size == 2 );
+  
+  Node.prefix(parent, child1);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( *((node *)parent->content + 1) == child2 );
+  ASSERT( *((node *)parent->content + 2) == child3 );
+  ASSERT( parent->size == 3 );
+  
+  return true;
 }
 
 CEST(node, affix) {
-  return false;
+  node    parent = Node.create_expression(),
+          child1 = Node.create_word("foo", 4),
+          child2 = Node.create_word("bar", 4),
+          child3 = Node.create_word("baz", 4);
+  
+  Node.affix(parent, child1);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( parent->size == 1 );
+  
+  Node.affix(parent, child2);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( *((node *)parent->content + 1) == child2 );
+  ASSERT( parent->size == 2 );
+  
+  Node.affix(parent, child3);
+  ASSERT( *((node *)parent->content + 0) == child1 );
+  ASSERT( *((node *)parent->content + 1) == child2 );
+  ASSERT( *((node *)parent->content + 2) == child3 );
+  ASSERT( parent->size == 3 );
+  
+  return true;
 }
 
 CEST(node, at) {
-  return false;
+  node    parent = Node.create_expression(),
+          child1 = Node.create_word("foo", 4),
+          child2 = Node.create_word("bar", 4),
+          child3 = Node.create_word("baz", 4);
+  
+  Node.affix(parent, child1);
+  Node.affix(parent, child2);
+  Node.affix(parent, child3);
+  
+  ASSERT( Node.at(parent, 0) == child1 );
+  ASSERT( Node.at(parent, 1) == child2 );
+  ASSERT( Node.at(parent, 2) == child3 );
+  
+  return true;
 }
 
 CEST(node, native) {
@@ -80,5 +154,44 @@ CEST(node, native) {
 }
 
 CEST(node, instantiate) {
-  return false;
+  node    a_word = Node.create_word("foo", 4), another_word;
+  
+  another_word = Node.instantiate(a_word);
+  ASSERT( another_word            != a_word );
+  ASSERT( another_word->archetype == a_word );
+  
+  ASSERT( another_word->type == WORD );
+  ASSERT( another_word->size == 4 );
+  
+  ASSERT( strcmp(another_word->content, "foo") == 0 );
+  
+  
+  node    an_expression = Node.create_expression(), another_expression,
+          child1 = Node.create_word("foo", 4),
+          child2 = Node.create_word("bar", 4),
+          child3 = Node.create_word("baz", 4);
+  
+  Node.affix(an_expression, child1);
+  Node.affix(an_expression, child2);
+  Node.affix(an_expression, child3);
+  
+  another_expression = Node.instantiate(an_expression);
+  ASSERT( another_expression            != an_expression );
+  ASSERT( another_expression->archetype == an_expression );
+  
+  ASSERT( another_expression->type == EXPRESSION );
+  ASSERT( another_expression->size == 3 );
+  
+  ASSERT( Node.at(another_expression, 0)            != child1 );
+  ASSERT( Node.at(another_expression, 0)->archetype == child1 );
+  ASSERT( Node.at(another_expression, 1)            != child2 );
+  ASSERT( Node.at(another_expression, 1)->archetype == child2 );
+  ASSERT( Node.at(another_expression, 2)            != child3 );
+  ASSERT( Node.at(another_expression, 2)->archetype == child3 );
+  
+  ASSERT( strcmp(Node.at(another_expression, 0)->content, "foo") == 0 );
+  ASSERT( strcmp(Node.at(another_expression, 1)->content, "bar") == 0 );
+  ASSERT( strcmp(Node.at(another_expression, 2)->content, "baz") == 0 );
+  
+  return true;
 }
