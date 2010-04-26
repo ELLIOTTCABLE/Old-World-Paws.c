@@ -75,11 +75,13 @@ Some of the more common ones:
   tiny source-code spacing changes, and so forth. Filtering these out will
   provide you with a much cleaner commit list, with no real loss of useful
   information.
-- `api`: A change that affects the public API of the naming in a major way
+- `api`: A commit that *changes* the public API of the naming in a major way
   (i.e. changing the name of a public method or function, or re-arranging
   functions in some way); filtering against these will provide you a fairly
   comprehensive list of changes which will probably affect you during an
   upgrade.
+- `new`: Adds new features, methods, or functions; *adds* to the API instead
+  modifying anything that already exists.
 - `tests`: Only affects the tests, does not change any implementation.
 - `incomplete`: Most commits to this project are required to be ‘stand-alone’;
   that is, the project should at least compile, if not pass all tests, at any
