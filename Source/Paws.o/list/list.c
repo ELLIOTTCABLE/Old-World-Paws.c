@@ -40,13 +40,9 @@ void constructor Paws__register_List(void) { Paws.List = List; }
 /* This method allocates a new `infrastructure list`, and returns a C `list`
  * (a pointer to a `struct list`.)
  */
-list _List__create(bool);
-
-list  List__create(void) { return
-     _List__create(false); }
-
-list  List__create_naughty(void) { return
-     _List__create(true); }
+list _List__create        (bool);
+list  List__create        (void) { return _List__create(false); }
+list  List__create_naughty(void) { return _List__create(true);  }
 
 list _List__create(bool is_naughty) {
   list this = malloc(sizeof(struct list)), naughty;
