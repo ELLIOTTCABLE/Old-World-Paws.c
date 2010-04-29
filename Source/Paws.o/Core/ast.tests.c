@@ -153,6 +153,49 @@ CEST(node, native) {
   return true;
 }
 
+CEST(node, duplicate) {
+  node    a_word = Node.create_word("foo", 4), another_word;
+  
+  another_word = Node.duplicate(a_word);
+  ASSERT( another_word            != a_word );
+  ASSERT( another_word->archetype == NULL );
+  
+  ASSERT( another_word->type == WORD );
+  ASSERT( another_word->size == 4 );
+  
+  ASSERT( strcmp(another_word->content, "foo") == 0 );
+  
+  
+  node    an_expression = Node.create_expression(), another_expression,
+          child1 = Node.create_word("foo", 4),
+          child2 = Node.create_word("bar", 4),
+          child3 = Node.create_word("baz", 4);
+  
+  Node.affix(an_expression, child1);
+  Node.affix(an_expression, child2);
+  Node.affix(an_expression, child3);
+  
+  another_expression = Node.duplicate(an_expression);
+  ASSERT( another_expression            != an_expression );
+  ASSERT( another_expression->archetype == NULL );
+  
+  ASSERT( another_expression->type == EXPRESSION );
+  ASSERT( another_expression->size == 3 );
+  
+  ASSERT( Node.at(another_expression, 0)            != child1 );
+  ASSERT( Node.at(another_expression, 0)->archetype == NULL );
+  ASSERT( Node.at(another_expression, 1)            != child2 );
+  ASSERT( Node.at(another_expression, 1)->archetype == NULL );
+  ASSERT( Node.at(another_expression, 2)            != child3 );
+  ASSERT( Node.at(another_expression, 2)->archetype == NULL );
+  
+  ASSERT( strcmp(Node.at(another_expression, 0)->content, "foo") == 0 );
+  ASSERT( strcmp(Node.at(another_expression, 1)->content, "bar") == 0 );
+  ASSERT( strcmp(Node.at(another_expression, 2)->content, "baz") == 0 );
+  
+  return true;
+}
+
 CEST(node, instantiate) {
   node    a_word = Node.create_word("foo", 4), another_word;
   

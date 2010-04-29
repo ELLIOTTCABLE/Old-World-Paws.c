@@ -1,6 +1,7 @@
 #include "ast.h"
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
 /* A safer `strcpy()`, using `strncpy()` and `sizeof()` */
@@ -24,6 +25,7 @@ void    node__prefix              (node this, node child);
 void    node__affix               (node this, node child);
 node    node__at                  (node this,             node_size index);
 char*   node__native              (node this);
+node    node__duplicate           (node this);
 node    node__instantiate         (node this);
 
 struct Node const Node = {
@@ -37,6 +39,7 @@ struct Node const Node = {
   .affix                = node__affix,
   .at                   = node__at,
   .native               = node__native,
+  .duplicate            = node__duplicate,
   .instantiate          = node__instantiate
 };
 
@@ -146,7 +149,11 @@ char* node__native(node this) {
   return this->content;
 }
 
-node node__instantiate(node this) {
+node _node__duplicate  (node this, bool set_archetype);
+node  node__duplicate  (node this) { return _node__duplicate(this, false); }
+node  node__instantiate(node this) { return _node__duplicate(this, true);  }
+
+node _node__duplicate(node this, bool set_archetype) {
   node new;
   
   if (this->type == WORD)
@@ -157,11 +164,12 @@ node node__instantiate(node this) {
     new = Node.create(this->type);
     node *children = malloc(sizeof(node) * this->size);
     for (node_size i = 0; i < this->size; ++i)
-      children[i] = Node.instantiate(((node *)this->content)[i]);
+      children[i] = _node__duplicate(((node *)this->content)[i], set_archetype);
     new->content = children; new->size = this->size;
   }
   
-  new->archetype = this;
+  if(set_archetype)
+    new->archetype = this;
   
   return new;
 }

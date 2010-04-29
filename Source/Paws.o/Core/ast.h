@@ -53,6 +53,7 @@ struct E(Node) {
     void    (*affix)                ( E(node) this, E(node) child );
   E(node)   (*at)                   ( E(node) this,                E(node_size) index );
     char*   (*native)               ( E(node) this );
+  E(node)   (*duplicate)            ( E(node) this );
   E(node)   (*instantiate)          ( E(node) this );
 };
 #if !defined(EXTERNALIZE)
