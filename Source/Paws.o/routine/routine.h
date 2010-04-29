@@ -7,6 +7,9 @@
 #if !defined(LL_H)
 # include "Paws.o/list/list.h"
 #endif
+#if !defined(AST_H)
+# include "Paws.o/Core/ast.h"
+#endif
 
 
 /* =========================
