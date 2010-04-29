@@ -19,7 +19,6 @@
 routine   Routine__create     (node scope);
 
 thing     routine__to_thing   (routine this);
-node      routine__native     (routine this);
 
 void      routine__insert     (routine this, thing child, ll_size index);
 void      routine__prefix     (routine this, thing child);
@@ -30,7 +29,6 @@ struct Routine const Routine = {
   .create     = Routine__create,
   
   .to_thing   = routine__to_thing,
-  .native     = routine__native,
   
   .insert     = routine__insert,
   .prefix     = routine__prefix,
@@ -43,7 +41,8 @@ void constructor Paws__register_Routine(void) { Paws.Routine = Routine; }
 /* ### Method Implementations ### */
 
 /* This method allocates a new `infrastructure routine`, and returns a
- * C `routine` (a pointer to a `struct routine`.)
+ * C `routine` (a pointer to a `struct routine`.) It takes an AST `SCOPE`
+ * `node` as an argument, and copies the content of that `SCOPE`.wan
  */
 routine Routine__create(node scope) {
   routine this = malloc(sizeof(struct routine));
@@ -52,7 +51,8 @@ routine Routine__create(node scope) {
   LL.affix( this->content,
     Element.create(List.to_thing( List.create_naughty() )) );
   
-  /* TODO: Copy the parameter node into our data structure. */
+  /* TODO: Check if `scope` is actually a `SCOPE` `node`. */
+  this->scope = Node.duplicate(scope);
   
   return this;
 }
@@ -70,11 +70,6 @@ thing routine__to_thing(routine this) {
   memcpy(location, &wrapper, sizeof(struct thing));
   
   return location;
-}
-
-/* This method returns a pointer to the AST struct for a given `routine`. */
-node routine__native(routine this) {
-  return this->scope;
 }
 
 void  routine__insert(routine this, thing child, ll_size index) {

@@ -36,7 +36,6 @@ struct E(Routine) {
   
   /* `struct routine` methods */
   E(thing)      (*to_thing)   ( E(routine) this );
-  E(node)       (*native)     ( E(routine) this );
   
   /* inherited `struct list` methods */
   void          (*insert)     ( E(routine) this, E(thing) child, E(ll_size) index );
