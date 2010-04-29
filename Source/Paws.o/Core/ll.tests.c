@@ -10,7 +10,7 @@
 #endif
 
 #define A_LIST \
-  List.to_thing(List.create())
+  List.to_thing(List.create())//;
 
 
 CEST(LL, create) {

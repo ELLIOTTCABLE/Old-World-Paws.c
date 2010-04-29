@@ -18,10 +18,10 @@
 
 // It seems this is broken, at least in `clang`
 // #if __has_feature(attribute_constructor)
-# define  constructor __attribute__((constructor))
+# define constructor __attribute__((constructor))
 // #endif
 // #if __has_feature(attribute_packed)
-# define  packed      __attribute__((packed))
+# define packed      __attribute__((packed))
 // #endif
 
 
@@ -30,7 +30,7 @@
  * - A `struct`, which stores the data relevant to that datatype. These can be
  *   directly allocated and referenced by their ‘struct tag’:
  *   
- *       struct list*  a_list;
+ *       struct list   *a_list;
  *       a_list = malloc(sizeof(struct list));
  *   
  * - A `const struct` of the same name, capitalized, containing function
@@ -42,7 +42,7 @@
  *   items of the original datatype `struct`. This is what most of the core
  *   API methods return:
  *   
- *       list a_list;
+ *       list   a_list;
  *       a_list = List.create();
  *   
  * It’s important to remember that `list` is a pointer to something, while

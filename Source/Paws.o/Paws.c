@@ -4,7 +4,7 @@
 
 
 struct Paws Paws = {
-  .List = NULL,
-  .Numeric = NULL,
-  .String = NULL
+  .List       = NULL,
+  .Numeric    = NULL,
+  .String     = NULL
 };

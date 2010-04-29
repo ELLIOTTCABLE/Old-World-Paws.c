@@ -40,17 +40,17 @@ typedef struct E(thing)*    E(thing);
 struct E(thing) {
   
   enum /* isa’s */ {
-    E(LIST),
-    E(ROUTINE),
-    E(NUMERIC),
-    E(STRING)
+  E(LIST),
+  E(ROUTINE),
+  E(NUMERIC),
+  E(STRING)
   } const isa;
   
   union /* thing’s */ {
-    E(list)     list;
-    E(routine)  routine;
-    E(numeric)  numeric;
-    E(string)   string;
+  E(list)     list;
+  E(routine)  routine;
+  E(numeric)  numeric;
+  E(string)   string;
   } const pointer;
   
 };

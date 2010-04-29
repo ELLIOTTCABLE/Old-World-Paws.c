@@ -13,27 +13,26 @@
 
 /* ### Method Declarations ### */
 
-list  List__create          (void);
-list  List__create_naughty  (void);
+list    List__create            (void);
+list    List__create_naughty    (void);
 
-thing list__to_thing  (list this);
-void  list__insert    (list this, thing child, ll_size index);
-void  list__prefix    (list this, thing child);
-void  list__affix     (list this, thing child);
-thing list__at        (list this, ll_size index);
+thing   list__to_thing          (list this);
+void    list__insert            (list this, thing child, ll_size index);
+void    list__prefix            (list this, thing child);
+void    list__affix             (list this, thing child);
+thing   list__at                (list this,              ll_size index);
 
 struct List const List = {
-  .create         = List__create,
-  .create_naughty = List__create_naughty,
+  .create           = List__create,
+  .create_naughty   = List__create_naughty,
   
-  .to_thing = list__to_thing,
-  .insert   = list__insert,
-  .prefix   = list__prefix,
-  .affix    = list__affix,
-  .at       = list__at
+  .to_thing         = list__to_thing,
+  .insert           = list__insert,
+  .prefix           = list__prefix,
+  .affix            = list__affix,
+  .at               = list__at
 };
-void constructor Paws__register_List(void) {
-  Paws.List = List; }
+void constructor Paws__register_List(void) { Paws.List = List; }
 
 
 /* ### Method Implementations ### */

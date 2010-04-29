@@ -18,20 +18,20 @@ ANSIEscapes = {
 };
 
 
-void  Cest__enroll  (cest);
-bool  Cest__run_all (void);
-cest  Cest__create  (char[], char[], bool (*)(void));
+void    Cest__enroll    (cest);
+bool    Cest__run_all   (void);
+cest    Cest__create    (char[], char[], bool (*)(void));
 
-bool  cest__execute (cest);
+bool    cest__execute   (cest);
 
 struct Cest Cest = {
-  .enroll   = Cest__enroll,
-  .run_all  = Cest__run_all,
-  .create   = Cest__create,
+  .enroll     = Cest__enroll,
+  .run_all    = Cest__run_all,
+  .create     = Cest__create,
   
-  .execute  = cest__execute,
+  .execute    = cest__execute,
   
-  .first    = NULL
+  .first      = NULL
 };
 
 void Cest__enroll(cest a_cest) {
@@ -87,10 +87,6 @@ cest Cest__create(char namespace[], char name[], bool (*function)(void)) {
   return this;
 }
 
-bool cest__execute(cest this) {
-  return this->function();
-}
+bool cest__execute(cest this) { return this->function(); }
 
-int main() {
-  return !Cest.run_all();
-}
+int main() { return !Cest.run_all(); }

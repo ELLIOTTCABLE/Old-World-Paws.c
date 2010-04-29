@@ -9,23 +9,23 @@
 
 /* ### Method Declarations ### */
 
-ll    LL__create  (void);
+ll        LL__create              (void);
 
-void      ll__anterior_insert   (ll this, element child, ll_size index);
-void      ll__posterior_insert  (ll this, element child, ll_size index);
-void      ll__prefix  (ll this, element child);
-void      ll__affix   (ll this, element child);
-element   ll__at      (ll this, ll_size index);
+void      ll__anterior_insert     (ll this, element child, ll_size index);
+void      ll__posterior_insert    (ll this, element child, ll_size index);
+void      ll__prefix              (ll this, element child);
+void      ll__affix               (ll this, element child);
+element   ll__at                  (ll this,                ll_size index);
 
 struct Element const Element;
 struct LL const LL = {
-  .create = LL__create,
+  .create             = LL__create,
   
-  .anterior_insert  = ll__anterior_insert,
-  .posterior_insert = ll__posterior_insert,
-  .prefix = ll__prefix,
-  .affix  = ll__affix,
-  .at     = ll__at
+  .anterior_insert    = ll__anterior_insert,
+  .posterior_insert   = ll__posterior_insert,
+  .prefix             = ll__prefix,
+  .affix              = ll__affix,
+  .at                 = ll__at
 };
 
 
@@ -103,12 +103,10 @@ element ll__at(ll this, ll_size index) { element result; ll_size i;
   
   if (index <= this->length / 2) {
     result = this->first;
-    
     for (i = 0; i < index; ++i)
       result = result->next;
   } else {
     result = this->last;
-    
     for (i = this->length - 1; i > index; --i)
       result = result->next;
   }
@@ -123,16 +121,16 @@ element ll__at(ll this, ll_size index) { element result; ll_size i;
 
 /* ### Method Declarations ### */
 
-element   Element__create  (thing thing);
+element   Element__create   (thing thing);
 
-void      element__prefix  (element this, element other);
-void      element__affix   (element this, element other);
+void      element__prefix   (element this, element other);
+void      element__affix    (element this, element other);
 
 struct Element const Element = {
-  .create = Element__create,
+  .create   = Element__create,
   
-  .prefix = element__prefix,
-  .affix = element__affix
+  .prefix   = element__prefix,
+  .affix    = element__affix
 };
 
 

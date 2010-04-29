@@ -12,18 +12,18 @@
 #include <stdbool.h>
 
 
-pop   POP__create   (void);
+pop     POP__create         (void);
 
-void      pop__process      ( pop this, char *data, pop_size bytes );
-void      pop__process_file ( pop this, char const filename[] );
-void      pop__close        ( pop this );
+void    pop__process        (pop this, char *data, pop_size bytes);
+void    pop__process_file   (pop this, char const filename[]);
+void    pop__close          (pop this);
 
 struct POP const POP = {
-  .create = POP__create,
+  .create         = POP__create,
   
-  .process      = pop__process,
-  .process_file = pop__process_file,
-  .close        = pop__close
+  .process        = pop__process,
+  .process_file   = pop__process_file,
+  .close          = pop__close
 };
 
 /* This method creates a new `pop` struct, and initializes all the members to
