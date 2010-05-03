@@ -3,6 +3,10 @@
 #if !defined(INTERNALIZE)
 # define EXTERNALIZE
 #endif
+#if !defined(CORE_H)
+# include "Paws.o/Core/Core.h"
+#endif
+
 # if !defined(LIST_H)
 #   include "Paws.o/list/list.h"
 # endif

@@ -1,5 +1,8 @@
 #define NUMERIC_H
 
+#if !defined(CORE_H)
+# include "Paws.o/Core/Core.h"
+#endif
 #if !defined(TYPES_H)
 # include "Paws.o/Core/Types.h"
 #endif

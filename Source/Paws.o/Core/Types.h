@@ -1,13 +1,9 @@
 #define TYPES_H
 
-#if defined(EXTERNALIZE)
-      /* Heh. Heheh. */
-# define E(NAME) \
-    Paws__ ## NAME
-#else
-# define E(NAME) \
-    NAME
+#if !defined(CORE_H)
+# include "Paws.o/Core/Core.h"
 #endif
+
 
 /* This file exists simply to pre-declare some structs and types used
  * throughout the rest of the Paws.o codebase.
