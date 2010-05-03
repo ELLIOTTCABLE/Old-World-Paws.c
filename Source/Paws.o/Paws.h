@@ -7,6 +7,10 @@
 # include "Paws.o/Core/Core.h"
 #endif
 
+# if !defined(THREADING_H)
+#   include "Paws.o/Ancillary/Threading/Threading.h"
+# endif
+
 # if !defined(LIST_H)
 #   include "Paws.o/list/list.h"
 # endif
@@ -62,10 +66,11 @@
  * one of these, instead of a particular type’s struct.
  */
 struct Paws {
-  struct E(List)      List;
-  struct E(Routine)   Routine;
-  struct E(Numeric)   Numeric;
-  struct E(String)    String;
+  struct E(Threading)   Threading;
+  
+  struct E(List)        List;
+  struct E(Routine)     Routine;
+  struct E(Numeric)     Numeric;
+  struct E(String)      String;
 };
-
 struct Paws extern Paws;

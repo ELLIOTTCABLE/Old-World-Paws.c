@@ -10,6 +10,9 @@ a bit of a clusterfuck of a tool, so… these:
     # to compile `Paws.o`
     clang -O0 -std=c99 -pedantic-errors -Wall -ISource \
       Source/Paws.o/Paws.c \
+      Source/Paws.o/Ancillary/Threading/Threading.c \
+      Source/Paws.o/Ancillary/Threading/pool/pool.c \
+      Source/Paws.o/Ancillary/Threading/thread/thread.c \
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/Core/ast.c \
@@ -37,6 +40,9 @@ a bit of a clusterfuck of a tool, so… these:
     # `something.c`, an old random example
     C -O0 -std=c99 -pedantic-errors -Wall -ISource \
       Source/Paws.o/Paws.c \
+      Source/Paws.o/Ancillary/Threading/Threading.c \
+      Source/Paws.o/Ancillary/Threading/pool/pool.c \
+      Source/Paws.o/Ancillary/Threading/thread/thread.c \
       Source/Paws.o/Core/ll.c \
       Source/Paws.o/list/list.c \
       Source/Paws.o/Core/ast.c \
@@ -49,6 +55,9 @@ a bit of a clusterfuck of a tool, so… these:
     
     # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
+      Source/Paws.o/Ancillary/Threading/Threading.c \
+      Source/Paws.o/Ancillary/Threading/pool/pool.tests.c \
+      Source/Paws.o/Ancillary/Threading/thread/thread.tests.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
       Source/Paws.o/Core/ast.tests.c \
@@ -60,6 +69,9 @@ a bit of a clusterfuck of a tool, so… these:
     
     # Run `gdb` against the tests for Paws (use `run`)
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
+      Source/Paws.o/Ancillary/Threading/Threading.c \
+      Source/Paws.o/Ancillary/Threading/pool/pool.tests.c \
+      Source/Paws.o/Ancillary/Threading/thread/thread.tests.c \
       Source/Paws.o/Core/ll.tests.c \
       Source/Paws.o/list/list.tests.c \
       Source/Paws.o/Core/ast.tests.c \

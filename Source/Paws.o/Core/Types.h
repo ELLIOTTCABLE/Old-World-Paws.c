@@ -12,6 +12,13 @@
  * everywhere it is necessary.
  */
 
+        struct E(thread); /* The struct behind `infrastructure list`. */
+typedef struct E(thread)*   E(thread);
+
+        struct E(pool); /* The struct behind `infrastructure list`. */
+typedef struct E(pool)*     E(pool);
+
+
         struct E(ll); /* Our data storage system (a doubly-linked-list) */
         struct E(element); /* A single element of an `ll` */
 typedef struct E(ll)*       E(ll);

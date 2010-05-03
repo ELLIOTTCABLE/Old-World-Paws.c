@@ -4,8 +4,10 @@
 
 
 struct Paws Paws = {
-  .List       = NULL,
-  .Routine    = NULL,
-  .Numeric    = NULL,
-  .String     = NULL
+  .Threading    = NULL,
+  
+  .List         = NULL,
+  .Routine      = NULL,
+  .Numeric      = NULL,
+  .String       = NULL
 };
