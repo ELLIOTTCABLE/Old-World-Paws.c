@@ -12,10 +12,10 @@
  * everywhere it is necessary.
  */
 
-        struct E(thread); /* The struct behind `infrastructure list`. */
+        struct E(thread); /* Our threading implementation’s thread object. */
 typedef struct E(thread)*   E(thread);
 
-        struct E(pool); /* The struct behind `infrastructure list`. */
+        struct E(pool); /* Our threading implementation’s queue pool. */
 typedef struct E(pool)*     E(pool);
 
 
