@@ -25,7 +25,7 @@ CEST(String, create) {
     "May the forces of evil become confused on the way to your house.") == 0 );
   ASSERT( a_string->bytes == 65 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(string, to_thing) {
@@ -36,7 +36,7 @@ CEST(string, to_thing) {
   ASSERT( a_thing->isa            == STRING   );
   ASSERT( a_thing->pointer.string == a_string );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(string, native) {
@@ -50,5 +50,5 @@ CEST(string, native) {
   ASSERT( strcmp(String.native(a_string),
     "May the forces of evil become confused on the way to your house.") == 0 );
   
-  return true;
+  SUCCEED;
 }

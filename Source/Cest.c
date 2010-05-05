@@ -18,11 +18,11 @@ ANSIEscapes = {
 };
 
 
-void    Cest__enroll    (cest);
-bool    Cest__run_all   (void);
-cest    Cest__create    (char[], char[], bool (*)(void));
+void          Cest__enroll    (cest);
+cest_state    Cest__run_all   (void);
+cest          Cest__create    (char[], char[], cest_state (*)(void));
 
-bool    cest__execute   (cest);
+cest_state    cest__execute   (cest);
 
 struct Cest Cest = {
   .enroll     = Cest__enroll,
@@ -52,8 +52,8 @@ void Cest__enroll(cest a_cest) {
   }
 }
 
-bool Cest__run_all(void) {
-  bool return_value; int  total, succeeded;
+cest_state Cest__run_all(void) {
+  cest_state return_value; int total, succeeded;
   
   cest                current;
   struct cest_node*   current_node = Cest.first;
@@ -62,7 +62,7 @@ bool Cest__run_all(void) {
        total++,                  current_node = current_node->next) {
     current = current_node->cest;
     return_value = Cest.execute(current);
-    succeeded += return_value;
+    if (return_value) { succeeded++; }
     
     printf("%s.%s%s%s()\n", current->namespace,
       return_value ? ANSIEscapes.green : ANSIEscapes.red,
@@ -76,7 +76,7 @@ bool Cest__run_all(void) {
   return !(succeeded < total);
 }
 
-cest Cest__create(char namespace[], char name[], bool (*function)(void)) {
+cest Cest__create(char namespace[], char name[], cest_state (*function)(void)) {
   /* LEAK: All up in yo’ beeswax, leakin’ like a sieve! \m/ ^.^ \m/ */
   cest this = malloc(sizeof(struct cest));
   
@@ -87,6 +87,6 @@ cest Cest__create(char namespace[], char name[], bool (*function)(void)) {
   return this;
 }
 
-bool cest__execute(cest this) { return this->function(); }
+cest_state cest__execute(cest this) { return this->function(); }
 
 int main() { return !Cest.run_all(); }

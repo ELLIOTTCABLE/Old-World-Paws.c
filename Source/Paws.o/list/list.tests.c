@@ -16,7 +16,7 @@ CEST(List, create) {
   ASSERT( LL.at(a_naughty->content, 0)->thing->isa == LIST );
   ASSERT( LL.at(a_naughty->content, 0)->thing->pointer.list == a_naughty );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(List, create_naughty) {
@@ -28,7 +28,7 @@ CEST(List, create_naughty) {
   ASSERT( LL.at(a_naughty->content, 0)->thing->isa == LIST );
   ASSERT( LL.at(a_naughty->content, 0)->thing->pointer.list == a_naughty );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(list, to_thing) {
@@ -39,7 +39,7 @@ CEST(list, to_thing) {
   ASSERT( a_thing->isa          == LIST   );
   ASSERT( a_thing->pointer.list == a_list );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(list, insert) {
@@ -76,7 +76,7 @@ CEST(list, insert) {
   ASSERT( List.at(a_list, 2) == thing3 );
   ASSERT( a_list->content->length == 4 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(list, prefix) {
@@ -104,7 +104,7 @@ CEST(list, prefix) {
   ASSERT( List.at(a_list, 0) == thing1 );
   ASSERT( a_list->content->length == 3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(list, affix) {
@@ -132,7 +132,7 @@ CEST(list, affix) {
   ASSERT( List.at(a_list, 2) == thing3 );
   ASSERT( a_list->content->length == 3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(list, at) {
@@ -164,5 +164,5 @@ CEST(list, at) {
   ASSERT( List.at(a_list,  5) == NULL );
   ASSERT( List.at(a_list,  4) == NULL );
   
-  return true;
+  SUCCEED;
 }

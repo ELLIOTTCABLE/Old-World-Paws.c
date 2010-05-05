@@ -21,7 +21,7 @@ CEST(LL, create) {
   ASSERT( a_ll->last   == NULL );
   ASSERT( a_ll->length == 0    );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(ll, anterior_insert) {
@@ -41,7 +41,7 @@ CEST(ll, anterior_insert) {
   ASSERT( LL.at(a_ll, 1) == elementA );
   ASSERT( LL.at(a_ll, 2) == element2 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(ll, posterior_insert) {
@@ -61,7 +61,7 @@ CEST(ll, posterior_insert) {
   ASSERT( LL.at(a_ll, 1) == elementA );
   ASSERT( LL.at(a_ll, 2) == element2 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(ll, prefix) {
@@ -85,7 +85,7 @@ CEST(ll, prefix) {
   ASSERT( a_ll->first  == element1 );
   ASSERT( a_ll->last   == element3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(ll, affix) {
@@ -109,7 +109,7 @@ CEST(ll, affix) {
   ASSERT( a_ll->first  == element1 );
   ASSERT( a_ll->last   == element3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(ll, at) {
@@ -134,7 +134,7 @@ CEST(ll, at) {
   ASSERT( LL.at(a_ll,  5) == NULL );
   ASSERT( LL.at(a_ll,  4) == NULL );
   
-  return true;
+  SUCCEED;
 }
 
 
@@ -145,7 +145,7 @@ CEST(Element, create) {
   ASSERT( a_element->next     == NULL );
   ASSERT( a_element->previous == NULL );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(element, prefix) {
@@ -206,7 +206,7 @@ CEST(element, prefix) {
   ASSERT( element1->next     != element2 );
   
   
-  return true;
+  SUCCEED;
 }
 
 CEST(element, affix) {
@@ -267,5 +267,5 @@ CEST(element, affix) {
   ASSERT( elementA->next     != elementB );
   
   
-  return true;
+  SUCCEED;
 }

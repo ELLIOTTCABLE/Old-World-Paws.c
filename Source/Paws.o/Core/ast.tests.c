@@ -21,7 +21,7 @@ CEST(Node, create) {
   a_node = Node.create(WORD);
   ASSERT( a_node->type == WORD );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(Node, create_scope) {
@@ -30,7 +30,7 @@ CEST(Node, create_scope) {
   a_scope = Node.create_scope();
   ASSERT( a_scope->type == SCOPE );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(Node, create_expression) {
@@ -39,7 +39,7 @@ CEST(Node, create_expression) {
   a_expression = Node.create_expression();
   ASSERT( a_expression->type == EXPRESSION );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(Node, create_word) {
@@ -51,7 +51,7 @@ CEST(Node, create_word) {
   
   ASSERT( strcmp(a_word->content, "foo") == 0 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, insert) {
@@ -76,7 +76,7 @@ CEST(node, insert) {
   ASSERT( *((node *)parent->content + 2) == child3 );
   ASSERT( parent->size == 3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, prefix) {
@@ -100,7 +100,7 @@ CEST(node, prefix) {
   ASSERT( *((node *)parent->content + 2) == child3 );
   ASSERT( parent->size == 3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, affix) {
@@ -124,7 +124,7 @@ CEST(node, affix) {
   ASSERT( *((node *)parent->content + 2) == child3 );
   ASSERT( parent->size == 3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, at) {
@@ -141,7 +141,7 @@ CEST(node, at) {
   ASSERT( Node.at(parent, 1) == child2 );
   ASSERT( Node.at(parent, 2) == child3 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, native) {
@@ -150,7 +150,7 @@ CEST(node, native) {
   a_word = Node.create_word("foo", 4);
   ASSERT( strcmp(Node.native(a_word), "foo") == 0 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, duplicate) {
@@ -193,7 +193,7 @@ CEST(node, duplicate) {
   ASSERT( strcmp(Node.at(another_expression, 1)->content, "bar") == 0 );
   ASSERT( strcmp(Node.at(another_expression, 2)->content, "baz") == 0 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(node, instantiate) {
@@ -236,5 +236,5 @@ CEST(node, instantiate) {
   ASSERT( strcmp(Node.at(another_expression, 1)->content, "bar") == 0 );
   ASSERT( strcmp(Node.at(another_expression, 2)->content, "baz") == 0 );
   
-  return true;
+  SUCCEED;
 }

@@ -15,7 +15,7 @@ CEST(Numeric, create) {
   ASSERT( LL.at(a_numeric->content, 0)->thing->isa == LIST );
   ASSERT( LL.at(a_numeric->content, 0)->thing->pointer.list == a_naughty );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(numeric, to_thing) {
@@ -26,7 +26,7 @@ CEST(numeric, to_thing) {
   ASSERT( a_thing->isa             == NUMERIC   );
   ASSERT( a_thing->pointer.numeric == a_numeric );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(numeric, native) {
@@ -34,5 +34,5 @@ CEST(numeric, native) {
   
   ASSERT( Numeric.native(a_numeric) == 42 );
   
-  return true;
+  SUCCEED;
 }

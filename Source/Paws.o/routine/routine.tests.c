@@ -25,7 +25,7 @@ CEST(Routine, create) {
   ASSERT( strcmp(Node.at(Node.at(a_routine->scope, 0), 0)->content, "foo") == 0 );
   ASSERT( strcmp(Node.at(Node.at(a_routine->scope, 0), 1)->content, "bar") == 0 );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(routine, to_thing) {
@@ -37,5 +37,5 @@ CEST(routine, to_thing) {
   ASSERT( a_thing->isa             == ROUTINE );
   ASSERT( a_thing->pointer.routine == a_routine );
   
-  return true;
+  SUCCEED;
 }
