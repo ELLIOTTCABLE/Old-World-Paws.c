@@ -26,7 +26,7 @@ CEST(Pool, create) {
           pthread_mutex_unlock (a_pool->mutex);
   ASSERT( pthread_cond_signal  (a_pool->condition) != EINVAL );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(pool, enqueue) {
@@ -52,7 +52,7 @@ CEST(pool, enqueue) {
   
   /* TODO: Test that the condvar is properly signaled. */
   
-  return true;
+  SUCCEED;
 }
 
 CEST(pool, drip) {
@@ -70,6 +70,6 @@ CEST(pool, drip) {
   ASSERT( Pool.drip(a_pool)      == routine3 );
   ASSERT(           a_pool->size == 0        );  
   
-  return true;
+  SUCCEED;
 }
-CEST(pool, destroy) { return false; }
+CEST(pool, destroy) { PEND; }

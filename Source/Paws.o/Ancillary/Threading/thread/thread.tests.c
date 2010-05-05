@@ -21,12 +21,12 @@ CEST(Thread, create) {
   ASSERT(              a_thread->pool        == a_pool );
   ASSERT(              a_thread->initialized == true   );
   
-  return true;
+  SUCCEED;
 }
 
 CEST(thread, work) {
   
-  return true;
+  SUCCEED;
 }
 
 CEST(thread, destroy) {
@@ -45,5 +45,5 @@ CEST(thread, destroy) {
   ASSERT( pthread_kill(a_thread->pthread, 0) == ESRCH  );
   ASSERT(              a_thread->initialized == false   );
   
-  return true;
+  SUCCEED;
 }

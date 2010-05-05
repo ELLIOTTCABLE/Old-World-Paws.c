@@ -40,4 +40,4 @@ CEST(routine, to_thing) {
   SUCCEED;
 }
 
-CEST(routine, execute) { return false; }
+CEST(routine, execute) { PEND; }
