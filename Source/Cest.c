@@ -10,10 +10,11 @@
 
 #define CSI "\033["
 #define SGR "m"
-static const struct { char red[6]; char green[6]; char reset[6]; }
+static const struct { char red[6]; char green[6]; char yellow[6]; char reset[6]; }
 ANSIEscapes = {
   .red    = CSI "31" SGR,
   .green  = CSI "32" SGR,
+  .yellow = CSI "33" SGR,
   .reset  = CSI "0"  SGR
 };
 
@@ -53,24 +54,25 @@ void Cest__enroll(cest a_cest) {
 }
 
 int Cest__run_all(void) {
-  cest_state return_value; int total, succeeded;
+  cest_state return_value; int total, succeeded, pending;
   
   cest                current;
   struct cest_node*   current_node = Cest.first;
   
-  for (total = 0, succeeded = 0; current_node != NULL;
+  for (total = 0, succeeded = 0, pending = 0; current_node != NULL;
        total++,                  current_node = current_node->next) {
     current = current_node->cest;
     return_value = Cest.execute(current);
     if (return_value) { succeeded++; }
+    if (return_value - 1) { pending++; }
     
     printf("%s.%s%s%s()\n", current->namespace,
-      return_value ? ANSIEscapes.green : ANSIEscapes.red,
+      return_value ? (return_value - 1 ? ANSIEscapes.yellow : ANSIEscapes.green) : ANSIEscapes.red,
       current->name, ANSIEscapes.reset);
   }
   
   printf("%s%d successes%s (of %d)\n",
-    succeeded < total ? ANSIEscapes.red : ANSIEscapes.green,
+    succeeded < total ? ANSIEscapes.red : (pending ? ANSIEscapes.yellow : ANSIEscapes.green),
     succeeded, ANSIEscapes.reset, total);
   
   return total - succeeded;
