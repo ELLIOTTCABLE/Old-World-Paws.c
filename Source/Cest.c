@@ -19,7 +19,7 @@ ANSIEscapes = {
 
 
 void          Cest__enroll    (cest);
-cest_state    Cest__run_all   (void);
+int           Cest__run_all   (void);
 cest          Cest__create    (char[], char[], cest_state (*)(void));
 
 cest_state    cest__execute   (cest);
@@ -52,7 +52,7 @@ void Cest__enroll(cest a_cest) {
   }
 }
 
-cest_state Cest__run_all(void) {
+int Cest__run_all(void) {
   cest_state return_value; int total, succeeded;
   
   cest                current;
@@ -73,7 +73,7 @@ cest_state Cest__run_all(void) {
     succeeded < total ? ANSIEscapes.red : ANSIEscapes.green,
     succeeded, ANSIEscapes.reset, total);
   
-  return !(succeeded < total);
+  return total - succeeded;
 }
 
 cest Cest__create(char namespace[], char name[], cest_state (*function)(void)) {
@@ -89,4 +89,4 @@ cest Cest__create(char namespace[], char name[], cest_state (*function)(void)) {
 
 cest_state cest__execute(cest this) { return this->function(); }
 
-int main() { return !Cest.run_all(); }
+int main() { return Cest.run_all(); }

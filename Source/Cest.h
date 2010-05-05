@@ -44,7 +44,7 @@ struct cest_node {
 struct Cest {
   /* `Cest` functions */
   void          (*enroll)     ( cest );
-  cest_state    (*run_all)    ( void );
+  int           (*run_all)    ( void );
   cest          (*create)     ( char[], char[], cest_state (*)(void) );
   
   /* `struct cest` methods */
