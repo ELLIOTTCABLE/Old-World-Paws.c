@@ -19,6 +19,7 @@
 routine   Routine__create     (node scope);
 
 thing     routine__to_thing   (routine this);
+void      routine__execute    (routine this);
 
 void      routine__insert     (routine this, thing child, ll_size index);
 void      routine__prefix     (routine this, thing child);

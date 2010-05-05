@@ -39,3 +39,5 @@ CEST(routine, to_thing) {
   
   SUCCEED;
 }
+
+CEST(routine, execute) { return false; }

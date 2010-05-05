@@ -7,6 +7,8 @@
 # include "Paws.o/Core/Types.h"
 #endif
 
+#include <pthread.h>
+
 
 /* ==================
 = Thread Management =
@@ -14,8 +16,14 @@
 
 /* ### Data Types & Structures ### */
 
+typedef   unsigned long long int    E(pool_size); /* The maximum number of routine pointers in a pool */
+
 struct E(pool) {
-  E(thread)    *pthread; /* The underlying opaque POSIX thread-structure. */
+  pthread_mutex_t    *mutex; /* The mutex for this pool’s condvar */
+  pthread_cond_t     *condition; /* A condvar that signals when routines are available to be interpreted */
+  
+  E(pool_size)        size; /* The number of `routine`s queued */
+  E(routine)         *queue; /* An array of `routine` pointers */
 };
 
 
@@ -23,10 +31,12 @@ struct E(pool) {
 
 struct E(Pool) {
   /* `Pool` functions */
-  E(pool)   (*create)     ( void );
+  E(pool)       (*create)     ( void );
   
   /* `struct pool` methods */
-  void      (*destroy)    ( E(pool) this );
+  void          (*enqueue)    ( E(pool) this, E(routine) a_routine );
+  E(routine)    (*drip)       ( E(pool) this );
+  void          (*destroy)    ( E(pool) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(Pool) extern const Pool;
