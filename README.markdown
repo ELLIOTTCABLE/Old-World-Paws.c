@@ -13,12 +13,12 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/pool/pool.c \
       Source/Paws.o/Ancillary/Threading/thread/thread.c \
-      Source/Paws.o/Core/ll.c \
-      Source/Paws.o/list/list.c \
-      Source/Paws.o/Core/ast.c \
-      Source/Paws.o/routine/routine.c \
-      Source/Paws.o/numeric/numeric.c \
-      Source/Paws.o/string/string.c \
+      Source/Paws.o/Types/list/ll.c \
+      Source/Paws.o/Types/list/list.c \
+      Source/Paws.o/Types/routine/ast.c \
+      Source/Paws.o/Types/routine/routine.c \
+      Source/Paws.o/Types/numeric/numeric.c \
+      Source/Paws.o/Types/string/string.c \
       Source/Paws.o/Paws.o.c \
       -o Paws.o && \
     ./Paws.o
@@ -43,12 +43,12 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/pool/pool.c \
       Source/Paws.o/Ancillary/Threading/thread/thread.c \
-      Source/Paws.o/Core/ll.c \
-      Source/Paws.o/list/list.c \
-      Source/Paws.o/Core/ast.c \
-      Source/Paws.o/routine/routine.c \
-      Source/Paws.o/numeric/numeric.c \
-      Source/Paws.o/string/string.c \
+      Source/Paws.o/Types/list/ll.c \
+      Source/Paws.o/Types/list/list.c \
+      Source/Paws.o/Types/routine/ast.c \
+      Source/Paws.o/Types/routine/routine.c \
+      Source/Paws.o/Types/numeric/numeric.c \
+      Source/Paws.o/Types/string/string.c \
       Source/something.c && \
     ./something.o
     
@@ -58,12 +58,12 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/pool/pool.tests.c \
       Source/Paws.o/Ancillary/Threading/thread/thread.tests.c \
-      Source/Paws.o/Core/ll.tests.c \
-      Source/Paws.o/list/list.tests.c \
-      Source/Paws.o/Core/ast.tests.c \
-      Source/Paws.o/routine/routine.tests.c \
-      Source/Paws.o/numeric/numeric.tests.c \
-      Source/Paws.o/string/string.tests.c \
+      Source/Paws.o/Types/list/ll.tests.c \
+      Source/Paws.o/Types/list/list.tests.c \
+      Source/Paws.o/Types/routine/ast.tests.c \
+      Source/Paws.o/Types/routine/routine.tests.c \
+      Source/Paws.o/Types/numeric/numeric.tests.c \
+      Source/Paws.o/Types/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \
     ./Paws.tests.o
     
@@ -72,12 +72,12 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/pool/pool.tests.c \
       Source/Paws.o/Ancillary/Threading/thread/thread.tests.c \
-      Source/Paws.o/Core/ll.tests.c \
-      Source/Paws.o/list/list.tests.c \
-      Source/Paws.o/Core/ast.tests.c \
-      Source/Paws.o/routine/routine.tests.c \
-      Source/Paws.o/numeric/numeric.tests.c \
-      Source/Paws.o/string/string.tests.c \
+      Source/Paws.o/Types/list/ll.tests.c \
+      Source/Paws.o/Types/list/list.tests.c \
+      Source/Paws.o/Types/routine/ast.tests.c \
+      Source/Paws.o/Types/routine/routine.tests.c \
+      Source/Paws.o/Types/numeric/numeric.tests.c \
+      Source/Paws.o/Types/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \
     gdb -q -se ./Paws.tests.o
     # use `run`

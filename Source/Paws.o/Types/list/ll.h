@@ -1,10 +1,10 @@
 #define LL_H
 
 #if !defined(CORE_H)
-# include "Paws.o/Core/Core.h"
+# include "Paws.o/Core.h"
 #endif
 #if !defined(TYPES_H)
-# include "Paws.o/Core/Types.h"
+# include "Paws.o/Types/Types.h"
 #endif
 
 
@@ -16,6 +16,11 @@
 ===== */
 
 /* ### Data Types & Structures ### */
+
+        struct E(ll); /* Our data storage system (a doubly-linked-list) */
+        struct E(element); /* A single element of an `ll` */
+typedef struct E(ll)*       E(ll);
+typedef struct E(element)*  E(element);
 
 typedef   unsigned long long int    E(ll_size);
 

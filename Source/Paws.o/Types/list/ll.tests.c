@@ -2,7 +2,7 @@
 
 /* FIXME: These shouldn’t depend on `list.c` */
 #if !defined(LIST_H)
-# include "Paws.o/list/list.h"
+# include "Paws.o/Types/list/list.h"
 #endif
 
 #if !defined(CEST_H)

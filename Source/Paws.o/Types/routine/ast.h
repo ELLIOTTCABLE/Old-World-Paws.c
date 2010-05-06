@@ -1,10 +1,10 @@
 #define AST_H
 
 #if !defined(CORE_H)
-# include "Paws.o/Core/Core.h"
+# include "Paws.o/Core.h"
 #endif
 #if !defined(TYPES_H)
-# include "Paws.o/Core/Types.h"
+# include "Paws.o/Types/Types.h"
 #endif
 
 /* ======
@@ -12,6 +12,11 @@
 ====== */
 
 /* ### Data Types & Structures ### */
+
+        struct E(ast); /* Our code storage system (an abstract syntax tree) */
+        struct E(node); /* A single node of an `ast` */
+typedef struct E(ast)*      E(ast);
+typedef struct E(node)*     E(node);
 
 typedef   unsigned long long int     E(ast_size); /* The maximum storable character index into a Paws document */
 typedef   unsigned           int    E(node_size); /* The maximum storable character index into a `WORD` node, as well as the maximum descendants to a node */

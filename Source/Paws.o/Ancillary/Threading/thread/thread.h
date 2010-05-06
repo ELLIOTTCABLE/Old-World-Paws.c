@@ -1,10 +1,7 @@
 #define THREAD_H
 
-#if !defined(CORE_H)
-# include "Paws.o/Core/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Core/Types.h"
+#if !defined(POOL_H)
+# include "Paws.o/Ancillary/Threading/pool/pool.h"
 #endif
 
 #include <pthread.h>
@@ -16,6 +13,9 @@
 ================== */
 
 /* ### Data Types & Structures ### */
+
+        struct E(thread); /* Our threading implementation’s thread object. */
+typedef struct E(thread)* E(thread);
 
 struct E(thread) {
   pthread_t     pthread; /* The underlying opaque POSIX thread-structure. (A pointer type!) */

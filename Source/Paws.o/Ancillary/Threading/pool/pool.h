@@ -1,10 +1,7 @@
 #define POOL_H
 
-#if !defined(CORE_H)
-# include "Paws.o/Core/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Core/Types.h"
+#if !defined(ROUTINE_H)
+# include "Paws.o/Types/routine/routine.h"
 #endif
 
 #include <pthread.h>
@@ -15,6 +12,9 @@
 ================== */
 
 /* ### Data Types & Structures ### */
+
+        struct E(pool); /* Our threading implementation’s queue pool. */
+typedef struct E(pool)* E(pool);
 
 typedef   unsigned long long int    E(pool_size); /* The maximum number of routine pointers in a pool */
 

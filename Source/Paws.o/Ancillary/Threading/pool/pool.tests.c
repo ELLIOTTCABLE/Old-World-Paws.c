@@ -3,7 +3,7 @@
  * However, `Node` never gets provided externally; under `EXTERNALIZE`, `Node`
  * is completely unavailable. */
 #if !defined(AST_H)
-# include "Paws.o/Core/ast.h"
+# include "Paws.o/Types/routine/ast.h"
 #endif
 
 #include "pool.c"

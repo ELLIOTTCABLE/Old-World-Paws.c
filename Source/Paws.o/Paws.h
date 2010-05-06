@@ -1,10 +1,12 @@
 #define PAWS_H
 
+
 #if !defined(INTERNALIZE)
 # define EXTERNALIZE
 #endif
+
 #if !defined(CORE_H)
-# include "Paws.o/Core/Core.h"
+# include "Paws.o/Core.h"
 #endif
 
 # if !defined(THREADING_H)
@@ -12,20 +14,22 @@
 # endif
 
 # if !defined(LIST_H)
-#   include "Paws.o/list/list.h"
+#   include "Paws.o/Types/list/list.h"
 # endif
 # if !defined(ROUTINE_H)
-#   include "Paws.o/routine/routine.h"
+#   include "Paws.o/Types/routine/routine.h"
 # endif
 # if !defined(NUMERIC_H)
-#   include "Paws.o/numeric/numeric.h"
+#   include "Paws.o/Types/numeric/numeric.h"
 # endif
 # if !defined(STRING_H)
-#   include "Paws.o/string/string.h"
+#   include "Paws.o/Types/string/string.h"
 # endif
+
 #if !defined(INTERNALIZE)
 # undef EXTERNALIZE
 #endif
+
 
 // It seems this is broken, at least in `clang`
 // #if __has_feature(attribute_constructor)

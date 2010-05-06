@@ -1,14 +1,14 @@
 #define STRING_H
 
 #if !defined(CORE_H)
-# include "Paws.o/Core/Core.h"
+# include "Paws.o/Core.h"
 #endif
 #if !defined(TYPES_H)
-# include "Paws.o/Core/Types.h"
+# include "Paws.o/Types/Types.h"
 #endif
 
 #if !defined(LL_H)
-# include "Paws.o/list/list.h"
+# include "Paws.o/Types/list/list.h"
 #endif
 
 
