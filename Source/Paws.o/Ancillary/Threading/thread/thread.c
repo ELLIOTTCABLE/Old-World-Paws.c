@@ -1,8 +1,6 @@
 #include "thread.h"
 
-#include "Paws.o/Ancillary/Threading/Threading.h"
 #include "Paws.o/Paws.h"
-
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -69,7 +67,7 @@ void thread__work(thread this) {
      * actually routines to process (if not, it falls through to waiting
      * again) */
     while (this->initialized && this->pool->size > 0)
-      Paws.Routine.execute( Pool.drip(this->pool) );
+      Routine.execute( Pool.drip(this->pool) );
   }
   
   /* Usually, this is called from `register_a_thread()`, so it’s quite likely

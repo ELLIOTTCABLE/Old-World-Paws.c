@@ -1,8 +1,6 @@
 #include "routine.c"
+#include "Cest.h"
 
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
 
 CEST(Routine, create) {
   node      a_scope, an_expression, a_word, another_word;

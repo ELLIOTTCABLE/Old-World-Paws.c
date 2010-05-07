@@ -5,10 +5,6 @@
 # define EXTERNALIZE
 #endif
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-
 # if !defined(THREADING_H)
 #   include "Paws.o/Ancillary/Threading/Threading.h"
 # endif
@@ -25,6 +21,10 @@
 # if !defined(STRING_H)
 #   include "Paws.o/Types/string/string.h"
 # endif
+
+#if !defined(CORE_H)
+# include "Paws.o/Core.h"
+#endif
 
 #if !defined(INTERNALIZE)
 # undef EXTERNALIZE

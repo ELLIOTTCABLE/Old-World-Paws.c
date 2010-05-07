@@ -7,7 +7,7 @@
 # include "Paws.o/Types/Types.h"
 #endif
 
-#if !defined(LL_H)
+#if !defined(LIST_H)
 # include "Paws.o/Types/list/list.h"
 #endif
 

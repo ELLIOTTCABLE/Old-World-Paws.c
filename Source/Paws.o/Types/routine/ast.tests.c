@@ -1,8 +1,5 @@
 #include "ast.c"
-
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
+#include "Cest.h"
 
 
 CEST(Node, create) {

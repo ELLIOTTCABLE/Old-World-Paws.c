@@ -1,8 +1,6 @@
 #include "numeric.c"
+#include "Cest.h"
 
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
 
 CEST(Numeric, create) {
   numeric   a_numeric;

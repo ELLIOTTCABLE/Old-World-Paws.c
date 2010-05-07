@@ -1,8 +1,6 @@
 #include "list.c"
+#include "Cest.h"
 
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
 
 CEST(List, create) {
   list a_list, a_naughty;

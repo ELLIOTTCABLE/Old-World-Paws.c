@@ -1,17 +1,20 @@
 #include "ll.c"
+#include "Cest.h"
 
-/* FIXME: These shouldn’t depend on `list.c` */
-#if !defined(LIST_H)
-# include "Paws.o/Types/list/list.h"
-#endif
+#include <string.h>
 
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
 
-#define A_LIST \
-  List.to_thing(List.create())//;
+#define SOMETHING \
+  _make_something()//;
 
+thing _make_something(void) {
+  thing location = malloc(sizeof(struct thing));
+  
+  struct thing something = { .isa = LIST, .pointer = { .list = NULL } };
+  memcpy(location, &something, sizeof(struct thing));
+  
+  return location;
+}
 
 CEST(LL, create) {
   ll  a_ll;
@@ -26,11 +29,11 @@ CEST(LL, create) {
 
 CEST(ll, anterior_insert) {
   ll        a_ll = LL.create();
-  element   element1 = Element.create(A_LIST); LL.affix(a_ll, element1);
-  element   element2 = Element.create(A_LIST); LL.affix(a_ll, element2);
-  element   element3 = Element.create(A_LIST); LL.affix(a_ll, element3);
+  element   element1 = Element.create(SOMETHING); LL.affix(a_ll, element1);
+  element   element2 = Element.create(SOMETHING); LL.affix(a_ll, element2);
+  element   element3 = Element.create(SOMETHING); LL.affix(a_ll, element3);
   
-  element elementA = Element.create(A_LIST);
+  element elementA = Element.create(SOMETHING);
   
   /* TODO: Error condition */
   LL.anterior_insert(a_ll, elementA, 0);
@@ -46,11 +49,11 @@ CEST(ll, anterior_insert) {
 
 CEST(ll, posterior_insert) {
   ll        a_ll = LL.create();
-  element   element1 = Element.create(A_LIST); LL.affix(a_ll, element1);
-  element   element2 = Element.create(A_LIST); LL.affix(a_ll, element2);
-  element   element3 = Element.create(A_LIST); LL.affix(a_ll, element3);
+  element   element1 = Element.create(SOMETHING); LL.affix(a_ll, element1);
+  element   element2 = Element.create(SOMETHING); LL.affix(a_ll, element2);
+  element   element3 = Element.create(SOMETHING); LL.affix(a_ll, element3);
   
-  element elementA = Element.create(A_LIST);
+  element elementA = Element.create(SOMETHING);
   
   /* TODO: Error condition */
   LL.posterior_insert(a_ll, elementA, a_ll->length);
@@ -66,9 +69,9 @@ CEST(ll, posterior_insert) {
 
 CEST(ll, prefix) {
   ll    a_ll = LL.create();
-  element   element1 = Element.create(A_LIST),
-            element2 = Element.create(A_LIST),
-            element3 = Element.create(A_LIST);
+  element   element1 = Element.create(SOMETHING),
+            element2 = Element.create(SOMETHING),
+            element3 = Element.create(SOMETHING);
   
   LL.prefix(a_ll, element3);
   ASSERT( a_ll->length == 1        );
@@ -90,9 +93,9 @@ CEST(ll, prefix) {
 
 CEST(ll, affix) {
   ll    a_ll = LL.create();
-  element   element1 = Element.create(A_LIST),
-            element2 = Element.create(A_LIST),
-            element3 = Element.create(A_LIST);
+  element   element1 = Element.create(SOMETHING),
+            element2 = Element.create(SOMETHING),
+            element3 = Element.create(SOMETHING);
   
   LL.affix(a_ll, element1);
   ASSERT( a_ll->length == 1        );
@@ -121,9 +124,9 @@ CEST(ll, at) {
   ASSERT( LL.at(a_ll,  0) == NULL );
   
   element   element1, element2, element3;
-  element1 = Element.create(A_LIST); LL.affix(a_ll, element1);
-  element2 = Element.create(A_LIST); LL.affix(a_ll, element2);
-  element3 = Element.create(A_LIST); LL.affix(a_ll, element3);
+  element1 = Element.create(SOMETHING); LL.affix(a_ll, element1);
+  element2 = Element.create(SOMETHING); LL.affix(a_ll, element2);
+  element3 = Element.create(SOMETHING); LL.affix(a_ll, element3);
   
   /* Positive indicies */
   ASSERT( LL.at(a_ll,  0) == element1 );
@@ -141,7 +144,7 @@ CEST(ll, at) {
 CEST(Element, create) {
   element  a_element;
   
-  a_element = Element.create( A_LIST );
+  a_element = Element.create( SOMETHING );
   ASSERT( a_element->next     == NULL );
   ASSERT( a_element->previous == NULL );
   
@@ -149,12 +152,12 @@ CEST(Element, create) {
 }
 
 CEST(element, prefix) {
-  element   element1 = Element.create(A_LIST),
-            element2 = Element.create(A_LIST),
-            element3 = Element.create(A_LIST),
-            elementA = Element.create(A_LIST),
-            elementB = Element.create(A_LIST),
-            elementC = Element.create(A_LIST);
+  element   element1 = Element.create(SOMETHING),
+            element2 = Element.create(SOMETHING),
+            element3 = Element.create(SOMETHING),
+            elementA = Element.create(SOMETHING),
+            elementB = Element.create(SOMETHING),
+            elementC = Element.create(SOMETHING);
   
   
   /* A basic single prefix */
@@ -210,12 +213,12 @@ CEST(element, prefix) {
 }
 
 CEST(element, affix) {
-  element   element1 = Element.create(A_LIST),
-            element2 = Element.create(A_LIST),
-            element3 = Element.create(A_LIST),
-            elementA = Element.create(A_LIST),
-            elementB = Element.create(A_LIST),
-            elementC = Element.create(A_LIST);
+  element   element1 = Element.create(SOMETHING),
+            element2 = Element.create(SOMETHING),
+            element3 = Element.create(SOMETHING),
+            elementA = Element.create(SOMETHING),
+            elementB = Element.create(SOMETHING),
+            elementC = Element.create(SOMETHING);
   
   
   /* A basic single affix */

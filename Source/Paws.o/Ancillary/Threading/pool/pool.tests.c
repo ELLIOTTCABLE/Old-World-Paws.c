@@ -1,16 +1,5 @@
-/* FIXME: WHY IS THIS NECESSARY UP HERE!? ARGHHH */
-/* Well, we pull in `Paws.h` in `pool.c`, which `EXTERNALIZE`s everything.
- * However, `Node` never gets provided externally; under `EXTERNALIZE`, `Node`
- * is completely unavailable. */
-#if !defined(AST_H)
-# include "Paws.o/Types/routine/ast.h"
-#endif
-
 #include "pool.c"
-
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
+#include "Cest.h"
 
 #include <errno.h>
 

@@ -1,7 +1,6 @@
 #include "list.h"
 
 #include "Paws.o/Paws.h"
-
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>

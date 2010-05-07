@@ -1,8 +1,6 @@
 #include "string.c"
+#include "Cest.h"
 
-#if !defined(CEST_H)
-# include "Cest.h"
-#endif
 
 CEST(String, create) {
   string  a_string;

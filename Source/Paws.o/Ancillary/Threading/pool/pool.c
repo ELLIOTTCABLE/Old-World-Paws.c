@@ -1,8 +1,6 @@
 #include "pool.h"
 
-#include "Paws.o/Ancillary/Threading/Threading.h"
 #include "Paws.o/Paws.h"
-
 #include <stdlib.h>
 #include <string.h>
 
