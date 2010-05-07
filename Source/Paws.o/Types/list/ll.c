@@ -163,14 +163,17 @@ element Element__create(thing thing) {
  * Note: See the notes on `Element.affix()`.
  */
 void element__prefix(element this, element other) {
-  if (this->previous != NULL)
-    if (other->previous == NULL)
+  if (this->previous != NULL) {
+    if (other->previous == NULL) {
       element__prefix(other, this->previous);
+    }
     else {
       this->previous->next = NULL;
-      if (other->next != NULL)
-        other->next->previous = NULL; }
-  
+      if (other->next != NULL) {
+        other->next->previous = NULL; 
+      }
+    }
+  }
   other->next     = this;
   this->previous  = other;
 }
@@ -187,13 +190,17 @@ void element__prefix(element this, element other) {
  *       element in the original chain will be lost.
  */
 void element__affix(element this, element other) {
-  if (this->next != NULL)
-    if (other->next == NULL)
+  if (this->next != NULL) {
+    if (other->next == NULL) {
       element__affix(other, this->next);
+    }
     else {
       this->next->previous = NULL;
-      if (other->previous != NULL)
-        other->previous->next = NULL; }
+      if (other->previous != NULL) {
+        other->previous->next = NULL; 
+      }
+    }
+  }
   
   other->previous = this;
   this->next      = other;
