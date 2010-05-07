@@ -22,7 +22,7 @@ struct Numeric const Numeric = {
   .thing   = numeric__thing,
   .native     = numeric__native
 };
-void constructor Paws__register_Numeric(void) { Paws.Numeric = Numeric; }
+void constructor register_Numeric(void) { Paws.Numeric = Numeric; }
 
 
 /* ### Method Implementations ### */

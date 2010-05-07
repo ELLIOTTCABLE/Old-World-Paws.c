@@ -31,7 +31,7 @@ struct List const List = {
   .affix            = list__affix,
   .at               = list__at
 };
-void constructor Paws__register_List(void) { Paws.List = List; }
+void constructor register_List(void) { Paws.List = List; }
 
 
 /* ### Method Implementations ### */

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 
-thing   Paws__nothing   (void);
+thing   nothing   (void);
 
 struct Paws Paws = {
   .Threading    = NULL,
@@ -15,10 +15,10 @@ struct Paws Paws = {
   .Numeric      = NULL,
   .String       = NULL,
   
-  .nothing    = Paws__nothing
+  .nothing    = nothing
 };
 
-thing Paws__nothing(void) {
+thing nothing(void) {
   struct thing nothing = {
     .isa = NOTHING,
     .pointer = { .nothing = NULL }

@@ -30,7 +30,7 @@ struct String const String = {
   .thing    = string__thing,
   .native   = string__native
 };
-void constructor Paws__register_String(void) { Paws.String = String; }
+void constructor register_String(void) { Paws.String = String; }
 
 
 /* ### Method Implementations ### */

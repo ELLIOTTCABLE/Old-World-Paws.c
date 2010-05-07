@@ -24,7 +24,7 @@ struct Thread const Thread = {
   .work         = thread__work,
   .destroy      = thread__destroy
 };
-void constructor Paws__register_Thread(void) { Paws.Threading.Thread = Thread; }
+void constructor register_Thread(void) { Paws.Threading.Thread = Thread; }
 
 
 /* ### Method Implementations ### */

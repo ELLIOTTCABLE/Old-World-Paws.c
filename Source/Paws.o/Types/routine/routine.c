@@ -21,7 +21,7 @@ struct Routine const Routine = {
   
   .thing    = routine__thing
 };
-void constructor Paws__register_Routine(void) { Paws.Routine = Routine; }
+void constructor register_Routine(void) { Paws.Routine = Routine; }
 
 
 /* ### Method Implementations ### */

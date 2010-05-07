@@ -8,4 +8,4 @@ struct Threading Threading = {
   .Thread   = NULL,
   .Pool     = NULL
 };
-void constructor Paws__register_Threading(void) { Paws.Threading = Threading; }
+void constructor register_Threading(void) { Paws.Threading = Threading; }

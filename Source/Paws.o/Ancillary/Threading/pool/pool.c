@@ -24,7 +24,7 @@ struct Pool const Pool = {
   .drip       = pool__drip,
   .destroy    = pool__destroy
 };
-void constructor Paws__register_Pool(void) { Paws.Threading.Pool = Pool; }
+void constructor register_Pool(void) { Paws.Threading.Pool = Pool; }
 
 
 /* ### Method Implementations ### */
