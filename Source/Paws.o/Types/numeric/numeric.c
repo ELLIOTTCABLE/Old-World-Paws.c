@@ -11,15 +11,15 @@
 
 /* ### Method Declarations ### */
 
-numeric   Numeric__create     (int native);
+numeric   Numeric__create   (int native);
 
-thing     numeric__to_thing   (numeric this);
-int       numeric__native     (numeric this);
+thing     numeric__thing    (numeric this);
+int       numeric__native   (numeric this);
 
 struct Numeric const Numeric = {
   .create     = Numeric__create,
   
-  .to_thing   = numeric__to_thing,
+  .thing   = numeric__thing,
   .native     = numeric__native
 };
 void constructor Paws__register_Numeric(void) { Paws.Numeric = Numeric; }
@@ -38,7 +38,7 @@ numeric Numeric__create(int native) {
   
   this->content = LL.create();
   LL.affix( this->content,
-    Element.create(List.to_thing( List.create_naughty() )) );
+    Element.create(List.thing( List.create_naughty() )) );
   
   this->native = native;
   
@@ -48,7 +48,7 @@ numeric Numeric__create(int native) {
 /* This method wraps a pointer to a `struct list` into a new `thing` union,
  * and returns that union.
  */
-thing numeric__to_thing(numeric this) {
+thing numeric__thing(numeric this) {
   thing location = malloc(sizeof(struct thing));
   struct thing wrapper = {
     .isa = NUMERIC,

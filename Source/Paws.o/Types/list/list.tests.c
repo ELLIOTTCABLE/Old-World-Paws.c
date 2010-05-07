@@ -29,11 +29,11 @@ CEST(List, create_naughty) {
   SUCCEED;
 }
 
-CEST(list, to_thing) {
+CEST(list, thing) {
   list  a_list = List.create();
   thing a_thing;
   
-  a_thing = List.to_thing(a_list);
+  a_thing = List.thing(a_list);
   ASSERT( a_thing->isa          == LIST   );
   ASSERT( a_thing->pointer.list == a_list );
   
@@ -42,10 +42,10 @@ CEST(list, to_thing) {
 
 CEST(list, insert) {
   list  a_list = List.create();
-  thing thing1 = List.to_thing(List.create()),
-        thing2 = List.to_thing(List.create()),
-        thing3 = List.to_thing(List.create()),
-        thing4 = List.to_thing(List.create());
+  thing thing1 = List.thing(List.create()),
+        thing2 = List.thing(List.create()),
+        thing3 = List.thing(List.create()),
+        thing4 = List.thing(List.create());
   
   /* This is a somewhat unusual situation… it shouldn’t often show up in
    * practice, but we’re going to remove the naughty, and reset the list to a
@@ -79,9 +79,9 @@ CEST(list, insert) {
 
 CEST(list, prefix) {
   list  a_list = List.create();
-  thing thing1 = List.to_thing(List.create()),
-        thing2 = List.to_thing(List.create()),
-        thing3 = List.to_thing(List.create());
+  thing thing1 = List.thing(List.create()),
+        thing2 = List.thing(List.create()),
+        thing3 = List.thing(List.create());
   
   /* This is a somewhat unusual situation… it shouldn’t often show up in
    * practice, but we’re going to remove the naughty, and reset the list to a
@@ -107,9 +107,9 @@ CEST(list, prefix) {
 
 CEST(list, affix) {
   list  a_list = List.create();
-  thing thing1 = List.to_thing(List.create()),
-        thing2 = List.to_thing(List.create()),
-        thing3 = List.to_thing(List.create());
+  thing thing1 = List.thing(List.create()),
+        thing2 = List.thing(List.create()),
+        thing3 = List.thing(List.create());
   
   /* This is a somewhat unusual situation… it shouldn’t often show up in
    * practice, but we’re going to remove the naughty, and reset the list to a
@@ -149,9 +149,9 @@ CEST(list, at) {
   ASSERT( List.at(a_list,  0) == NULL );
   
   thing thing1, thing2, thing3;
-  thing1 = List.to_thing(List.create()); List.affix(a_list, thing1);
-  thing2 = List.to_thing(List.create()); List.affix(a_list, thing2);
-  thing3 = List.to_thing(List.create()); List.affix(a_list, thing3);
+  thing1 = List.thing(List.create()); List.affix(a_list, thing1);
+  thing2 = List.thing(List.create()); List.affix(a_list, thing2);
+  thing3 = List.thing(List.create()); List.affix(a_list, thing3);
   
   /* Positive indicies */
   ASSERT( List.at(a_list,  0) == thing1 );

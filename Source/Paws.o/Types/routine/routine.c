@@ -13,13 +13,13 @@
 
 routine   Routine__create     (node scope);
 
-thing     routine__to_thing   (routine this);
+thing     routine__thing      (routine this);
 void      routine__execute    (routine this);
 
 struct Routine const Routine = {
   .create     = Routine__create,
   
-  .to_thing   = routine__to_thing
+  .thing   = routine__thing
 };
 void constructor Paws__register_Routine(void) { Paws.Routine = Routine; }
 
@@ -35,7 +35,7 @@ routine Routine__create(node scope) {
   
   this->content = LL.create();
   LL.affix( this->content,
-    Element.create(List.to_thing( List.create_naughty() )) );
+    Element.create(List.thing( List.create_naughty() )) );
   
   /* TODO: Check if `scope` is actually a `SCOPE` `node`. */
   this->scope = Node.duplicate(scope);
@@ -46,7 +46,7 @@ routine Routine__create(node scope) {
 /* This method wraps a pointer to a `struct list` into a new `thing` union,
  * and returns that union.
  */
-thing routine__to_thing(routine this) {
+thing routine__thing(routine this) {
   thing location = malloc(sizeof(struct thing));
   struct thing wrapper = {
     .isa = ROUTINE,

@@ -48,11 +48,11 @@ E(string_size)        bytes;
 
 struct E(String) {
   /* `String` functions */
-E(string)   (*create)     ( char native[], E(string_size) bytes );
+E(string)   (*create)   ( char native[], E(string_size) bytes );
   
   /* `struct numeric` methods */
-E(thing)    (*to_thing)   ( E(string) this );
-  char*     (*native)     ( E(string) this );
+E(thing)    (*thing)    ( E(string) this );
+  char*     (*native)   ( E(string) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(String) extern const String;

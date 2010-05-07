@@ -26,12 +26,12 @@ CEST(Routine, create) {
   SUCCEED;
 }
 
-CEST(routine, to_thing) {
+CEST(routine, thing) {
   node      a_scope = Node.create_scope();
   routine   a_routine = Routine.create(a_scope);
   thing     a_thing;
   
-  a_thing = Routine.to_thing(a_routine);
+  a_thing = Routine.thing(a_routine);
   ASSERT( a_thing->isa             == ROUTINE );
   ASSERT( a_thing->pointer.routine == a_routine );
   

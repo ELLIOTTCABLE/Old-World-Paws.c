@@ -34,11 +34,11 @@ E(list)     (*create)           ( void );
 E(list)     (*create_naughty)   ( void );
   
   /* `struct list` methods */
-E(thing)    (*to_thing)   ( E(list) this );
-  void      (*insert)     ( E(list) this, E(thing) child, E(ll_size) index );
-  void      (*prefix)     ( E(list) this, E(thing) child );
-  void      (*affix)      ( E(list) this, E(thing) child );
-E(thing)    (*at)         ( E(list) this,                 E(ll_size) index );
+E(thing)    (*thing)    ( E(list) this );
+  void      (*insert)   ( E(list) this, E(thing) child, E(ll_size) index );
+  void      (*prefix)   ( E(list) this, E(thing) child );
+  void      (*affix)    ( E(list) this, E(thing) child );
+E(thing)    (*at)       ( E(list) this,                 E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(List) extern const List;

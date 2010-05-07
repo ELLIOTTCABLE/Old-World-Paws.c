@@ -19,15 +19,15 @@
 
 /* ### Method Declarations ### */
 
-string  String__create      (char native[], string_size bytes);
+string  String__create    (char native[], string_size bytes);
 
-thing   string__to_thing    (string this);
-char*   string__native      (string this);
+thing   string__thing     (string this);
+char*   string__native    (string this);
 
 struct String const String = {
   .create     = String__create,
   
-  .to_thing   = string__to_thing,
+  .thing   = string__thing,
   .native     = string__native
 };
 void constructor Paws__register_String(void) { Paws.String = String; }
@@ -46,7 +46,7 @@ string String__create(char native[], string_size bytes) {
   
   this->content = LL.create();
   LL.affix( this->content,
-    Element.create(List.to_thing( List.create_naughty() )) );
+    Element.create(List.thing( List.create_naughty() )) );
   
   this->bytes = bytes;
   if (bytes <= sizeof(this->native.short_array)) {
@@ -65,7 +65,7 @@ string String__create(char native[], string_size bytes) {
 /* This method wraps a pointer to a `struct list` into a new `thing` union,
  * and returns that union.
  */
-thing string__to_thing(string this) {
+thing string__thing(string this) {
   thing location = malloc(sizeof(struct thing));
   struct thing wrapper = {
     .isa = STRING,

@@ -16,11 +16,11 @@ CEST(Numeric, create) {
   SUCCEED;
 }
 
-CEST(numeric, to_thing) {
+CEST(numeric, thing) {
   numeric   a_numeric = Numeric.create(42);
   thing     a_thing;
   
-  a_thing = Numeric.to_thing(a_numeric);
+  a_thing = Numeric.thing(a_numeric);
   ASSERT( a_thing->isa             == NUMERIC   );
   ASSERT( a_thing->pointer.numeric == a_numeric );
   

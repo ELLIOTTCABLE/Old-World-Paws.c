@@ -26,11 +26,11 @@ CEST(String, create) {
   SUCCEED;
 }
 
-CEST(string, to_thing) {
+CEST(string, thing) {
   string  a_string = String.create("", 1);
   thing   a_thing;
   
-  a_thing = String.to_thing(a_string);
+  a_thing = String.thing(a_string);
   ASSERT( a_thing->isa            == STRING   );
   ASSERT( a_thing->pointer.string == a_string );
   

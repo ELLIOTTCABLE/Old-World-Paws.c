@@ -49,16 +49,16 @@ int main(void) {
                  cable = Paws.String.create("Cable",    6);
   
   
-  Paws.List.affix(subchild, Paws.String.to_thing(elliott));
-  Paws.List.affix(subchild, Paws.String.to_thing(franklin));
-  Paws.List.affix(first_child, Paws.List.to_thing(subchild));
-  Paws.List.affix(first_child, Paws.String.to_thing(cable));
+  Paws.List.affix(subchild, Paws.String.thing(elliott));
+  Paws.List.affix(subchild, Paws.String.thing(franklin));
+  Paws.List.affix(first_child, Paws.List.thing(subchild));
+  Paws.List.affix(first_child, Paws.String.thing(cable));
   
-  Paws.List.affix(second_child, Paws.Numeric.to_thing(forty_two));
-  Paws.List.affix(second_child, Paws.Numeric.to_thing(three));
+  Paws.List.affix(second_child, Paws.Numeric.thing(forty_two));
+  Paws.List.affix(second_child, Paws.Numeric.thing(three));
   
-  Paws.List.affix(root_list, Paws.List.to_thing(first_child));
-  Paws.List.affix(root_list, Paws.List.to_thing(second_child));
+  Paws.List.affix(root_list, Paws.List.thing(first_child));
+  Paws.List.affix(root_list, Paws.List.thing(second_child));
   
   pretty_print_list(root_list);
   printf("\n");

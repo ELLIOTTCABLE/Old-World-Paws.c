@@ -15,17 +15,17 @@
 list    List__create            (void);
 list    List__create_naughty    (void);
 
-thing   list__to_thing          (list this);
-void    list__insert            (list this, thing child, ll_size index);
-void    list__prefix            (list this, thing child);
-void    list__affix             (list this, thing child);
-thing   list__at                (list this,              ll_size index);
+thing   list__thing     (list this);
+void    list__insert    (list this, thing child, ll_size index);
+void    list__prefix    (list this, thing child);
+void    list__affix     (list this, thing child);
+thing   list__at        (list this,              ll_size index);
 
 struct List const List = {
   .create           = List__create,
   .create_naughty   = List__create_naughty,
   
-  .to_thing         = list__to_thing,
+  .thing            = list__thing,
   .insert           = list__insert,
   .prefix           = list__prefix,
   .affix            = list__affix,
@@ -49,7 +49,7 @@ list _List__create(bool is_naughty) {
   this->content = LL.create();
   
   naughty = is_naughty? this:List.create_naughty();
-  LL.affix( this->content, Element.create(List.to_thing(naughty)) );
+  LL.affix( this->content, Element.create(List.thing(naughty)) );
   
   return this;
 }
@@ -57,7 +57,7 @@ list _List__create(bool is_naughty) {
 /* This method wraps a pointer to a `struct list` into a new `thing` union,
  * and returns that union.
  */
-thing list__to_thing(list this) {
+thing list__thing(list this) {
   thing location = malloc(sizeof(struct thing));
   struct thing wrapper = {
     .isa = LIST,

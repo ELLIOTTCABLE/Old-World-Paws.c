@@ -38,7 +38,7 @@ struct E(Routine) {
   E(routine)    (*create)     ( E(node) scope );
   
   /* `struct routine` methods */
-  E(thing)      (*to_thing)   ( E(routine) this );
+  E(thing)      (*thing)      ( E(routine) this );
   void          (*execute)    ( E(routine) this );
 };
 #if !defined(EXTERNALIZE)

@@ -36,7 +36,7 @@ struct E(Numeric) {
 E(numeric)    (*create)     ( int native );
   
   /* `struct numeric` methods */
-E(thing)      (*to_thing)   ( E(numeric) this );
+E(thing)      (*thing)   ( E(numeric) this );
   int         (*native)     ( E(numeric) this );
 };
 #if !defined(EXTERNALIZE)
