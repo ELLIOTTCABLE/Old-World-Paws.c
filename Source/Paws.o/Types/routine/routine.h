@@ -40,12 +40,6 @@ struct E(Routine) {
   /* `struct routine` methods */
   E(thing)      (*to_thing)   ( E(routine) this );
   void          (*execute)    ( E(routine) this );
-  
-  /* inherited `struct list` methods */
-  void          (*insert)     ( E(routine) this, E(thing) child, E(ll_size) index );
-  void          (*prefix)     ( E(routine) this, E(thing) child );
-  void          (*affix)      ( E(routine) this, E(thing) child );
-  E(thing)      (*at)         ( E(routine) this,                 E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(Routine) extern const Routine;

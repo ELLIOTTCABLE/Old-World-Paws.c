@@ -38,12 +38,6 @@ E(numeric)    (*create)     ( int native );
   /* `struct numeric` methods */
 E(thing)      (*to_thing)   ( E(numeric) this );
   int         (*native)     ( E(numeric) this );
-  
-  /* inherited `struct list` methods */
-  void        (*insert)     ( E(numeric) this, E(thing) child, E(ll_size) index );
-  void        (*prefix)     ( E(numeric) this, E(thing) child );
-  void        (*affix)      ( E(numeric) this, E(thing) child );
-E(thing)      (*at)         ( E(numeric) this,                 E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(Numeric) extern const Numeric;

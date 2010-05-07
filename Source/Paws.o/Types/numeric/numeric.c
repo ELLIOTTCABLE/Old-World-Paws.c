@@ -16,21 +16,11 @@ numeric   Numeric__create     (int native);
 thing     numeric__to_thing   (numeric this);
 int       numeric__native     (numeric this);
 
-void      numeric__insert     (numeric this, thing child, ll_size index);
-void      numeric__prefix     (numeric this, thing child);
-void      numeric__affix      (numeric this, thing child);
-thing     numeric__at         (numeric this,              ll_size index);
-
 struct Numeric const Numeric = {
   .create     = Numeric__create,
   
   .to_thing   = numeric__to_thing,
-  .native     = numeric__native,
-  
-  .insert     = numeric__insert,
-  .prefix     = numeric__prefix,
-  .affix      = numeric__affix,
-  .at         = numeric__at
+  .native     = numeric__native
 };
 void constructor Paws__register_Numeric(void) { Paws.Numeric = Numeric; }
 
@@ -74,12 +64,3 @@ thing numeric__to_thing(numeric this) {
 int numeric__native(numeric this) {
   return this->native;
 }
-
-void  numeric__insert(numeric this, thing child, ll_size index) {
-          List.insert(  (list)this,       child,         index); }
-void  numeric__prefix(numeric this, thing child) {
-          List.prefix(  (list)this,       child); }
-void  numeric__affix (numeric this, thing child) {
-          List.affix (  (list)this,       child); }
-thing numeric__at    (numeric this,              ll_size index) { return
-          List.at    (  (list)this,                      index); }

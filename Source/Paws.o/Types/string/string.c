@@ -24,21 +24,11 @@ string  String__create      (char native[], string_size bytes);
 thing   string__to_thing    (string this);
 char*   string__native      (string this);
 
-void    string__insert      (string this, thing child, ll_size index);
-void    string__prefix      (string this, thing child);
-void    string__affix       (string this, thing child);
-thing   string__at          (string this,              ll_size index);
-
 struct String const String = {
   .create     = String__create,
   
   .to_thing   = string__to_thing,
-  .native     = string__native,
-  
-  .insert     = string__insert,
-  .prefix     = string__prefix,
-  .affix      = string__affix,
-  .at         = string__at
+  .native     = string__native
 };
 void constructor Paws__register_String(void) { Paws.String = String; }
 
@@ -99,12 +89,3 @@ char* string__native(string this) {
   else
     return this->native.otherwise.long_array;
 }
-
-void  string__insert(string this, thing child, ll_size index) {
-         List.insert( (list)this,       child,         index); }
-void  string__prefix(string this, thing child) {
-         List.prefix( (list)this,       child); }
-void  string__affix (string this, thing child) {
-         List.affix ( (list)this,       child); }
-thing string__at    (string this,              ll_size index) { return
-         List.at    ( (list)this,                      index); }
