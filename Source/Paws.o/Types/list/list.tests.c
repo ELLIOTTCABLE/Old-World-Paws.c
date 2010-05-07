@@ -8,11 +8,11 @@ CEST(List, create) {
   a_list = List.create();
   ASSERT( a_list->content->length == 1 );
   
-  ASSERT( LL.at(a_list->content, 0)->thing->isa == LIST );
+  ASSERT( LL.at(a_list->content, 0)->thing.isa == LIST );
   
-  a_naughty = LL.at(a_list->content, 0)->thing->pointer.list;
-  ASSERT( LL.at(a_naughty->content, 0)->thing->isa == LIST );
-  ASSERT( LL.at(a_naughty->content, 0)->thing->pointer.list == a_naughty );
+  a_naughty = LL.at(a_list->content, 0)->thing.pointer.list;
+  ASSERT( LL.at(a_naughty->content, 0)->thing.isa == LIST );
+  ASSERT( LL.at(a_naughty->content, 0)->thing.pointer.list == a_naughty );
   
   SUCCEED;
 }
@@ -23,8 +23,8 @@ CEST(List, create_naughty) {
   a_naughty = List.create_naughty();
   ASSERT( a_naughty->content->length == 1 );
   
-  ASSERT( LL.at(a_naughty->content, 0)->thing->isa == LIST );
-  ASSERT( LL.at(a_naughty->content, 0)->thing->pointer.list == a_naughty );
+  ASSERT( LL.at(a_naughty->content, 0)->thing.isa == LIST );
+  ASSERT( LL.at(a_naughty->content, 0)->thing.pointer.list == a_naughty );
   
   SUCCEED;
 }
@@ -34,8 +34,8 @@ CEST(list, thing) {
   thing a_thing;
   
   a_thing = List.thing(a_list);
-  ASSERT( a_thing->isa          == LIST   );
-  ASSERT( a_thing->pointer.list == a_list );
+  ASSERT( a_thing.isa          == LIST   );
+  ASSERT( a_thing.pointer.list == a_list );
   
   SUCCEED;
 }
@@ -56,22 +56,22 @@ CEST(list, insert) {
   
   /* Insert into empty list */
   List.insert(a_list, thing2, 0);
-  ASSERT( List.at(a_list, 0) == thing2 );
+  ASSERT( List.at(a_list, 0).pointer.list == thing2.pointer.list );
   ASSERT( a_list->content->length == 1 );
   
   /* Insert onto the front of list */
   List.insert(a_list, thing1, 0);
-  ASSERT( List.at(a_list, 0) == thing1 );
+  ASSERT( List.at(a_list, 0).pointer.list == thing1.pointer.list );
   ASSERT( a_list->content->length == 2 );
   
   /* Insert onto the end of list */
   List.insert(a_list, thing4, 2);
-  ASSERT( List.at(a_list, 2) == thing4 );
+  ASSERT( List.at(a_list, 2).pointer.list == thing4.pointer.list );
   ASSERT( a_list->content->length == 3 );
   
   /* Insert into list */
   List.insert(a_list, thing3, 2);
-  ASSERT( List.at(a_list, 2) == thing3 );
+  ASSERT( List.at(a_list, 2).pointer.list == thing3.pointer.list );
   ASSERT( a_list->content->length == 4 );
   
   SUCCEED;
@@ -91,15 +91,15 @@ CEST(list, prefix) {
   a_list->content->length = 0;
   
   List.prefix(a_list, thing3);
-  ASSERT( List.at(a_list, 0) == thing3 );
+  ASSERT( List.at(a_list, 0).pointer.list == thing3.pointer.list );
   ASSERT( a_list->content->length == 1 );
   
   List.prefix(a_list, thing2);
-  ASSERT( List.at(a_list, 0) == thing2 );
+  ASSERT( List.at(a_list, 0).pointer.list == thing2.pointer.list );
   ASSERT( a_list->content->length == 2 );
   
   List.prefix(a_list, thing1);
-  ASSERT( List.at(a_list, 0) == thing1 );
+  ASSERT( List.at(a_list, 0).pointer.list == thing1.pointer.list );
   ASSERT( a_list->content->length == 3 );
   
   SUCCEED;
@@ -119,15 +119,15 @@ CEST(list, affix) {
   a_list->content->length = 0;
   
   List.affix(a_list, thing1);
-  ASSERT( List.at(a_list, 0) == thing1 );
+  ASSERT( List.at(a_list, 0).pointer.list == thing1.pointer.list );
   ASSERT( a_list->content->length == 1 );
   
   List.affix(a_list, thing2);
-  ASSERT( List.at(a_list, 1) == thing2 );
+  ASSERT( List.at(a_list, 1).pointer.list == thing2.pointer.list );
   ASSERT( a_list->content->length == 2 );
   
   List.affix(a_list, thing3);
-  ASSERT( List.at(a_list, 2) == thing3 );
+  ASSERT( List.at(a_list, 2).pointer.list == thing3.pointer.list );
   ASSERT( a_list->content->length == 3 );
   
   SUCCEED;
@@ -144,9 +144,14 @@ CEST(list, at) {
   a_list->content->length = 0;
   
   /* Empty `list`s */
-  ASSERT( List.at(a_list,  5) == NULL );
-  ASSERT( List.at(a_list,  1) == NULL );
-  ASSERT( List.at(a_list,  0) == NULL );
+  ASSERT( List.at(a_list,  5).pointer.nothing == NULL );
+  ASSERT( List.at(a_list,  5).isa             == NOTHING );
+  ASSERT( List.at(a_list,  4).pointer.nothing == NULL );
+  ASSERT( List.at(a_list,  4).isa             == NOTHING );
+  ASSERT( List.at(a_list,  1).pointer.nothing == NULL );
+  ASSERT( List.at(a_list,  1).isa             == NOTHING );
+  ASSERT( List.at(a_list,  0).pointer.nothing == NULL );
+  ASSERT( List.at(a_list,  0).isa             == NOTHING );
   
   thing thing1, thing2, thing3;
   thing1 = List.thing(List.create()); List.affix(a_list, thing1);
@@ -154,13 +159,15 @@ CEST(list, at) {
   thing3 = List.thing(List.create()); List.affix(a_list, thing3);
   
   /* Positive indicies */
-  ASSERT( List.at(a_list,  0) == thing1 );
-  ASSERT( List.at(a_list,  1) == thing2 );
-  ASSERT( List.at(a_list,  2) == thing3 );
+  ASSERT( List.at(a_list,  0).pointer.list == thing1.pointer.list );
+  ASSERT( List.at(a_list,  1).pointer.list == thing2.pointer.list );
+  ASSERT( List.at(a_list,  2).pointer.list == thing3.pointer.list );
   
   /* OOB indicies */
-  ASSERT( List.at(a_list,  5) == NULL );
-  ASSERT( List.at(a_list,  4) == NULL );
+  ASSERT( List.at(a_list,  5).pointer.nothing == NULL );
+  ASSERT( List.at(a_list,  5).isa             == NOTHING );
+  ASSERT( List.at(a_list,  4).pointer.nothing == NULL );
+  ASSERT( List.at(a_list,  4).isa             == NOTHING );
   
   SUCCEED;
 }

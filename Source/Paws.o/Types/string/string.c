@@ -66,15 +66,12 @@ string String__create(char native[], string_size bytes) {
  * and returns that union.
  */
 thing string__thing(string this) {
-  thing location = malloc(sizeof(struct thing));
-  struct thing wrapper = {
+  struct thing something = {
     .isa = STRING,
     .pointer = { .string = this }
   };
   
-  memcpy(location, &wrapper, sizeof(struct thing));
-  
-  return location;
+  return something;
 }
 
 /* This method returns a pointer to a C string of UTF-8 characters for a given

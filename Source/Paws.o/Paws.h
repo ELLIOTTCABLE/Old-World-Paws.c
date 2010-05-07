@@ -25,6 +25,9 @@
 #if !defined(CORE_H)
 # include "Paws.o/Core.h"
 #endif
+#if !defined(CORE_H)
+# include "Paws.o/Types/Types.h"
+#endif
 
 #if !defined(INTERNALIZE)
 # undef EXTERNALIZE
@@ -70,11 +73,15 @@
  * one of these, instead of a particular type’s struct.
  */
 struct Paws {
+  /* Namespaces */
   struct E(Threading)   Threading;
   
   struct E(List)        List;
   struct E(Routine)     Routine;
   struct E(Numeric)     Numeric;
   struct E(String)      String;
+  
+  /* `Paws` functions */
+  E(thing)              (*nothing)    ( void );
 };
 struct Paws extern Paws;

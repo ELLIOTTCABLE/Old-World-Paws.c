@@ -49,15 +49,12 @@ numeric Numeric__create(int native) {
  * and returns that union.
  */
 thing numeric__thing(numeric this) {
-  thing location = malloc(sizeof(struct thing));
-  struct thing wrapper = {
+  struct thing something = {
     .isa = NUMERIC,
     .pointer = { .numeric = this }
   };
   
-  memcpy(location, &wrapper, sizeof(struct thing));
-  
-  return location;
+  return something;
 }
 
 /* This method returns a native C `int` for a given `list`. */

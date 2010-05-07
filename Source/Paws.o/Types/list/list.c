@@ -58,15 +58,12 @@ list _List__create(bool is_naughty) {
  * and returns that union.
  */
 thing list__thing(list this) {
-  thing location = malloc(sizeof(struct thing));
-  struct thing wrapper = {
+  struct thing something = {
     .isa = LIST,
     .pointer = { .list = this }
   };
   
-  memcpy(location, &wrapper, sizeof(struct thing));
-  
-  return location;
+  return something;
 }
 
 void list__insert(list this, thing child, ll_size index) {
@@ -87,7 +84,7 @@ void list__affix(list this, thing child) {
 thing list__at(list this, ll_size index) {
   element element = LL.at(this->content, index);
   if (element == NULL)
-    return NULL;
+    return Paws.nothing();
   else
     return element->thing;
 }

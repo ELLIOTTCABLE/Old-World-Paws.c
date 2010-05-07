@@ -26,11 +26,12 @@ typedef struct E(string)* E(string);
 
 
         struct E(thing); /* A union representing any core Paws datatype */
-typedef struct E(thing)* E(thing);
+typedef struct E(thing) E(thing);
 
 struct E(thing) {
-  
   enum /* isa’s */ {
+    E(NOTHING),
+    
     E(LIST),
     E(ROUTINE),
     E(NUMERIC),
@@ -38,10 +39,11 @@ struct E(thing) {
   } const isa;
   
   union /* thing’s */ {
+    void       *nothing;
+    
     E(list)     list;
     E(routine)  routine;
     E(numeric)  numeric;
     E(string)   string;
   } const pointer;
-  
 };

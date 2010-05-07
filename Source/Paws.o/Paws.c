@@ -1,7 +1,11 @@
-#include "Paws.h"
+#define INTERNALIZE
+# include "Paws.h"
+#undef INTERNALIZE
 
 #include <stdlib.h>
 
+
+thing   Paws__nothing   (void);
 
 struct Paws Paws = {
   .Threading    = NULL,
@@ -9,5 +13,16 @@ struct Paws Paws = {
   .List         = NULL,
   .Routine      = NULL,
   .Numeric      = NULL,
-  .String       = NULL
+  .String       = NULL,
+  
+  .nothing    = Paws__nothing
 };
+
+thing Paws__nothing(void) {
+  struct thing nothing = {
+    .isa = NOTHING,
+    .pointer = { .nothing = NULL }
+  };
+  
+  return nothing;
+}

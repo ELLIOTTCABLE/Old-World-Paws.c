@@ -8,12 +8,9 @@
   _make_something()//;
 
 thing _make_something(void) {
-  thing location = malloc(sizeof(struct thing));
-  
   struct thing something = { .isa = LIST, .pointer = { .list = NULL } };
-  memcpy(location, &something, sizeof(struct thing));
   
-  return location;
+  return something;
 }
 
 CEST(LL, create) {

@@ -47,13 +47,10 @@ routine Routine__create(node scope) {
  * and returns that union.
  */
 thing routine__thing(routine this) {
-  thing location = malloc(sizeof(struct thing));
-  struct thing wrapper = {
+  struct thing something = {
     .isa = ROUTINE,
     .pointer = { .routine = this }
   };
   
-  memcpy(location, &wrapper, sizeof(struct thing));
-  
-  return location;
+  return something;
 }

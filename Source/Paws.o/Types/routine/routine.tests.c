@@ -15,9 +15,9 @@ CEST(Routine, create) {
   a_routine = Routine.create(a_scope);
   ASSERT( a_routine->content->length == 1 );
   
-  a_naughty = LL.at(a_routine->content, 0)->thing->pointer.list;
-  ASSERT( LL.at(a_routine->content, 0)->thing->isa == LIST );
-  ASSERT( LL.at(a_routine->content, 0)->thing->pointer.list == a_naughty );
+  a_naughty = LL.at(a_routine->content, 0)->thing.pointer.list;
+  ASSERT( LL.at(a_routine->content, 0)->thing.isa == LIST );
+  ASSERT( LL.at(a_routine->content, 0)->thing.pointer.list == a_naughty );
   
   ASSERT( a_routine->scope != a_scope );
   ASSERT( strcmp(Node.at(Node.at(a_routine->scope, 0), 0)->content, "foo") == 0 );
@@ -32,8 +32,8 @@ CEST(routine, thing) {
   thing     a_thing;
   
   a_thing = Routine.thing(a_routine);
-  ASSERT( a_thing->isa             == ROUTINE );
-  ASSERT( a_thing->pointer.routine == a_routine );
+  ASSERT( a_thing.isa             == ROUTINE );
+  ASSERT( a_thing.pointer.routine == a_routine );
   
   SUCCEED;
 }
