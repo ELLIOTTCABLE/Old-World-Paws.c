@@ -15,11 +15,11 @@
 list    List__create            (void);
 list    List__create_naughty    (void);
 
-thing   list__thing     (list this);
-void    list__insert    (list this, thing child, ll_size index);
-void    list__prefix    (list this, thing child);
-void    list__affix     (list this, thing child);
-thing   list__at        (list this,              ll_size index);
+thing   list__thing             (list this);
+void    list__insert            (list this, thing child, ll_size index);
+void    list__prefix            (list this, thing child);
+void    list__affix             (list this, thing child);
+thing   list__at                (list this,              ll_size index);
 
 struct List const List = {
   .create           = List__create,

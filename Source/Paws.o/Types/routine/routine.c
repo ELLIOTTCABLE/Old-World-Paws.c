@@ -17,9 +17,9 @@ thing     routine__thing      (routine this);
 void      routine__execute    (routine this);
 
 struct Routine const Routine = {
-  .create     = Routine__create,
+  .create   = Routine__create,
   
-  .thing   = routine__thing
+  .thing    = routine__thing
 };
 void constructor Paws__register_Routine(void) { Paws.Routine = Routine; }
 

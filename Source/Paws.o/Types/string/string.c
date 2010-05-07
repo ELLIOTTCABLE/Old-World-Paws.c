@@ -25,10 +25,10 @@ thing   string__thing     (string this);
 char*   string__native    (string this);
 
 struct String const String = {
-  .create     = String__create,
+  .create   = String__create,
   
-  .thing   = string__thing,
-  .native     = string__native
+  .thing    = string__thing,
+  .native   = string__native
 };
 void constructor Paws__register_String(void) { Paws.String = String; }
 

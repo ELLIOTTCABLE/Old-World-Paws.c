@@ -18,8 +18,8 @@
 
         struct E(ll); /* Our data storage system (a doubly-linked-list) */
         struct E(element); /* A single element of an `ll` */
-typedef struct E(ll)*       E(ll);
-typedef struct E(element)*  E(element);
+typedef struct E(ll)* E(ll);
+typedef struct E(element)* E(element);
 
 typedef   unsigned long long int    E(ll_size);
 
@@ -50,14 +50,14 @@ typedef   unsigned long long int    E(ll_size);
  *       `ll` datatype facilitates this.
  */
 struct E(ll) {
-E(element)    first; /* A pointer to the first `element` in this `ll` */
-E(element)    last; /* A pointer to the last `element` in this `ll` */
-E(ll_size)    length; /* The total number of `element`s in this `ll` */
+  E(element)    first; /* A pointer to the first `element` in this `ll` */
+  E(element)    last; /* A pointer to the last `element` in this `ll` */
+  E(ll_size)    length; /* The total number of `element`s in this `ll` */
 };
 struct E(element) {
-E(thing)      thing; /* The `thing` stored at this location in the `ll` */
-E(element)    next; /* A pointer to the next `element` in the `ll` */
-E(element)    previous; /* A pointer to the previous `element` in the `ll` */
+  E(thing)      thing; /* The `thing` stored at this location in the `ll` */
+  E(element)    next; /* A pointer to the next `element` in the `ll` */
+  E(element)    previous; /* A pointer to the previous `element` in the `ll` */
 };
 
 
@@ -65,14 +65,14 @@ E(element)    previous; /* A pointer to the previous `element` in the `ll` */
 
 struct E(LL) {
   /* `LL` functions */
-E(ll)         (*create)             ( void );
+  E(ll)         (*create)             ( void );
   
   /* `struct ll` methods */
-  void        (*anterior_insert)    ( E(ll) this, E(element) child, E(ll_size) index );
-  void        (*posterior_insert)   ( E(ll) this, E(element) child, E(ll_size) index );
-  void        (*prefix)             ( E(ll) this, E(element) child );
-  void        (*affix)              ( E(ll) this, E(element) child );
-E(element)    (*at)                 ( E(ll) this,                   E(ll_size) index );
+  void          (*anterior_insert)    ( E(ll) this, E(element) child, E(ll_size) index );
+  void          (*posterior_insert)   ( E(ll) this, E(element) child, E(ll_size) index );
+  void          (*prefix)             ( E(ll) this, E(element) child );
+  void          (*affix)              ( E(ll) this, E(element) child );
+  E(element)    (*at)                 ( E(ll) this,                   E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
   struct E(LL) extern const LL;
@@ -80,11 +80,11 @@ E(element)    (*at)                 ( E(ll) this,                   E(ll_size) i
 
 struct E(Element) {
   /* `Element` functions */
-E(element)    (*create)   ( E(thing) thing );
+  E(element)    (*create)   ( E(thing) thing );
   
   /* `struct element` methods */
-  void        (*prefix)   ( E(element) this, E(element) other );
-  void        (*affix)    ( E(element) this, E(element) other );
+  void          (*prefix)   ( E(element) this, E(element) other );
+  void          (*affix)    ( E(element) this, E(element) other );
 };
 #if !defined(EXTERNALIZE)
   struct E(Element) extern const Element;

@@ -15,7 +15,6 @@
  * `EXTERNALIZE` will be set, thus causing `E()` to, well, make names safe for
  * externalization. */
 #if defined(EXTERNALIZE)
-      /* Heh. Heheh. */
 # define E(NAME) \
     Paws__ ## NAME
 #else

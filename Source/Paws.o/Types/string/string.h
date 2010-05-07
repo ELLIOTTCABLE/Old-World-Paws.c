@@ -24,7 +24,7 @@ typedef   unsigned long long int    E(string_size);
  * Paws, is herein implemented natively with UTF-8 byte strings.
  */
 struct E(string) {
-E(ll)                 content; /* The `ll` behind this `string`’s `list` interface */
+  E(ll)                 content; /* The `ll` behind this `string`’s `list` interface */
   
   /* This complex nested structure provides a very efficient storage for very
    * short byte strings (anything less than (usually) sixteen bytes, including
@@ -35,12 +35,12 @@ E(ll)                 content; /* The `ll` behind this `string`’s `list` inter
    * equivalent space instead. */
   union {
     struct packed {
-      char*           long_array;
-    E(string_size)    available;
-    }                 otherwise;
-    char              short_array[sizeof(char*) + sizeof(E(string_size))];
-  }                   native;
-E(string_size)        bytes;
+      char*             long_array;
+      E(string_size)    available;
+    }                   otherwise;
+    char                short_array[sizeof(char*) + sizeof(E(string_size))];
+  }                     native;
+  E(string_size)        bytes;
 };
 
 
@@ -48,11 +48,11 @@ E(string_size)        bytes;
 
 struct E(String) {
   /* `String` functions */
-E(string)   (*create)   ( char native[], E(string_size) bytes );
+  E(string)   (*create)   ( char native[], E(string_size) bytes );
   
   /* `struct numeric` methods */
-E(thing)    (*thing)    ( E(string) this );
-  char*     (*native)   ( E(string) this );
+  E(thing)    (*thing)    ( E(string) this );
+  char*       (*native)   ( E(string) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(String) extern const String;

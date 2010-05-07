@@ -23,9 +23,10 @@
  * floating-point arithmetic.
  */
 struct E(numeric) {
-E(ll)   content; /* The `ll` behind this `numeric`’s `list` interface */
+  E(ll)   content; /* The `ll` behind this `numeric`’s `list` interface */
+  
   /* TODO: Support floating-point values. */
-  int   native;
+  int     native;
 };
 
 
@@ -33,11 +34,11 @@ E(ll)   content; /* The `ll` behind this `numeric`’s `list` interface */
 
 struct E(Numeric) {
   /* `Numeric` functions */
-E(numeric)    (*create)     ( int native );
+  E(numeric)    (*create)     ( int native );
   
   /* `struct numeric` methods */
-E(thing)      (*thing)   ( E(numeric) this );
-  int         (*native)     ( E(numeric) this );
+  E(thing)      (*thing)      ( E(numeric) this );
+  int           (*native)     ( E(numeric) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(Numeric) extern const Numeric;
