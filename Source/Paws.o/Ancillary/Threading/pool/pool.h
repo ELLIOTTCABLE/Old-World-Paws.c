@@ -13,8 +13,8 @@
 
 /* ### Data Types & Structures ### */
 
-        struct E(pool); /* Our threading implementation’s queue pool. */
-typedef struct E(pool)* E(pool);
+          struct E(pool); /* Our threading implementation’s queue pool. */
+typedef   struct E(pool)*   E(pool);
 
 typedef   unsigned long long int    E(pool_size); /* The maximum number of routine pointers in a pool */
 

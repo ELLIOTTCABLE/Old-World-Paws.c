@@ -29,11 +29,12 @@ struct E(thread) {
 
 struct E(Thread) {
   /* `Thread` functions */
-  E(thread)   (*create)     ( E(pool) a_pool );
+  E(thread)   (*create)       ( E(pool) a_pool );
+  void        (*initialize)   ( void *argument ); /* Actually takes a `thread` */
   
   /* `struct thread` methods */
-  void        (*work)       ( E(thread) this );
-  void        (*destroy)    ( E(thread) this );
+  void        (*work)         ( E(thread) this );
+  void        (*destroy)      ( E(thread) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(Thread) extern const Thread;

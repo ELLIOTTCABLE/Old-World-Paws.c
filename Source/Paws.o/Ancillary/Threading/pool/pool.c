@@ -11,7 +11,7 @@
 
 /* ### Method Declarations ### */
 
-pool      Pool__create    (void);
+pool      Pool__create      (void);
 
 void      pool__enqueue     (pool this, routine a_routine);
 routine   pool__drip        (pool this);

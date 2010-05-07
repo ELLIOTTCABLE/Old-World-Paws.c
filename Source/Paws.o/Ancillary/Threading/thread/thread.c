@@ -11,17 +11,18 @@
 
 /* ### Method Declarations ### */
 
-thread    Thread__create      (pool a_pool);
-void      register_a_thread   (void *argument);
+thread    Thread__create        (pool a_pool);
+void      Thread__initialize    (void *argument);
 
-void      thread__work        (thread this);
-void      thread__destroy     (thread this);
+void      thread__work          (thread this);
+void      thread__destroy       (thread this);
 
 struct Thread const Thread = {
-  .create     = Thread__create,
+  .create       = Thread__create,
+  .initialize   = Thread__initialize,
   
-  .work       = thread__work,
-  .destroy    = thread__destroy
+  .work         = thread__work,
+  .destroy      = thread__destroy
 };
 void constructor Paws__register_Thread(void) { Paws.Threading.Thread = Thread; }
 
@@ -34,12 +35,12 @@ thread Thread__create(pool a_pool) {
   
   this->pool = a_pool;
   pthread_create(&this->pthread,
-    NULL, (void *(*)(void *))register_a_thread, (void *)this);
+    NULL, (void *(*)(void *))Thread.initialize, (void *)this);
   
   return this;
 }
 
-void register_a_thread(void *argument) {
+void Thread__initialize(void *argument) {
   thread this = (thread)argument;
   
   this->initialized = true;
