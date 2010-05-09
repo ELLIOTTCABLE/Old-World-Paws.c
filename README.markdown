@@ -7,8 +7,13 @@ Using
 Can’t really be arsed learning `make` right now, not to mention it seems like
 a bit of a clusterfuck of a tool, so… these:
 
+    # This is just a shortcut. You can use `gcc` instead of `clang` here; it
+    # takes the same command-line arguments. (Mind you, I’m not sure if Paws
+    # compiles under `gcc` right now…)
+    C() { eval local last="\$$#"; last=${last##*/}; clang -o "${last%.*}.o" "$@" }
+    
     # to compile `Paws.o`
-    clang -O0 -std=c99 -pedantic-errors -Wall -ISource \
+    C -O0 -std=c99 -pedantic-errors -Wall -ISource \
       Source/Paws.o/Paws.c \
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/pool/pool.c \
@@ -19,12 +24,9 @@ a bit of a clusterfuck of a tool, so… these:
       Source/Paws.o/Types/routine/routine.c \
       Source/Paws.o/Types/numeric/numeric.c \
       Source/Paws.o/Types/string/string.c \
-      Source/Paws.o/Paws.o.c \
-      -o Paws.o && \
+      Source/Paws.o/Paws.o.c && \
     ./Paws.o
     
-    
-    C() { eval local last="\$$#"; last=${last##*/}; clang -o "${last%.*}.o" "$@" }
     
     # to compile `pop`
     C -O0 -std=c99 -pedantic-errors -Wall -ISource \
