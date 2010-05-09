@@ -39,21 +39,6 @@ a bit of a clusterfuck of a tool, so… these:
     gdb -q -se ./pop.o
     # use `run something.paws`
     
-    # `something.c`, an old random example
-    C -O0 -std=c99 -pedantic-errors -Wall -ISource \
-      Source/Paws.o/Paws.c \
-      Source/Paws.o/Ancillary/Threading/Threading.c \
-      Source/Paws.o/Ancillary/Threading/pool/pool.c \
-      Source/Paws.o/Ancillary/Threading/thread/thread.c \
-      Source/Paws.o/Types/list/ll.c \
-      Source/Paws.o/Types/list/list.c \
-      Source/Paws.o/Types/routine/ast.c \
-      Source/Paws.o/Types/routine/routine.c \
-      Source/Paws.o/Types/numeric/numeric.c \
-      Source/Paws.o/Types/string/string.c \
-      Source/something.c && \
-    ./something.o
-    
     
     # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
