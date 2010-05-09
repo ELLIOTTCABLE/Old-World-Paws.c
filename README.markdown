@@ -2,6 +2,12 @@ Paws.o
 ======
 It’s Paws, in ISO/IEC 9899:1999. That’s C99, for people too lazy to google it.
 
+### Status
+- Only compiles under clang on OS X
+- cPaws Parser not written, cannot run source files
+- Threading implementation partial, and routine interpreter under heavy
+  development
+
 Using
 -----
 Can’t really be arsed learning `make` right now, not to mention it seems like
