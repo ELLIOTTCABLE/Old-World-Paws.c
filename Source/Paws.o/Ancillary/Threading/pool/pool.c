@@ -17,14 +17,22 @@ void      pool__enqueue     (pool this, routine a_routine);
 routine   pool__drip        (pool this);
 void      pool__destroy     (pool this);
 
-struct Pool const Pool = {
-  .create     = Pool__create,
+                          struct Pool // »
+                                *Pool   = NULL;
+void Paws__register_Pool(void) { Pool   = malloc(sizeof(struct Pool));
+                Paws->Threading->Pool   = Pool;
   
-  .enqueue    = pool__enqueue,
-  .drip       = pool__drip,
-  .destroy    = pool__destroy
-};
-void constructor register_Pool(void) { Paws.Threading.Pool = Pool; }
+  struct Pool // »
+  data = {
+    .create     = Pool__create,
+    
+    .enqueue    = pool__enqueue,
+    .drip       = pool__drip,
+    .destroy    = pool__destroy
+  };
+  
+  memcpy(Pool, &data, sizeof(struct Pool));
+}
 
 
 /* ### Method Implementations ### */

@@ -2,6 +2,7 @@
 
 #include "Paws.o/Paws.h"
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 
@@ -17,14 +18,22 @@ void      Thread__initialize    (void *argument);
 void      thread__work          (thread this);
 void      thread__destroy       (thread this);
 
-struct Thread const Thread = {
-  .create       = Thread__create,
-  .initialize   = Thread__initialize,
+                            struct Thread // »
+                                  *Thread   = NULL;
+void Paws__register_Thread(void) { Thread   = malloc(sizeof(struct Thread));
+                  Paws->Threading->Thread   = Thread;
   
-  .work         = thread__work,
-  .destroy      = thread__destroy
-};
-void constructor register_Thread(void) { Paws.Threading.Thread = Thread; }
+  struct Thread // »
+  data = {
+    .create       = Thread__create,
+    .initialize   = Thread__initialize,
+    
+    .work         = thread__work,
+    .destroy      = thread__destroy
+  };
+  
+  memcpy(Thread, &data, sizeof(struct Thread));
+}
 
 
 /* ### Method Implementations ### */
@@ -35,7 +44,7 @@ thread Thread__create(pool a_pool) {
   
   this->pool = a_pool;
   pthread_create(&this->pthread,
-    NULL, (void *(*)(void *))Thread.initialize, (void *)this);
+    NULL, (void *(*)(void *))Thread->initialize, (void *)this);
   
   return this;
 }
@@ -44,10 +53,10 @@ void Thread__initialize(void *argument) {
   thread this = (thread)argument;
   
   this->initialized = true;
-  Thread.work(this);
-  Thread.destroy(this);
+  Thread->work(this);
+  Thread->destroy(this);
   
-  //return; /* This can never return; `Thread.destroy()` calls `pthread_exit()`. */
+  //return; /* This can never return; `Thread->destroy()` calls `pthread_exit()`. */
 }
 
 void thread__work(thread this) {
@@ -68,7 +77,7 @@ void thread__work(thread this) {
      * actually routines to process (if not, it falls through to waiting
      * again) */
     while (this->initialized && this->pool->size > 0)
-      Routine.execute( Pool.drip(this->pool) );
+      Routine->execute( Pool->drip(this->pool) );
   }
   
   /* Usually, this is called from `register_a_thread()`, so it’s quite likely

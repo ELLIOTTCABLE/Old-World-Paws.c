@@ -37,5 +37,7 @@ struct E(Thread) {
   void        (*destroy)      ( E(thread) this );
 };
 #if !defined(EXTERNALIZE)
-  struct E(Thread) extern const Thread;
+  struct E(Thread) extern *Thread;
 #endif
+
+void    Paws__register_Thread   ( void );

@@ -66,7 +66,7 @@ int Cest__run_all(void) {
     if (return_value) { succeeded++; }
     if (return_value - 1) { pending++; }
     
-    printf("%s.%s%s%s()\n", current->namespace,
+    printf("%s->%s%s%s()\n", current->namespace,
       return_value ? (return_value - 1 ? ANSIEscapes.yellow : ANSIEscapes.green) : ANSIEscapes.red,
       current->name, ANSIEscapes.reset);
   }

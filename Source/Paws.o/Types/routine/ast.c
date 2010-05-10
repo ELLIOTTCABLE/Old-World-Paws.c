@@ -1,8 +1,8 @@
 #include "ast.h"
 
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
+#include <stdbool.h>
 
 /* A safer `strcpy()`, using `strncpy()` and `sizeof()` */
 #define STRCPY(TO, FROM, BYTES) \
@@ -14,6 +14,16 @@
 ====== */
 
 /* ### Method Declarations ### */
+
+                         struct AST // »
+                               *AST   = NULL;
+void Paws__register_AST(void) { AST   = malloc(sizeof(struct AST));
+  
+  struct AST // »
+  data = { .nothing = NULL };
+  
+  memcpy(AST, &data, sizeof(struct AST));
+}
 
 node    Node__create              (enum node_type type);
 node    Node__create_scope        (void);
@@ -28,20 +38,28 @@ char*   node__native              (node this);
 node    node__duplicate           (node this);
 node    node__instantiate         (node this);
 
-struct Node const Node = {
-  .create               = Node__create,
-  .create_scope         = Node__create_scope,
-  .create_expression    = Node__create_expression,
-  .create_word          = Node__create_word,
+                          struct Node // »
+                                *Node   = NULL;
+void Paws__register_Node(void) { Node   = malloc(sizeof(struct Node));
   
-  .insert               = node__insert,
-  .prefix               = node__prefix,
-  .affix                = node__affix,
-  .at                   = node__at,
-  .native               = node__native,
-  .duplicate            = node__duplicate,
-  .instantiate          = node__instantiate
-};
+  struct Node // »
+  data = {
+    .create               = Node__create,
+    .create_scope         = Node__create_scope,
+    .create_expression    = Node__create_expression,
+    .create_word          = Node__create_word,
+    
+    .insert               = node__insert,
+    .prefix               = node__prefix,
+    .affix                = node__affix,
+    .at                   = node__at,
+    .native               = node__native,
+    .duplicate            = node__duplicate,
+    .instantiate          = node__instantiate
+  };
+  
+  memcpy(Node, &data, sizeof(struct Node));
+}
 
 
 /* ### Method Implementations ### */
@@ -70,14 +88,14 @@ node Node__create(enum node_type type) {
 
 /* This method initializes a new `node` with `.type` set to `SCOPE`. */
 node Node__create_scope(void) {
-  node this = Node.create(SCOPE);
+  node this = Node->create(SCOPE);
   
   return this;
 }
 
 /* This method initializes a new `node` with `.type` set to `EXPRESSION`. */
 node Node__create_expression(void) {
-  node this = Node.create(EXPRESSION);
+  node this = Node->create(EXPRESSION);
   
   return this;
 }
@@ -85,7 +103,7 @@ node Node__create_expression(void) {
 /* This method initializes a new `node` with `.type` set to `WORD`, and then
  * initializes the `.content` to an empty cstring. */
 node Node__create_word(char *content, node_size bytes) {
-  node this = Node.create(WORD);
+  node this = Node->create(WORD);
   
   char *copy = malloc(bytes);
   STRCPY(copy, content, bytes);
@@ -100,7 +118,7 @@ void node__insert(node this, node child, node_size index) {
   /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
      TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`.
      TODO: Flip a nut if `size` is smaller than `index`.
-     TODO: Merge `Node.prefix()` and `Node.affix()` into this. */
+     TODO: Merge `Node->prefix()` and `Node->affix()` into this. */
   
   node *children = malloc(sizeof(node) * this->size + 1);
   
@@ -157,11 +175,11 @@ node _node__duplicate(node this, bool set_archetype) {
   node new;
   
   if (this->type == WORD)
-    new = Node.create_word(this->content, this->size);
+    new = Node->create_word(this->content, this->size);
   else {
-    /* FIXME: If we use `Node.create_word()` here, we should use
-              `Node.create_scope()` and `Node.create_expression()` as well. */
-    new = Node.create(this->type);
+    /* FIXME: If we use `Node->create_word()` here, we should use
+              `Node->create_scope()` and `Node->create_expression()` as well. */
+    new = Node->create(this->type);
     node *children = malloc(sizeof(node) * this->size);
     for (node_size i = 0; i < this->size; ++i)
       children[i] = _node__duplicate(((node *)this->content)[i], set_archetype);

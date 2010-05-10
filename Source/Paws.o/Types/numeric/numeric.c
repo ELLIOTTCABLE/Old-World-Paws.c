@@ -16,13 +16,21 @@ numeric   Numeric__create   (int native);
 thing     numeric__thing    (numeric this);
 int       numeric__native   (numeric this);
 
-struct Numeric const Numeric = {
-  .create     = Numeric__create,
+                             struct Numeric // »
+                                   *Numeric   = NULL;
+void Paws__register_Numeric(void) { Numeric   = malloc(sizeof(struct Numeric));
+                              Paws->Numeric   = Numeric;
   
-  .thing   = numeric__thing,
-  .native     = numeric__native
-};
-void constructor register_Numeric(void) { Paws.Numeric = Numeric; }
+  struct Numeric // »
+  data = {
+    .create   = Numeric__create,
+      
+    .thing    = numeric__thing,
+    .native   = numeric__native
+  };
+  
+  memcpy(Numeric, &data, sizeof(struct Numeric));
+}
 
 
 /* ### Method Implementations ### */
@@ -36,9 +44,9 @@ void constructor register_Numeric(void) { Paws.Numeric = Numeric; }
 numeric Numeric__create(int native) {
   numeric this = malloc(sizeof(struct numeric));
   
-  this->content = LL.create();
-  LL.affix( this->content,
-    Element.create(List.thing( List.create_naughty() )) );
+  this->content = LL->create();
+  LL->affix( this->content,
+    Element->create(List->thing( List->create_naughty() )) );
   
   this->native = native;
   

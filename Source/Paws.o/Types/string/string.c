@@ -24,13 +24,21 @@ string  String__create    (char native[], string_size bytes);
 thing   string__thing     (string this);
 char*   string__native    (string this);
 
-struct String const String = {
-  .create   = String__create,
+                            struct String // »
+                                  *String   = NULL;
+void Paws__register_String(void) { String   = malloc(sizeof(struct String));
+                             Paws->String   = String;
   
-  .thing    = string__thing,
-  .native   = string__native
-};
-void constructor register_String(void) { Paws.String = String; }
+  struct String // »
+  data = {
+    .create   = String__create,
+    
+    .thing    = string__thing,
+    .native   = string__native
+  };
+  
+  memcpy(String, &data, sizeof(struct String));
+}
 
 
 /* ### Method Implementations ### */
@@ -44,9 +52,9 @@ void constructor register_String(void) { Paws.String = String; }
 string String__create(char native[], string_size bytes) {
   string this = malloc(sizeof(struct string));
   
-  this->content = LL.create();
-  LL.affix( this->content,
-    Element.create(List.thing( List.create_naughty() )) );
+  this->content = LL->create();
+  LL->affix( this->content,
+    Element->create(List->thing( List->create_naughty() )) );
   
   this->bytes = bytes;
   if (bytes <= sizeof(this->native.short_array)) {

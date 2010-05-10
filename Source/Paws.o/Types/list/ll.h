@@ -75,7 +75,7 @@ struct E(LL) {
   E(element)    (*at)                 ( E(ll) this,                   E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
-  struct E(LL) extern const LL;
+  struct E(LL) extern *LL;
 #endif
 
 struct E(Element) {
@@ -87,5 +87,8 @@ struct E(Element) {
   void          (*affix)    ( E(element) this, E(element) other );
 };
 #if !defined(EXTERNALIZE)
-  struct E(Element) extern const Element;
+  struct E(Element) extern *Element;
 #endif
+
+void    Paws__register_LL         ( void );
+void    Paws__register_Element    ( void );

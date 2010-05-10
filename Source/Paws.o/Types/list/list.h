@@ -41,5 +41,7 @@ struct E(List) {
   E(thing)    (*at)               ( E(list) this,                 E(ll_size) index );
 };
 #if !defined(EXTERNALIZE)
-  struct E(List) extern const List;
+  struct E(List) extern *List;
 #endif
+
+void    Paws__register_List   ( void );

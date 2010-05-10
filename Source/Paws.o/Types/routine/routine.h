@@ -42,5 +42,7 @@ struct E(Routine) {
   void          (*execute)    ( E(routine) this );
 };
 #if !defined(EXTERNALIZE)
-  struct E(Routine) extern const Routine;
+  struct E(Routine) extern *Routine;
 #endif
+
+void    Paws__register_Routine    ( void );

@@ -41,5 +41,7 @@ struct E(Numeric) {
   int           (*native)     ( E(numeric) this );
 };
 #if !defined(EXTERNALIZE)
-  struct E(Numeric) extern const Numeric;
+  struct E(Numeric) extern *Numeric;
 #endif
+
+void    Paws__register_Numeric    ( void );

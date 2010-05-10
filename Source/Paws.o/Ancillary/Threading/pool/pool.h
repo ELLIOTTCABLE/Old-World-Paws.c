@@ -39,5 +39,7 @@ struct E(Pool) {
   void          (*destroy)    ( E(pool) this );
 };
 #if !defined(EXTERNALIZE)
-  struct E(Pool) extern const Pool;
+  struct E(Pool) extern *Pool;
 #endif
+
+void    Paws__register_Pool   ( void );

@@ -1,11 +1,13 @@
 #include "ll.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 
 /* =====
 = `ll` =
 ===== */
+struct Element *Element; // FIXME: Do we need this?
 
 /* ### Method Declarations ### */
 
@@ -17,16 +19,23 @@ void      ll__prefix              (ll this, element child);
 void      ll__affix               (ll this, element child);
 element   ll__at                  (ll this,                ll_size index);
 
-struct Element const Element;
-struct LL const LL = {
-  .create             = LL__create,
+                        struct LL // »
+                              *LL   = NULL;
+void Paws__register_LL(void) { LL   = malloc(sizeof(struct LL));
   
-  .anterior_insert    = ll__anterior_insert,
-  .posterior_insert   = ll__posterior_insert,
-  .prefix             = ll__prefix,
-  .affix              = ll__affix,
-  .at                 = ll__at
-};
+  struct LL // »
+  data = {
+    .create             = LL__create,
+    
+    .anterior_insert    = ll__anterior_insert,
+    .posterior_insert   = ll__posterior_insert,
+    .prefix             = ll__prefix,
+    .affix              = ll__affix,
+    .at                 = ll__at
+  };
+  
+  memcpy(LL, &data, sizeof(struct LL));
+}
 
 
 /* ### Method Implementations ### */
@@ -48,7 +57,7 @@ void ll__anterior_insert(ll this, element child, ll_size index) {
   if (index == 0)
     /* TODO: Error condition, cannot anterior-insert at first position */;
   else {
-    Element.affix(LL.at(this, index - 1), child);
+    Element->affix(LL->at(this, index - 1), child);
     this->length++;
   }
 }
@@ -57,7 +66,7 @@ void ll__posterior_insert(ll this, element child, ll_size index) {
   if (index == this->length)
     /* TODO: Error condition, cannot posterior-insert at last position */;
   else {
-    Element.prefix(LL.at(this, index), child);
+    Element->prefix(LL->at(this, index), child);
     this->length++;
   }
 }
@@ -72,7 +81,7 @@ void ll__prefix(ll this, element child) {
   if (this->length < 1)
     this->last = child;
   else
-    Element.prefix( this->first, child );
+    Element->prefix( this->first, child );
   this->first = child;
   this->length++;
 }
@@ -87,7 +96,7 @@ void ll__affix(ll this, element child) {
   if (this->length < 1)
     this->first = child;
   else
-    Element.affix( this->last, child );
+    Element->affix( this->last, child );
   this->last = child;
   this->length++;
 }
@@ -126,12 +135,20 @@ element   Element__create   (thing thing);
 void      element__prefix   (element this, element other);
 void      element__affix    (element this, element other);
 
-struct Element const Element = {
-  .create   = Element__create,
+                             struct Element // »
+                                   *Element   = NULL;
+void Paws__register_Element(void) { Element   = malloc(sizeof(struct Element));
   
-  .prefix   = element__prefix,
-  .affix    = element__affix
-};
+  struct Element // »
+  data = {
+    .create   = Element__create,
+
+    .prefix   = element__prefix,
+    .affix    = element__affix
+  };
+  
+  memcpy(Element, &data, sizeof(struct Element));
+}
 
 
 /* ### Method Implementations ### */
@@ -160,7 +177,7 @@ element Element__create(thing thing) {
  * element will be affixed to our new element, thus keeping the chain intact
  * if possible.
  * 
- * Note: See the notes on `Element.affix()`.
+ * Note: See the notes on `Element->affix()`.
  */
 void element__prefix(element this, element other) {
   if (this->previous != NULL) {

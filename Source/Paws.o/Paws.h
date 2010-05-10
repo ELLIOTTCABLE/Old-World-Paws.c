@@ -34,15 +34,6 @@
 #endif
 
 
-// It seems this is broken, at least in `clang`
-// #if __has_feature(attribute_constructor)
-# define constructor __attribute__((constructor))
-// #endif
-// #if __has_feature(attribute_packed)
-# define packed      __attribute__((packed))
-// #endif
-
-
 /* Generally speaking, we provide *three* things for every core datatype:
  * 
  * - A `struct`, which stores the data relevant to that datatype. These can be
@@ -54,14 +45,14 @@
  * - A `const struct` of the same name, capitalized, containing function
  *   pointers and important values (constants) relevant to that datatype:
  *   
- *       a_list = List.create();
+ *       a_list = List->create();
  *   
  * - A `typedef`’d type (also of the same name), as a *reference* (pointer) to
  *   items of the original datatype `struct`. This is what most of the core
  *   API methods return:
  *   
  *       list   a_list;
- *       a_list = List.create();
+ *       a_list = List->create();
  *   
  * It’s important to remember that `list` is a pointer to something, while
  * `struct list` is that thing itself.
@@ -74,14 +65,17 @@
  */
 struct Paws {
   /* Namespaces */
-  struct E(Threading)   Threading;
+  struct E(Threading)  *Threading;
   
-  struct E(List)        List;
-  struct E(Routine)     Routine;
-  struct E(Numeric)     Numeric;
-  struct E(String)      String;
+  struct E(List)       *List;
+  struct E(Routine)    *Routine;
+  struct E(Numeric)    *Numeric;
+  struct E(String)     *String;
   
   /* `Paws` functions */
   E(thing)              (*nothing)    ( void );
 };
-struct Paws extern Paws;
+struct Paws extern *Paws;
+
+void           prepare_Paws   ( void );
+void    Paws__register_Paws   ( void );

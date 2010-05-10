@@ -55,5 +55,7 @@ struct E(String) {
   char*       (*native)   ( E(string) this );
 };
 #if !defined(EXTERNALIZE)
-  struct E(String) extern const String;
+  struct E(String) extern *String;
 #endif
+
+void    Paws__register_String   ( void );

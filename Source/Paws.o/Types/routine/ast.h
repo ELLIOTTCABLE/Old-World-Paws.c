@@ -46,7 +46,7 @@ struct E(node) {
 /* This name is reserved, but unused */
 struct E(AST) { void (*nothing)(void); };
 #if !defined(EXTERNALIZE)
-  struct E(AST) extern const AST;
+  struct E(AST) extern *AST;
 #endif
 
 struct E(Node) {
@@ -66,5 +66,8 @@ struct E(Node) {
   E(node)   (*instantiate)          ( E(node) this );
 };
 #if !defined(EXTERNALIZE)
-  struct E(Node) extern const Node;
+  struct E(Node) extern *Node;
 #endif
+
+void    Paws__register_AST    ( void );
+void    Paws__register_Node   ( void );

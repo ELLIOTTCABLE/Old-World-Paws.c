@@ -16,12 +16,23 @@ routine   Routine__create     (node scope);
 thing     routine__thing      (routine this);
 void      routine__execute    (routine this);
 
-struct Routine const Routine = {
-  .create   = Routine__create,
+                             struct Routine // »
+                                   *Routine   = NULL;
+void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
+                              Paws->Routine   = Routine;
   
-  .thing    = routine__thing
-};
-void constructor register_Routine(void) { Paws.Routine = Routine; }
+  struct Routine // »
+  data = {
+    .create   = Routine__create,
+    
+    .thing    = routine__thing
+  };
+  
+  memcpy(Routine, &data, sizeof(struct Routine));
+  
+  Paws__register_AST();
+  Paws__register_Node();
+}
 
 
 /* ### Method Implementations ### */
@@ -33,12 +44,12 @@ void constructor register_Routine(void) { Paws.Routine = Routine; }
 routine Routine__create(node scope) {
   routine this = malloc(sizeof(struct routine));
   
-  this->content = LL.create();
-  LL.affix( this->content,
-    Element.create(List.thing( List.create_naughty() )) );
+  this->content = LL->create();
+  LL->affix( this->content,
+    Element->create(List->thing( List->create_naughty() )) );
   
   /* TODO: Check if `scope` is actually a `SCOPE` `node`. */
-  this->scope = Node.duplicate(scope);
+  this->scope = Node->duplicate(scope);
   
   return this;
 }
