@@ -31,11 +31,9 @@ CEST(List, create_naughty) {
 
 CEST(list, thing) {
   list  a_list = List->create();
-  thing a_thing;
   
-  a_thing = List->thing(a_list);
-  ASSERT( a_thing.isa          == LIST   );
-  ASSERT( a_thing.pointer.list == a_list );
+  ASSERT( List->thing(a_list).isa          == LIST   );
+  ASSERT( List->thing(a_list).pointer.list == a_list );
   
   SUCCEED;
 }
@@ -153,10 +151,9 @@ CEST(list, at) {
   ASSERT( List->at(a_list,  0).pointer.nothing == NULL );
   ASSERT( List->at(a_list,  0).isa             == NOTHING );
   
-  thing thing1, thing2, thing3;
-  thing1 = List->thing(List->create()); List->affix(a_list, thing1);
-  thing2 = List->thing(List->create()); List->affix(a_list, thing2);
-  thing3 = List->thing(List->create()); List->affix(a_list, thing3);
+  thing thing1 = List->thing(List->create()); List->affix(a_list, thing1);
+  thing thing2 = List->thing(List->create()); List->affix(a_list, thing2);
+  thing thing3 = List->thing(List->create()); List->affix(a_list, thing3);
   
   /* Positive indicies */
   ASSERT( List->at(a_list,  0).pointer.list == thing1.pointer.list );

@@ -162,7 +162,7 @@ element Element__create(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   element this = malloc(sizeof(struct element));
   
-  this->thing    = thing;
+  memcpy(&this->thing, &thing, sizeof(struct thing));
   this->next     = NULL;
   this->previous = NULL;
   

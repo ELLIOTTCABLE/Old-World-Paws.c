@@ -46,7 +46,6 @@ CEST(pool, enqueue) {
 
 CEST(pool, drip) {
   pool    a_pool = Pool->create();
-  routine a_routine;
   routine routine1 = Routine->create(Node->create_scope()); Pool->enqueue(a_pool, routine1);
   routine routine2 = Routine->create(Node->create_scope()); Pool->enqueue(a_pool, routine2);
   routine routine3 = Routine->create(Node->create_scope()); Pool->enqueue(a_pool, routine3);
@@ -61,4 +60,5 @@ CEST(pool, drip) {
   
   SUCCEED;
 }
+
 CEST(pool, destroy) { PEND; }

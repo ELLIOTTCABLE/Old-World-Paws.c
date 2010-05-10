@@ -29,11 +29,9 @@ CEST(Routine, create) {
 CEST(routine, thing) {
   node      a_scope = Node->create_scope();
   routine   a_routine = Routine->create(a_scope);
-  thing     a_thing;
   
-  a_thing = Routine->thing(a_routine);
-  ASSERT( a_thing.isa             == ROUTINE );
-  ASSERT( a_thing.pointer.routine == a_routine );
+  ASSERT( Routine->thing(a_routine).isa             == ROUTINE );
+  ASSERT( Routine->thing(a_routine).pointer.routine == a_routine );
   
   SUCCEED;
 }

@@ -28,11 +28,9 @@ CEST(String, create) {
 
 CEST(string, thing) {
   string  a_string = String->create("", 1);
-  thing   a_thing;
   
-  a_thing = String->thing(a_string);
-  ASSERT( a_thing.isa            == STRING   );
-  ASSERT( a_thing.pointer.string == a_string );
+  ASSERT( String->thing(a_string).isa            == STRING   );
+  ASSERT( String->thing(a_string).pointer.string == a_string );
   
   SUCCEED;
 }
