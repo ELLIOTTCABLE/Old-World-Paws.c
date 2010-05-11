@@ -3,7 +3,7 @@ Paws.o
 It’s Paws, in ISO/IEC 9899:1999. That’s C99, for people too lazy to google it.
 
 ### Status
-- Only compiles under clang on OS X
+- Only known to compile on OS X; almost definitely will not work on Windows
 - cPaws Parser not written, cannot run source files
 - Threading implementation partial, and routine interpreter under heavy
   development
