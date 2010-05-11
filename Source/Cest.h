@@ -3,8 +3,7 @@
 #define constructor __attribute__((constructor))
 #define CEST(NAMESPACE, NAME) \
   static cest_state NAMESPACE ## __test__ ## NAME(); \
-  static /* inline */ constructor void Cest_registerer_for__ \
-          ## NAMESPACE ## __test__ ## NAME() { \
+  static /* inline */ constructor void Cest_registrar_for__ ## NAMESPACE ## __test__ ## NAME() { \
     Cest.enroll(Cest.create(#NAMESPACE, #NAME, NAMESPACE ## __test__ ## NAME)); } \
   cest_state NAMESPACE ## __test__ ## NAME() //{ … }
 
@@ -21,11 +20,7 @@ typedef struct cest* cest;
         struct cest_node;
 typedef struct cest_node* cest_node;
 
-typedef enum cest_state {
-  failure,
-  success,
-  pending
-} cest_state;
+typedef enum cest_state { failure, success, pending } cest_state;
 
 struct cest {
   cest_state    (*function)(void);
@@ -51,5 +46,5 @@ struct Cest {
   cest_state    (*execute)    ( cest );
   
   /* Data elements */
-  cest_node   first;
+  cest_node       first;
 } extern Cest;

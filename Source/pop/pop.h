@@ -3,9 +3,8 @@ typedef  unsigned long long int  ast_size; /* The maximum children of a single n
 
 /* A `pop` handling-unit; generally, a single file. */
 typedef struct pop {
-  enum {
-    PROCESSING_SCOPES, CONSTRUCTING_AST, PROCESSING_COMPLETE
-  }                           state;
+  enum { PROCESSING_SCOPES, CONSTRUCTING_AST, PROCESSING_COMPLETE } // »
+                              state;
   
   pop_size                    seen; /* The character index into the processing unit as seen so far */
   pop_size                    size; /* The character index representing the end of the processing unit */
@@ -20,12 +19,8 @@ typedef struct pop {
   }                          *scope;
   
   struct pop_ast_node {
-    enum {
-      DOCUMENT_NODE,
-      SCOPE_NODE,
-      EXPRESSION_NODE,
-      WORD_NODE
-    }                         type; /* The ‘type’ of the node */
+    enum { DOCUMENT_NODE, SCOPE_NODE, EXPRESSION_NODE, WORD_NODE } // »
+                              type; /* The ‘type’ of the node */
     
     ast_size                  size; /* Either the number of characters in the textual content, or the number of child nodes */
     void                     *content; /* A pointer to either the textual content of the node, or an array of children nodes */

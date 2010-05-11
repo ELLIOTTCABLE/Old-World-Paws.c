@@ -23,31 +23,23 @@ typedef struct E(element)* E(element);
 
 typedef   unsigned long long int    E(ll_size);
 
-/* This implements a pseudo-‘doubly-linked list’ structure that is the data
- * storage system responsible for `infrastructure list`, and every other core
- * datatype based thereupon.
+/* This implements a pseudo-‘doubly-linked list’ structure that is the data storage system responsible for
+ * `infrastructure list`, and every other core datatype based thereupon.
  * 
- * Note: This is not a traditional linked list. We don’t iterate elements
- *       until reaching a `NULL` pointer; instead, we store (and maintain) the
- *       length (in elements) and iterate based on that. This means that
- *       ‘trailing elements’ (or, if you’re morbid, ‘zombie elements’) can
- *       occur - elements appearing before/after the `element` at the
- *       last/first index (that is, according to our stored `length`). This is
- *       currently considered acceptable; they’ll simply be dropped when we
- *       affix/prefix elements (as that process replaces the pointer to the
- *       next/previous `element`.)
+ * Note: This is not a traditional linked list. We don’t iterate elements until reaching a `NULL` pointer;
+ *       instead, we store (and maintain) the length (in elements) and iterate based on that. This means that
+ *       ‘trailing elements’ (or, if you’re morbid, ‘zombie elements’) can occur - elements appearing before /
+ *       after the `element` at the last/first index (that is, according to our stored `length`). This is
+ *       currently considered acceptable; they’ll simply be dropped when we affix/prefix elements (as that
+ *       process replaces the pointer to the next/previous `element`.)
  *       
- *       In addition, this is not a ‘purist’ implementation; the `element`
- *       itself is not our sole datatype. Instead, we also define a wrapper
- *       element that stores metadata about the linked list structure; this
- *       wrapper (`ll`) is passed around as ‘a linked list,’ instead of a
- *       reference to a given node. An important side effect of this is that,
- *       unlike with a traditional linked list implementation, you can’t
- *       simply take a reference to any node in an existing list and use it as
- *       a *new* list. I consider this a feature; with doubly-linked lists, it
- *       is too dangerous to manually juggle subsets of lists’ elements;
- *       operations are much better preformed on the list *as a whole*. The
- *       `ll` datatype facilitates this.
+ *       In addition, this is not a ‘purist’ implementation; the `element` itself is not our sole datatype.
+ *       Instead, we also define a wrapper element that stores metadata about the linked list structure; this
+ *       wrapper (`ll`) is passed around as ‘a linked list,’ instead of a reference to a given node. An important
+ *       side effect of this is that, unlike with a traditional linked list implementation, you can’t simply take
+ *       a reference to any node in an existing list and use it as a *new* list. I consider this a feature; with
+ *       doubly-linked lists, it is too dangerous to manually juggle subsets of lists’ elements; operations are
+ *       much better preformed on the list *as a whole*. The `ll` datatype facilitates this.
  */
 struct E(ll) {
   E(element)    first; /* A pointer to the first `element` in this `ll` */

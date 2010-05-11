@@ -5,11 +5,10 @@
 #endif
 
 
-/* This file exists simply to forward-declare some structs and types used
- * throughout the rest of the Paws.o codebase.
+/* This file exists simply to forward-declare some structs and types used throughout the rest of the Paws.o
+ * codebase.
  * 
- * You should never have a reason to include or use this file; it’s included
- * everywhere it is necessary.
+ * You should never have a reason to include or use this file; it’s included everywhere it is necessary.
  */
 
         struct E(list); /* The struct behind `infrastructure list`. */
@@ -25,7 +24,7 @@ typedef struct E(numeric)* E(numeric);
 typedef struct E(string)* E(string);
 
 
-        struct E(thing); /* A union representing any core Paws datatype */
+        struct E(thing); /* A union representing a pointer to *any* core Paws datatype */
 typedef struct E(thing) E(thing);
 
 struct E(thing) {

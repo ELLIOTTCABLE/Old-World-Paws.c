@@ -7,7 +7,7 @@
 /* =====
 = `ll` =
 ===== */
-struct Element *Element; // FIXME: Do we need this?
+struct Element *Element; // FIXME: Do we need this forward declaration?
 
 /* ### Method Declarations ### */
 
@@ -40,9 +40,8 @@ void Paws__register_LL(void) { LL   = malloc(sizeof(struct LL));
 
 /* ### Method Implementations ### */
 
-/* This method initializes a new `ll`, with no elements. The `first` and `last`
- * are set to `NULL` pointers, and `length` is initialized to zero.
- */
+/* This method initializes a new `ll`, with no elements. The `first` and `last` are set to `NULL` pointers, and
+ * `length` is initialized to zero. */
 ll LL__create(void) {
   ll this = malloc(sizeof(struct ll));
   
@@ -71,11 +70,10 @@ void ll__posterior_insert(ll this, element child, ll_size index) {
   }
 }
 
-/* This method prefixes a new child `element` onto an `ll`. This will ensure
- * that the first element in the `ll`, after the appending, is the new one.
+/* This method prefixes a new child `element` onto an `ll`. This will ensure that the first element in the `ll`,
+ * after the appending, is the new one.
  * 
- * Takes two arguments, the prefixee (`this`), and a `element` to be prefixed
- * onto it as a child.
+ * Takes two arguments, the prefixee (`this`), and a `element` to be prefixed onto it as a child.
  */
 void ll__prefix(ll this, element child) {
   if (this->length < 1)
@@ -86,11 +84,10 @@ void ll__prefix(ll this, element child) {
   this->length++;
 }
 
-/* This method affixes a new child `element` onto an `ll`. This will ensure
- * that the last element in the `ll`, after the appending, is the new one.
+/* This method affixes a new child `element` onto an `ll`. This will ensure that the last element in the `ll`,
+ * after the appending, is the new one.
  * 
- * Takes two arguments, the affixee (`this`), and a `element` to be affixed
- * onto it as a child.
+ * Takes two arguments, the affixee (`this`), and a `element` to be affixed onto it as a child.
  */
 void ll__affix(ll this, element child) {
   if (this->length < 1)
@@ -153,8 +150,8 @@ void Paws__register_Element(void) { Element   = malloc(sizeof(struct Element));
 
 /* ### Method Implementations ### */
 
-/* This method creates a new `element` for a given `thing`. `next` and
- * `previous` will also be initialized to a `NULL` pointer.
+/* This method creates a new `element` for a given `thing`. `next` and `previous` will also be initialized to a
+ * `NULL` pointer.
  * 
  * Expects a `thing` as an argument, to be stored on this `element` as `e`.
  */
@@ -169,13 +166,11 @@ element Element__create(thing thing) {
   return this;
 }
 
-/* This method inserts another element *before* this element in the chain of a
- * linked list.
+/* This method inserts another element *before* this element in the chain of a linked list.
  * 
- * If there’s already a element attached before this element, and there
- * *isn’t* one attached before the element being inserted, then that next-
- * element will be affixed to our new element, thus keeping the chain intact
- * if possible.
+ * If there’s already a element attached before this element, and there *isn’t* one attached before the element
+ * being inserted, then that next- element will be affixed to our new element, thus keeping the chain intact if
+ * possible.
  * 
  * Note: See the notes on `Element->affix()`.
  */
@@ -195,16 +190,14 @@ void element__prefix(element this, element other) {
   this->previous  = other;
 }
 
-/* This method inserts another element *after* this element in the chain of a
- * linked list.
+/* This method inserts another element *after* this element in the chain of a linked list.
  * 
- * If there’s already a element attached after this element, and there *isn’t*
- * one attached after the element being inserted, then that next-element will
- * be affixed to our new element, thus keeping the chain intact if possible.
+ * If there’s already a element attached after this element, and there *isn’t* one attached after the element
+ * being inserted, then that next-element will be affixed to our new element, thus keeping the chain intact if
+ * possible.
  * 
- * Note: Realize that due to that copy-next mechanic, you can splice
- *       element-strings on top of eachother, but all elements *after* this
- *       element in the original chain will be lost.
+ * Note: Realize that due to that copy-next mechanic, you can splice element-strings on top of eachother, but all
+ *       elements *after* this element in the original chain will be lost.
  */
 void element__affix(element this, element other) {
   if (this->next != NULL) {

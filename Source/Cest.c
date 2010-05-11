@@ -36,10 +36,9 @@ struct Cest Cest = {
 };
 
 void Cest__enroll(cest a_cest) {
-  struct cest_node*   current = NULL;
+  struct cest_node   *current = NULL;
   struct cest_node    this_node = { .cest = a_cest, .next = NULL };
-  /* LEAK: Moar! */
-  struct cest_node*   this = malloc(sizeof(struct cest_node));
+  struct cest_node   *this = malloc(sizeof(struct cest_node));        // LEAK: Moar!
   memcpy(this, &this_node, sizeof(struct cest_node));
   
   if (Cest.first == NULL)
@@ -57,10 +56,9 @@ int Cest__run_all(void) {
   cest_state return_value; int total, succeeded, pending;
   
   cest                current;
-  struct cest_node*   current_node = Cest.first;
+  struct cest_node   *current_node = Cest.first;
   
-  for (total = 0, succeeded = 0, pending = 0; current_node != NULL;
-       total++,                  current_node = current_node->next) {
+  for (total = 0, succeeded = 0, pending = 0; current_node != NULL; total++, current_node = current_node->next) {
     current = current_node->cest;
     return_value = Cest.execute(current);
     if (return_value) { succeeded++; }
@@ -82,9 +80,9 @@ cest Cest__create(char namespace[], char name[], cest_state (*function)(void)) {
   /* LEAK: All up in yo’ beeswax, leakin’ like a sieve! \m/ ^.^ \m/ */
   cest this = malloc(sizeof(struct cest));
   
-  this->function        = function;
-  STRCPY(this->namespace, namespace);
-  STRCPY(this->name,      name);
+         this->function     = function;
+  STRCPY(this->namespace    , namespace);
+  STRCPY(this->name         , name);
   
   return this;
 }

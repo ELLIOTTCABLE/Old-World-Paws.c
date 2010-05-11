@@ -37,10 +37,8 @@ void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
 
 /* ### Method Implementations ### */
 
-/* This method allocates a new `infrastructure routine`, and returns a
- * C `routine` (a pointer to a `struct routine`.) It takes an AST `SCOPE`
- * `node` as an argument, and copies the content of that `SCOPE`.wan
- */
+/* This method allocates a new `infrastructure routine`, and returns a C `routine` (a pointer to a
+ * `struct routine`.) It takes an AST `SCOPE` `node` as an argument, and copies the content of that `SCOPE`. */
 routine Routine__create(node scope) {
   routine this = malloc(sizeof(struct routine));
   
@@ -54,9 +52,7 @@ routine Routine__create(node scope) {
   return this;
 }
 
-/* This method wraps a pointer to a `struct list` into a new `thing` union,
- * and returns that union.
- */
+/* This method wraps a pointer to a `struct list` into a new `thing` union, and returns that union. */
 thing routine__thing(routine this) {
   struct thing something = {
     .isa = ROUTINE,

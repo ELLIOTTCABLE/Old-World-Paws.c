@@ -35,11 +35,11 @@ void Paws__register_Numeric(void) { Numeric   = malloc(sizeof(struct Numeric));
 
 /* ### Method Implementations ### */
 
-/* This method allocates a new `infrastructure numeric`, and returns a
- * C `numeric` (a pointer to a `struct numeric`.)
+/* This method allocates a new `infrastructure numeric`, and returns a C `numeric` (a pointer to a
+ * `struct numeric`.)
  *--
- * TODO: Global-uniqueness. We need to cache already-created `numeric`s
- *       somewhere, and retreive them when necessary.
+ * TODO: Global-uniqueness. We need to cache already-created `numeric`s somewhere, and retreive them when
+ *       necessary.
  */
 numeric Numeric__create(int native) {
   numeric this = malloc(sizeof(struct numeric));
@@ -53,8 +53,7 @@ numeric Numeric__create(int native) {
   return this;
 }
 
-/* This method wraps a pointer to a `struct list` into a new `thing` union,
- * and returns that union.
+/* This method wraps a pointer to a `struct list` into a new `thing` union, and returns that union.
  */
 thing numeric__thing(numeric this) {
   struct thing something = {

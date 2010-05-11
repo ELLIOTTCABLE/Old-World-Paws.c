@@ -14,7 +14,7 @@ thing _make_something(void) {
 }
 
 CEST(LL, create) {
-  ll  a_ll;
+  ll    a_ll;
   
   a_ll = LL->create();
   ASSERT( a_ll->first  == NULL );
@@ -29,8 +29,7 @@ CEST(ll, anterior_insert) {
   element   element1 = Element->create(SOMETHING); LL->affix(a_ll, element1);
   element   element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
   element   element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
-  
-  element elementA = Element->create(SOMETHING);
+  element   elementA = Element->create(SOMETHING);
   
   /* TODO: Error condition */
   LL->anterior_insert(a_ll, elementA, 0);
@@ -50,7 +49,7 @@ CEST(ll, posterior_insert) {
   element   element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
   element   element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
   
-  element elementA = Element->create(SOMETHING);
+  element   elementA = Element->create(SOMETHING);
   
   /* TODO: Error condition */
   LL->posterior_insert(a_ll, elementA, a_ll->length);
@@ -65,7 +64,7 @@ CEST(ll, posterior_insert) {
 }
 
 CEST(ll, prefix) {
-  ll    a_ll = LL->create();
+  ll        a_ll = LL->create();
   element   element1 = Element->create(SOMETHING),
             element2 = Element->create(SOMETHING),
             element3 = Element->create(SOMETHING);
@@ -89,7 +88,7 @@ CEST(ll, prefix) {
 }
 
 CEST(ll, affix) {
-  ll    a_ll = LL->create();
+  ll        a_ll = LL->create();
   element   element1 = Element->create(SOMETHING),
             element2 = Element->create(SOMETHING),
             element3 = Element->create(SOMETHING);
@@ -120,10 +119,9 @@ CEST(ll, at) {
   ASSERT( LL->at(a_ll,  1) == NULL );
   ASSERT( LL->at(a_ll,  0) == NULL );
   
-  element   element1, element2, element3;
-  element1 = Element->create(SOMETHING); LL->affix(a_ll, element1);
-  element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
-  element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
+  element   element1 = Element->create(SOMETHING); LL->affix(a_ll, element1);
+  element   element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
+  element   element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
   
   /* Positive indicies */
   ASSERT( LL->at(a_ll,  0) == element1 );
@@ -139,7 +137,7 @@ CEST(ll, at) {
 
 
 CEST(Element, create) {
-  element  a_element;
+  element   a_element;
   
   a_element = Element->create( SOMETHING );
   ASSERT( a_element->next     == NULL );

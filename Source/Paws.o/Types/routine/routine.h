@@ -21,8 +21,8 @@
 
 /* ### Data Types & Structures ### */
 
-/* `infrastructure routine`, the core interally-available *code* data
- * structure.
+/* `infrastructure routine`, the core interally-available *code* data structure.
+ *--
  * TODO: More description! */
 struct E(routine) {
   E(ll)     content; /* The `ll` behind this `routine`’s `list` interface */

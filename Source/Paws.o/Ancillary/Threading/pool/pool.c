@@ -55,24 +55,24 @@ pool Pool__create(void) {
 }
 
 void pool__enqueue(pool this, routine a_routine) {
-  routine *queue = malloc(sizeof(routine) * this->size + 1);
-  memcpy(queue, this->queue, sizeof(routine) * this->size);
-  queue[this->size] = a_routine;
+  routine    *queue               = malloc(sizeof(routine) * this->size + 1);
+  memcpy(     queue, this->queue,          sizeof(routine) * this->size    );
+              queue[this->size]   = a_routine;
   
-  this->queue = queue;
-  this->size++;
+        this->queue               = queue;
+        this->size++;
   
-  pthread_cond_signal (this->condition);
+  pthread_cond_signal(this->condition);
 }
 
 routine pool__drip(pool this) {
-  routine first = this->queue[0];
+  routine     first                   = this->queue[0];
   
-  routine *queue = malloc(sizeof(routine) * this->size - 1);
-  memcpy(queue, this->queue + 1, sizeof(routine) * this->size - 1);
+  routine    *queue                   = malloc(sizeof(routine) * this->size - 1);
+  memcpy(     queue, this->queue + 1,          sizeof(routine) * this->size - 1);
   
-  this->queue = queue;
-  this->size--;
+        this->queue                   = queue;
+        this->size--;
   
   return first;
 }
@@ -80,6 +80,6 @@ routine pool__drip(pool this) {
 void pool__destroy(pool this) {
   /* TODO: Clean up. */
   
-  free(this);
+  // free(this);
   return;
 }

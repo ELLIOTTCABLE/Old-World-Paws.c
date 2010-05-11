@@ -64,11 +64,10 @@ void Paws__register_Node(void) { Node   = malloc(sizeof(struct Node));
 
 /* ### Method Implementations ### */
 
-/* This method initializes a new `node`, with no children. All values are
- * initialized to either `NULL` or zero.
+/* This method initializes a new `node`, with no children. All values are initialized to either `NULL` or zero.
  * 
- * You really should not be using this method; the respective `create_*`
- * method for the type of node you actually need is far more appropriate.
+ * You really should not be using this method; the respective `create_*` method for the type of node you actually
+ * need is far more appropriate.
  */
 node Node__create(enum node_type type) {
   node this = malloc(sizeof(struct node));
@@ -100,8 +99,8 @@ node Node__create_expression(void) {
   return this;
 }
 
-/* This method initializes a new `node` with `.type` set to `WORD`, and then
- * initializes the `.content` to an empty cstring. */
+/* This method initializes a new `node` with `.type` set to `WORD`, and then initializes the `.content` to an
+ * empty cstring. */
 node Node__create_word(char *content, node_size bytes) {
   node this = Node->create(WORD);
   

@@ -18,10 +18,8 @@
 
 /* ### Data Types & Structures ### */
 
-/* `infrastructure numeric`, the numeric data structure of Paws, is herein
- * implemented natively with C `int` types. It provides no methods for
- * floating-point arithmetic.
- */
+/* `infrastructure numeric`, the numeric data structure of Paws, is herein implemented natively with C `int`
+ * types. It provides no recourse for floating-point arithmetic. */
 struct E(numeric) {
   E(ll)   content; /* The `ll` behind this `numeric`’s `list` interface */
   

@@ -18,8 +18,8 @@
 
 /* ### Data Types & Structures ### */
 
-/* `infrastructure list`, the core data element of Paws, is here implemented
- * as a linked-list, referencing other `list`s as elements.
+/* `infrastructure list`, the core data element of Paws, is here implemented as a linked-list, referencing 
+ * `thing`s as elements.
  */
 struct E(list) {
   E(ll)   content; /* The `ll` behind this `list` */
