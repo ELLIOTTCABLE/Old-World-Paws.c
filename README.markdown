@@ -2,13 +2,24 @@ Paws.o
 ======
 It’s Paws, in ISO/IEC 9899:1999. That’s C99, for people too lazy to google it.
 
-### Status
-- Only known to compile on OS X; almost definitely will not work on Windows
-- cPaws Parser not written, cannot run source files
-- Threading implementation partial, and routine interpreter under heavy development
+### Roadmap & Status
+#### Paws.o — v1, “I can interpret an AST!”
+- Threading implementation: partial, and `routine` interpreter under heavy development
+  - `execution` datatype
+- Expression interpreter
+  - Native `lookup` and `metalookup` implementations
+    - Native `routine`s, and direct‐execute interpreter
+- Cross-platformization: Only known to compile on OS X; almost definitely will not work on Windows
 
-Using
------
+#### Paws.o — v2, “I can execute a document!”
+- cPaws parser
+
+#### Paws.o — v3, “Hello, world!”
+- Interpretation‐unit acquisition, ‘packaging’
+- Intra–interpretation‐unit communication, `list` sharing
+
+Building
+--------
 Can’t really be arsed learning `make` right now, not to mention it seems like a bit of a clusterfuck of a tool,
 so… these:
 
