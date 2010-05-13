@@ -5,10 +5,8 @@ It’s Paws, in ISO/IEC 9899:1999. That’s C99, for people too lazy to google i
 ### Roadmap & Status
 #### Paws.o — v1, “I can interpret an AST!”
 - Threading implementation: partial, and `routine` interpreter under heavy development
-  - `execution` datatype
+- Default (native) implementation of lookups
 - Expression interpreter
-  - Native `lookup` and `metalookup` implementations
-    - Native `routine`s, and direct‐execute interpreter
 - Cross-platformization: Only known to compile on OS X; almost definitely will not work on Windows
 
 #### Paws.o — v2, “I can execute a document!”
