@@ -15,6 +15,9 @@
 # if !defined(ROUTINE_H)
 #   include "Paws.o/Types/routine/routine.h"
 # endif
+# if !defined(EXECUTION_H)
+#   include "Paws.o/Types/execution/execution.h"
+# endif
 # if !defined(NUMERIC_H)
 #   include "Paws.o/Types/numeric/numeric.h"
 # endif
@@ -25,7 +28,7 @@
 #if !defined(CORE_H)
 # include "Paws.o/Core.h"
 #endif
-#if !defined(CORE_H)
+#if !defined(TYPES_H)
 # include "Paws.o/Types/Types.h"
 #endif
 
@@ -62,12 +65,13 @@
  */
 struct Paws {
   /* Namespaces */
-  struct E(Threading)  *Threading;
+  struct E(Threading)    *Threading;
   
-  struct E(List)       *List;
-  struct E(Routine)    *Routine;
-  struct E(Numeric)    *Numeric;
-  struct E(String)     *String;
+  struct E(List)         *List;
+  struct E(Routine)      *Routine;
+  struct E(Execution)    *Execution;
+  struct E(Numeric)      *Numeric;
+  struct E(String)       *String;
   
   /* `Paws` functions */
   E(thing)              (*nothing)    ( void );

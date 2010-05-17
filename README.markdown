@@ -34,6 +34,7 @@ so… these:
       Source/Paws.o/Types/list/list.c \
       Source/Paws.o/Types/routine/ast.c \
       Source/Paws.o/Types/routine/routine.c \
+      Source/Paws.o/Types/execution/execution.c \
       Source/Paws.o/Types/numeric/numeric.c \
       Source/Paws.o/Types/string/string.c \
       Source/Paws.o/Paws.o.c && \
@@ -61,6 +62,7 @@ so… these:
       Source/Paws.o/Types/list/list.tests.c \
       Source/Paws.o/Types/routine/ast.tests.c \
       Source/Paws.o/Types/routine/routine.tests.c \
+      Source/Paws.o/Types/execution/execution.tests.c \
       Source/Paws.o/Types/numeric/numeric.tests.c \
       Source/Paws.o/Types/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \
@@ -75,6 +77,7 @@ so… these:
       Source/Paws.o/Types/list/list.tests.c \
       Source/Paws.o/Types/routine/ast.tests.c \
       Source/Paws.o/Types/routine/routine.tests.c \
+      Source/Paws.o/Types/execution/execution.tests.c \
       Source/Paws.o/Types/numeric/numeric.tests.c \
       Source/Paws.o/Types/string/string.tests.c \
       Source/Paws.o/Paws.tests.c && \

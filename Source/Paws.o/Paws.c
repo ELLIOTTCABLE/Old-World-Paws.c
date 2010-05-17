@@ -18,6 +18,7 @@ void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));
     
     .List         = NULL,
     .Routine      = NULL,
+    .Execution    = NULL,
     .Numeric      = NULL,
     .String       = NULL,
     
@@ -29,8 +30,9 @@ void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));
   Paws__register_Threading();
   
   Paws__register_List();
-  Paws__register_Numeric();
   Paws__register_Routine();
+  Paws__register_Execution();
+  Paws__register_Numeric();
   Paws__register_String();
 }
 
