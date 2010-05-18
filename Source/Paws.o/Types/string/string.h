@@ -23,7 +23,7 @@ typedef   unsigned long long int    E(string_size);
 /* `infrastructure string`, the immutable character-string data structure of Paws, is herein implemented natively
  * with UTF-8 byte strings. */
 struct E(string) {
-  E(ll)                 content; /* The `ll` behind this `string`’s `list` interface */
+  E(ll)             content; /* The `ll` behind this `string`’s `list` interface */
   
   /* This complex nested structure provides a very efficient storage for very short byte strings (anything less
    * than (usually) sixteen bytes, including the `NULL` terminator). This is because those short-strings are
@@ -34,10 +34,10 @@ struct E(string) {
     struct packed {
       char*             long_array;
       E(string_size)    available;
-    }                   otherwise;
-    char                short_array[sizeof(char*) + sizeof(E(string_size))];
-  }                     native;
-  E(string_size)        bytes;
+    }                 otherwise;
+    char              short_array[sizeof(char*) + sizeof(E(string_size))];
+  }                 native;
+  E(string_size)    bytes;
 };
 
 

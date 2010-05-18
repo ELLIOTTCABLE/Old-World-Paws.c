@@ -13,6 +13,9 @@ CEST(Execution, create) {
   ASSERT(       LL->at(an_execution->content, 0)->thing.isa          == LIST      );
   ASSERT(       LL->at(an_execution->content, 0)->thing.pointer.list == a_naughty );
   
+  ASSERT( an_execution->size  == 0    );
+  ASSERT( an_execution->nodes == NULL );
+  
   SUCCEED;
 }
 

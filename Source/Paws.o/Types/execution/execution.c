@@ -3,6 +3,10 @@
 #include "Paws.o/Paws.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+
+#define REALLOC(ptr, size) \
+  ptr = realloc(ptr, size)//;
 
 
 /* ===========================
@@ -14,7 +18,9 @@
 execution   Execution__create     (void);
 
 thing       execution__thing      (execution this);
-void        execution__exercise   (execution this);
+void        execution__exercise   (execution this, routine against);
+
+node*       execution__node_for   (execution this, routine routine);
 
                                struct Execution // »
                                      *Execution   = NULL;
@@ -42,6 +48,9 @@ execution Execution__create(void) {
   LL->affix( this->content,
     Element->create(List->thing( List->create_naughty() )) );
   
+  this->nodes = NULL;
+  this->size  = 0;
+  
   return this;
 }
 
@@ -55,6 +64,35 @@ thing execution__thing(execution this) {
   return something;
 }
 
-void execution__exercise(execution this) {
-  /* TODO: Implement me. */
+void execution__exercise(execution this, routine routine) {
+  /* Descriptive fucking name, amirite? */
+  node   *pointer     = execution__node_for(this, routine);
+  bool    executing   = false;
+  
+  /* http://tau.pe/14252438483 */
+  if (*pointer == NULL)
+    executing++;
+  
+  /* TODO: Implement (the rest of) me. */
+  /* Before we can continue with actual interpretation, here, we have to have native routines; that way, we can
+   * iterate the words in an expression and throw them directly at a synchronous lookup somewhere. */
+}
+
+/* This hidden method returns a pointer to the latest AST `node` having been executed for a given `routine`
+ * against this `execution`. */
+node* execution__node_for(execution this, routine routine) {
+  node    scope   = routine->scope;
+  
+  /* I don’t like having to add 1 and then subtract 1 here any more than you, my beautiful, beautiful reader,
+   * probably do… but it’s a necessity, as `node_size` is an *unsigned* integer type. If we decrement below zero,
+   * it will shat brix. */
+  for (node_size l = this->size + 1; l >= 1; --l) {
+    if (this->nodes[l - 1].root == scope)
+      return &this->nodes[l - 1].node; }
+  
+  REALLOC(this->nodes, ++this->size);
+  this->nodes[this->size - 1].node = NULL;
+  this->nodes[this->size - 1].root = routine->scope;
+  
+  return &this->nodes[this->size - 1].node;
 }
