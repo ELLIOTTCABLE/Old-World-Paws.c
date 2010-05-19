@@ -81,7 +81,7 @@ void execution__exercise(execution this, routine routine) {
 /* This hidden method returns a pointer to the latest AST `node` having been executed for a given `routine`
  * against this `execution`. */
 node* execution__node_for(execution this, routine routine) {
-  node    scope   = routine->scope;
+  node    scope   = routine->implementation;
   
   /* I don’t like having to add 1 and then subtract 1 here any more than you, my beautiful, beautiful reader,
    * probably do… but it’s a necessity, as `node_size` is an *unsigned* integer type. If we decrement below zero,
@@ -92,7 +92,7 @@ node* execution__node_for(execution this, routine routine) {
   
   REALLOC(this->nodes, ++this->size);
   this->nodes[this->size - 1].node = NULL;
-  this->nodes[this->size - 1].root = routine->scope;
+  this->nodes[this->size - 1].root = scope;
   
   return &this->nodes[this->size - 1].node;
 }

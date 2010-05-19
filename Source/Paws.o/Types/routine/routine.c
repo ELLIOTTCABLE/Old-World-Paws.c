@@ -11,7 +11,7 @@
 
 /* ### Method Declarations ### */
 
-routine   Routine__create     (node scope);
+routine   Routine__create     (void *implementation, bool native);
 
 thing     routine__thing      (routine this);
 void      routine__execute    (routine this);
@@ -38,16 +38,23 @@ void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
 /* ### Method Implementations ### */
 
 /* This method allocates a new `infrastructure routine`, and returns a C `routine` (a pointer to a
- * `struct routine`.) It takes an AST `SCOPE` `node` as an argument, and copies the content of that `SCOPE`. */
-routine Routine__create(node scope) {
+ * `struct routine`.) It takes an either an AST’s `SCOPE` `node`, or a pointer to a native C function (the
+ * signature of which is expected to match `void (*)(E(execution) exe)`, though the usual function-pointer
+ * semantics apply). The second argument is a `bool` describing whether the first argument was the former or the
+ * latter (to be `true` in the case of a function pointer).
+ * 
+ * If you pass in an AST instead of a native implementation, this copies the content of that `SCOPE`, allowing
+ * you to destroy or modify the passed AST as you desire. */
+routine Routine__create(void *implementation, bool native) {
   routine this = malloc(sizeof(struct routine));
   
   this->content = LL->create();
   LL->affix( this->content,
     Element->create(List->thing( List->create_naughty() )) );
   
-  /* TODO: Check if `scope` is actually a `SCOPE` `node`. */
-  this->scope = Node->duplicate(scope);
+  /* TODO: Check if `implementation` is actually a `SCOPE`-type `node`. */
+  this->native         = native;
+  this->implementation = native ? implementation : Node->duplicate(implementation);
   
   return this;
 }
