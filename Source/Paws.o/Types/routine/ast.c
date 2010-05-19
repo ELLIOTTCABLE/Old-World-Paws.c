@@ -113,6 +113,10 @@ node Node__create_word(char *content, node_size bytes) {
   return this;
 }
 
+/* FIXME: Okay, I’m almost certain that this entire set of functions needs to be/can be reimplemented with calls
+          to `realloc(3)` and `memmove(3)` instead of `alloc(3)` and `memcpy(3)`. However, is that actually more
+          efficient? I need to find out if that path is actually *slower* or not. TO STACKOVERFLOW! */
+
 void node__insert(node this, node child, node_size index) {
   /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
      TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`.
@@ -145,12 +149,8 @@ void node__affix(node this, node child) {
   /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
      TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`. */
   
-  node *children = malloc(sizeof(node) * this->size + 1);
-  memcpy(children, this->content, sizeof(node) * this->size);
-  children[this->size] = child;
-  
-  this->content = children;
-  this->size++;
+  this->content                   = realloc(this->content, sizeof(node) * ++this->size);
+  this->content[this->size - 1]   = child;
 }
 
 node node__at(node this, node_size index) {

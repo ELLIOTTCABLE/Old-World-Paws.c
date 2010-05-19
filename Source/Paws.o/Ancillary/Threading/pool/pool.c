@@ -55,12 +55,8 @@ pool Pool__create(void) {
 }
 
 void pool__enqueue(pool this, routine a_routine) {
-  routine    *queue               = malloc(sizeof(routine) * this->size + 1);
-  memcpy(     queue, this->queue,          sizeof(routine) * this->size    );
-              queue[this->size]   = a_routine;
-  
-        this->queue               = queue;
-        this->size++;
+  this->queue                   = realloc(this->queue, sizeof(routine) * ++this->size);
+  this->queue[this->size - 1]   = a_routine;
   
   pthread_cond_signal(this->condition);
 }
@@ -68,6 +64,8 @@ void pool__enqueue(pool this, routine a_routine) {
 routine pool__drip(pool this) {
   routine     first                   = this->queue[0];
   
+  /* FIXME: Can I use `realloc(3)` here? How can I realloc to a *smaller* amount of memory, while cutting off the
+   *        first element? */
   routine    *queue                   = malloc(sizeof(routine) * this->size - 1);
   memcpy(     queue, this->queue + 1,          sizeof(routine) * this->size - 1);
   
