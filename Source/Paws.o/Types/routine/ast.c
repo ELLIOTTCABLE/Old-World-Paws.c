@@ -149,8 +149,8 @@ void node__affix(node this, node child) {
   /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
      TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`. */
   
-  this->content                   = realloc(this->content, sizeof(node) * ++this->size);
-  this->content[this->size - 1]   = child;
+           this->content                    = realloc(this->content, sizeof(node) * ++this->size);
+  ((node *)this->content)[this->size - 1]   = child;
 }
 
 node node__at(node this, node_size index) {
