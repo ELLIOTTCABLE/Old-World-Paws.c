@@ -61,7 +61,28 @@
  * For convenience, we also provide a `union thing`, which is a combined type for a pointer to any core
  * datatype’s `struct`. This is typedef’d as well (also to `thing`), but directly, not as a pointer (since it is
  * intended to *contain* pointers). Quite a few core API methods return this, or expect one of these, instead of
- * a particular type’s struct.
+ * a particular type’s struct, when it is possible for various datatypes to be interchangably involved in the
+ * operations performed/services provided by that method.
+ * 
+ * By design, there’s also a bit of memory mapping consistency between the internal data types. Specifically:
+ * 
+ * 1. `thing`s can be safely masked out as a pointer specific to any type, which means you can immediately treat
+ *    any `thing` as any other datatype’s typedef’d pointer. For instance, imagine `List->at()` returns as
+ *    `thing` (which it does, because any core datatype could be stored at any index on a `list`), but you need
+ *    to pass the result to another call to `List->at()` as a `list`. Because the memory behind a `thing` is
+ *    interpretable as a `list` pointer, we can cast it as follows, without worrying about the fact that we
+ *    are *actually* passing a `thing`:
+ *    
+ *        thing   result    = List->at( (list)List->at(a_list, 0), 42 );
+ *    
+ * 2. Every core datatype shares the same basic memory layout as the `list` datatype, allowing you to cast *any*
+ *    datatype (even an unknown one, such as casting the pointer from a `thing` without bothering to check the
+ *    associated `isa` field) to `list` without segfaulting. For instance, suppose we had a `numeric`, but we
+ *    weren’t currently interested in the native numeric representation behind that datatype; we could cast it to
+ *    a `list` to preform generic Paws `List` operations upon it thusly:
+ *    
+ *        thing   result    = List->at( (list)my_numeric );
+ *    
  */
 struct Paws {
   /* Namespaces */
