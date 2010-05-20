@@ -31,16 +31,6 @@ typedef struct E(string)* E(string);
 typedef struct E(thing) E(thing);
 
 struct E(thing) {
-  enum /* isa’s */ {
-    E(NOTHING),
-    
-    E(LIST),
-    E(ROUTINE),
-    E(EXECUTION),
-    E(NUMERIC),
-    E(STRING)
-  } const isa;
-  
   union /* thing’s */ {
     void       *nothing;
     
@@ -50,4 +40,14 @@ struct E(thing) {
     E(numeric)    numeric;
     E(string)     string;
   } const pointer;
+  
+  enum /* isa’s */ {
+    E(NOTHING),
+    
+    E(LIST),
+    E(ROUTINE),
+    E(EXECUTION),
+    E(NUMERIC),
+    E(STRING)
+  } const isa;
 };
