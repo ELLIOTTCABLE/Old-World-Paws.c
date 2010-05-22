@@ -11,10 +11,11 @@
 
 /* ### Method Declarations ### */
 
-routine   Routine__create     (void *implementation, bool native);
+routine     Routine__allocate   (node   implementation);
+routine     Routine__expose     (native implementation, bool simple);
 
-thing     routine__thing      (routine this);
-void      routine__execute    (routine this);
+thing       routine__thing      (routine this);
+void        routine__execute    (routine this, thing argument);
 
                              struct Routine // »
                                    *Routine   = NULL;
@@ -23,9 +24,11 @@ void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
   
   struct Routine // »
   data = {
-    .create   = Routine__create,
+    .allocate   = Routine__allocate,
+    .expose     = Routine__expose,
     
-    .thing    = routine__thing
+    .thing      = routine__thing,
+    .execute    = routine__execute
   };
   
   memcpy(Routine, &data, sizeof(struct Routine));
@@ -45,7 +48,11 @@ void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
  * 
  * If you pass in an AST instead of a native implementation, this copies the content of that `SCOPE`, allowing
  * you to destroy or modify the passed AST as you desire. */
-routine Routine__create(void *implementation, bool native) {
+routine _Routine__allocate(void  *implementation, bool native, bool simple);
+routine  Routine__allocate(node   implementation) { return _Routine__allocate((void *)implementation, false, false); }
+routine  Routine__expose  (native implementation, bool simple) //»
+                                                  { return _Routine__allocate((void *)implementation, true, simple); }
+routine _Routine__allocate(void  *implementation, bool native, bool simple) {
   routine this = malloc(sizeof(struct routine));
   
   this->content = LL->create();
@@ -53,8 +60,9 @@ routine Routine__create(void *implementation, bool native) {
     Element->create(List->thing( List->create_naughty() )) );
   
   /* TODO: Check if `implementation` is actually a `SCOPE`-type `node`. */
-  this->native         = native;
-  this->implementation = native ? implementation : Node->duplicate(implementation);
+  this->simple            = simple;
+  this->native            = native;
+  this->implementation    = native ? implementation : Node->duplicate(implementation);
   
   return this;
 }
@@ -67,4 +75,20 @@ thing routine__thing(routine this) {
   };
   
   return something;
+}
+
+/* This executes a `routine` directly, without requiring that you properly setting up an `execution`. Unless you
+ * have a reason to be using this, you should probably be calling `Execution->exercise()` instead. */
+void routine__execute(routine this, thing argument) {
+  if (this->native) {
+    if (this->simple)   ( (void (*)(thing))    this->implementation )(argument          );
+                 else   ( (void (*)(execution))this->implementation )(Paws->Execution->create());
+  } else {
+    /* TODO: Implement me! */
+  }
+  
+  /* It’s important to note that this might not ever get around to `return`ing, because asynchronous routines
+   * have a good chance of `pthread_exit(3)`ing (or otherwise terminating the `routine` execution early), if they
+   * farm out a call to another `routine` or something. */
+  return;
 }

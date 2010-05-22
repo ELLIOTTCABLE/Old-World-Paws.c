@@ -73,7 +73,8 @@ void thread__work(thread this) {
     /* Once the thread is woken up by a condvar signal, we check that there’s actually routines to process (if
      * not, it falls through to waiting again) */
     while (this->initialized && this->pool->size > 0)
-      Routine->execute( Pool->drip(this->pool) );
+      // Routine->execute( Pool->drip(this->pool) );
+                           Pool->drip(this->pool)  ;
   }
   
   /* Usually, this is called from `Thread->initialize()`, so it’s quite likely that the thread will destroy

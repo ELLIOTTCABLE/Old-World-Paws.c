@@ -20,9 +20,9 @@ CEST(Pool, create) {
 
 CEST(pool, enqueue) {
   pool    a_pool = Pool->create();
-  routine routine1 = Routine->create(Node->create_scope(), false),
-          routine2 = Routine->create(Node->create_scope(), false),
-          routine3 = Routine->create(Node->create_scope(), false);
+  routine routine1 = Routine->allocate(Node->create_scope()),
+          routine2 = Routine->allocate(Node->create_scope()),
+          routine3 = Routine->allocate(Node->create_scope());
   
   Pool->enqueue(a_pool, routine1);
   ASSERT( *((routine *)a_pool->queue + 0) == routine1 );
@@ -46,9 +46,9 @@ CEST(pool, enqueue) {
 
 CEST(pool, drip) {
   pool    a_pool = Pool->create();
-  routine routine1 = Routine->create(Node->create_scope(), false); Pool->enqueue(a_pool, routine1);
-  routine routine2 = Routine->create(Node->create_scope(), false); Pool->enqueue(a_pool, routine2);
-  routine routine3 = Routine->create(Node->create_scope(), false); Pool->enqueue(a_pool, routine3);
+  routine routine1 = Routine->allocate(Node->create_scope()); Pool->enqueue(a_pool, routine1);
+  routine routine2 = Routine->allocate(Node->create_scope()); Pool->enqueue(a_pool, routine2);
+  routine routine3 = Routine->allocate(Node->create_scope()); Pool->enqueue(a_pool, routine3);
   
   ASSERT(            a_pool->size == 3        );
   ASSERT( Pool->drip(a_pool)      == routine1 );
