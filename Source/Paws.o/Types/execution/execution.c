@@ -15,7 +15,7 @@
 
 /* ### Method Declarations ### */
 
-execution   Execution__create     (void);
+execution   Execution__allocate   (void);
 
 thing       execution__thing      (execution this);
 void        execution__exercise   (execution this, routine against);
@@ -29,7 +29,7 @@ void Paws__register_Execution(void) { Execution   = malloc(sizeof(struct Executi
   
   struct Execution // »
   data = {
-    .create     = Execution__create,
+    .allocate   = Execution__allocate,
     
     .thing      = execution__thing,
     .exercise   = execution__exercise
@@ -41,12 +41,10 @@ void Paws__register_Execution(void) { Execution   = malloc(sizeof(struct Executi
 
 /* ### Method Implementations ### */
 
-execution Execution__create(void) {
+execution Execution__allocate(void) {
   execution this = malloc(sizeof(struct execution));
   
-  this->content = LL->create();
-  LL->affix( this->content,
-    Element->create(List->thing( List->create_naughty() )) );
+  this->content = LL->allocate();
   
   this->nodes = NULL;
   this->size  = 0;

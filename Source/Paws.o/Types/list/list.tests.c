@@ -2,10 +2,19 @@
 #include "Cest.h"
 
 
-CEST(List, create) {
-  list    a_list, a_naughty;
+CEST(List, allocate) {
+  list    a_list    = List->allocate();
+  ASSERT( a_list->content->first  == NULL );
+  ASSERT( a_list->content->last   == NULL );
+  ASSERT( a_list->content->length == 0    );
   
-  a_list      = List->create();
+  SUCCEED;
+}
+
+CEST(list, naughtify) {
+  list    rv, a_naughty, a_list    = List->allocate();
+  
+  rv    = List->naughtify(a_list);
   ASSERT(              a_list->   content->length                 == 1         );
   ASSERT(       LL->at(a_list->   content, 0)->thing.isa          == LIST      );
   
@@ -13,23 +22,13 @@ CEST(List, create) {
   ASSERT(       LL->at(a_naughty->content, 0)->thing.isa          == LIST      );
   ASSERT(       LL->at(a_naughty->content, 0)->thing.pointer.list == a_naughty );
   
-  SUCCEED;
-}
-
-CEST(List, create_naughty) {
-  list    a_naughty;
-  
-  a_naughty   = List->create_naughty();
-  ASSERT(        a_naughty->content->length                 == 1         );
-                                                            
-  ASSERT( LL->at(a_naughty->content, 0)->thing.isa          == LIST      );
-  ASSERT( LL->at(a_naughty->content, 0)->thing.pointer.list == a_naughty );
+  ASSERT(                                                      rv == a_naughty );
   
   SUCCEED;
 }
 
 CEST(list, thing) {
-  list    a_list    = List->create();
+  list    a_list    = List->allocate();
   
   ASSERT( List->thing(a_list).isa          == LIST   );
   ASSERT( List->thing(a_list).pointer.list == a_list );
@@ -38,17 +37,11 @@ CEST(list, thing) {
 }
 
 CEST(list, insert) {
-  list  a_list = List->create();
-  thing thing1 = List->thing(List->create()),
-        thing2 = List->thing(List->create()),
-        thing3 = List->thing(List->create()),
-        thing4 = List->thing(List->create());
-  
-  /* This is a somewhat unusual situation… it shouldn’t often show up in practice, but we’re going to remove the
-   * naughty, and reset the list to a blank state, before proceeding. */
-  a_list->content->first    = NULL;
-  a_list->content->last     = NULL;
-  a_list->content->length   = 0;
+  list  a_list = List->allocate();
+  thing thing1 = List->thing(List->allocate()),
+        thing2 = List->thing(List->allocate()),
+        thing3 = List->thing(List->allocate()),
+        thing4 = List->thing(List->allocate());
   
   /* Insert into empty list */
   List->insert    (a_list, thing2, 0);
@@ -74,14 +67,10 @@ CEST(list, insert) {
 }
 
 CEST(list, prefix) {
-  list  a_list = List->create();
-  thing thing1 = List->thing(List->create()),
-        thing2 = List->thing(List->create()),
-        thing3 = List->thing(List->create());
-  
-  a_list->content->first  = NULL;
-  a_list->content->last   = NULL;
-  a_list->content->length = 0;
+  list  a_list = List->allocate();
+  thing thing1 = List->thing(List->allocate()),
+        thing2 = List->thing(List->allocate()),
+        thing3 = List->thing(List->allocate());
   
   List->prefix    (a_list, thing3);
   ASSERT( List->at(a_list, 0).pointer.list == thing3.pointer.list );
@@ -99,14 +88,10 @@ CEST(list, prefix) {
 }
 
 CEST(list, affix) {
-  list  a_list = List->create();
-  thing thing1 = List->thing(List->create()),
-        thing2 = List->thing(List->create()),
-        thing3 = List->thing(List->create());
-  
-  a_list->content->first  = NULL;
-  a_list->content->last   = NULL;
-  a_list->content->length = 0;
+  list  a_list = List->allocate();
+  thing thing1 = List->thing(List->allocate()),
+        thing2 = List->thing(List->allocate()),
+        thing3 = List->thing(List->allocate());
   
   List->affix     (a_list, thing1);
   ASSERT( List->at(a_list, 0).pointer.list == thing1.pointer.list );
@@ -124,11 +109,7 @@ CEST(list, affix) {
 }
 
 CEST(list, at) {
-  list  a_list = List->create();
-  
-  a_list->content->first  = NULL;
-  a_list->content->last   = NULL;
-  a_list->content->length = 0;
+  list  a_list = List->allocate();
   
   /* Empty `list`s */
   ASSERT( List->at(a_list, 5).pointer.nothing == NULL    );
@@ -140,9 +121,9 @@ CEST(list, at) {
   ASSERT( List->at(a_list, 0).pointer.nothing == NULL    );
   ASSERT( List->at(a_list, 0).isa             == NOTHING );
   
-  thing thing1 = List->thing(List->create()); List->affix(a_list, thing1);
-  thing thing2 = List->thing(List->create()); List->affix(a_list, thing2);
-  thing thing3 = List->thing(List->create()); List->affix(a_list, thing3);
+  thing thing1 = List->thing(List->allocate()); List->affix(a_list, thing1);
+  thing thing2 = List->thing(List->allocate()); List->affix(a_list, thing2);
+  thing thing3 = List->thing(List->allocate()); List->affix(a_list, thing3);
   
   /* Positive indicies */
   ASSERT( List->at(a_list, 0).pointer.list == thing1.pointer.list );

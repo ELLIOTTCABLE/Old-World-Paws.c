@@ -13,10 +13,10 @@ thing _make_something(void) {
   return something;
 }
 
-CEST(LL, create) {
+CEST(LL, allocate) {
   ll    a_ll;
   
-  a_ll = LL->create();
+  a_ll = LL->allocate();
   ASSERT( a_ll->first  == NULL );
   ASSERT( a_ll->last   == NULL );
   ASSERT( a_ll->length == 0    );
@@ -25,11 +25,11 @@ CEST(LL, create) {
 }
 
 CEST(ll, anterior_insert) {
-  ll        a_ll = LL->create();
-  element   element1 = Element->create(SOMETHING); LL->affix(a_ll, element1);
-  element   element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
-  element   element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
-  element   elementA = Element->create(SOMETHING);
+  ll        a_ll = LL->allocate();
+  element   element1 = Element->allocate(SOMETHING); LL->affix(a_ll, element1);
+  element   element2 = Element->allocate(SOMETHING); LL->affix(a_ll, element2);
+  element   element3 = Element->allocate(SOMETHING); LL->affix(a_ll, element3);
+  element   elementA = Element->allocate(SOMETHING);
   
   /* TODO: Error condition */
   LL->anterior_insert(a_ll, elementA, 0);
@@ -44,12 +44,12 @@ CEST(ll, anterior_insert) {
 }
 
 CEST(ll, posterior_insert) {
-  ll        a_ll = LL->create();
-  element   element1 = Element->create(SOMETHING); LL->affix(a_ll, element1);
-  element   element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
-  element   element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
+  ll        a_ll = LL->allocate();
+  element   element1 = Element->allocate(SOMETHING); LL->affix(a_ll, element1);
+  element   element2 = Element->allocate(SOMETHING); LL->affix(a_ll, element2);
+  element   element3 = Element->allocate(SOMETHING); LL->affix(a_ll, element3);
   
-  element   elementA = Element->create(SOMETHING);
+  element   elementA = Element->allocate(SOMETHING);
   
   /* TODO: Error condition */
   LL->posterior_insert(a_ll, elementA, a_ll->length);
@@ -64,10 +64,10 @@ CEST(ll, posterior_insert) {
 }
 
 CEST(ll, prefix) {
-  ll        a_ll = LL->create();
-  element   element1 = Element->create(SOMETHING),
-            element2 = Element->create(SOMETHING),
-            element3 = Element->create(SOMETHING);
+  ll        a_ll = LL->allocate();
+  element   element1 = Element->allocate(SOMETHING),
+            element2 = Element->allocate(SOMETHING),
+            element3 = Element->allocate(SOMETHING);
   
   LL->prefix(a_ll, element3);
   ASSERT( a_ll->length == 1        );
@@ -88,10 +88,10 @@ CEST(ll, prefix) {
 }
 
 CEST(ll, affix) {
-  ll        a_ll = LL->create();
-  element   element1 = Element->create(SOMETHING),
-            element2 = Element->create(SOMETHING),
-            element3 = Element->create(SOMETHING);
+  ll        a_ll = LL->allocate();
+  element   element1 = Element->allocate(SOMETHING),
+            element2 = Element->allocate(SOMETHING),
+            element3 = Element->allocate(SOMETHING);
   
   LL->affix(a_ll, element1);
   ASSERT( a_ll->length == 1        );
@@ -112,16 +112,16 @@ CEST(ll, affix) {
 }
 
 CEST(ll, at) {
-  ll    a_ll = LL->create();
+  ll    a_ll = LL->allocate();
   
   /* Empty `ll`s */
   ASSERT( LL->at(a_ll,  5) == NULL );
   ASSERT( LL->at(a_ll,  1) == NULL );
   ASSERT( LL->at(a_ll,  0) == NULL );
   
-  element   element1 = Element->create(SOMETHING); LL->affix(a_ll, element1);
-  element   element2 = Element->create(SOMETHING); LL->affix(a_ll, element2);
-  element   element3 = Element->create(SOMETHING); LL->affix(a_ll, element3);
+  element   element1 = Element->allocate(SOMETHING); LL->affix(a_ll, element1);
+  element   element2 = Element->allocate(SOMETHING); LL->affix(a_ll, element2);
+  element   element3 = Element->allocate(SOMETHING); LL->affix(a_ll, element3);
   
   /* Positive indicies */
   ASSERT( LL->at(a_ll,  0) == element1 );
@@ -136,10 +136,10 @@ CEST(ll, at) {
 }
 
 
-CEST(Element, create) {
+CEST(Element, allocate) {
   element   a_element;
   
-  a_element = Element->create( SOMETHING );
+  a_element = Element->allocate( SOMETHING );
   ASSERT( a_element->next     == NULL );
   ASSERT( a_element->previous == NULL );
   
@@ -147,12 +147,12 @@ CEST(Element, create) {
 }
 
 CEST(element, prefix) {
-  element   element1 = Element->create(SOMETHING),
-            element2 = Element->create(SOMETHING),
-            element3 = Element->create(SOMETHING),
-            elementA = Element->create(SOMETHING),
-            elementB = Element->create(SOMETHING),
-            elementC = Element->create(SOMETHING);
+  element   element1 = Element->allocate(SOMETHING),
+            element2 = Element->allocate(SOMETHING),
+            element3 = Element->allocate(SOMETHING),
+            elementA = Element->allocate(SOMETHING),
+            elementB = Element->allocate(SOMETHING),
+            elementC = Element->allocate(SOMETHING);
   
   
   /* A basic single prefix */
@@ -208,12 +208,12 @@ CEST(element, prefix) {
 }
 
 CEST(element, affix) {
-  element   element1 = Element->create(SOMETHING),
-            element2 = Element->create(SOMETHING),
-            element3 = Element->create(SOMETHING),
-            elementA = Element->create(SOMETHING),
-            elementB = Element->create(SOMETHING),
-            elementC = Element->create(SOMETHING);
+  element   element1 = Element->allocate(SOMETHING),
+            element2 = Element->allocate(SOMETHING),
+            element3 = Element->allocate(SOMETHING),
+            elementA = Element->allocate(SOMETHING),
+            elementB = Element->allocate(SOMETHING),
+            elementC = Element->allocate(SOMETHING);
   
   
   /* A basic single affix */

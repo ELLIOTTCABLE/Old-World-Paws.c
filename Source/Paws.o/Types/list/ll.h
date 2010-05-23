@@ -57,7 +57,7 @@ struct E(element) {
 
 struct E(LL) {
   /* `LL` functions */
-  E(ll)         (*create)             ( void );
+  E(ll)         (*allocate)           ( void );
   
   /* `struct ll` methods */
   void          (*anterior_insert)    ( E(ll) this, E(element) child, E(ll_size) index );
@@ -72,11 +72,11 @@ struct E(LL) {
 
 struct E(Element) {
   /* `Element` functions */
-  E(element)    (*create)   ( E(thing) thing );
+  E(element)    (*allocate)   ( E(thing) thing );
   
   /* `struct element` methods */
-  void          (*prefix)   ( E(element) this, E(element) other );
-  void          (*affix)    ( E(element) this, E(element) other );
+  void          (*prefix)     ( E(element) this, E(element) other );
+  void          (*affix)      ( E(element) this, E(element) other );
 };
 #if !defined(EXTERNALIZE)
   struct E(Element) extern *Element;

@@ -30,11 +30,11 @@ struct E(list) {
 
 struct E(List) {
   /* `List` functions */
-  E(list)     (*create)           ( void );
-  E(list)     (*create_naughty)   ( void );
+  E(list)     (*allocate)         ( void );
   
   /* `struct list` methods */
   E(thing)    (*thing)            ( E(list) this );
+  E(list)     (*naughtify)        ( E(list) this );
   void        (*insert)           ( E(list) this, E(thing) child, E(ll_size) index );
   void        (*prefix)           ( E(list) this, E(thing) child );
   void        (*affix)            ( E(list) this, E(thing) child );

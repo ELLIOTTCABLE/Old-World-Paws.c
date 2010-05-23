@@ -32,7 +32,7 @@ struct E(numeric) {
 
 struct E(Numeric) {
   /* `Numeric` functions */
-  E(numeric)    (*create)     ( int native );
+  E(numeric)    (*allocate)   ( int native );
   
   /* `struct numeric` methods */
   E(thing)      (*thing)      ( E(numeric) this );

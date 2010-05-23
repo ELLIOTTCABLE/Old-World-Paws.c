@@ -26,11 +26,8 @@ typedef   unsigned           int    E(node_size); /* The maximum storable charac
 struct E(ast) { void *nothing; };
 
 struct E(node) {
-  enum E(node_type) {
-    E(SCOPE),
-    E(EXPRESSION),
-    E(WORD)
-  }               type; /* The node type */
+  enum E(node_type) { E(SCOPE), E(EXPRESSION), E(WORD) } //»
+                  type; /* The node’s ‘type’ */
   
   E(ast_size)     start; /* The character index of the start of this node */
   E(ast_size)     end; /* The character index of the end of this node */
@@ -51,19 +48,19 @@ struct E(AST) { void (*nothing)(void); };
 
 struct E(Node) {
   /* `Node` functions */
-  E(node)   (*create)               ( enum E(node_type) type );
-  E(node)   (*create_scope)         ( void );
-  E(node)   (*create_expression)    ( void );
-  E(node)   (*create_word)          ( char *content, E(node_size) bytes );
+  E(node)   (*allocate)       ( enum E(node_type) type );
+  E(node)   (*scope)          ( void );
+  E(node)   (*expression)     ( void );
+  E(node)   (*word)           ( char *content, E(node_size) bytes );
   
   /* `struct node` methods */
-  void      (*insert)               ( E(node) this, E(node) child, E(node_size) index );
-  void      (*prefix)               ( E(node) this, E(node) child );
-  void      (*affix)                ( E(node) this, E(node) child );
-  E(node)   (*at)                   ( E(node) this,                E(node_size) index );
-  char*     (*native)               ( E(node) this );
-  E(node)   (*duplicate)            ( E(node) this );
-  E(node)   (*instantiate)          ( E(node) this );
+  void      (*insert)         ( E(node) this, E(node) child, E(node_size) index );
+  void      (*prefix)         ( E(node) this, E(node) child );
+  void      (*affix)          ( E(node) this, E(node) child );
+  E(node)   (*at)             ( E(node) this,                E(node_size) index );
+  char*     (*native)         ( E(node) this );
+  E(node)   (*duplicate)      ( E(node) this );
+  E(node)   (*instantiate)    ( E(node) this );
 };
 #if !defined(EXTERNALIZE)
   struct E(Node) extern *Node;

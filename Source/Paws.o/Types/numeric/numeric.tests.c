@@ -2,22 +2,21 @@
 #include "Cest.h"
 
 
-CEST(Numeric, create) {
+CEST(Numeric, allocate) {
   numeric   a_numeric;
-  list      a_naughty;
   
-  a_numeric = Numeric->create(42);
+  a_numeric = Numeric->allocate(42);
+  ASSERT( a_numeric->content->first  == NULL );
+  ASSERT( a_numeric->content->last   == NULL );
+  ASSERT( a_numeric->content->length == 0    );
+  
   ASSERT( a_numeric->native == 42 );
-  
-  a_naughty   = LL->at(a_numeric->content, 0)->thing.pointer.list;
-  ASSERT(       LL->at(a_naughty->content, 0)->thing.isa          == LIST      );
-  ASSERT(       LL->at(a_naughty->content, 0)->thing.pointer.list == a_naughty );
   
   SUCCEED;
 }
 
 CEST(numeric, thing) {
-  numeric   a_numeric   = Numeric->create(42);
+  numeric   a_numeric   = Numeric->allocate(42);
   
   ASSERT( Numeric->thing(a_numeric).isa             == NUMERIC   );
   ASSERT( Numeric->thing(a_numeric).pointer.numeric == a_numeric );
@@ -27,7 +26,7 @@ CEST(numeric, thing) {
 
 CEST(numeric, native) {
   int       number      = 42;
-  numeric   a_numeric   = Numeric->create(number);
+  numeric   a_numeric   = Numeric->allocate(number);
   
   ASSERT( Numeric->native(a_numeric) == number );
   

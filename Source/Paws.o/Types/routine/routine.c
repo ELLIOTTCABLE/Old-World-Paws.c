@@ -55,9 +55,7 @@ routine  Routine__expose  (native implementation, bool simple) //»
 routine _Routine__allocate(void  *implementation, bool native, bool simple) {
   routine this = malloc(sizeof(struct routine));
   
-  this->content = LL->create();
-  LL->affix( this->content,
-    Element->create(List->thing( List->create_naughty() )) );
+  this->content = LL->allocate();
   
   /* TODO: Check if `implementation` is actually a `SCOPE`-type `node`. */
   this->simple            = simple;
@@ -81,8 +79,8 @@ thing routine__thing(routine this) {
  * have a reason to be using this, you should probably be calling `Execution->exercise()` instead. */
 void routine__execute(routine this, thing argument) {
   if (this->native) {
-    if (this->simple)   ( (void (*)(thing))    this->implementation )(argument          );
-                 else   ( (void (*)(execution))this->implementation )(Paws->Execution->create());
+    if (this->simple)   ( (void (*)(thing))    this->implementation )(argument                   );
+                 else   ( (void (*)(execution))this->implementation )(Paws->Execution->allocate());
   } else {
     /* TODO: Implement me! */
   }

@@ -4,11 +4,11 @@
 #include <errno.h>
 
 
-CEST(Thread, create) {
-  pool a_pool = Pool->create();
+CEST(Thread, allocate) {
+  pool a_pool = Pool->allocate();
   thread a_thread;
   
-  a_thread = Thread->create(a_pool);
+  a_thread = Thread->allocate(a_pool);
   sleep(0); /* A little bit of a hack to try to avoid testing-specific race conditions; probably causes the
                scheduler to schedule the thread we just created instead of us. */
   
@@ -27,10 +27,10 @@ CEST(thread, work) {
 }
 
 CEST(thread, destroy) {
-  pool a_pool = Pool->create();
+  pool a_pool = Pool->allocate();
   thread a_thread;
   
-  a_thread = Thread->create(a_pool);
+  a_thread = Thread->allocate(a_pool);
   sleep(0);
   
   ASSERT( pthread_kill(a_thread->pthread, 0) != ESRCH  );

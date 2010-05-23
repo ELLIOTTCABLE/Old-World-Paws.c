@@ -12,7 +12,7 @@
 
 /* ### Method Declarations ### */
 
-thread    Thread__create        (pool a_pool);
+thread    Thread__allocate      (pool a_pool);
 void      Thread__initialize    (void *argument);
 
 void      thread__work          (thread this);
@@ -25,7 +25,7 @@ void Paws__register_Thread(void) { Thread   = malloc(sizeof(struct Thread));
   
   struct Thread // »
   data = {
-    .create       = Thread__create,
+    .allocate     = Thread__allocate,
     .initialize   = Thread__initialize,
     
     .work         = thread__work,
@@ -38,9 +38,9 @@ void Paws__register_Thread(void) { Thread   = malloc(sizeof(struct Thread));
 
 /* ### Method Implementations ### */
 
-thread Thread__create(pool a_pool) {
-  thread this = malloc(sizeof(struct thread));
-  this->pthread = malloc(sizeof(pthread_t));
+thread Thread__allocate(pool a_pool) {
+  thread this     = malloc(sizeof( struct thread ));
+  this->pthread   = malloc(sizeof( pthread_t     ));
   
   this->pool = a_pool;
   pthread_create(&this->pthread, NULL, (void *(*)(void *))Thread->initialize, (void *)this);

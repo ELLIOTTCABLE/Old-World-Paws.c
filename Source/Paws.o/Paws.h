@@ -48,13 +48,13 @@
  * - A `const struct` of the same name, capitalized, containing function pointers and important values
  *   (constants) relevant to that datatype:
  *   
- *       a_list = List->create();
+ *       a_list = List->allocate();
  *   
  * - A `typedef`’d type (also of the same name), as a *reference* (pointer) to items of the original datatype
  *   `struct`. This is what most of the core API methods return:
  *   
  *       list   a_list;
- *       a_list = List->create();
+ *       a_list = List->allocate();
  *   
  * It’s important to remember that `list` is a pointer to something, while `struct list` is that thing itself.
  * 

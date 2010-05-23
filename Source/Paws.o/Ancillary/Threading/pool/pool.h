@@ -31,7 +31,7 @@ struct E(pool) {
 
 struct E(Pool) {
   /* `Pool` functions */
-  E(pool)       (*create)     ( void );
+  E(pool)       (*allocate)   ( void );
   
   /* `struct pool` methods */
   void          (*enqueue)    ( E(pool) this, E(routine) a_routine );

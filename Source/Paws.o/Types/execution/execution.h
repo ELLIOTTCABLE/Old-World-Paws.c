@@ -42,7 +42,7 @@ struct E(execution) {
 
 struct E(Execution) {
   /* `Execution` functions */
-  E(execution)    (*create)     ( void );
+  E(execution)    (*allocate)   ( void );
   
   /* `struct execution` methods */
   E(thing)        (*thing)      ( E(execution) this );

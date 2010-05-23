@@ -25,18 +25,18 @@ void Paws__register_AST(void) { AST   = malloc(sizeof(struct AST));
   memcpy(AST, &data, sizeof(struct AST));
 }
 
-node    Node__create              (enum node_type type);
-node    Node__create_scope        (void);
-node    Node__create_expression   (void);
-node    Node__create_word         (char *content, node_size bytes);
+node    Node__allocate      (enum node_type type);
+node    Node__scope         (void);
+node    Node__expression    (void);
+node    Node__word          (char *content, node_size bytes);
 
-void    node__insert              (node this, node child, node_size index);
-void    node__prefix              (node this, node child);
-void    node__affix               (node this, node child);
-node    node__at                  (node this,             node_size index);
-char*   node__native              (node this);
-node    node__duplicate           (node this);
-node    node__instantiate         (node this);
+void    node__insert        (node this, node child, node_size index);
+void    node__prefix        (node this, node child);
+void    node__affix         (node this, node child);
+node    node__at            (node this,             node_size index);
+char*   node__native        (node this);
+node    node__duplicate     (node this);
+node    node__instantiate   (node this);
 
                           struct Node // »
                                 *Node   = NULL;
@@ -44,18 +44,18 @@ void Paws__register_Node(void) { Node   = malloc(sizeof(struct Node));
   
   struct Node // »
   data = {
-    .create               = Node__create,
-    .create_scope         = Node__create_scope,
-    .create_expression    = Node__create_expression,
-    .create_word          = Node__create_word,
+    .allocate       = Node__allocate,
+    .scope          = Node__scope,
+    .expression     = Node__expression,
+    .word           = Node__word,
     
-    .insert               = node__insert,
-    .prefix               = node__prefix,
-    .affix                = node__affix,
-    .at                   = node__at,
-    .native               = node__native,
-    .duplicate            = node__duplicate,
-    .instantiate          = node__instantiate
+    .insert         = node__insert,
+    .prefix         = node__prefix,
+    .affix          = node__affix,
+    .at             = node__at,
+    .native         = node__native,
+    .duplicate      = node__duplicate,
+    .instantiate    = node__instantiate
   };
   
   memcpy(Node, &data, sizeof(struct Node));
@@ -66,10 +66,10 @@ void Paws__register_Node(void) { Node   = malloc(sizeof(struct Node));
 
 /* This method initializes a new `node`, with no children. All values are initialized to either `NULL` or zero.
  * 
- * You really should not be using this method; the respective `create_*` method for the type of node you actually
- * need is far more appropriate.
+ * You really should not be using this method; the respective method for the type of node you actually need is
+ * more appropriate, as it preforms type-specific initialization.
  */
-node Node__create(enum node_type type) {
+node Node__allocate(enum node_type type) {
   node this = malloc(sizeof(struct node));
   
   this->type = type;
@@ -86,23 +86,23 @@ node Node__create(enum node_type type) {
 }
 
 /* This method initializes a new `node` with `.type` set to `SCOPE`. */
-node Node__create_scope(void) {
-  node this = Node->create(SCOPE);
+node Node__scope(void) {
+  node this = Node->allocate(SCOPE);
   
   return this;
 }
 
 /* This method initializes a new `node` with `.type` set to `EXPRESSION`. */
-node Node__create_expression(void) {
-  node this = Node->create(EXPRESSION);
+node Node__expression(void) {
+  node this = Node->allocate(EXPRESSION);
   
   return this;
 }
 
 /* This method initializes a new `node` with `.type` set to `WORD`, and then initializes the `.content` to an
  * empty cstring. */
-node Node__create_word(char *content, node_size bytes) {
-  node this = Node->create(WORD);
+node Node__word(char *content, node_size bytes) {
+  node this = Node->allocate(WORD);
   
   char *copy = malloc(bytes);
   STRCPY(copy, content, bytes);
@@ -174,11 +174,11 @@ node _node__duplicate(node this, bool set_archetype) {
   node new;
   
   if (this->type == WORD)
-    new = Node->create_word(this->content, this->size);
+    new = Node->word(this->content, this->size);
   else {
-    /* FIXME: If we use `Node->create_word()` here, we should use
-              `Node->create_scope()` and `Node->create_expression()` as well. */
-    new = Node->create(this->type);
+    /* FIXME: If we use `Node->word()` here, we should use
+              `Node->scope()` and `Node->expression()` as well. */
+    new = Node->allocate(this->type);
     node *children = malloc(sizeof(node) * this->size);
     for (node_size i = 0; i < this->size; ++i)
       children[i] = _node__duplicate(((node *)this->content)[i], set_archetype);

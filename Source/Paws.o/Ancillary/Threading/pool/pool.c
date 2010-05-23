@@ -11,7 +11,7 @@
 
 /* ### Method Declarations ### */
 
-pool      Pool__create      (void);
+pool      Pool__allocate    (void);
 
 void      pool__enqueue     (pool this, routine a_routine);
 routine   pool__drip        (pool this);
@@ -24,7 +24,7 @@ void Paws__register_Pool(void) { Pool   = malloc(sizeof(struct Pool));
   
   struct Pool // »
   data = {
-    .create     = Pool__create,
+    .allocate   = Pool__allocate,
     
     .enqueue    = pool__enqueue,
     .drip       = pool__drip,
@@ -37,7 +37,7 @@ void Paws__register_Pool(void) { Pool   = malloc(sizeof(struct Pool));
 
 /* ### Method Implementations ### */
 
-pool Pool__create(void) {
+pool Pool__allocate(void) {
   pool    this              = malloc(sizeof( struct pool     ));
           this->mutex       = malloc(sizeof( pthread_mutex_t ));
           this->condition   = malloc(sizeof( pthread_cond_t  ));

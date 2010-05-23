@@ -12,9 +12,9 @@
 
 /* ### Method Declarations ### */
 
-list    List__create            (void);
-list    List__create_naughty    (void);
+list    List__allocate          (void);
 
+list    list__naughtify         (list this);
 thing   list__thing             (list this);
 void    list__insert            (list this, thing child, ll_size index);
 void    list__prefix            (list this, thing child);
@@ -28,9 +28,9 @@ void Paws__register_List(void) { List   = malloc(sizeof(struct List));
   
   struct List // »
   data = {
-    .create           = List__create,
-    .create_naughty   = List__create_naughty,
+    .allocate         = List__allocate,
     
+    .naughtify        = list__naughtify,
     .thing            = list__thing,
     .insert           = list__insert,
     .prefix           = list__prefix,
@@ -48,18 +48,21 @@ void Paws__register_List(void) { List   = malloc(sizeof(struct List));
 /* ### Method Implementations ### */
 
 /* This method allocates a new `infrastructure list`, and returns a C `list` (a pointer to a `struct list`.) */
-list _List__create        (bool);
-list  List__create        (void) { return _List__create(false); }
-list  List__create_naughty(void) { return _List__create(true);  }
-
-list _List__create(bool is_naughty) {
+list List__allocate(void) {
   list this = malloc(sizeof(struct list));
   
-  this->content = LL->create();
-  
-  LL->affix( this->content, Element->create(List->thing( is_naughty? this:List->create_naughty() )) );
+  this->content = LL->allocate();
   
   return this;
+}
+
+list list__naughtify(list this) {
+  list naughty = List->allocate();
+  
+  List->insert(naughty, List->thing(naughty), 0);
+  List->insert(   this, List->thing(naughty), 0);
+  
+  return naughty;
 }
 
 /* This method wraps a pointer to a `struct list` into a new `thing` union, and returns that union. */
@@ -78,12 +81,12 @@ void list__insert(list this, thing child, ll_size index) {
   else if(index == this->content->length)
     List->affix (this, child);
   else
-    LL->posterior_insert(this->content, Element->create(child), index);
+    LL->posterior_insert(this->content, Element->allocate(child), index);
 }
 
-void list__prefix(list this, thing child) { LL->prefix(this->content, Element->create(child)); }
+void list__prefix(list this, thing child) { LL->prefix(this->content, Element->allocate(child)); }
 
-void list__affix(list this, thing child)  { LL->affix (this->content, Element->create(child)); }
+void list__affix(list this, thing child)  { LL->affix (this->content, Element->allocate(child)); }
 
 thing list__at(list this, ll_size index) {
   element element = LL->at(this->content, index);

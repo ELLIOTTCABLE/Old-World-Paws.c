@@ -11,10 +11,10 @@
 
 /* ### Method Declarations ### */
 
-numeric   Numeric__create   (int native);
+numeric   Numeric__allocate   (int native);
 
-thing     numeric__thing    (numeric this);
-int       numeric__native   (numeric this);
+thing     numeric__thing      (numeric this);
+int       numeric__native     (numeric this);
 
                              struct Numeric // »
                                    *Numeric   = NULL;
@@ -23,10 +23,10 @@ void Paws__register_Numeric(void) { Numeric   = malloc(sizeof(struct Numeric));
   
   struct Numeric // »
   data = {
-    .create   = Numeric__create,
+    .allocate   = Numeric__allocate,
       
-    .thing    = numeric__thing,
-    .native   = numeric__native
+    .thing      = numeric__thing,
+    .native     = numeric__native
   };
   
   memcpy(Numeric, &data, sizeof(struct Numeric));
@@ -41,12 +41,10 @@ void Paws__register_Numeric(void) { Numeric   = malloc(sizeof(struct Numeric));
  * TODO: Global-uniqueness. We need to cache already-created `numeric`s somewhere, and retreive them when
  *       necessary.
  */
-numeric Numeric__create(int native) {
+numeric Numeric__allocate(int native) {
   numeric this = malloc(sizeof(struct numeric));
   
-  this->content = LL->create();
-  LL->affix( this->content,
-    Element->create(List->thing( List->create_naughty() )) );
+  this->content = LL->allocate();
   
   this->native = native;
   

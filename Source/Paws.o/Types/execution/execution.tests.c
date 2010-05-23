@@ -2,16 +2,13 @@
 #include "Cest.h"
 
 
-CEST(Execution, create) {
+CEST(Execution, allocate) {
   execution   an_execution;
-  list        a_naughty;
   
-  an_execution = Execution->create();
-  ASSERT( an_execution->content->length == 1 );
-  
-  a_naughty   = LL->at(an_execution->content, 0)->thing.pointer.list;
-  ASSERT(       LL->at(an_execution->content, 0)->thing.isa          == LIST      );
-  ASSERT(       LL->at(an_execution->content, 0)->thing.pointer.list == a_naughty );
+  an_execution = Execution->allocate();
+  ASSERT( an_execution->content->first  == NULL );
+  ASSERT( an_execution->content->last   == NULL );
+  ASSERT( an_execution->content->length == 0    );
   
   ASSERT( an_execution->size  == 0    );
   ASSERT( an_execution->nodes == NULL );
@@ -20,7 +17,7 @@ CEST(Execution, create) {
 }
 
 CEST(execution, thing) {
-  execution   an_execution    = Execution->create();
+  execution   an_execution    = Execution->allocate();
   
   ASSERT( Execution->thing(an_execution).isa               == EXECUTION    );
   ASSERT( Execution->thing(an_execution).pointer.execution == an_execution );

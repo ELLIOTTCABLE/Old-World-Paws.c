@@ -11,7 +11,7 @@ struct Element *Element; // FIXME: Do we need this forward declaration?
 
 /* ### Method Declarations ### */
 
-ll        LL__create              (void);
+ll        LL__allocate            (void);
 
 void      ll__anterior_insert     (ll this, element child, ll_size index);
 void      ll__posterior_insert    (ll this, element child, ll_size index);
@@ -25,7 +25,7 @@ void Paws__register_LL(void) { LL   = malloc(sizeof(struct LL));
   
   struct LL // »
   data = {
-    .create             = LL__create,
+    .allocate           = LL__allocate,
     
     .anterior_insert    = ll__anterior_insert,
     .posterior_insert   = ll__posterior_insert,
@@ -42,7 +42,7 @@ void Paws__register_LL(void) { LL   = malloc(sizeof(struct LL));
 
 /* This method initializes a new `ll`, with no elements. The `first` and `last` are set to `NULL` pointers, and
  * `length` is initialized to zero. */
-ll LL__create(void) {
+ll LL__allocate(void) {
   ll this = malloc(sizeof(struct ll));
   
   this->first  = NULL;
@@ -127,10 +127,10 @@ element ll__at(ll this, ll_size index) { element result; ll_size i;
 
 /* ### Method Declarations ### */
 
-element   Element__create   (thing thing);
+element   Element__allocate   (thing thing);
 
-void      element__prefix   (element this, element other);
-void      element__affix    (element this, element other);
+void      element__prefix     (element this, element other);
+void      element__affix      (element this, element other);
 
                              struct Element // »
                                    *Element   = NULL;
@@ -138,7 +138,7 @@ void Paws__register_Element(void) { Element   = malloc(sizeof(struct Element));
   
   struct Element // »
   data = {
-    .create   = Element__create,
+    .allocate   = Element__allocate,
 
     .prefix   = element__prefix,
     .affix    = element__affix
@@ -155,7 +155,7 @@ void Paws__register_Element(void) { Element   = malloc(sizeof(struct Element));
  * 
  * Expects a `thing` as an argument, to be stored on this `element` as `e`.
  */
-element Element__create(thing thing) {
+element Element__allocate(thing thing) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   element this = malloc(sizeof(struct element));
   

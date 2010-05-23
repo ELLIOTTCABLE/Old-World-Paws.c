@@ -29,7 +29,7 @@ struct E(thread) {
 
 struct E(Thread) {
   /* `Thread` functions */
-  E(thread)   (*create)       ( E(pool) a_pool );
+  E(thread)   (*allocate)     ( E(pool) a_pool );
   void        (*initialize)   ( void *argument ); /* Actually takes a `thread` */
   
   /* `struct thread` methods */

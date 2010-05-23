@@ -2,10 +2,10 @@
 #include "Cest.h"
 
 
-CEST(Node, create) {
+CEST(Node, allocate) {
   node    a_node;
   
-  a_node = Node->create(SCOPE);
+  a_node = Node->allocate(SCOPE);
   ASSERT( a_node->start     == 0 );
   ASSERT( a_node->end       == 0 );
   ASSERT( a_node->archetype == NULL );
@@ -13,36 +13,36 @@ CEST(Node, create) {
   ASSERT( a_node->content   == NULL );
   
   ASSERT( a_node->type == SCOPE );
-  a_node = Node->create(EXPRESSION);
+  a_node = Node->allocate(EXPRESSION);
   ASSERT( a_node->type == EXPRESSION );
-  a_node = Node->create(WORD);
+  a_node = Node->allocate(WORD);
   ASSERT( a_node->type == WORD );
   
   SUCCEED;
 }
 
-CEST(Node, create_scope) {
+CEST(Node, scope) {
   node    a_scope;
   
-  a_scope = Node->create_scope();
+  a_scope = Node->scope();
   ASSERT( a_scope->type == SCOPE );
   
   SUCCEED;
 }
 
-CEST(Node, create_expression) {
+CEST(Node, expression) {
   node    a_expression;
   
-  a_expression = Node->create_expression();
+  a_expression = Node->expression();
   ASSERT( a_expression->type == EXPRESSION );
   
   SUCCEED;
 }
 
-CEST(Node, create_word) {
+CEST(Node, word) {
   node    a_word;
   
-  a_word = Node->create_word("foo", 4);
+  a_word = Node->word("foo", 4);
   ASSERT( a_word->type == WORD );
   ASSERT( a_word->size == 4 );
   
@@ -52,10 +52,10 @@ CEST(Node, create_word) {
 }
 
 CEST(node, insert) {
-  node    parent = Node->create_expression(),
-          child1 = Node->create_word("foo", 4),
-          child2 = Node->create_word("bar", 4),
-          child3 = Node->create_word("baz", 4);
+  node    parent = Node->expression(),
+          child1 = Node->word("foo", 4),
+          child2 = Node->word("bar", 4),
+          child3 = Node->word("baz", 4);
   
   
   Node->insert(parent, child1, 0);
@@ -77,10 +77,10 @@ CEST(node, insert) {
 }
 
 CEST(node, prefix) {
-  node    parent = Node->create_expression(),
-          child1 = Node->create_word("foo", 4),
-          child2 = Node->create_word("bar", 4),
-          child3 = Node->create_word("baz", 4);
+  node    parent = Node->expression(),
+          child1 = Node->word("foo", 4),
+          child2 = Node->word("bar", 4),
+          child3 = Node->word("baz", 4);
   
   Node->prefix(parent, child3);
   ASSERT( *((node *)parent->content + 0) == child3 );
@@ -101,10 +101,10 @@ CEST(node, prefix) {
 }
 
 CEST(node, affix) {
-  node    parent = Node->create_expression(),
-          child1 = Node->create_word("foo", 4),
-          child2 = Node->create_word("bar", 4),
-          child3 = Node->create_word("baz", 4);
+  node    parent = Node->expression(),
+          child1 = Node->word("foo", 4),
+          child2 = Node->word("bar", 4),
+          child3 = Node->word("baz", 4);
   
   Node->affix(parent, child1);
   ASSERT( *((node *)parent->content + 0) == child1 );
@@ -125,10 +125,10 @@ CEST(node, affix) {
 }
 
 CEST(node, at) {
-  node    parent = Node->create_expression(),
-          child1 = Node->create_word("foo", 4),
-          child2 = Node->create_word("bar", 4),
-          child3 = Node->create_word("baz", 4);
+  node    parent = Node->expression(),
+          child1 = Node->word("foo", 4),
+          child2 = Node->word("bar", 4),
+          child3 = Node->word("baz", 4);
   
   Node->affix(parent, child1);
   Node->affix(parent, child2);
@@ -144,14 +144,14 @@ CEST(node, at) {
 CEST(node, native) {
   node    a_word;
   
-  a_word = Node->create_word("foo", 4);
+  a_word = Node->word("foo", 4);
   ASSERT( strcmp(Node->native(a_word), "foo") == 0 );
   
   SUCCEED;
 }
 
 CEST(node, duplicate) {
-  node    a_word = Node->create_word("foo", 4), another_word;
+  node    a_word = Node->word("foo", 4), another_word;
   
   another_word = Node->duplicate(a_word);
   ASSERT( another_word            != a_word );
@@ -163,10 +163,10 @@ CEST(node, duplicate) {
   ASSERT( strcmp(another_word->content, "foo") == 0 );
   
   
-  node    an_expression = Node->create_expression(), another_expression,
-          child1 = Node->create_word("foo", 4),
-          child2 = Node->create_word("bar", 4),
-          child3 = Node->create_word("baz", 4);
+  node    an_expression = Node->expression(), another_expression,
+          child1 = Node->word("foo", 4),
+          child2 = Node->word("bar", 4),
+          child3 = Node->word("baz", 4);
   
   Node->affix(an_expression, child1);
   Node->affix(an_expression, child2);
@@ -194,7 +194,7 @@ CEST(node, duplicate) {
 }
 
 CEST(node, instantiate) {
-  node    a_word = Node->create_word("foo", 4), another_word;
+  node    a_word = Node->word("foo", 4), another_word;
   
   another_word = Node->instantiate(a_word);
   ASSERT( another_word            != a_word );
@@ -206,10 +206,10 @@ CEST(node, instantiate) {
   ASSERT( strcmp(another_word->content, "foo") == 0 );
   
   
-  node    an_expression = Node->create_expression(), another_expression,
-          child1 = Node->create_word("foo", 4),
-          child2 = Node->create_word("bar", 4),
-          child3 = Node->create_word("baz", 4);
+  node    an_expression = Node->expression(), another_expression,
+          child1 = Node->word("foo", 4),
+          child2 = Node->word("bar", 4),
+          child3 = Node->word("baz", 4);
   
   Node->affix(an_expression, child1);
   Node->affix(an_expression, child2);

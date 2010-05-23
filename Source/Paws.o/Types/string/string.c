@@ -19,10 +19,10 @@
 
 /* ### Method Declarations ### */
 
-string  String__create    (char native[], string_size bytes);
+string  String__allocate    (char native[], string_size bytes);
 
-thing   string__thing     (string this);
-char*   string__native    (string this);
+thing   string__thing       (string this);
+char*   string__native      (string this);
 
                             struct String // »
                                   *String   = NULL;
@@ -31,10 +31,10 @@ void Paws__register_String(void) { String   = malloc(sizeof(struct String));
   
   struct String // »
   data = {
-    .create   = String__create,
+    .allocate   = String__allocate,
     
-    .thing    = string__thing,
-    .native   = string__native
+    .thing      = string__thing,
+    .native     = string__native
   };
   
   memcpy(String, &data, sizeof(struct String));
@@ -49,12 +49,10 @@ void Paws__register_String(void) { String   = malloc(sizeof(struct String));
  * TODO: Global-uniqueness. We need to cache already-created `string`s somewhere, and retreive them when
  *       necessary.
  */
-string String__create(char native[], string_size bytes) {
+string String__allocate(char native[], string_size bytes) {
   string this = malloc(sizeof(struct string));
   
-  this->content = LL->create();
-  LL->affix( this->content,
-    Element->create(List->thing( List->create_naughty() )) );
+  this->content = LL->allocate();
   
   this->bytes = bytes;
   if (bytes <= sizeof(this->native.short_array)) {
