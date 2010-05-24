@@ -28,8 +28,8 @@ so… these:
     C -O0 -std=c99 -pedantic-errors -Wall -ISource \
       Source/Paws.o/Paws.c \
       Source/Paws.o/Ancillary/Threading/Threading.c \
-      Source/Paws.o/Ancillary/Threading/pool/pool.c \
-      Source/Paws.o/Ancillary/Threading/thread/thread.c \
+      Source/Paws.o/Ancillary/Threading/Pool/Pool.c \
+      Source/Paws.o/Ancillary/Threading/Thread/Thread.c \
       Source/Paws.o/Types/list/ll.c \
       Source/Paws.o/Types/list/list.c \
       Source/Paws.o/Types/routine/ast.c \
@@ -56,8 +56,8 @@ so… these:
     # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/Ancillary/Threading/Threading.c \
-      Source/Paws.o/Ancillary/Threading/pool/pool.tests.c \
-      Source/Paws.o/Ancillary/Threading/thread/thread.tests.c \
+      Source/Paws.o/Ancillary/Threading/Pool/Pool.tests.c \
+      Source/Paws.o/Ancillary/Threading/Thread/Thread.tests.c \
       Source/Paws.o/Types/list/ll.tests.c \
       Source/Paws.o/Types/list/list.tests.c \
       Source/Paws.o/Types/routine/ast.tests.c \
@@ -71,8 +71,8 @@ so… these:
     # Run `gdb` against the tests for Paws (use `run`)
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
       Source/Paws.o/Ancillary/Threading/Threading.c \
-      Source/Paws.o/Ancillary/Threading/pool/pool.tests.c \
-      Source/Paws.o/Ancillary/Threading/thread/thread.tests.c \
+      Source/Paws.o/Ancillary/Threading/Pool/Pool.tests.c \
+      Source/Paws.o/Ancillary/Threading/Thread/Thread.tests.c \
       Source/Paws.o/Types/list/ll.tests.c \
       Source/Paws.o/Types/list/list.tests.c \
       Source/Paws.o/Types/routine/ast.tests.c \

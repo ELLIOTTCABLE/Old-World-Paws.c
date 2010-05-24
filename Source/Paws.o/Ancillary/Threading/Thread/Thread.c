@@ -1,4 +1,4 @@
-#include "thread.h"
+#include "Thread.h"
 
 #include "Paws.o/Paws.h"
 #include <stdlib.h>

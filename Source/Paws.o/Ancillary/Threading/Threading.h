@@ -1,10 +1,10 @@
 #define THREADING_H
 
 #if !defined(POOL_H)
-# include "Paws.o/Ancillary/Threading/pool/pool.h"
+# include "Paws.o/Ancillary/Threading/Pool/Pool.h"
 #endif
 #if !defined(THREAD_H)
-# include "Paws.o/Ancillary/Threading/thread/thread.h"
+# include "Paws.o/Ancillary/Threading/Thread/Thread.h"
 #endif
 
 struct E(Threading) {

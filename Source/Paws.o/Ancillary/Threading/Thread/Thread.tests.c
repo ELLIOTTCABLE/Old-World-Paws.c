@@ -1,4 +1,4 @@
-#include "thread.c"
+#include "Thread.c"
 #include "Cest.h"
 
 #include <errno.h>
