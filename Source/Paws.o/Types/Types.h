@@ -42,6 +42,8 @@ struct E(thing) {
   } const pointer;
   
   enum /* isa’s */ {
+    E(UNKNOWN) = 0,
+    
     E(NOTHING),
     
     E(LIST),
