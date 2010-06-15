@@ -28,10 +28,11 @@ typedef struct E(string)* E(string);
 
 
         struct E(thing); /* A union representing a pointer to *any* core Paws datatype */
-typedef struct E(thing) E(thing);
+typedef struct E(thing) E(thing); /*
+typedef   enum E(kind) E(kind); // ISO C forbids forward references to 'enum' types. YAY. >,< */
 
 struct E(thing) {
-  union /* thing’s */ {
+  union /* E(thing_pointers) */ {
     void       *nothing;
     
     E(list)       list;
@@ -41,7 +42,7 @@ struct E(thing) {
     E(string)     string;
   } const pointer;
   
-  enum /* isa’s */ {
+  enum E(kind) {
     E(UNKNOWN) = 0,
     
     E(NOTHING),
@@ -53,3 +54,5 @@ struct E(thing) {
     E(STRING)
   } const isa;
 };
+
+typedef   enum E(kind) E(kind); // See above
