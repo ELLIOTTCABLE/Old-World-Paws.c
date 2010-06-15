@@ -9,6 +9,10 @@
 #   include "Paws.o/Ancillary/Threading/Threading.h"
 # endif
 
+# if !defined(MAGAZINE_H)
+#   include "Paws.o/Ancillary/Magazine/Magazine.h"
+# endif
+
 # if !defined(LIST_H)
 #   include "Paws.o/Types/list/list.h"
 # endif
@@ -87,6 +91,8 @@
 struct Paws {
   /* Namespaces */
   struct E(Threading)    *Threading;
+  
+  struct E(Magazine)     *Magazine; 
   
   struct E(List)         *List;
   struct E(Routine)      *Routine;

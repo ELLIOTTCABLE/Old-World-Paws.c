@@ -30,6 +30,7 @@ so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/Pool/Pool.c \
       Source/Paws.o/Ancillary/Threading/Thread/Thread.c \
+      Source/Paws.o/Ancillary/Magazine/Magazine.c \
       Source/Paws.o/Types/list/ll.c \
       Source/Paws.o/Types/list/list.c \
       Source/Paws.o/Types/routine/ast.c \
@@ -58,6 +59,7 @@ so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/Pool/Pool.tests.c \
       Source/Paws.o/Ancillary/Threading/Thread/Thread.tests.c \
+      Source/Paws.o/Ancillary/Magazine/Magazine.tests.c \
       Source/Paws.o/Types/list/ll.tests.c \
       Source/Paws.o/Types/list/list.tests.c \
       Source/Paws.o/Types/routine/ast.tests.c \
@@ -73,6 +75,7 @@ so… these:
       Source/Paws.o/Ancillary/Threading/Threading.c \
       Source/Paws.o/Ancillary/Threading/Pool/Pool.tests.c \
       Source/Paws.o/Ancillary/Threading/Thread/Thread.tests.c \
+      Source/Paws.o/Ancillary/Magazine/Magazine.tests.c \
       Source/Paws.o/Types/list/ll.tests.c \
       Source/Paws.o/Types/list/list.tests.c \
       Source/Paws.o/Types/routine/ast.tests.c \
