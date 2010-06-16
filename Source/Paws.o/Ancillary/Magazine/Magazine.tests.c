@@ -18,7 +18,8 @@ CEST(Magazine, allocate) {
 }
 
 CEST(magazine, get) {
-  magazine a_magazine = Magazine->allocate(STRING);
+  kind kind = STRING;
+  magazine a_magazine = Magazine->allocate(kind);
   
   // Doing some tedious manual setup, to avoid dependency on `Magazine->set()`. (Since `String->create()` will
   // eventually depend on this, and apply to interpretation-unit specific `string` magazines, we’re going to
@@ -37,6 +38,7 @@ CEST(magazine, get) {
   cartridge t  = malloc(sizeof( struct cartridge ));  t->bytes['a'] = a;   t->bytes['o'] = o;
                                        a_magazine->root->bytes['t'] = t;
   
+  ASSERT( Magazine->get(a_magazine, "tap",  NULL).isa            == kind );
   ASSERT( Magazine->get(a_magazine, "tap").pointer.string  == tap );
   ASSERT( Magazine->get(a_magazine, "taps").pointer.string == taps );
   ASSERT( Magazine->get(a_magazine, "top").pointer.string  == top );
