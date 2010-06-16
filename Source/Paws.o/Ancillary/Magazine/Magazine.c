@@ -13,7 +13,7 @@
 
 magazine    Magazine__allocate    (kind holds);
 
-thing       magazine__get         (magazine this, char *key);
+thing       magazine__get         (magazine this, char *key, setter callback);
 void        magazine__set         (magazine this, char *key, thing value);
 
                               struct Magazine // »
@@ -46,9 +46,16 @@ magazine Magazine__allocate(kind holds) {
 }
 
 thing _magazine__get(cartridge cart, char *key, cartridge **address);
-thing  magazine__get(magazine  this, char *key) { return (thing){
-      _magazine__get(    this->root,       key,            NULL).pointer, .isa = this->holds }; }
-thing _magazine__get(cartridge cart, char *key, cartridge **address) { cartridge *stacked_cartridge;
+thing  magazine__get(magazine  this, char *key, setter callback) { cartridge *address; thing rv; if((rv =
+      _magazine__get(    this->root,       key,            &address)).pointer.list != NULL)
+    return (thing){ rv.pointer.list, this->holds };
+  
+  if (callback != NULL && (rv = callback(this, key)).isa == this->holds) {
+    *address = (cartridge)rv.pointer.list; return rv; }
+  else return Paws->nothing();
+}
+thing _magazine__get(cartridge cart, char *key, cartridge **address) {
+                       cartridge *stacked_cartridge;
   if (address == NULL) address = &stacked_cartridge;
                       *address = &cart->bytes[*key];
   

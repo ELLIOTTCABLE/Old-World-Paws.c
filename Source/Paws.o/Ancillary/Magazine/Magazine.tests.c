@@ -1,7 +1,15 @@
 #include "Magazine.c"
 #include "Cest.h"
 
+#if !defined(STRING_H)
+# include "Paws.o/Types/string/string.h"
+#endif
+
 #include <errno.h>
+
+/* A safer `strcpy()`, using `strncpy()` and `sizeof()` */
+#define STRCPY(TO, FROM) \
+  strncpy(TO, FROM, sizeof(TO)); TO[sizeof(TO) - 1] = '\0'
 
 
 CEST(Magazine, allocate) {
@@ -15,6 +23,14 @@ CEST(Magazine, allocate) {
   ASSERT( a_magazine->root->bytes[256] == NULL );
   
   SUCCEED;
+}
+
+static thing testing_setter (magazine this, char *key) {
+  // We’re going to manually create a faux-`string`. Don’t ever do this, it’s horridly evil! ;D
+  string it = malloc(sizeof( struct string ));
+  STRCPY(it->native.short_array, key);
+  
+  return Paws->String->thing(it);
 }
 
 CEST(magazine, get) {
@@ -39,10 +55,23 @@ CEST(magazine, get) {
                                        a_magazine->root->bytes['t'] = t;
   
   ASSERT( Magazine->get(a_magazine, "tap",  NULL).isa            == kind );
-  ASSERT( Magazine->get(a_magazine, "tap").pointer.string  == tap );
-  ASSERT( Magazine->get(a_magazine, "taps").pointer.string == taps );
-  ASSERT( Magazine->get(a_magazine, "top").pointer.string  == top );
-  ASSERT( Magazine->get(a_magazine, "tops").pointer.string == tops );
+  ASSERT( Magazine->get(a_magazine, "tap",  NULL).pointer.string == tap );
+  ASSERT( Magazine->get(a_magazine, "taps", NULL).pointer.string == taps );
+  ASSERT( Magazine->get(a_magazine, "top",  NULL).pointer.string == top );
+  ASSERT( Magazine->get(a_magazine, "tops", NULL).pointer.string == tops );
+  
+  cartridge r  = malloc(sizeof( struct cartridge ));                       r->bytes['\0'] = NULL;
+  cartridge e  = malloc(sizeof( struct cartridge ));  e->bytes['r'] = r;   e->bytes['\0'] = NULL;
+                                                     p1->bytes['e'] = e;
+  
+  thing tape = Magazine->get(a_magazine, "tape",  testing_setter);
+  ASSERT(        tape.isa                              == STRING );
+  ASSERT( strcmp(tape.pointer.string->native.short_array, "tape") == 0 );
+  
+   // We don’t check `taper.isa`, because `isa` must be disregarded when the `pointer` is `NULL`.
+  thing taper = Magazine->get(a_magazine, "taper",  NULL);
+  //ASSERT( taper.isa                              == NOTHING );
+  ASSERT( taper.pointer.string == NULL );
   
   SUCCEED;
 }
