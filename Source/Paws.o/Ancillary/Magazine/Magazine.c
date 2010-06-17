@@ -63,4 +63,10 @@ thing _magazine__get(cartridge cart, char *key, cartridge **address) {
                else return _magazine__get(**address, ++key, address);
 }
 
-void magazine__set(magazine this, char *key, thing value) { return; }
+void magazine__set(magazine this, char *key, thing value) {
+                        cartridge *address;
+  _magazine__get(this->root, key, &address);
+                                  *address = (cartridge)value.pointer.list;
+  
+  return;
+}
