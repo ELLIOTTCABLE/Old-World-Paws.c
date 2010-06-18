@@ -11,10 +11,12 @@
 
 /* ### Method Declarations ### */
 
-magazine    Magazine__allocate    (kind holds);
+magazine    Magazine__allocate            (kind holds);
 
-thing       magazine__get         (magazine this, char *key, setter callback);
-void        magazine__set         (magazine this, char *key, thing value);
+thing       magazine__get                 (magazine this, char *key, setter callback);
+void        magazine__set                 (magazine this, char *key, thing value);
+
+cartridge   static Cartridge__allocate    (void);
 
                               struct Magazine // »
                                     *Magazine   = NULL;
@@ -37,9 +39,8 @@ void Paws__register_Magazine(void) { Magazine   = malloc(sizeof(struct Magazine)
 
 magazine Magazine__allocate(kind holds) {
   magazine this         = malloc(sizeof( struct magazine ));
-           this->root   = malloc(sizeof( struct cartridge ));
+           this->root   = Cartridge__allocate();
   
-  memset(this->root->bytes, 0, sizeof(magazine) * 256);
   this->holds = holds;
   
   return this;
@@ -60,7 +61,8 @@ thing _magazine__get(cartridge cart, char *key, cartridge **address) {
                       *address = &cart->bytes[*key];
   
   if (*key == '\0') return       (thing){ **address };
-               else return _magazine__get(**address, ++key, address);
+            else { if (**address == NULL) **address = Cartridge__allocate();
+                    return _magazine__get(**address, ++key, address); };
 }
 
 void magazine__set(magazine this, char *key, thing value) {
@@ -69,4 +71,13 @@ void magazine__set(magazine this, char *key, thing value) {
                                   *address = (cartridge)value.pointer.list;
   
   return;
+}
+
+/* This doesn’t belong to any namespace struct, but it’s just utilized internally… so no biggie. */
+static cartridge Cartridge__allocate(void) {
+  cartridge this = malloc(sizeof( struct cartridge ));
+  
+  memset(this->bytes, 0, sizeof(magazine) * 256);
+  
+  return this;
 }

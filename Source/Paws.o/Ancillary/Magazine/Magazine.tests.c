@@ -60,11 +60,12 @@ CEST(magazine, get) {
   ASSERT( Magazine->get(a_magazine, "top",  NULL).pointer.string == top );
   ASSERT( Magazine->get(a_magazine, "tops", NULL).pointer.string == tops );
   
+  
   cartridge  r = malloc(sizeof( struct cartridge ));                       r->bytes['\0'] = NULL;
   cartridge  e = malloc(sizeof( struct cartridge ));  e->bytes['r'] = r;   e->bytes['\0'] = NULL;
                                                      p1->bytes['e'] = e;
   
-  thing tape = Magazine->get(a_magazine, "tape",  testing_setter);
+  thing tape = Magazine->get(a_magazine, "tape", testing_setter);
   ASSERT(        tape.isa                              == STRING );
   ASSERT( strcmp(tape.pointer.string->native.short_array, "tape") == 0 );
   
@@ -72,6 +73,26 @@ CEST(magazine, get) {
   thing taper = Magazine->get(a_magazine, "taper",  NULL);
   //ASSERT( taper.isa                              == NOTHING );
   ASSERT( taper.pointer.string == NULL );
+  
+  
+  ASSERT( a_magazine->root->bytes['f'] == NULL );
+  ASSERT( Magazine->get(a_magazine, "foo",  NULL).pointer.string == NULL );
+  ASSERT( a_magazine->root->bytes['f'] != NULL );
+  ASSERT( a_magazine->root->bytes['f']->bytes['o'] != NULL );
+  ASSERT( a_magazine->root->bytes['f']->bytes['o']->bytes['o'] != NULL );
+  
+  
+  ASSERT( a_magazine->root->bytes['b'] == NULL );
+  thing bar = Magazine->get(a_magazine, "bar", testing_setter);
+  ASSERT(        bar.isa                              == STRING );
+  ASSERT( strcmp(bar.pointer.string->native.short_array, "bar") == 0 );
+  
+  ASSERT(                 a_magazine->root->bytes['b']                                           != NULL );
+  ASSERT(                 a_magazine->root->bytes['b']->bytes['a']                               != NULL );
+  ASSERT(                 a_magazine->root->bytes['b']->bytes['a']->bytes['r']                   != NULL );
+  ASSERT(                 a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0']      != NULL );
+  ASSERT( strcmp(((string)a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0'])
+    ->native.short_array, "bar") == 0 );
   
   SUCCEED;
 }
@@ -85,7 +106,8 @@ CEST(magazine, set) {
            tops = malloc(sizeof( struct string )),
             top = malloc(sizeof( struct string )),
            taps = malloc(sizeof( struct string )),
-            tap = malloc(sizeof( struct string ));
+            tap = malloc(sizeof( struct string )),
+            bar = malloc(sizeof( struct string ));
   cartridge s2 = malloc(sizeof( struct cartridge ));                      s2->bytes['\0'] = NULL;
   cartridge p2 = malloc(sizeof( struct cartridge )); p2->bytes['s'] = s2; p2->bytes['\0'] = (cartridge)other1;
   cartridge o  = malloc(sizeof( struct cartridge ));  o->bytes['p'] = p2;
@@ -99,6 +121,9 @@ CEST(magazine, set) {
   Magazine->set(a_magazine, "taps", Paws->String->thing(taps)); ASSERT( (string)s1->bytes['\0'] == taps );
   Magazine->set(a_magazine, "top",  Paws->String->thing(top));  ASSERT( (string)p2->bytes['\0'] == top );
   Magazine->set(a_magazine, "tops", Paws->String->thing(tops)); ASSERT( (string)s2->bytes['\0'] == tops );
+  
+  Magazine->set(a_magazine, "bar",  Paws->String->thing(bar));
+  ASSERT( (string)a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0'] == bar );
   
   SUCCEED;
 }
