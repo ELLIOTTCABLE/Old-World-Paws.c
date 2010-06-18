@@ -60,15 +60,15 @@ thing _magazine__get(cartridge cart, char *key, cartridge **address) {
   if (address == NULL) address = &stacked_cartridge;
                       *address = &cart->bytes[*key];
   
-  if (*key == '\0') return       (thing){ **address };
-            else { if (**address == NULL) **address = Cartridge__allocate();
-                    return _magazine__get(**address, ++key, address); };
+  if (*key == '\0') return (thing){ **address };
+      else { if (**address == NULL) **address = Cartridge__allocate();
+              return _magazine__get(**address, ++key, address); };
 }
 
 void magazine__set(magazine this, char *key, thing value) {
                         cartridge *address;
   _magazine__get(this->root, key, &address);
-                                  *address = (cartridge)value.pointer.unknown;
+  if (value.isa == this->holds)   *address = (cartridge)value.pointer.unknown;
   
   return;
 }

@@ -105,7 +105,8 @@ CEST(magazine, set) {
             top = malloc(sizeof( struct string )),
            taps = malloc(sizeof( struct string )),
             tap = malloc(sizeof( struct string )),
-            bar = malloc(sizeof( struct string ));
+            foo = malloc(sizeof( struct string ));
+  list      bar = malloc(sizeof( struct list ));
   cartridge s2 = malloc(sizeof( struct cartridge ));                      s2->bytes['\0'] = NULL;
   cartridge p2 = malloc(sizeof( struct cartridge )); p2->bytes['s'] = s2; p2->bytes['\0'] = (cartridge)other1;
   cartridge o  = malloc(sizeof( struct cartridge ));  o->bytes['p'] = p2;
@@ -120,8 +121,17 @@ CEST(magazine, set) {
   Magazine->set(a_magazine, "top",  Paws->String->thing(top));  ASSERT( (string)p2->bytes['\0'] == top );
   Magazine->set(a_magazine, "tops", Paws->String->thing(tops)); ASSERT( (string)s2->bytes['\0'] == tops );
   
-  Magazine->set(a_magazine, "bar",  Paws->String->thing(bar));
-  ASSERT( (string)a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0'] == bar );
+  Magazine->set(a_magazine, "foo",  Paws->String->thing(foo));
+  ASSERT(         a_magazine->root->bytes['f']                                      != NULL );
+  ASSERT(         a_magazine->root->bytes['f']->bytes['o']                          != NULL );
+  ASSERT(         a_magazine->root->bytes['f']->bytes['o']->bytes['o']              != NULL );
+  ASSERT( (string)a_magazine->root->bytes['f']->bytes['o']->bytes['o']->bytes['\0'] == foo );
+  
+  Magazine->set(a_magazine, "bar",  Paws->List->thing(bar));
+  ASSERT(         a_magazine->root->bytes['b']                                      != NULL );
+  ASSERT(         a_magazine->root->bytes['b']->bytes['a']                          != NULL );
+  ASSERT(         a_magazine->root->bytes['b']->bytes['a']->bytes['r']              != NULL );
+  ASSERT( (string)a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0'] == NULL );
   
   SUCCEED;
 }
