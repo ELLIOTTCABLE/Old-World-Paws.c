@@ -33,7 +33,7 @@ typedef   enum E(kind) E(kind); // ISO C forbids forward references to 'enum' ty
 
 struct E(thing) {
   union /* E(thing_pointers) */ {
-    void       *nothing;
+    void         *unknown;
     
     E(list)       list;
     E(routine)    routine;
@@ -44,8 +44,6 @@ struct E(thing) {
   
   enum E(kind) {
     E(UNKNOWN) = 0,
-    
-    E(NOTHING),
     
     E(LIST),
     E(ROUTINE),

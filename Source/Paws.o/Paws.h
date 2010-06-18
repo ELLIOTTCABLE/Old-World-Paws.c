@@ -101,7 +101,7 @@ struct Paws {
   struct E(String)       *String;
   
   /* `Paws` functions */
-  E(thing)              (*nothing)    ( void );
+  // None
 };
 struct Paws extern *Paws;
 

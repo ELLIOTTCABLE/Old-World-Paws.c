@@ -15,8 +15,8 @@
 CEST(Magazine, allocate) {
   magazine a_magazine;
   
-  a_magazine = Magazine->allocate(NOTHING);
-  ASSERT( a_magazine->holds            == NOTHING );
+  a_magazine = Magazine->allocate(UNKNOWN);
+  ASSERT( a_magazine->holds            == UNKNOWN );
   ASSERT( a_magazine->root->bytes[  0] == NULL );
   ASSERT( a_magazine->root->bytes[128] == NULL );
   ASSERT( a_magazine->root->bytes[255] == NULL );
@@ -69,14 +69,12 @@ CEST(magazine, get) {
   ASSERT(        tape.isa                              == STRING );
   ASSERT( strcmp(tape.pointer.string->native.short_array, "tape") == 0 );
   
-   // We don’t check `taper.isa`, because `isa` must be disregarded when the `pointer` is `NULL`.
   thing taper = Magazine->get(a_magazine, "taper",  NULL);
-  //ASSERT( taper.isa                              == NOTHING );
-  ASSERT( taper.pointer.string == NULL );
+  ASSERT( taper.pointer.unknown == NULL );
   
   
   ASSERT( a_magazine->root->bytes['f'] == NULL );
-  ASSERT( Magazine->get(a_magazine, "foo",  NULL).pointer.string == NULL );
+  ASSERT( Magazine->get(a_magazine, "foo",  NULL).pointer.unknown == NULL );
   ASSERT( a_magazine->root->bytes['f'] != NULL );
   ASSERT( a_magazine->root->bytes['f']->bytes['o'] != NULL );
   ASSERT( a_magazine->root->bytes['f']->bytes['o']->bytes['o'] != NULL );

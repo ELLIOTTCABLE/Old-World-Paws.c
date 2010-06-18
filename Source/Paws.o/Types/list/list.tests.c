@@ -112,14 +112,10 @@ CEST(list, at) {
   list  a_list = List->allocate();
   
   /* Empty `list`s */
-  ASSERT( List->at(a_list, 5).pointer.nothing == NULL    );
-  ASSERT( List->at(a_list, 5).isa             == NOTHING );
-  ASSERT( List->at(a_list, 4).pointer.nothing == NULL    );
-  ASSERT( List->at(a_list, 4).isa             == NOTHING );
-  ASSERT( List->at(a_list, 1).pointer.nothing == NULL    );
-  ASSERT( List->at(a_list, 1).isa             == NOTHING );
-  ASSERT( List->at(a_list, 0).pointer.nothing == NULL    );
-  ASSERT( List->at(a_list, 0).isa             == NOTHING );
+  ASSERT( List->at(a_list, 5).pointer.unknown == NULL    );
+  ASSERT( List->at(a_list, 4).pointer.unknown == NULL    );
+  ASSERT( List->at(a_list, 1).pointer.unknown == NULL    );
+  ASSERT( List->at(a_list, 0).pointer.unknown == NULL    );
   
   thing thing1 = List->thing(List->allocate()); List->affix(a_list, thing1);
   thing thing2 = List->thing(List->allocate()); List->affix(a_list, thing2);
@@ -131,10 +127,8 @@ CEST(list, at) {
   ASSERT( List->at(a_list, 2).pointer.list == thing3.pointer.list );
   
   /* OOB indicies */
-  ASSERT( List->at(a_list, 5).pointer.nothing == NULL    );
-  ASSERT( List->at(a_list, 5).isa             == NOTHING );
-  ASSERT( List->at(a_list, 4).pointer.nothing == NULL    );
-  ASSERT( List->at(a_list, 4).isa             == NOTHING );
+  ASSERT( List->at(a_list, 5).pointer.unknown == NULL    );
+  ASSERT( List->at(a_list, 4).pointer.unknown == NULL    );
   
   SUCCEED;
 }

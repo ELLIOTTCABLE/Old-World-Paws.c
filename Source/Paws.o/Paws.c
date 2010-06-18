@@ -22,9 +22,7 @@ void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));
     .Routine      = NULL,
     .Execution    = NULL,
     .Numeric      = NULL,
-    .String       = NULL,
-    
-    .nothing    = nothing
+    .String       = NULL
   };
   
   memcpy(Paws, &data, sizeof(struct Paws));
@@ -43,12 +41,3 @@ void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));
 
 /* FIXME: Find a way to run this with the tests without `constructor`, for `gcc` compatibility. */
 void constructor prepare_Paws(void) { Paws__register_Paws(); }
-
-thing nothing(void) {
-  struct thing nothing = {
-    .isa = NOTHING,
-    .pointer = { .nothing = NULL }
-  };
-  
-  return nothing;
-}

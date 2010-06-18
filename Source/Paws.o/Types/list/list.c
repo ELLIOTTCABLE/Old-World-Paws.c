@@ -91,7 +91,7 @@ void list__affix(list this, thing child)  { LL->affix (this->content, Element->a
 thing list__at(list this, ll_size index) {
   element element = LL->at(this->content, index);
   if (element == NULL)
-    return Paws->nothing();
+    return (thing){ NULL };
   else
     return element->thing;
 }
