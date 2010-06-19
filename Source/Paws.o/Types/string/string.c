@@ -19,7 +19,7 @@
 
 /* ### Method Declarations ### */
 
-string  String__allocate    (char native[], string_size bytes);
+string  String__allocate    (char native[]);
 
 thing   string__thing       (string this);
 char*   string__native      (string this);
@@ -49,20 +49,17 @@ void Paws__register_String(void) { String   = malloc(sizeof(struct String));
  * TODO: Global-uniqueness. We need to cache already-created `string`s somewhere, and retreive them when
  *       necessary.
  */
-string String__allocate(char native[], string_size bytes) {
+string String__allocate(char native[]) {
   string this = malloc(sizeof(struct string));
   
   this->content = LL->allocate();
   
-  this->bytes = bytes;
-  if (bytes <= sizeof(this->native.short_array)) {
-    STRCPY(this->native.short_array, native, bytes);
+  this->bytes = strlen(native) + 1;
+  if (this->bytes <= sizeof(this->native.short_array)) {
+    STRCPY(this->native.short_array, native, this->bytes);
   } else {
-    /* FIXME: Is maintaining `available` necessary, if `string`s are immutable? If not, we can remove the entire
-     *        concept. */
-    this->native.otherwise.available = bytes;
-    this->native.otherwise.long_array = malloc(bytes);
-    STRCPY(this->native.otherwise.long_array, native, bytes);
+    this->native.long_array = malloc(this->bytes);
+    STRCPY(this->native.long_array, native, this->bytes);
   }
   
   return this;
@@ -86,5 +83,5 @@ char* string__native(string this) {
   if (this->bytes <= sizeof(this->native.short_array))
     return this->native.short_array;
   else
-    return this->native.otherwise.long_array;
+    return this->native.long_array;
 }

@@ -62,14 +62,15 @@ CEST(magazine, get) {
   
   
   cartridge  r = malloc(sizeof( struct cartridge ));                       r->bytes['\0'] = NULL;
-  cartridge  e = malloc(sizeof( struct cartridge ));  e->bytes['r'] = r;   e->bytes['\0'] = NULL;
-                                                     p1->bytes['e'] = e;
+  cartridge p3 = malloc(sizeof( struct cartridge )); p3->bytes['r'] = r;  p3->bytes['\0'] = NULL;
+  cartridge  u = malloc(sizeof( struct cartridge ));  u->bytes['p'] = p3;  u->bytes['\0'] = NULL;
+                                                      t->bytes['u'] = u;
   
-  thing tape = Magazine->get(a_magazine, "tape", testing_setter);
+  thing tape = Magazine->get(a_magazine, "tup", testing_setter);
   ASSERT(        tape.isa                              == STRING );
-  ASSERT( strcmp(tape.pointer.string->native.short_array, "tape") == 0 );
+  ASSERT( strcmp(tape.pointer.string->native.short_array, "tup") == 0 );
   
-  thing taper = Magazine->get(a_magazine, "taper",  NULL);
+  thing taper = Magazine->get(a_magazine, "tupr",  NULL);
   ASSERT( taper.pointer.unknown == NULL );
   
   
