@@ -25,7 +25,7 @@ CEST(Magazine, allocate) {
   SUCCEED;
 }
 
-static thing testing_setter (magazine this, char *key) {
+static thing testing_setter (magazine this, char key[]) {
   // We’re going to manually create a faux-`string`. Don’t ever do this, it’s horridly evil! ;D
   string it = malloc(sizeof( struct string ));
   STRCPY(it->native.short_array, key);

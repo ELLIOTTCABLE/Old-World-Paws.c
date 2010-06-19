@@ -17,7 +17,7 @@ typedef struct E(cartridge)* E(cartridge);
 
 // A function that, given the magazine and a key, returns a `thing` to store for that key. Is used by `get()` for
 // the case of a missing result.
-typedef E(thing) (*E(setter))( E(magazine) this, char *key );
+typedef E(thing) (*E(setter))( E(magazine) this, char key[] );
 
 struct E(magazine) {
   E(kind)         holds;
@@ -41,8 +41,8 @@ struct E(Magazine) {
   E(magazine)   (*allocate)     ( E(kind) holds );
   
   /* `struct magazine` methods */
-  E(thing)      (*get)          ( E(magazine) this, char *key, E(setter) callback );
-  void          (*set)          ( E(magazine) this, char *key, E(thing) value );
+  E(thing)      (*get)          ( E(magazine) this, char key[], E(setter) callback );
+  void          (*set)          ( E(magazine) this, char key[], E(thing) value );
 };
 #if !defined(EXTERNALIZE)
   struct E(Magazine) extern *Magazine;
