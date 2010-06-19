@@ -26,11 +26,7 @@ CEST(Magazine, allocate) {
 }
 
 static thing testing_setter (magazine this, char key[]) {
-  // We’re going to manually create a faux-`string`. Don’t ever do this, it’s horridly evil! ;D
-  string it = malloc(sizeof( struct string ));
-  STRCPY(it->native.short_array, key);
-  
-  return Paws->String->thing(it);
+  return Paws->String->thing(Paws->String->allocate(key));
 }
 
 CEST(magazine, get) {
@@ -41,10 +37,10 @@ CEST(magazine, get) {
   // eventually depend on this, and apply to interpretation-unit specific `string` magazines, we’re going to
   // manually create empty `string` structs. We don’t actually care about the contents of the `string` struct
   // right now, we’re simply going to preform pointer equality on them.)
-  string  tops = malloc(sizeof( struct string )),
-           top = malloc(sizeof( struct string )),
-          taps = malloc(sizeof( struct string )),
-           tap = malloc(sizeof( struct string ));
+  string  tops = Paws->String->allocate("tops"),
+           top = Paws->String->allocate("top"),
+          taps = Paws->String->allocate("taps"),
+           tap = Paws->String->allocate("tap");
   cartridge s2 = malloc(sizeof( struct cartridge ));                      s2->bytes['\0'] = (cartridge)tops;
   cartridge p2 = malloc(sizeof( struct cartridge )); p2->bytes['s'] = s2; p2->bytes['\0'] = (cartridge)top;
   cartridge  o = malloc(sizeof( struct cartridge ));  o->bytes['p'] = p2;
@@ -67,8 +63,8 @@ CEST(magazine, get) {
                                                       t->bytes['u'] = u;
   
   thing tape = Magazine->get(a_magazine, "tup", testing_setter);
-  ASSERT(        tape.isa                              == STRING );
-  ASSERT( strcmp(tape.pointer.string->native.short_array, "tup") == 0 );
+  ASSERT(        tape.isa                                == STRING );
+  ASSERT( strcmp(Paws->String->native(tape.pointer.string), "tup") == 0 );
   
   thing taper = Magazine->get(a_magazine, "tupr",  NULL);
   ASSERT( taper.pointer.unknown == NULL );
@@ -83,15 +79,15 @@ CEST(magazine, get) {
   
   ASSERT( a_magazine->root->bytes['b'] == NULL );
   thing bar = Magazine->get(a_magazine, "bar", testing_setter);
-  ASSERT(        bar.isa                              == STRING );
-  ASSERT( strcmp(bar.pointer.string->native.short_array, "bar") == 0 );
+  ASSERT(        bar.isa                                == STRING );
+  ASSERT( strcmp(Paws->String->native(bar.pointer.string), "bar") == 0 );
   
-  ASSERT(                 a_magazine->root->bytes['b']                                           != NULL );
-  ASSERT(                 a_magazine->root->bytes['b']->bytes['a']                               != NULL );
-  ASSERT(                 a_magazine->root->bytes['b']->bytes['a']->bytes['r']                   != NULL );
-  ASSERT(                 a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0']      != NULL );
-  ASSERT( strcmp(((string)a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0'])
-    ->native.short_array, "bar") == 0 );
+  ASSERT(   a_magazine->root->bytes['b']                                      != NULL );
+  ASSERT(   a_magazine->root->bytes['b']->bytes['a']                          != NULL );
+  ASSERT(   a_magazine->root->bytes['b']->bytes['a']->bytes['r']              != NULL );
+  ASSERT(   a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0'] != NULL );
+  ASSERT( strcmp(Paws->String->native(
+    (string)a_magazine->root->bytes['b']->bytes['a']->bytes['r']->bytes['\0']), "bar") == 0 );
   
   SUCCEED;
 }
@@ -100,14 +96,14 @@ CEST(magazine, set) {
   kind kind = STRING;
   magazine a_magazine = Magazine->allocate(kind);
   
-  string other1 = malloc(sizeof( struct string )),
-         other2 = malloc(sizeof( struct string )),
-           tops = malloc(sizeof( struct string )),
-            top = malloc(sizeof( struct string )),
-           taps = malloc(sizeof( struct string )),
-            tap = malloc(sizeof( struct string )),
-            foo = malloc(sizeof( struct string ));
-  list      bar = malloc(sizeof( struct list ));
+  string other1 = Paws->String->allocate("other1"),
+         other2 = Paws->String->allocate("other2"),
+           tops = Paws->String->allocate("tops"),
+            top = Paws->String->allocate("top"),
+           taps = Paws->String->allocate("taps"),
+            tap = Paws->String->allocate("tap"),
+            foo = Paws->String->allocate("foo");
+  list      bar = Paws->List->allocate();
   cartridge s2 = malloc(sizeof( struct cartridge ));                      s2->bytes['\0'] = NULL;
   cartridge p2 = malloc(sizeof( struct cartridge )); p2->bytes['s'] = s2; p2->bytes['\0'] = (cartridge)other1;
   cartridge o  = malloc(sizeof( struct cartridge ));  o->bytes['p'] = p2;
