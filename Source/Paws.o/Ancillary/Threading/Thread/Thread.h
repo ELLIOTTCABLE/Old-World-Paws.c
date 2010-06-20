@@ -1,7 +1,7 @@
 #define THREAD_H
 
 #if !defined(POOL_H)
-# include "Paws.o/Ancillary/Threading/pool/pool.h"
+# include "Paws.o/Ancillary/Threading/Pool/Pool.h"
 #endif
 
 #include <pthread.h>
