@@ -47,13 +47,16 @@ magazine Magazine__allocate(kind holds) {
 }
 
 thing _magazine__get(cartridge cart, char key[], cartridge **address);
-thing  magazine__get(magazine  this, char key[], setter callback) { cartridge *address; thing rv; if((rv =
-      _magazine__get(    this->root,      key,              &address)).pointer.unknown != NULL)
-    return (thing){ rv.pointer.unknown, this->holds };
+thing  magazine__get(magazine  this, char key[], setter callback) { cartridge *address; void *rv;
+  if ((rv = _magazine__get(this->root, key, &address).pointer.unknown) != NULL)
+                             return (thing){ rv, this->holds };
+  else if (callback == NULL) return (thing){ NULL };
   
-  if (callback != NULL && (rv = callback(this, key)).isa == this->holds) {
-    *address = (cartridge)rv.pointer.unknown; return rv; }
-  else return (thing){ NULL };
+  thing result = callback(this, key);
+  if (result.isa != this->holds) return (thing){ NULL };
+  
+  *address = (cartridge)result.pointer.unknown;
+  return result;
 }
 thing _magazine__get(cartridge cart, char key[], cartridge **address) {
                        cartridge *stacked_cartridge;
@@ -61,8 +64,9 @@ thing _magazine__get(cartridge cart, char key[], cartridge **address) {
                       *address = &cart->bytes[*key];
   
   if (*key == '\0') return (thing){ **address };
-      else { if (**address == NULL) **address = Cartridge__allocate();
-              return _magazine__get(**address, ++key, address); };
+  
+  if (**address == NULL) **address = Cartridge__allocate();
+  return  _magazine__get(**address, ++key, address);
 }
 
 void magazine__set(magazine this, char key[], thing value) {
