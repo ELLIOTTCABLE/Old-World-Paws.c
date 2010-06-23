@@ -27,7 +27,6 @@ CEST(Routine, allocate) {
 
 CEST(Routine, expose) {
   routine   a_routine;
-  list      a_naughty;
   
   a_routine = Routine->expose((native)a_native, false);
   ASSERT( a_routine->content->first  == NULL );
