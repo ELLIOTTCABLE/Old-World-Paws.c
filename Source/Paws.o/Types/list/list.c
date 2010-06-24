@@ -16,10 +16,10 @@ list    List__allocate          (void);
 
 list    list__naughtify         (list this);
 thing   list__thing             (list this);
-void    list__insert            (list this, thing child, ll_size index);
+void    list__insert            (list this, thing child, ll_size idx);
 void    list__prefix            (list this, thing child);
 void    list__affix             (list this, thing child);
-thing   list__at                (list this,              ll_size index);
+thing   list__at                (list this,              ll_size idx);
 
                           struct List // »
                                 *List   = NULL;
@@ -75,23 +75,23 @@ thing list__thing(list this) {
   return something;
 }
 
-void list__insert(list this, thing child, ll_size index) {
-  if (index == 0)
+void list__insert(list this, thing child, ll_size idx) {
+  if (idx == 0)
     List->prefix(this, child);
-  else if(index == this->content->length)
+  else if(idx == this->content->length)
     List->affix (this, child);
   else
-    LL->posterior_insert(this->content, Element->allocate(child), index);
+    LL->posterior_insert(this->content, Element->allocate(child), idx);
 }
 
 void list__prefix(list this, thing child) { LL->prefix(this->content, Element->allocate(child)); }
 
 void list__affix(list this, thing child)  { LL->affix (this->content, Element->allocate(child)); }
 
-thing list__at(list this, ll_size index) {
-  element element = LL->at(this->content, index);
-  if (element == NULL)
+thing list__at(list this, ll_size idx) {
+  element e = LL->at(this->content, idx);
+  if (e == NULL)
     return (thing){ NULL };
   else
-    return element->thing;
+    return e->thing;
 }

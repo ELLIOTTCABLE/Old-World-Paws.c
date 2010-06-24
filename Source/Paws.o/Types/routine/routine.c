@@ -48,19 +48,19 @@ void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
  * 
  * If you pass in an AST instead of a native implementation, this copies the content of that `SCOPE`, allowing
  * you to destroy or modify the passed AST as you desire. */
-routine _Routine__allocate(void  *implementation, bool native, bool simple);
+routine _Routine__allocate(void  *implementation, bool nate, bool simple);
 routine  Routine__allocate(node   implementation) { return _Routine__allocate((void *)implementation, false, false); }
-routine  Routine__expose  (native implementation, bool simple) //»
+routine  Routine__expose  (native implementation,            bool simple) //»
                                                   { return _Routine__allocate((void *)implementation, true, simple); }
-routine _Routine__allocate(void  *implementation, bool native, bool simple) {
+routine _Routine__allocate(void  *implementation, bool nate, bool simple) {
   routine this = malloc(sizeof(struct routine));
   
   this->content = LL->allocate();
   
   /* TODO: Check if `implementation` is actually a `SCOPE`-type `node`. */
   this->simple            = simple;
-  this->native            = native;
-  this->implementation    = native ? implementation : Node->duplicate(implementation);
+  this->native            = nate;
+  this->implementation    = nate ? implementation : Node->duplicate(implementation);
   
   return this;
 }

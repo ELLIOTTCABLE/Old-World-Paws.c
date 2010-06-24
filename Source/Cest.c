@@ -53,16 +53,16 @@ void Cest__enroll(cest a_cest) {
 }
 
 int Cest__run_all(void) {
-  cest_state return_value; int total, succeeded, pending;
+  cest_state return_value; int total, successes, pends;
   
   cest                current;
   struct cest_node   *current_node = Cest.first;
   
-  for (total = 0, succeeded = 0, pending = 0; current_node != NULL; total++, current_node = current_node->next) {
+  for (total = 0, successes = 0, pends = 0; current_node != NULL; total++, current_node = current_node->next) {
     current = current_node->cest;
     return_value = Cest.execute(current);
-    if (return_value) { succeeded++; }
-    if (return_value - 1) { pending++; }
+    if (return_value) { successes++; }
+    if (return_value - 1) { pends++; }
     
     printf("%s->%s%s%s()\n", current->namespace,
       return_value ? (return_value - 1 ? ANSIEscapes.yellow : ANSIEscapes.green) : ANSIEscapes.red,
@@ -70,10 +70,10 @@ int Cest__run_all(void) {
   }
   
   printf("%s%d successes%s (of %d)\n",
-    succeeded < total ? ANSIEscapes.red : (pending ? ANSIEscapes.yellow : ANSIEscapes.green),
-    succeeded, ANSIEscapes.reset, total);
+    successes < total ? ANSIEscapes.red : (pends ? ANSIEscapes.yellow : ANSIEscapes.green),
+    successes, ANSIEscapes.reset, total);
   
-  return total - succeeded;
+  return total - successes;
 }
 
 cest Cest__create(char namespace[], char name[], cest_state (*function)(void)) {

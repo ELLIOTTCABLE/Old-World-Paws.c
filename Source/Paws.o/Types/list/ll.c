@@ -13,11 +13,11 @@ struct Element *Element; // FIXME: Do we need this forward declaration?
 
 ll        LL__allocate            (void);
 
-void      ll__anterior_insert     (ll this, element child, ll_size index);
-void      ll__posterior_insert    (ll this, element child, ll_size index);
+void      ll__anterior_insert     (ll this, element child, ll_size idx);
+void      ll__posterior_insert    (ll this, element child, ll_size idx);
 void      ll__prefix              (ll this, element child);
 void      ll__affix               (ll this, element child);
-element   ll__at                  (ll this,                ll_size index);
+element   ll__at                  (ll this,                ll_size idx);
 
                         struct LL // »
                               *LL   = NULL;
@@ -52,20 +52,20 @@ ll LL__allocate(void) {
   return this;
 }
 
-void ll__anterior_insert(ll this, element child, ll_size index) {
-  if (index == 0)
+void ll__anterior_insert(ll this, element child, ll_size idx) {
+  if (idx == 0)
     /* TODO: Error condition, cannot anterior-insert at first position */;
   else {
-    Element->affix(LL->at(this, index - 1), child);
+    Element->affix(LL->at(this, idx - 1), child);
     this->length++;
   }
 }
 
-void ll__posterior_insert(ll this, element child, ll_size index) {
-  if (index == this->length)
+void ll__posterior_insert(ll this, element child, ll_size idx) {
+  if (idx == this->length)
     /* TODO: Error condition, cannot posterior-insert at last position */;
   else {
-    Element->prefix(LL->at(this, index), child);
+    Element->prefix(LL->at(this, idx), child);
     this->length++;
   }
 }
@@ -100,20 +100,20 @@ void ll__affix(ll this, element child) {
 
 /* This method returns a `element` at a given index in an `ll`.
  * 
- * Takes two arguments, the indexee (`this`), and an integer `index`.
+ * Takes two arguments, the indexee (`this`), and an integer `idx`.
  */
-element ll__at(ll this, ll_size index) { element result; ll_size i;
+element ll__at(ll this, ll_size idx) { element result; ll_size i;
   
-  if (index >= this->length)
+  if (idx >= this->length)
     return NULL;
   
-  if (index <= this->length / 2) {
+  if (idx <= this->length / 2) {
     result = this->first;
-    for (i = 0; i < index; ++i)
+    for (i = 0; i < idx; ++i)
       result = result->next;
   } else {
     result = this->last;
-    for (i = this->length - 1; i > index; --i)
+    for (i = this->length - 1; i > idx; --i)
       result = result->next;
   }
   
@@ -155,11 +155,11 @@ void Paws__register_Element(void) { Element   = malloc(sizeof(struct Element));
  * 
  * Expects a `thing` as an argument, to be stored on this `element` as `e`.
  */
-element Element__allocate(thing thing) {
+element Element__allocate(thing target) {
   /* LEAK: Well, what exactly can we do? It’s not like we have a GC yet… */
   element this = malloc(sizeof(struct element));
   
-  memcpy(&this->thing, &thing, sizeof(struct thing));
+  memcpy(&this->thing, &target, sizeof(struct thing));
   this->next     = NULL;
   this->previous = NULL;
   

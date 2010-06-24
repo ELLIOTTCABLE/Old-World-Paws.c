@@ -50,7 +50,7 @@ thing _magazine__get(cartridge cart, char key[], cartridge **address);
 thing  magazine__get(magazine  this, char key[], setter callback) { cartridge *address; void *rv;
   if ((rv = _magazine__get(this->root, key, &address).pointer.unknown) != NULL)
                              return (thing){ rv, this->holds };
-  else if (callback == NULL) return (thing){ NULL };
+  else if (callback == NULL) return (thing){ .pointer = NULL };
   
   thing result = callback(this, key);
   if (result.isa != this->holds) return (thing){ NULL };

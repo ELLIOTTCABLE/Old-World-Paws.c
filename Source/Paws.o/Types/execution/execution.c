@@ -20,7 +20,7 @@ execution   Execution__allocate   (void);
 thing       execution__thing      (execution this);
 void        execution__exercise   (execution this, routine against);
 
-node*       execution__node_for   (execution this, routine routine);
+node*       execution__node_for   (execution this, routine target);
 
                                struct Execution // »
                                      *Execution   = NULL;
@@ -62,9 +62,9 @@ thing execution__thing(execution this) {
   return something;
 }
 
-void execution__exercise(execution this, routine routine) {
+void execution__exercise(execution this, routine against) {
   /* Descriptive fucking name, amirite? */
-  node   *pointer     = execution__node_for(this, routine);
+  node   *pointer     = execution__node_for(this, against);
   bool    executing   = false;
   
   /* http://tau.pe/14252438483 */
@@ -76,10 +76,10 @@ void execution__exercise(execution this, routine routine) {
    * iterate the words in an expression and throw them directly at a synchronous lookup somewhere. */
 }
 
-/* This hidden method returns a pointer to the latest AST `node` having been executed for a given `routine`
+/* This private method returns a pointer to the latest AST `node` having been executed for a given `routine`
  * against this `execution`. */
-node* execution__node_for(execution this, routine routine) {
-  node    scope   = routine->implementation;
+node* execution__node_for(execution this, routine target) {
+  node    scope   = target->implementation;
   
   /* I don’t like having to add 1 and then subtract 1 here any more than you, my beautiful, beautiful reader,
    * probably do… but it’s a necessity, as `node_size` is an *unsigned* integer type. If we decrement below zero,

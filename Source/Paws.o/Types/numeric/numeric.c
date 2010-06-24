@@ -41,12 +41,12 @@ void Paws__register_Numeric(void) { Numeric   = malloc(sizeof(struct Numeric));
  * TODO: Global-uniqueness. We need to cache already-created `numeric`s somewhere, and retreive them when
  *       necessary.
  */
-numeric Numeric__allocate(int native) {
+numeric Numeric__allocate(int nate) {
   numeric this = malloc(sizeof(struct numeric));
   
   this->content = LL->allocate();
   
-  this->native = native;
+  this->native = nate;
   
   return this;
 }

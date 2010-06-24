@@ -30,10 +30,10 @@ node    Node__scope         (void);
 node    Node__expression    (void);
 node    Node__word          (char *content, node_size bytes);
 
-void    node__insert        (node this, node child, node_size index);
+void    node__insert        (node this, node child, node_size idx);
 void    node__prefix        (node this, node child);
 void    node__affix         (node this, node child);
-node    node__at            (node this,             node_size index);
+node    node__at            (node this,             node_size idx);
 char*   node__native        (node this);
 node    node__duplicate     (node this);
 node    node__instantiate   (node this);
@@ -117,17 +117,17 @@ node Node__word(char *content, node_size bytes) {
           to `realloc(3)` and `memmove(3)` instead of `alloc(3)` and `memcpy(3)`. However, is that actually more
           efficient? I need to find out if that path is actually *slower* or not. TO STACKOVERFLOW! */
 
-void node__insert(node this, node child, node_size index) {
+void node__insert(node this, node child, node_size idx) {
   /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
      TODO: Flip a nut if `this` is a `SCOPE` and `child` is a `WORD`.
-     TODO: Flip a nut if `size` is smaller than `index`.
+     TODO: Flip a nut if `size` is smaller than `idx`.
      TODO: Merge `Node->prefix()` and `Node->affix()` into this. */
   
   node *children = malloc(sizeof(node) * this->size + 1);
   
-  memcpy(children + 0,         (node *)this->content,         sizeof(node) * index);
-       *(children + index) =           child;
-  memcpy(children + index + 1, (node *)this->content + index, sizeof(node) * (this->size - index));
+  memcpy(children + 0,       (node *)this->content,       sizeof(node) * idx);
+       *(children + idx) =           child;
+  memcpy(children + idx + 1, (node *)this->content + idx, sizeof(node) * (this->size - idx));
   
   this->content = children;
   this->size++;
@@ -153,11 +153,11 @@ void node__affix(node this, node child) {
   ((node *)this->content)[this->size - 1]   = child;
 }
 
-node node__at(node this, node_size index) {
+node node__at(node this, node_size idx) {
   /* TODO: Flip a nut if `this` isn’t an `SCOPE` or `EXPRESSION`.
-     TODO: Flip a nut if `size` is smaller than `index`. */
+     TODO: Flip a nut if `size` is smaller than `idx`. */
   
-  return *((node *)this->content + index);
+  return *((node *)this->content + idx);
 }
 
 char* node__native(node this) {

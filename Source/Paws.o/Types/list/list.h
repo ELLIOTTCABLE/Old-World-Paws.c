@@ -35,10 +35,10 @@ struct E(List) {
   /* `struct list` methods */
   E(thing)    (*thing)            ( E(list) this );
   E(list)     (*naughtify)        ( E(list) this );
-  void        (*insert)           ( E(list) this, E(thing) child, E(ll_size) index );
+  void        (*insert)           ( E(list) this, E(thing) child, E(ll_size) idx );
   void        (*prefix)           ( E(list) this, E(thing) child );
   void        (*affix)            ( E(list) this, E(thing) child );
-  E(thing)    (*at)               ( E(list) this,                 E(ll_size) index );
+  E(thing)    (*at)               ( E(list) this,                 E(ll_size) idx );
 };
 #if !defined(EXTERNALIZE)
   struct E(List) extern *List;

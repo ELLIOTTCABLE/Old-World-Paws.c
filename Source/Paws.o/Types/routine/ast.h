@@ -54,10 +54,10 @@ struct E(Node) {
   E(node)   (*word)           ( char *content, E(node_size) bytes );
   
   /* `struct node` methods */
-  void      (*insert)         ( E(node) this, E(node) child, E(node_size) index );
+  void      (*insert)         ( E(node) this, E(node) child, E(node_size) idx );
   void      (*prefix)         ( E(node) this, E(node) child );
   void      (*affix)          ( E(node) this, E(node) child );
-  E(node)   (*at)             ( E(node) this,                E(node_size) index );
+  E(node)   (*at)             ( E(node) this,                E(node_size) idx );
   char*     (*native)         ( E(node) this );
   E(node)   (*duplicate)      ( E(node) this );
   E(node)   (*instantiate)    ( E(node) this );

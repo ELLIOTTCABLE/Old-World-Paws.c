@@ -49,17 +49,17 @@ void Paws__register_String(void) { String   = malloc(sizeof(struct String));
  * TODO: Global-uniqueness. We need to cache already-created `string`s somewhere, and retreive them when
  *       necessary.
  */
-string String__allocate(char native[]) {
+string String__allocate(char nate[]) {
   string this = malloc(sizeof(struct string));
   
   this->content = LL->allocate();
   
-  this->bytes = strlen(native) + 1;
+  this->bytes = strlen(nate) + 1;
   if (this->bytes <= sizeof(this->native.short_array)) {
-    STRCPY(this->native.short_array, native, this->bytes);
+    STRCPY(this->native.short_array, nate, this->bytes);
   } else {
     this->native.long_array = malloc(this->bytes);
-    STRCPY(this->native.long_array, native, this->bytes);
+    STRCPY(this->native.long_array, nate, this->bytes);
   }
   
   return this;

@@ -11,6 +11,8 @@
 #define STRCPY(TO, FROM) \
   strncpy(TO, FROM, sizeof(TO)); TO[sizeof(TO) - 1] = '\0'
 
+/* Marks up unused parameters in callbacks */
+#define _(_) (void)_
 
 CEST(Magazine, allocate) {
   magazine a_magazine;
@@ -25,13 +27,13 @@ CEST(Magazine, allocate) {
   SUCCEED;
 }
 
-static thing testing_setter (magazine this, char key[]) {
+static thing testing_setter (magazine _, char key[]) { _(_);
   return Paws->String->thing(Paws->String->allocate(key));
 }
 
 CEST(magazine, get) {
-  kind kind = STRING;
-  magazine a_magazine = Magazine->allocate(kind);
+  kind holds = STRING;
+  magazine a_magazine = Magazine->allocate(holds);
   
   // Doing some tedious manual setup, to avoid dependency on `Magazine->set()`. (Since `String->create()` will
   // eventually depend on this, and apply to interpretation-unit specific `string` magazines, we’re going to
@@ -50,7 +52,7 @@ CEST(magazine, get) {
   cartridge  t = malloc(sizeof( struct cartridge ));  t->bytes['a'] = a;   t->bytes['o'] = o;
                                        a_magazine->root->bytes['t'] = t;
   
-  ASSERT( Magazine->get(a_magazine, "tap",  NULL).isa            == kind );
+  ASSERT( Magazine->get(a_magazine, "tap",  NULL).isa            == holds );
   ASSERT( Magazine->get(a_magazine, "tap",  NULL).pointer.string == tap );
   ASSERT( Magazine->get(a_magazine, "taps", NULL).pointer.string == taps );
   ASSERT( Magazine->get(a_magazine, "top",  NULL).pointer.string == top );
@@ -93,8 +95,8 @@ CEST(magazine, get) {
 }
 
 CEST(magazine, set) {
-  kind kind = STRING;
-  magazine a_magazine = Magazine->allocate(kind);
+  kind holds = STRING;
+  magazine a_magazine = Magazine->allocate(holds);
   
   string other1 = Paws->String->allocate("other1"),
          other2 = Paws->String->allocate("other2"),

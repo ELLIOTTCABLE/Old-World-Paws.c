@@ -60,11 +60,11 @@ struct E(LL) {
   E(ll)         (*allocate)           ( void );
   
   /* `struct ll` methods */
-  void          (*anterior_insert)    ( E(ll) this, E(element) child, E(ll_size) index );
-  void          (*posterior_insert)   ( E(ll) this, E(element) child, E(ll_size) index );
+  void          (*anterior_insert)    ( E(ll) this, E(element) child, E(ll_size) idx );
+  void          (*posterior_insert)   ( E(ll) this, E(element) child, E(ll_size) idx );
   void          (*prefix)             ( E(ll) this, E(element) child );
   void          (*affix)              ( E(ll) this, E(element) child );
-  E(element)    (*at)                 ( E(ll) this,                   E(ll_size) index );
+  E(element)    (*at)                 ( E(ll) this,                   E(ll_size) idx );
 };
 #if !defined(EXTERNALIZE)
   struct E(LL) extern *LL;

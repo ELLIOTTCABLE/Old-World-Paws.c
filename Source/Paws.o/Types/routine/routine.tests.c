@@ -1,7 +1,7 @@
 #include "routine.c"
 #include "Cest.h"
 
-void a_native(thing exe) { /* … */ }
+void a_native(void) { return; }
 
 CEST(Routine, allocate) {
   node      a_scope, an_expression, a_word, another_word;
@@ -33,8 +33,8 @@ CEST(Routine, expose) {
   ASSERT( a_routine->content->last   == NULL );
   ASSERT( a_routine->content->length == 0    );
   
-  ASSERT( a_routine->native                             );
-  ASSERT( (native)a_routine->implementation == a_native );
+  ASSERT(         a_routine->native                             );
+  ASSERT( (native)a_routine->implementation == (native)a_native );
   
   SUCCEED;
 }
