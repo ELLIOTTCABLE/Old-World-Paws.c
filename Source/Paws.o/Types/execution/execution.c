@@ -79,7 +79,7 @@ void execution__exercise(execution this, routine against) {
 /* This private method returns a pointer to the latest AST `node` having been executed for a given `routine`
  * against this `execution`. */
 node* execution__node_for(execution this, routine target) {
-  node    scope   = target->implementation;
+  node    scope   = target->implementation._.scope;
   
   /* I don’t like having to add 1 and then subtract 1 here any more than you, my beautiful, beautiful reader,
    * probably do… but it’s a necessity, as `node_size` is an *unsigned* integer type. If we decrement below zero,

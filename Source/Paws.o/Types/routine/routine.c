@@ -42,28 +42,42 @@ void Paws__register_Routine(void) { Routine   = malloc(sizeof(struct Routine));
 
 /* This method allocates a new `infrastructure routine`, and returns a C `routine` (a pointer to a
  * `struct routine`.) It takes an either an AST’s `SCOPE` `node`, or a pointer to a native C function (the
- * signature of which is expected to match `void (*)(E(execution) exe)`, though the usual function-pointer
+ * signature of which is expected to match `void (*)( E(thing) exe )`, though the usual function-pointer
  * semantics apply). The second argument is a `bool` describing whether the first argument was the former or the
  * latter (to be `true` in the case of a function pointer).
  * 
  * If you pass in an AST instead of a native implementation, this copies the content of that `SCOPE`, allowing
  * you to destroy or modify the passed AST as you desire. */
-routine _Routine__allocate(void  *implementation, bool nate, bool simple);
-routine  Routine__allocate(node   implementation) { return _Routine__allocate((void *)implementation, false, false); }
-routine  Routine__expose  (native implementation,            bool simple) //»
-                                                  { return _Routine__allocate((void *)implementation, true, simple); }
-routine _Routine__allocate(void  *implementation, bool nate, bool simple) {
+routine _Routine__allocate(bool nate, bool simple) {
   routine this = malloc(sizeof(struct routine));
   
   this->content = LL->allocate();
   
-  /* TODO: Check if `implementation` is actually a `SCOPE`-type `node`. */
-  this->simple            = simple;
-  this->native            = nate;
-  this->implementation    = nate ? implementation : Node->duplicate(implementation);
+  this->simple                    = simple;
+  this->implementation.native     = nate;
+  this->implementation._.scope    = NULL;
   
   return this;
 }
+
+routine  Routine__allocate(node implementation) {
+  routine this =  _Routine__allocate(false, false);
+  
+  /* TODO: Check if `implementation` is actually a `SCOPE`-type `node`. */
+  this->implementation.native     = false;
+  this->implementation._.scope    = Node->duplicate(implementation);
+  
+  return this;
+}
+routine  Routine__expose  (native implementation, bool simple) {
+  routine this = _Routine__allocate(true, simple);
+  
+  this->implementation.native       = true;
+  this->implementation._.function   = implementation;
+  
+  return this;
+}
+
 
 /* This method wraps a pointer to a `struct list` into a new `thing` union, and returns that union. */
 thing routine__thing(routine this) {
@@ -78,9 +92,9 @@ thing routine__thing(routine this) {
 /* This executes a `routine` directly, without requiring that you properly setting up an `execution`. Unless you
  * have a reason to be using this, you should probably be calling `Execution->exercise()` instead. */
 void routine__execute(routine this, thing argument) {
-  if (this->native) {
-    if (this->simple)   ( (void (*)(thing))    this->implementation )(argument                   );
-                 else   ( (void (*)(execution))this->implementation )(Paws->Execution->allocate());
+  if (this->implementation.native) {
+    if (this->simple)   ( (void (*)(thing))    this->implementation._.function )(argument                   );
+                 else   ( (void (*)(execution))this->implementation._.function )(Paws->Execution->allocate());
   } else {
     /* TODO: Implement me! */
   }

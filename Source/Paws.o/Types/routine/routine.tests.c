@@ -17,10 +17,10 @@ CEST(Routine, allocate) {
   ASSERT( a_routine->content->last   == NULL );
   ASSERT( a_routine->content->length == 0    );
   
-  ASSERT(!a_routine->native                    );
-  ASSERT( a_routine->implementation != a_scope );
-  ASSERT( strcmp(Node->at(Node->at(a_routine->implementation, 0), 0)->content, "foo") == 0 );
-  ASSERT( strcmp(Node->at(Node->at(a_routine->implementation, 0), 1)->content, "bar") == 0 );
+  ASSERT(!a_routine->implementation.native             );
+  ASSERT( a_routine->implementation._.scope != a_scope );
+  ASSERT( strcmp(Node->at(Node->at(a_routine->implementation._.scope, 0), 0)->content, "foo") == 0 );
+  ASSERT( strcmp(Node->at(Node->at(a_routine->implementation._.scope, 0), 1)->content, "bar") == 0 );
   
   SUCCEED;
 }
@@ -33,8 +33,8 @@ CEST(Routine, expose) {
   ASSERT( a_routine->content->last   == NULL );
   ASSERT( a_routine->content->length == 0    );
   
-  ASSERT(         a_routine->native                             );
-  ASSERT( (native)a_routine->implementation == (native)a_native );
+  ASSERT(         a_routine->implementation.native                         );
+  ASSERT( (native)a_routine->implementation._.function == (native)a_native );
   
   SUCCEED;
 }

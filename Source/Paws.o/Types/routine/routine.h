@@ -47,8 +47,11 @@ struct E(routine) {
   E(ll)   content; /* The `ll` behind this `routine`’s `list` interface */
   
   bool    simple; /* Whether or not `implementation` (if `native`) is to be treated ‘simply.’ */
-  bool    native; /* Whether or not `implementation` is a pointer to a native function */
-  void   *implementation; /* A pointer to either a `SCOPE` `node` (this routine’s AST), or a native function */
+  struct {
+    bool    native; /* Whether or not `implementation` is a pointer to a native function */
+    union { node scope; native function; } //»
+            _; /* A pointer to either a `SCOPE` `node` (this routine’s AST), or a native function */
+  }       implementation;
 };
 
 
