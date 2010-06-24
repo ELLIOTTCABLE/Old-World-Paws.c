@@ -10,6 +10,9 @@
 #if !defined(LL_H)
 # include "Paws.o/Types/list/list.h"
 #endif
+#if !defined(MAGAZINE_H)
+# include "Paws.o/Ancillary/Magazine/Magazine.h"
+#endif
 
 
 /* ========================
@@ -42,7 +45,8 @@ struct E(string) {
 
 struct E(String) {
   /* `String` functions */
-  E(string)   (*allocate)   ( char native[] );
+  E(string)   (*allocate)   ( char nate[] );
+  E(string)   (*embody)     ( char nate[], E(magazine) store );
   
   /* `struct numeric` methods */
   E(thing)    (*thing)      ( E(string) this );

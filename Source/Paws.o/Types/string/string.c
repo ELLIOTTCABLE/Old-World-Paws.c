@@ -12,6 +12,9 @@
 #define STRCPY(TO, FROM, BYTES) \
   strncpy(TO, FROM, BYTES); TO[BYTES - 1] = '\0'//;
 
+/* Marks up unused parameters in callbacks */
+#define _(_) (void)_
+
 
 /* ========================
 = `infrastructure string` =
@@ -19,7 +22,8 @@
 
 /* ### Method Declarations ### */
 
-string  String__allocate    (char native[]);
+string  String__allocate    (char nate[]);
+string  String__embody      (char nate[], magazine store);
 
 thing   string__thing       (string this);
 char*   string__native      (string this);
@@ -32,6 +36,7 @@ void Paws__register_String(void) { String   = malloc(sizeof(struct String));
   struct String // »
   data = {
     .allocate   = String__allocate,
+    .embody     = String__embody,
     
     .thing      = string__thing,
     .native     = string__native
@@ -45,9 +50,6 @@ void Paws__register_String(void) { String   = malloc(sizeof(struct String));
 
 /* This method allocates a new `infrastructure string`, and returns a C `string` (a pointer to a
  * `struct string`.)
- *--
- * TODO: Global-uniqueness. We need to cache already-created `string`s somewhere, and retreive them when
- *       necessary.
  */
 string String__allocate(char nate[]) {
   string this = malloc(sizeof(struct string));
@@ -63,6 +65,14 @@ string String__allocate(char nate[]) {
   }
   
   return this;
+}
+thing _String__allocate_for_magazine(magazine _, char key[]) { _(_);
+  return (thing){ String->allocate(key), STRING };
+}
+
+string String__embody(char nate[], magazine store) {
+  if (store->holds != STRING) return NULL;
+  return Magazine->get(store, nate, _String__allocate_for_magazine).pointer.string;
 }
 
 /* This method wraps a pointer to a `struct list` into a new `thing` union, and returns that union. */
