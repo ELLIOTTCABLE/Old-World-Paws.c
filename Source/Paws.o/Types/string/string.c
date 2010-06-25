@@ -67,7 +67,7 @@ string String__allocate(char nate[]) {
   return this;
 }
 thing _String__allocate_for_magazine(magazine _, char key[]) { _(_);
-  return (thing){ String->allocate(key), STRING };
+  return (thing){ {String->allocate(key)}, STRING };
 }
 
 string String__embody(char nate[], magazine store) {

@@ -91,7 +91,7 @@ void list__affix(list this, thing child)  { LL->affix (this->content, Element->a
 thing list__at(list this, ll_size idx) {
   element e = LL->at(this->content, idx);
   if (e == NULL)
-    return (thing){ NULL };
+    return (thing){ {NULL} };
   else
     return e->thing;
 }
