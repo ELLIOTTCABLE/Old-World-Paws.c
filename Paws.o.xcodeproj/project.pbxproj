@@ -20,6 +20,7 @@
 		5119611711D2260800DE67CF /* string.tests.c in Sources */ = {isa = PBXBuildFile; fileRef = 511960DC11D211D100DE67CF /* string.tests.c */; };
 		5119611E11D22AFF00DE67CF /* Cest.c in Sources */ = {isa = PBXBuildFile; fileRef = 5119611C11D22AFF00DE67CF /* Cest.c */; };
 		5119612A11D22B1900DE67CF /* Threading.c in Sources */ = {isa = PBXBuildFile; fileRef = 511960BB11D211D100DE67CF /* Threading.c */; };
+		51B5349A11D5BA0E00A0EBD8 /* Unit.tests.c in Sources */ = {isa = PBXBuildFile; fileRef = 51B5349811D5BA0E00A0EBD8 /* Unit.tests.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,9 @@
 		511960F511D219B500DE67CF /* Tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		5119611C11D22AFF00DE67CF /* Cest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Cest.c; path = Source/Cest.c; sourceTree = "<group>"; };
 		5119611D11D22AFF00DE67CF /* Cest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cest.h; path = Source/Cest.h; sourceTree = "<group>"; };
+		51B5349611D5BA0E00A0EBD8 /* Unit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Unit.c; sourceTree = "<group>"; };
+		51B5349711D5BA0E00A0EBD8 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		51B5349811D5BA0E00A0EBD8 /* Unit.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Unit.tests.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			children = (
 				511960AE11D211D100DE67CF /* Magazine */,
 				511960B211D211D100DE67CF /* Threading */,
+				51B5349511D5BA0E00A0EBD8 /* Unit */,
 			);
 			name = Ancillary;
 			path = Source/Paws.o/Ancillary;
@@ -231,6 +236,16 @@
 			path = string;
 			sourceTree = "<group>";
 		};
+		51B5349511D5BA0E00A0EBD8 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				51B5349611D5BA0E00A0EBD8 /* Unit.c */,
+				51B5349711D5BA0E00A0EBD8 /* Unit.h */,
+				51B5349811D5BA0E00A0EBD8 /* Unit.tests.c */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,19 +291,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5119610D11D225FA00DE67CF /* Magazine.tests.c in Sources */,
-				5119610E11D225FB00DE67CF /* Pool.tests.c in Sources */,
-				5119610F11D2260000DE67CF /* Thread.tests.c in Sources */,
-				5119611011D2260100DE67CF /* Paws.tests.c in Sources */,
-				5119611111D2260200DE67CF /* execution.tests.c in Sources */,
-				5119611211D2260400DE67CF /* list.tests.c in Sources */,
-				5119611311D2260400DE67CF /* ll.tests.c in Sources */,
-				5119611411D2260500DE67CF /* numeric.tests.c in Sources */,
-				5119611511D2260700DE67CF /* ast.tests.c in Sources */,
-				5119611611D2260700DE67CF /* routine.tests.c in Sources */,
-				5119611711D2260800DE67CF /* string.tests.c in Sources */,
 				5119611E11D22AFF00DE67CF /* Cest.c in Sources */,
 				5119612A11D22B1900DE67CF /* Threading.c in Sources */,
+				5119610E11D225FB00DE67CF /* Pool.tests.c in Sources */,
+				5119610F11D2260000DE67CF /* Thread.tests.c in Sources */,
+				5119610D11D225FA00DE67CF /* Magazine.tests.c in Sources */,
+				51B5349A11D5BA0E00A0EBD8 /* Unit.tests.c in Sources */,
+				5119611311D2260400DE67CF /* ll.tests.c in Sources */,
+				5119611211D2260400DE67CF /* list.tests.c in Sources */,
+				5119611511D2260700DE67CF /* ast.tests.c in Sources */,
+				5119611611D2260700DE67CF /* routine.tests.c in Sources */,
+				5119611111D2260200DE67CF /* execution.tests.c in Sources */,
+				5119611411D2260500DE67CF /* numeric.tests.c in Sources */,
+				5119611711D2260800DE67CF /* string.tests.c in Sources */,
+				5119611011D2260100DE67CF /* Paws.tests.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,8 +15,8 @@ void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));
   struct Paws // »
   data = {
     .Threading    = NULL,
-    
     .Magazine     = NULL,
+    .Unit         = NULL,
     
     .List         = NULL,
     .Routine      = NULL,
@@ -28,8 +28,8 @@ void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));
   memcpy(Paws, &data, sizeof(struct Paws));
   
   Paws__register_Threading();
-  
   Paws__register_Magazine();
+  Paws__register_Unit();
   
   Paws__register_List();
   Paws__register_Routine();
