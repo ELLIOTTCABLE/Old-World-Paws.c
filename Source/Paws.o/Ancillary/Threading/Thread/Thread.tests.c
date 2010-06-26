@@ -21,12 +21,11 @@ CEST(Thread, allocate) {
   SUCCEED;
 }
 
-CEST(thread, work) {
-  
-  SUCCEED;
-}
+CEST(thread, work) { /* TODO: test. */ PEND; }
 
 CEST(thread, destroy) {
+  /* FIXME: This test ocassionally hangs */
+  
   pool a_pool = Pool->allocate();
   thread a_thread;
   
