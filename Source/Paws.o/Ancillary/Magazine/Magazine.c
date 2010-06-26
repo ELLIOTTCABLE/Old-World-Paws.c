@@ -61,7 +61,7 @@ thing  magazine__get(magazine  this, char key[], setter callback) { cartridge *a
 thing _magazine__get(cartridge cart, char key[], cartridge **address) {
                        cartridge *stacked_cartridge;
   if (address == NULL) address = &stacked_cartridge;
-                      *address = &cart->bytes[*key];
+                      *address = &cart->bytes[ ((unsigned char*)key)[0] ];
   
   if (*key == '\0') return (thing){ {**address} };
   
