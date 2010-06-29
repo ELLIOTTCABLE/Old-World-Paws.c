@@ -9,20 +9,25 @@ CEST(Thread, allocate) {
   thread a_thread;
   
   a_thread = Thread->allocate(a_pool);
-  sleep(0); /* A little bit of a hack to try to avoid testing-specific race conditions; probably causes the
-               scheduler to schedule the thread we just created instead of us. */
   
-  /* `pthread_kill` sends a signal; but with a signal of `0`, no interrupt is actually preformed; instead, this
-   * allows us to verify that the thread exists, according to `pthread.h`. */
-  ASSERT( pthread_kill(a_thread->pthread, 0) != ESRCH  );
-  ASSERT(              a_thread->pool        == a_pool );
-  ASSERT(              a_thread->initialized == true   );
+  /* This is a bit of a hack; we loop until `a_thread->initialized` is `true`. However, we use a `for()` instead
+   * of a `while`  */
+  for (unsigned char i = 0; i < UCHAR_MAX; i++) { sleep(0); /* Cede scheduling */ if (a_thread->initialized) {
+    
+    /* `pthread_kill` sends a signal; but with a signal of `0`, no interrupt is actually preformed; instead, this
+     * allows us to verify that the thread exists, according to `pthread.h`. */
+    ASSERT( pthread_kill(a_thread->pthread, 0) != ESRCH  );
+    ASSERT(              a_thread->pool        == a_pool );
+    ASSERT(              a_thread->initialized == true   ); // Redundant, but… whatever.
+    
+    // Can’t currently test this; we need to move it into a `routine` and put it in the work queue, so it
+    // actually gets run *in the `thread`*.
+    // ASSERT( pthread_getspecific(Thread->current_thread_key) == a_thread );
+    
+    SUCCEED;
+  }}
   
-  // Can’t currently test this; we need to move it into a `routine` and put it in the work queue, so it
-  // actually gets run *in the `thread`*.
-  // ASSERT( pthread_getspecific(Thread->current_thread_key) == a_thread );
-  
-  SUCCEED;
+  FAIL; // This should never be reached.
 }
 
 CEST(Thread, current) { /* TODO: test. */ PEND; }
