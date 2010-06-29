@@ -25,9 +25,7 @@ CEST(Thread, allocate) {
     // ASSERT( pthread_getspecific(Thread->current_thread_key) == a_thread );
     
     SUCCEED;
-  }}
-  
-  FAIL; // This should never be reached.
+  }} FAIL; // This should never be reached.
 }
 
 CEST(Thread, current) { /* TODO: test. */ PEND; }
@@ -40,16 +38,15 @@ CEST(thread, destroy) {
   thread a_thread;
   
   a_thread = Thread->allocate(a_pool);
-  sleep(0);
   
-  ASSERT( pthread_kill(a_thread->pthread, 0) != ESRCH  );
-  ASSERT(              a_thread->initialized == true   );
-  
-  Thread->destroy(a_thread);
-  sleep(0);
-  
-  ASSERT( pthread_kill(a_thread->pthread, 0) == ESRCH  );
-  ASSERT(              a_thread->initialized == false   );
-  
-  SUCCEED;
+  for (unsigned char i = 0; i < UCHAR_MAX; i++) { sleep(0); /* Cede scheduling */ if (a_thread->initialized) {
+    ASSERT( pthread_kill(a_thread->pthread, 0) != ESRCH  );
+    
+    Thread->destroy(a_thread);
+    for (unsigned char j = 0; j < UCHAR_MAX; j++) { sleep(0); /* Cede scheduling */ if (!a_thread->initialized) {
+      ASSERT( pthread_kill(a_thread->pthread, 0) == ESRCH  );
+      
+      SUCCEED;
+    }} FAIL;
+  }} FAIL;
 }
