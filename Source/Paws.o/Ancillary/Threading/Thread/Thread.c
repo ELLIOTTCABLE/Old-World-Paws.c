@@ -106,7 +106,9 @@ void thread__destroy(thread this) {
   } else {
     /* TODO: Find a way to signal a specific thread to wake, instead of broadcasting a pointless wake to *all*
      *       threads in the pool. Seems wasteful, if not dangerous. */
+    pthread_mutex_lock    (this->pool->mutex);
     pthread_cond_broadcast(this->pool->condition);
+    pthread_mutex_unlock  (this->pool->mutex);
     
     /* TODO: Replace this with an ‘is active’ mutex; prevent any destructive modifications to the `thread`
      *       structure while it’s running. Locking against that mutex would be equivalent to `join`ing, because
