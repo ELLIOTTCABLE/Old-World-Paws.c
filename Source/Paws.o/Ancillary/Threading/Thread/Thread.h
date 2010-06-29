@@ -29,12 +29,16 @@ struct E(thread) {
 
 struct E(Thread) {
   /* `Thread` functions */
-  E(thread)   (*allocate)     ( E(pool) a_pool );
-  void        (*initialize)   ( void *argument ); /* Actually takes a `thread` */
+  E(thread)     (*allocate)     ( E(pool) a_pool );
+  void          (*initialize)   ( void *argument ); /* Actually takes a `thread` */
+  E(thread)     (*current)      ( void );
   
   /* `struct thread` methods */
-  void        (*work)         ( E(thread) this );
-  void        (*destroy)      ( E(thread) this );
+  void          (*work)         ( E(thread) this );
+  void          (*destroy)      ( E(thread) this );
+  
+  /* `Thread` data */
+  pthread_key_t   current_thread_key;
 };
 #if !defined(EXTERNALIZE)
   struct E(Thread) extern *Thread;

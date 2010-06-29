@@ -14,6 +14,7 @@
 
 thread    Thread__allocate      (pool a_pool);
 void      Thread__initialize    (void *argument);
+thread    Thread__current       (void);
 
 void      thread__work          (thread this);
 void      thread__destroy       (thread this);
@@ -31,6 +32,8 @@ void Paws__register_Thread(void) { Thread   = malloc(sizeof(struct Thread));
     .work         = thread__work,
     .destroy      = thread__destroy
   };
+  
+  pthread_key_create(&Thread->current_thread_key, NULL);
   
   memcpy(Thread, &data, sizeof(struct Thread));
 }
@@ -51,11 +54,17 @@ thread Thread__allocate(pool a_pool) {
 void Thread__initialize(void *argument) {
   thread this = (thread)argument;
   
+  pthread_setspecific(Thread->current_thread_key, (void *)this);
+  
   this->initialized = true;
   Thread->work(this);
   Thread->destroy(this);
   
   //return; /* This can never return; `Thread->destroy()` calls `pthread_exit()`. */
+}
+
+thread Thread__current(void) {
+  return (thread)pthread_getspecific(Thread->current_thread_key);
 }
 
 void thread__work(thread this) {
