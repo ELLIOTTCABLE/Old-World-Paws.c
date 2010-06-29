@@ -39,6 +39,8 @@ CEST(pool, enqueue) {
   ASSERT( *((routine *)a_pool->queue + 2) == routine3 );
   ASSERT(              a_pool->size       == 3        );
   
+  PEND;
+  
   /* TODO: Test that the condvar is properly signaled. */
   
   SUCCEED;

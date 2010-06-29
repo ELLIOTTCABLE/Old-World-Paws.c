@@ -58,7 +58,9 @@ void pool__enqueue(pool this, routine a_routine) {
   this->queue                   = realloc(this->queue, sizeof(routine) * ++this->size);
   this->queue[this->size - 1]   = a_routine;
   
-  pthread_cond_signal(this->condition);
+  pthread_mutex_lock  (this->mutex);
+  pthread_cond_signal (this->condition);
+  pthread_mutex_unlock(this->mutex);
 }
 
 routine pool__drip(pool this) {
