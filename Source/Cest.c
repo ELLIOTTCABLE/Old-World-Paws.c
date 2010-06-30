@@ -53,7 +53,7 @@ struct Cest {
 
 
 #endif
-#if !defined(DECLARATIONS) && !defined(CEST_IMPLEMENTATION) /* ============================================ BODY */
+#if !defined(DECLARATIONS) && !defined(CEST_IMPLEMENTATION) /* ========================================== BODY */
 # define                               CEST_IMPLEMENTATION
 # define DECLARATIONS
 #   include <stdlib.h>

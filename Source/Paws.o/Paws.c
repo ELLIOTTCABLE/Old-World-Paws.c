@@ -107,8 +107,6 @@ void    Paws__register_Paws   ( void );
 # undef  DECLARATIONS
 
 
-thing   nothing   (void);
-
                           struct Paws // »
                                 *Paws   = NULL;
 void Paws__register_Paws(void) { Paws   = malloc(sizeof(struct Paws));

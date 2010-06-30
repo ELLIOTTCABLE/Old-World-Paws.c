@@ -60,10 +60,6 @@ void    Paws__register_List   ( void );
 # undef  DECLARATIONS
 
 
-/* ======================
-= `infrastructure list` =
-====================== */
-
 /* ### Method Declarations ### */
 
 list    List__allocate          (void);

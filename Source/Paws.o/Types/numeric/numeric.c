@@ -58,10 +58,6 @@ void    Paws__register_Numeric    ( void );
 # undef  DECLARATIONS
 
 
-/* =========================
-= `infrastructure numeric` =
-========================= */
-
 /* ### Method Declarations ### */
 
 numeric   Numeric__allocate   (int native);

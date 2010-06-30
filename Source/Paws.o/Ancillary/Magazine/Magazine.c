@@ -57,7 +57,7 @@ void    Paws__register_Magazine   ( void );
 
 
 #endif
-#if !defined(DECLARATIONS) && !defined(MAGAZINE_IMPLEMENTATION) /* ============================================ BODY */
+#if !defined(DECLARATIONS) && !defined(MAGAZINE_IMPLEMENTATION) /* ====================================== BODY */
 # define                               MAGAZINE_IMPLEMENTATION
 # define DECLARATIONS
 #   include "Paws.o/Paws.c"

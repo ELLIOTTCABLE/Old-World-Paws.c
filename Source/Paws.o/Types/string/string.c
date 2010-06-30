@@ -59,8 +59,9 @@ struct E(String) {
 void    Paws__register_String   ( void );
 
 
+
 #endif
-#if !defined(DECLARATIONS) && !defined(STRING_IMPLEMENTATION) /* ============================================ BODY */
+#if !defined(DECLARATIONS) && !defined(STRING_IMPLEMENTATION) /* ======================================== BODY */
 # define                               STRING_IMPLEMENTATION
 # define DECLARATIONS
 #   include "Paws.o/Types/list/list.c"
@@ -77,10 +78,6 @@ void    Paws__register_String   ( void );
 /* Marks up unused parameters in callbacks */
 #define _(_) (void)_
 
-
-/* ========================
-= `infrastructure string` =
-======================== */
 
 /* ### Method Declarations ### */
 

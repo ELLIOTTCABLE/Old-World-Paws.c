@@ -70,10 +70,6 @@ void    Paws__register_Execution    ( void );
   ptr = realloc(ptr, size)//;
 
 
-/* ===========================
-= `infrastructure execution` =
-=========================== */
-
 /* ### Method Declarations ### */
 
 execution   Execution__allocate   (void);

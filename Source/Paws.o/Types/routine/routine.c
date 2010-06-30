@@ -84,10 +84,6 @@ void    Paws__register_Routine    ( void );
 # undef  DECLARATIONS
 
 
-/* =========================
-= `infrastructure routine` =
-========================= */
-
 /* ### Method Declarations ### */
 
 routine     Routine__allocate   (node   implementation);
