@@ -43,18 +43,6 @@ so… these:
     ./Paws.o
     
     
-    # to compile `pop`
-    C -O0 -std=c99 -pedantic-errors -Wall -ISource \
-      Source/pop/pop.c && \
-    ./pop.o something.paws
-    
-    # Run `gdb` against `pop` (use `run something.paws`)
-    C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource \
-      Source/pop/pop.c && \
-    gdb -q -se ./pop.o
-    # use `run something.paws`
-    
-    
     # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.o/Ancillary/Threading/Threading.c \
