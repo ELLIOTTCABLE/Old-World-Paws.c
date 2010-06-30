@@ -1,9 +1,7 @@
 #include "Magazine.c"
 #include "Cest.h"
 
-#if !defined(STRING_H)
-# include "Paws.o/Types/string/string.h"
-#endif
+#include "Paws.o/Types/string/string.h"
 
 #include <errno.h>
 

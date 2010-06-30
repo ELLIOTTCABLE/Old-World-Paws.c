@@ -1,11 +1,8 @@
-#define LL_H
+#if !defined(LL_DECLARATIONS)
+# define     LL_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
 #include <limits.h>
 
@@ -84,3 +81,5 @@ struct E(Element) {
 
 void    Paws__register_LL         ( void );
 void    Paws__register_Element    ( void );
+
+#endif

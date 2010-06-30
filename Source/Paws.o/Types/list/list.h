@@ -1,15 +1,10 @@
-#define LIST_H
+#if !defined(LIST_DECLARATIONS)
+# define     LIST_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
-#if !defined(LL_H)
-# include "ll.h"
-#endif
+#include "ll.h"
 
 
 /* ======================
@@ -45,3 +40,5 @@ struct E(List) {
 #endif
 
 void    Paws__register_List   ( void );
+
+#endif

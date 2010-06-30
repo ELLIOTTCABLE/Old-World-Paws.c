@@ -1,9 +1,7 @@
 #include "Unit.c"
 #include "Cest.h"
 
-#if !defined(STRING_H)
-# include "Paws.o/Types/routine/routine.h"
-#endif
+#include "Paws.o/Types/routine/routine.h"
 
 
 CEST(Unit, allocate) {

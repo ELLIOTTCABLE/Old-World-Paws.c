@@ -1,18 +1,11 @@
-#define EXECUTION_H
+#if !defined(EXECUTION_DECLARATIONS)
+# define     EXECUTION_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
-#if !defined(LIST_H)
-# include "Paws.o/Types/list/list.h"
-#endif
-#if !defined(ROUTINE_H)
-# include "Paws.o/Types/routine/routine.h"
-#endif
+#include "Paws.o/Types/list/list.h"
+#include "Paws.o/Types/routine/routine.h"
 
 
 /* ===========================
@@ -53,3 +46,5 @@ struct E(Execution) {
 #endif
 
 void    Paws__register_Execution    ( void );
+
+#endif

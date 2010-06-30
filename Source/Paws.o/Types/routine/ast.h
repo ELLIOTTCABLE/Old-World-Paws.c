@@ -1,11 +1,8 @@
-#define AST_H
+#if !defined(AST_DECLARATIONS)
+# define     AST_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
 
 /* ======
@@ -68,3 +65,5 @@ struct E(Node) {
 
 void    Paws__register_AST    ( void );
 void    Paws__register_Node   ( void );
+
+#endif

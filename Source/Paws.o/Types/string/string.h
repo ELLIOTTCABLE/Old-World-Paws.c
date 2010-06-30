@@ -1,18 +1,11 @@
-#define STRING_H
+#if !defined(STRING_DECLARATIONS)
+# define     STRING_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
-#if !defined(LL_H)
-# include "Paws.o/Types/list/list.h"
-#endif
-#if !defined(MAGAZINE_H)
-# include "Paws.o/Ancillary/Magazine/Magazine.h"
-#endif
+#include "Paws.o/Types/list/list.h"
+#include "Paws.o/Ancillary/Magazine/Magazine.h"
 
 
 /* ========================
@@ -57,3 +50,5 @@ struct E(String) {
 #endif
 
 void    Paws__register_String   ( void );
+
+#endif

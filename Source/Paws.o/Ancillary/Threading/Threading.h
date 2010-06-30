@@ -1,11 +1,8 @@
-#define THREADING_H
+#if !defined(THREADING_DECLARATIONS)
+# define     THREADING_DECLARATIONS
 
-#if !defined(POOL_H)
-# include "Paws.o/Ancillary/Threading/Pool/Pool.h"
-#endif
-#if !defined(THREAD_H)
-# include "Paws.o/Ancillary/Threading/Thread/Thread.h"
-#endif
+#include "Paws.o/Ancillary/Threading/Pool/Pool.h"
+#include "Paws.o/Ancillary/Threading/Thread/Thread.h"
 
 struct E(Threading) {
   struct E(Pool)     *Pool;
@@ -16,3 +13,5 @@ struct E(Threading) {
 #endif
 
 void    Paws__register_Threading    ( void );
+
+#endif

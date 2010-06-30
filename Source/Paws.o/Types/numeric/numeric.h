@@ -1,15 +1,10 @@
-#define NUMERIC_H
+#if !defined(NUMERIC_DECLARATIONS)
+# define     NUMERIC_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
-#if !defined(LIST_H)
-# include "Paws.o/Types/list/list.h"
-#endif
+#include "Paws.o/Types/list/list.h"
 
 
 /* =========================
@@ -43,3 +38,5 @@ struct E(Numeric) {
 #endif
 
 void    Paws__register_Numeric    ( void );
+
+#endif

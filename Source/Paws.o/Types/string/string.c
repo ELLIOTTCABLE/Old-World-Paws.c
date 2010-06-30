@@ -1,8 +1,6 @@
 #include "string.h"
 
-#if !defined(LIST_H)
-# include "Paws.o/Types/list/list.h"
-#endif
+#include "Paws.o/Types/list/list.h"
 
 #include "Paws.o/Paws.h"
 #include <stdlib.h>

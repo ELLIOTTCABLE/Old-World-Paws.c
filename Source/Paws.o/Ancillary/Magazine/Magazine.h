@@ -1,11 +1,8 @@
-#define MAGAZINE_H
+#if !defined(MAGAZINE_DECLARATIONS)
+# define     MAGAZINE_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
 
 /* ### Data Types & Structures ### */
@@ -49,3 +46,5 @@ struct E(Magazine) {
 #endif
 
 void    Paws__register_Magazine   ( void );
+
+#endif

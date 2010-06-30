@@ -1,43 +1,21 @@
-#define PAWS_H
-
+#if !defined(PAWS_DECLARATIONS)
+# define     PAWS_DECLARATIONS
 
 #if !defined(INTERNALIZE)
 # define EXTERNALIZE
 #endif
+# include "Paws.o/Ancillary/Threading/Threading.h"
+# include "Paws.o/Ancillary/Magazine/Magazine.h"
+# include "Paws.o/Ancillary/Unit/Unit.h"
 
-# if !defined(THREADING_H)
-#   include "Paws.o/Ancillary/Threading/Threading.h"
-# endif
-# if !defined(MAGAZINE_H)
-#   include "Paws.o/Ancillary/Magazine/Magazine.h"
-# endif
-# if !defined(UNIT_H)
-#   include "Paws.o/Ancillary/Unit/Unit.h"
-# endif
+# include "Paws.o/Types/list/list.h"
+# include "Paws.o/Types/routine/routine.h"
+# include "Paws.o/Types/execution/execution.h"
+# include "Paws.o/Types/numeric/numeric.h"
+# include "Paws.o/Types/string/string.h"
 
-# if !defined(LIST_H)
-#   include "Paws.o/Types/list/list.h"
-# endif
-# if !defined(ROUTINE_H)
-#   include "Paws.o/Types/routine/routine.h"
-# endif
-# if !defined(EXECUTION_H)
-#   include "Paws.o/Types/execution/execution.h"
-# endif
-# if !defined(NUMERIC_H)
-#   include "Paws.o/Types/numeric/numeric.h"
-# endif
-# if !defined(STRING_H)
-#   include "Paws.o/Types/string/string.h"
-# endif
-
-#if !defined(CORE_H)
 # include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
 # include "Paws.o/Types/Types.h"
-#endif
-
 #if !defined(INTERNALIZE)
 # undef EXTERNALIZE
 #endif
@@ -109,3 +87,5 @@ struct Paws extern *Paws;
 
 void           prepare_Paws   ( void );
 void    Paws__register_Paws   ( void );
+
+#endif

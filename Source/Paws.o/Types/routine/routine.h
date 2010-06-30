@@ -1,18 +1,11 @@
-#define ROUTINE_H
+#if !defined(ROUTINE_DECLARATIONS)
+# define     ROUTINE_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
-#if !defined(AST_H)
-# include "ast.h"
-#endif
-#if !defined(LIST_H)
-# include "Paws.o/Types/list/list.h"
-#endif
+#include "ast.h"
+#include "Paws.o/Types/list/list.h"
 
 #include <stdbool.h>
 
@@ -71,3 +64,5 @@ struct E(Routine) {
 #endif
 
 void    Paws__register_Routine    ( void );
+
+#endif

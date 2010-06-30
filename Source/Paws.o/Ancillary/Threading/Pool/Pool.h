@@ -1,8 +1,7 @@
-#define POOL_H
+#if !defined(POOL_DECLARATIONS)
+# define     POOL_DECLARATIONS
 
-#if !defined(ROUTINE_H)
-# include "Paws.o/Types/routine/routine.h"
-#endif
+#include "Paws.o/Types/routine/routine.h"
 
 #include <pthread.h>
 
@@ -43,3 +42,5 @@ struct E(Pool) {
 #endif
 
 void    Paws__register_Pool   ( void );
+
+#endif

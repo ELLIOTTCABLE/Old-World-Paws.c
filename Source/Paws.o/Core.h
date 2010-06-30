@@ -1,4 +1,5 @@
-#define CORE_H
+#if !defined(CORE_DECLARATIONS)
+# define     CORE_DECLARATIONS
 
 /* This file is included to nearly every other header in the Paws codebase; it
  * provides macros and definitions necessary throughout the codebase.
@@ -29,3 +30,5 @@
 // #if __has_feature(attribute_packed)
 # define packed      __attribute__((packed))
 // #endif
+
+#endif

@@ -1,8 +1,7 @@
-#define THREAD_H
+#if !defined(THREAD_DECLARATIONS)
+# define     THREAD_DECLARATIONS
 
-#if !defined(POOL_H)
-# include "Paws.o/Ancillary/Threading/Pool/Pool.h"
-#endif
+#include "Paws.o/Ancillary/Threading/Pool/Pool.h"
 
 #include <pthread.h>
 #include <stdbool.h>
@@ -45,3 +44,5 @@ struct E(Thread) {
 #endif
 
 void    Paws__register_Thread   ( void );
+
+#endif

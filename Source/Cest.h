@@ -1,4 +1,5 @@
-#define CEST_H
+#if !defined(CEST_DECLARATIONS)
+# define     CEST_DECLARATIONS
 
 #define constructor __attribute__((constructor))
 #define CEST(NAMESPACE, NAME) \
@@ -48,3 +49,5 @@ struct Cest {
   /* Data elements */
   cest_node       first;
 } extern Cest;
+
+#endif

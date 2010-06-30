@@ -1,18 +1,11 @@
-#define UNIT_H
+#if !defined(UNIT_DECLARATIONS)
+# define     UNIT_DECLARATIONS
 
-#if !defined(CORE_H)
-# include "Paws.o/Core.h"
-#endif
-#if !defined(TYPES_H)
-# include "Paws.o/Types/Types.h"
-#endif
+#include "Paws.o/Core.h"
+#include "Paws.o/Types/Types.h"
 
-#if !defined(POOL_H)
-# include "Paws.o/Ancillary/Threading/Pool/Pool.h"
-#endif
-#if !defined(MAGAZINE_H)
-# include "Paws.o/Ancillary/Magazine/Magazine.h"
-#endif
+#include "Paws.o/Ancillary/Threading/Pool/Pool.h"
+#include "Paws.o/Ancillary/Magazine/Magazine.h"
 
 
 /* ### Data Types & Structures ### */
@@ -38,3 +31,5 @@ struct E(Unit) {
 #endif
 
 void    Paws__register_Unit   ( void );
+
+#endif
