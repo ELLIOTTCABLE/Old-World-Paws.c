@@ -1,5 +1,8 @@
 #include "ast.c"
-#include "Cest.h"
+
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
 
 
 CEST(Node, allocate) {

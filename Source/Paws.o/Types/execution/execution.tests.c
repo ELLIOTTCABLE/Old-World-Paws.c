@@ -1,5 +1,8 @@
 #include "execution.c"
-#include "Cest.h"
+
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
 
 
 CEST(Execution, allocate) {

@@ -1,7 +1,10 @@
 #include "ll.c"
-#include "Cest.h"
 
-#include <string.h>
+#define DECLARATIONS
+# include "Cest.c"
+
+# include <string.h>
+#undef  DECLARATIONS
 
 
 #define SOMETHING \

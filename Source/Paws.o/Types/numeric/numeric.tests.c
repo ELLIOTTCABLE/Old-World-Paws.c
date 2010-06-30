@@ -1,5 +1,8 @@
 #include "numeric.c"
-#include "Cest.h"
+
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
 
 
 CEST(Numeric, allocate) {

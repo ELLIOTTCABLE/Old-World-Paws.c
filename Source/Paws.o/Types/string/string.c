@@ -1,10 +1,74 @@
-#include "string.h"
+#if !defined(STRING_DECLARATIONS)
+# define     STRING_DECLARATIONS
 
-#include "Paws.o/Types/list/list.h"
+#if !defined(DECLARATIONS)
+# define STRING_C__BEHEST
+# define DECLARATIONS
+#endif
+#   include "Paws.o/Core.h"
+#   include "Paws.o/Types/Types.h"
 
-#include "Paws.o/Paws.h"
-#include <stdlib.h>
-#include <string.h>
+#   include "Paws.o/Types/list/list.c"
+#   include "Paws.o/Ancillary/Magazine/Magazine.c"
+#if defined(STRING_C__BEHEST)
+# undef DECLARATIONS
+#endif
+
+
+/* ========================
+= `infrastructure string` =
+======================== */
+
+/* ### Data Types & Structures ### */
+
+typedef   unsigned int    E(string_size);
+
+/* `infrastructure string`, the immutable character-string data structure of Paws, is herein implemented natively
+ * with UTF-8 byte strings. */
+struct E(string) {
+  E(ll)             content; /* The `ll` behind this `string`’s `list` interface */
+  
+  /* This complex nested structure provides a very efficient storage for very short byte strings (anything less
+   * than (usually) four bytes, including the `NULL` terminator). This is because those short-strings are stored
+   * inline in the struct, instead of in another memory location; this also allows for a single cache entry. If
+   * the string is *longer* than that, it is stored in another memory location, and a pointer is stored in the
+   * equivalent space instead. */
+  union {
+    char             *long_array;
+    char              short_array[sizeof(char*)];
+  }                 native;
+  E(string_size)    bytes;
+};
+
+
+/* ### Method Declarations ### */
+
+struct E(String) {
+  /* `String` functions */
+  E(string)   (*allocate)   ( char nate[] );
+  E(string)   (*embody)     ( char nate[], E(magazine) store );
+  
+  /* `struct numeric` methods */
+  E(thing)    (*thing)      ( E(string) this );
+  char*       (*native)     ( E(string) this );
+};
+#if !defined(EXTERNALIZE)
+  struct E(String) extern *String;
+#endif
+
+void    Paws__register_String   ( void );
+
+
+#endif
+#if !defined(DECLARATIONS) && !defined(STRING_IMPLEMENTATION) /* ============================================ BODY */
+# define                               STRING_IMPLEMENTATION
+# define DECLARATIONS
+#   include "Paws.o/Types/list/list.c"
+
+#   include "Paws.o/Paws.c"
+#   include <stdlib.h>
+#   include <string.h>
+# undef  DECLARATIONS
 
 /* A safer `strcpy()`, using `strncpy()` and `sizeof()` */
 #define STRCPY(TO, FROM, BYTES) \
@@ -93,3 +157,5 @@ char* string__native(string this) {
   else
     return this->native.long_array;
 }
+
+#endif

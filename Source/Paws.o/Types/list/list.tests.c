@@ -1,5 +1,8 @@
 #include "list.c"
-#include "Cest.h"
+
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
 
 
 CEST(List, allocate) {

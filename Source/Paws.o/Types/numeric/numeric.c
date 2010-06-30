@@ -1,8 +1,61 @@
-#include "numeric.h"
+#if !defined(NUMERIC_DECLARATIONS)
+# define     NUMERIC_DECLARATIONS
 
-#include "Paws.o/Paws.h"
-#include <stdlib.h>
-#include <string.h>
+#if !defined(DECLARATIONS)
+# define NUMERIC_C__BEHEST
+# define DECLARATIONS
+#endif
+#   include "Paws.o/Core.h"
+#   include "Paws.o/Types/Types.h"
+
+#   include "Paws.o/Types/list/list.c"
+#if defined(NUMERIC_C__BEHEST)
+# undef DECLARATIONS
+#endif
+
+
+/* =========================
+= `infrastructure numeric` =
+========================= */
+
+/* ### Data Types & Structures ### */
+
+/* `infrastructure numeric`, the numeric data structure of Paws, is herein implemented natively with C `int`
+ * types. It provides no recourse for floating-point arithmetic. */
+struct E(numeric) {
+  E(ll)   content; /* The `ll` behind this `numeric`’s `list` interface */
+  
+  /* TODO: Support floating-point values. */
+  int     native;
+};
+
+
+/* ### Method Declarations ### */
+
+struct E(Numeric) {
+  /* `Numeric` functions */
+  E(numeric)    (*allocate)   ( int native );
+  
+  /* `struct numeric` methods */
+  E(thing)      (*thing)      ( E(numeric) this );
+  int           (*native)     ( E(numeric) this );
+};
+#if !defined(EXTERNALIZE)
+  struct E(Numeric) extern *Numeric;
+#endif
+
+void    Paws__register_Numeric    ( void );
+
+
+
+#endif
+#if !defined(DECLARATIONS) && !defined(NUMERIC_IMPLEMENTATION) /* ======================================= BODY */
+# define                               NUMERIC_IMPLEMENTATION
+# define DECLARATIONS
+#   include "Paws.o/Paws.c"
+#   include <stdlib.h>
+#   include <string.h>
+# undef  DECLARATIONS
 
 
 /* =========================
@@ -66,3 +119,5 @@ thing numeric__thing(numeric this) {
 int numeric__native(numeric this) {
   return this->native;
 }
+
+#endif

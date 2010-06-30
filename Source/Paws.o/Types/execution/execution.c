@@ -1,9 +1,70 @@
-#include "execution.h"
+#if !defined(EXECUTION_DECLARATIONS)
+# define     EXECUTION_DECLARATIONS
 
-#include "Paws.o/Paws.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
+#if !defined(DECLARATIONS)
+# define EXECUTION_C__BEHEST
+# define DECLARATIONS
+#endif
+#   include "Paws.o/Core.h"
+#   include "Paws.o/Types/Types.h"
+
+#   include "Paws.o/Types/list/list.c"
+#   include "Paws.o/Types/routine/routine.c"
+#if defined(EXECUTION_C__BEHEST)
+# undef DECLARATIONS
+#endif
+
+
+/* ===========================
+= `infrastructure execution` =
+=========================== */
+
+/* ### Data Types & Structures ### */
+
+struct E(execution) {
+  E(ll)           content; /* The `ll` behind this `routine`’s `list` interface */
+  
+  /* Since we aren’t currently utilizing an `ast` datatype, this struct pairs a given `node` pointer with the
+   * pointer to the root `node` of the tree it belongs to. This allows us to ‘look up’ which `node` pointer is to
+   * be indexed into which `routine` associated with this `execution`.
+   * 
+   * NOTE: This is *not* friendly to homoiconicity; I’m not sure *how* to safely re-index into an AST that can
+   *       change at *any time*… >,> One of the many problems with homoiconicity. */
+  struct E(sourced_node) {
+    E(node)         node;
+    E(node)         root;
+  }              *nodes; /* An array of node-pairs associated with various `routine`s’ ‘current state’ */
+  E(node_size)    size;
+};
+
+
+/* ### Method Declarations ### */
+
+struct E(Execution) {
+  /* `Execution` functions */
+  E(execution)    (*allocate)   ( void );
+  
+  /* `struct execution` methods */
+  E(thing)        (*thing)      ( E(execution) this );
+  void            (*exercise)   ( E(execution) this, E(routine) against );
+};
+#if !defined(EXTERNALIZE)
+  struct E(Execution) extern *Execution;
+#endif
+
+void    Paws__register_Execution    ( void );
+
+
+
+#endif
+#if !defined(DECLARATIONS) && !defined(EXECUTION_IMPLEMENTATION) /* ===================================== BODY */
+# define                               EXECUTION_IMPLEMENTATION
+# define DECLARATIONS
+#   include "Paws.o/Paws.c"
+#   include <stdlib.h>
+#   include <string.h>
+#   include <stdbool.h>
+# undef  DECLARATIONS
 
 #define REALLOC(ptr, size) \
   ptr = realloc(ptr, size)//;
@@ -94,3 +155,5 @@ node* execution__node_for(execution this, routine target) {
   
   return &this->nodes[this->size - 1].node;
 }
+
+#endif

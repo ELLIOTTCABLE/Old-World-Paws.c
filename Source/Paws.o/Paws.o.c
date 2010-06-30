@@ -1,4 +1,4 @@
-#include "Paws.o/Paws.h"
+#include "Paws.o/Paws.c"
 #include <stdio.h>
 
 int main(void) {

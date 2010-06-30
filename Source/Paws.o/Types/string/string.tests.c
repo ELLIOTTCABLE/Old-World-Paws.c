@@ -1,5 +1,8 @@
 #include "string.c"
-#include "Cest.h"
+
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
 
 
 CEST(String, allocate) {

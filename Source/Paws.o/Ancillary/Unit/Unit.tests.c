@@ -1,7 +1,13 @@
 #include "Unit.c"
-#include "Cest.h"
 
-#include "Paws.o/Types/routine/routine.h"
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
+
+
+#define DECLARATIONS
+# include "Paws.o/Types/routine/routine.c"
+#undef  DECLARATIONS
 
 
 CEST(Unit, allocate) {

@@ -1,5 +1,9 @@
 #include "routine.c"
-#include "Cest.h"
+
+#define DECLARATIONS
+# include "Cest.c"
+#undef  DECLARATIONS
+
 
 void a_native(void) { return; }
 

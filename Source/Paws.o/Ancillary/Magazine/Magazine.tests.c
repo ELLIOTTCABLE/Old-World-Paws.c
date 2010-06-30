@@ -1,9 +1,12 @@
 #include "Magazine.c"
-#include "Cest.h"
 
-#include "Paws.o/Types/string/string.h"
+#define DECLARATIONS
+# include "Cest.c"
 
-#include <errno.h>
+# include "Paws.o/Types/string/string.c"
+
+# include <errno.h>
+#undef  DECLARATIONS
 
 /* A safer `strcpy()`, using `strncpy()` and `sizeof()` */
 #define STRCPY(TO, FROM) \
@@ -11,6 +14,7 @@
 
 /* Marks up unused parameters in callbacks */
 #define _(_) (void)_
+
 
 CEST(Magazine, allocate) {
   magazine a_magazine;

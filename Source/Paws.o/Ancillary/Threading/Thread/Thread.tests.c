@@ -1,7 +1,10 @@
 #include "Thread.c"
-#include "Cest.h"
 
-#include <errno.h>
+#define DECLARATIONS
+# include "Cest.c"
+
+# include <errno.h>
+#undef  DECLARATIONS
 
 
 CEST(Thread, allocate) {
