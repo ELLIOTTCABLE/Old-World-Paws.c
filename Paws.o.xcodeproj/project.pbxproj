@@ -25,48 +25,35 @@
 
 /* Begin PBXFileReference section */
 		511960AF11D211D100DE67CF /* Magazine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Magazine.c; sourceTree = "<group>"; };
-		511960B011D211D100DE67CF /* Magazine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Magazine.h; sourceTree = "<group>"; };
 		511960B111D211D100DE67CF /* Magazine.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Magazine.tests.c; sourceTree = "<group>"; };
 		511960B411D211D100DE67CF /* Pool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Pool.c; sourceTree = "<group>"; };
-		511960B511D211D100DE67CF /* Pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pool.h; sourceTree = "<group>"; };
 		511960B611D211D100DE67CF /* Pool.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Pool.tests.c; sourceTree = "<group>"; };
 		511960B811D211D100DE67CF /* Thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Thread.c; sourceTree = "<group>"; };
-		511960B911D211D100DE67CF /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
 		511960BA11D211D100DE67CF /* Thread.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Thread.tests.c; sourceTree = "<group>"; };
 		511960BB11D211D100DE67CF /* Threading.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Threading.c; sourceTree = "<group>"; };
-		511960BC11D211D100DE67CF /* Threading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threading.h; sourceTree = "<group>"; };
 		511960BD11D211D100DE67CF /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Source/Paws.o/Core.h; sourceTree = "<group>"; };
 		511960BE11D211D100DE67CF /* Paws.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.c; path = Source/Paws.o/Paws.c; sourceTree = "<group>"; };
 		511960BF11D211D100DE67CF /* Paws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paws.h; path = Source/Paws.o/Paws.h; sourceTree = "<group>"; };
 		511960C011D211D100DE67CF /* Paws.o.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.o.c; path = Source/Paws.o/Paws.o.c; sourceTree = "<group>"; };
 		511960C111D211D100DE67CF /* Paws.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.tests.c; path = Source/Paws.o/Paws.tests.c; sourceTree = "<group>"; };
 		511960C411D211D100DE67CF /* execution.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = execution.c; sourceTree = "<group>"; };
-		511960C511D211D100DE67CF /* execution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = execution.h; sourceTree = "<group>"; };
 		511960C611D211D100DE67CF /* execution.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = execution.tests.c; sourceTree = "<group>"; };
 		511960C811D211D100DE67CF /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
-		511960C911D211D100DE67CF /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
 		511960CA11D211D100DE67CF /* list.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.tests.c; sourceTree = "<group>"; };
 		511960CB11D211D100DE67CF /* ll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ll.c; sourceTree = "<group>"; };
-		511960CC11D211D100DE67CF /* ll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ll.h; sourceTree = "<group>"; };
 		511960CD11D211D100DE67CF /* ll.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ll.tests.c; sourceTree = "<group>"; };
 		511960CF11D211D100DE67CF /* numeric.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = numeric.c; sourceTree = "<group>"; };
-		511960D011D211D100DE67CF /* numeric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric.h; sourceTree = "<group>"; };
 		511960D111D211D100DE67CF /* numeric.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = numeric.tests.c; sourceTree = "<group>"; };
 		511960D311D211D100DE67CF /* ast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ast.c; sourceTree = "<group>"; };
-		511960D411D211D100DE67CF /* ast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ast.h; sourceTree = "<group>"; };
 		511960D511D211D100DE67CF /* ast.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ast.tests.c; sourceTree = "<group>"; };
 		511960D611D211D100DE67CF /* routine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = routine.c; sourceTree = "<group>"; };
-		511960D711D211D100DE67CF /* routine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = routine.h; sourceTree = "<group>"; };
 		511960D811D211D100DE67CF /* routine.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = routine.tests.c; sourceTree = "<group>"; };
 		511960DA11D211D100DE67CF /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
-		511960DB11D211D100DE67CF /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
 		511960DC11D211D100DE67CF /* string.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.tests.c; sourceTree = "<group>"; };
 		511960DD11D211D100DE67CF /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		511960F511D219B500DE67CF /* Tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		5119611C11D22AFF00DE67CF /* Cest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Cest.c; path = Source/Cest.c; sourceTree = "<group>"; };
-		5119611D11D22AFF00DE67CF /* Cest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cest.h; path = Source/Cest.h; sourceTree = "<group>"; };
 		51B5349611D5BA0E00A0EBD8 /* Unit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Unit.c; sourceTree = "<group>"; };
-		51B5349711D5BA0E00A0EBD8 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		51B5349811D5BA0E00A0EBD8 /* Unit.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Unit.tests.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,7 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				5119611C11D22AFF00DE67CF /* Cest.c */,
-				5119611D11D22AFF00DE67CF /* Cest.h */,
 				511960AC11D2119D00DE67CF /* Source */,
 				5119603B11D2103000DE67CF /* Products */,
 			);
@@ -129,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				511960AF11D211D100DE67CF /* Magazine.c */,
-				511960B011D211D100DE67CF /* Magazine.h */,
 				511960B111D211D100DE67CF /* Magazine.tests.c */,
 			);
 			path = Magazine;
@@ -141,7 +126,6 @@
 				511960B311D211D100DE67CF /* Pool */,
 				511960B711D211D100DE67CF /* Thread */,
 				511960BB11D211D100DE67CF /* Threading.c */,
-				511960BC11D211D100DE67CF /* Threading.h */,
 			);
 			path = Threading;
 			sourceTree = "<group>";
@@ -150,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				511960B411D211D100DE67CF /* Pool.c */,
-				511960B511D211D100DE67CF /* Pool.h */,
 				511960B611D211D100DE67CF /* Pool.tests.c */,
 			);
 			path = Pool;
@@ -160,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				511960B811D211D100DE67CF /* Thread.c */,
-				511960B911D211D100DE67CF /* Thread.h */,
 				511960BA11D211D100DE67CF /* Thread.tests.c */,
 			);
 			path = Thread;
@@ -184,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				511960C411D211D100DE67CF /* execution.c */,
-				511960C511D211D100DE67CF /* execution.h */,
 				511960C611D211D100DE67CF /* execution.tests.c */,
 			);
 			path = execution;
@@ -194,10 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				511960C811D211D100DE67CF /* list.c */,
-				511960C911D211D100DE67CF /* list.h */,
 				511960CA11D211D100DE67CF /* list.tests.c */,
 				511960CB11D211D100DE67CF /* ll.c */,
-				511960CC11D211D100DE67CF /* ll.h */,
 				511960CD11D211D100DE67CF /* ll.tests.c */,
 			);
 			path = list;
@@ -207,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				511960CF11D211D100DE67CF /* numeric.c */,
-				511960D011D211D100DE67CF /* numeric.h */,
 				511960D111D211D100DE67CF /* numeric.tests.c */,
 			);
 			path = numeric;
@@ -217,10 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				511960D311D211D100DE67CF /* ast.c */,
-				511960D411D211D100DE67CF /* ast.h */,
 				511960D511D211D100DE67CF /* ast.tests.c */,
 				511960D611D211D100DE67CF /* routine.c */,
-				511960D711D211D100DE67CF /* routine.h */,
 				511960D811D211D100DE67CF /* routine.tests.c */,
 			);
 			path = routine;
@@ -230,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				511960DA11D211D100DE67CF /* string.c */,
-				511960DB11D211D100DE67CF /* string.h */,
 				511960DC11D211D100DE67CF /* string.tests.c */,
 			);
 			path = string;
@@ -240,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				51B5349611D5BA0E00A0EBD8 /* Unit.c */,
-				51B5349711D5BA0E00A0EBD8 /* Unit.h */,
 				51B5349811D5BA0E00A0EBD8 /* Unit.tests.c */,
 			);
 			path = Unit;
