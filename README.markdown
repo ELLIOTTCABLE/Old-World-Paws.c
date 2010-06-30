@@ -75,6 +75,10 @@ filter the commit list by these words. Some of the more common ones:
   comprehensive list of changes which will probably affect you during an upgrade.
 - `new`: Adds new features, methods, or functions; *adds* to the API instead modifying anything that already
   exists.
+- `fix`: Fixes a bug or mistake of some sort. Does not indicate mutation of the API, unless `api` is included as
+  well.
+- `refactor`: Rather than specifically fixing a known bug, or adding new features, this modifies the existing
+  codebase to be cleaner, safer, or more understandable in some way.
 - `tests`: Only affects the tests, does not change any implementation.
 - `incomplete`: Most commits to this project are required to be ‘stand-alone’; that is, the project should at
   least compile, if not pass all tests, at any commit you decide to `git checkout`. Filtering out this label will
