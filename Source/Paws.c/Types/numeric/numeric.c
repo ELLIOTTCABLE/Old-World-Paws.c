@@ -5,10 +5,10 @@
 # define NUMERIC_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 
-#   include "Paws.o/Types/list/list.c"
+#   include "Paws.c/Types/list/list.c"
 #if defined(NUMERIC_C__BEHEST)
 # undef DECLARATIONS
 #endif
@@ -52,7 +52,7 @@ void    Paws__register_Numeric    ( void );
 #if !defined(DECLARATIONS) && !defined(NUMERIC_IMPLEMENTATION) /* ======================================= BODY */
 # define                               NUMERIC_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 # undef  DECLARATIONS

@@ -5,8 +5,8 @@
 # define LL_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 
 #   include <limits.h>
 #if defined(LL_C__BEHEST)

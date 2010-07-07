@@ -9,18 +9,18 @@
 #   define PAWS_C__BEHEST
 #   define DECLARATIONS
 # endif
-#     include "Paws.o/Ancillary/Threading/Threading.c"
-#     include "Paws.o/Ancillary/Magazine/Magazine.c"
-#     include "Paws.o/Ancillary/Unit/Unit.c"
+#     include "Paws.c/Ancillary/Threading/Threading.c"
+#     include "Paws.c/Ancillary/Magazine/Magazine.c"
+#     include "Paws.c/Ancillary/Unit/Unit.c"
 
-#     include "Paws.o/Types/list/list.c"
-#     include "Paws.o/Types/routine/routine.c"
-#     include "Paws.o/Types/execution/execution.c"
-#     include "Paws.o/Types/numeric/numeric.c"
-#     include "Paws.o/Types/string/string.c"
+#     include "Paws.c/Types/list/list.c"
+#     include "Paws.c/Types/routine/routine.c"
+#     include "Paws.c/Types/execution/execution.c"
+#     include "Paws.c/Types/numeric/numeric.c"
+#     include "Paws.c/Types/string/string.c"
 
-#     include "Paws.o/Core.h"
-#     include "Paws.o/Types/Types.h"
+#     include "Paws.c/Core.h"
+#     include "Paws.c/Types/Types.h"
 # if defined(PAWS_C__BEHEST)
 #   undef DECLARATIONS
 # endif

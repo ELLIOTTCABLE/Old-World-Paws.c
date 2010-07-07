@@ -5,7 +5,7 @@
 # define POOL_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Types/routine/routine.c"
+#   include "Paws.c/Types/routine/routine.c"
 
 #   include <pthread.h>
 #if defined(POOL_C__BEHEST)
@@ -56,7 +56,7 @@ void    Paws__register_Pool   ( void );
 #if !defined(DECLARATIONS) && !defined(POOL_IMPLEMENTATION) /* ========================================== BODY */
 # define                               POOL_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 # undef  DECLARATIONS

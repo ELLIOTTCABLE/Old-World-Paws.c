@@ -3,7 +3,7 @@
 #define DECLARATIONS
 # include "Cest.c"
 
-# include "Paws.o/Types/string/string.c"
+# include "Paws.c/Types/string/string.c"
 
 # include <errno.h>
 #undef  DECLARATIONS

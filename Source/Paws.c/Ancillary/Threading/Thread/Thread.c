@@ -5,7 +5,7 @@
 # define THREAD_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Ancillary/Threading/Pool/Pool.c"
+#   include "Paws.c/Ancillary/Threading/Pool/Pool.c"
 
 #   include <pthread.h>
 #   include <stdbool.h>
@@ -58,7 +58,7 @@ void    Paws__register_Thread   ( void );
 #if !defined(DECLARATIONS) && !defined(THREAD_IMPLEMENTATION) /* ======================================== BODY */
 # define                               THREAD_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 #   include <unistd.h>

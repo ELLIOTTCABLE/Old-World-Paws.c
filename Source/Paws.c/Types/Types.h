@@ -1,10 +1,10 @@
 #if !defined(TYPE_DECLARATIONS)
 # define     TYPE_DECLARATIONS
 
-#include "Paws.o/Core.h"
+#include "Paws.c/Core.h"
 
 
-/* This file exists simply to forward-declare some structs and types used throughout the rest of the Paws.o
+/* This file exists simply to forward-declare some structs and types used throughout the rest of the Paws.c
  * codebase (including the `thing` union-struct).
  * 
  * You should never have a reason to include or use this file; it’s already included everywhere it is necessary.

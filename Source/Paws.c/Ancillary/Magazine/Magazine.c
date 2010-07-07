@@ -5,8 +5,8 @@
 # define MAGAZINE_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 #if defined(MAGAZINE_C__BEHEST)
 # undef DECLARATIONS
 #endif
@@ -60,7 +60,7 @@ void    Paws__register_Magazine   ( void );
 #if !defined(DECLARATIONS) && !defined(MAGAZINE_IMPLEMENTATION) /* ====================================== BODY */
 # define                               MAGAZINE_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 # undef  DECLARATIONS

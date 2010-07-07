@@ -2,7 +2,7 @@
    following includes:
    
        #define DECLARATIONS
-       # include "Paws.o/Paws.c"
+       # include "Paws.c/Paws.c"
        #undef  DECLARATIONS */
 
 #if !defined(DECLARATIONS)

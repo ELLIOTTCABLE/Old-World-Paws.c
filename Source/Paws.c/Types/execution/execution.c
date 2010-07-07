@@ -5,11 +5,11 @@
 # define EXECUTION_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 
-#   include "Paws.o/Types/list/list.c"
-#   include "Paws.o/Types/routine/routine.c"
+#   include "Paws.c/Types/list/list.c"
+#   include "Paws.c/Types/routine/routine.c"
 #if defined(EXECUTION_C__BEHEST)
 # undef DECLARATIONS
 #endif
@@ -60,7 +60,7 @@ void    Paws__register_Execution    ( void );
 #if !defined(DECLARATIONS) && !defined(EXECUTION_IMPLEMENTATION) /* ===================================== BODY */
 # define                               EXECUTION_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 #   include <stdbool.h>

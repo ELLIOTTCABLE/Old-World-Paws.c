@@ -5,8 +5,8 @@
 # define LIST_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 
 #   include "ll.c"
 #if defined(LIST_C__BEHEST)
@@ -53,7 +53,7 @@ void    Paws__register_List   ( void );
 #if !defined(DECLARATIONS) && !defined(LIST_IMPLEMENTATION) /* ===========================================BODY */
 # define                               LIST_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 #   include <stdbool.h>

@@ -5,11 +5,11 @@
 # define ROUTINE_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 
 #   include "ast.c"
-#   include "Paws.o/Types/list/list.c"
+#   include "Paws.c/Types/list/list.c"
 
 #   include <stdbool.h>
 #if defined(ROUTINE_C__BEHEST)
@@ -78,7 +78,7 @@ void    Paws__register_Routine    ( void );
 #if !defined(DECLARATIONS) && !defined(ROUTINE_IMPLEMENTATION) /* ======================================= BODY */
 # define                               ROUTINE_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 # undef  DECLARATIONS

@@ -1,18 +1,18 @@
-Paws.o
+Paws.c
 ======
 It’s Paws, in ISO/IEC 9899:1999. That’s C99, for people too lazy to google it.
 
 ### Roadmap & Status
-#### Paws.o — v1, “I can interpret an AST!”
+#### Paws.c — v1, “I can interpret an AST!”
 - Threading implementation: partial, and `routine` interpreter under heavy development
 - Default (native) implementation of lookups
 - Expression interpreter
 - Cross-platformization: Only known to compile on OS X; almost definitely will not work on Windows
 
-#### Paws.o — v2, “I can execute a document!”
+#### Paws.c — v2, “I can execute a document!”
 - cPaws parser
 
-#### Paws.o — v3, “Hello, world!”
+#### Paws.c — v3, “Hello, world!”
 - Interpretation‐unit acquisition, ‘packaging’
 - Intra–interpretation‐unit communication, `list` sharing
 
@@ -26,36 +26,36 @@ so… these:
     
     # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
-      Source/Paws.o/Ancillary/Threading/Threading.c \
-      Source/Paws.o/Ancillary/Threading/Pool/Pool.tests.c \
-      Source/Paws.o/Ancillary/Threading/Thread/Thread.tests.c \
-      Source/Paws.o/Ancillary/Magazine/Magazine.tests.c \
-      Source/Paws.o/Ancillary/Unit/Unit.tests.c \
-      Source/Paws.o/Types/list/ll.tests.c \
-      Source/Paws.o/Types/list/list.tests.c \
-      Source/Paws.o/Types/routine/ast.tests.c \
-      Source/Paws.o/Types/routine/routine.tests.c \
-      Source/Paws.o/Types/execution/execution.tests.c \
-      Source/Paws.o/Types/numeric/numeric.tests.c \
-      Source/Paws.o/Types/string/string.tests.c \
-      Source/Paws.o/Paws.tests.c && \
+      Source/Paws.c/Ancillary/Threading/Threading.c \
+      Source/Paws.c/Ancillary/Threading/Pool/Pool.tests.c \
+      Source/Paws.c/Ancillary/Threading/Thread/Thread.tests.c \
+      Source/Paws.c/Ancillary/Magazine/Magazine.tests.c \
+      Source/Paws.c/Ancillary/Unit/Unit.tests.c \
+      Source/Paws.c/Types/list/ll.tests.c \
+      Source/Paws.c/Types/list/list.tests.c \
+      Source/Paws.c/Types/routine/ast.tests.c \
+      Source/Paws.c/Types/routine/routine.tests.c \
+      Source/Paws.c/Types/execution/execution.tests.c \
+      Source/Paws.c/Types/numeric/numeric.tests.c \
+      Source/Paws.c/Types/string/string.tests.c \
+      Source/Paws.c/Paws.tests.c && \
     ./Paws.tests.o
     
     # Run `gdb` against the tests for Paws (use `run`)
     C -O0 -std=c99 -pedantic-errors -Wall -ggdb -ISource Source/Cest.c \
-      Source/Paws.o/Ancillary/Threading/Threading.c \
-      Source/Paws.o/Ancillary/Threading/Pool/Pool.tests.c \
-      Source/Paws.o/Ancillary/Threading/Thread/Thread.tests.c \
-      Source/Paws.o/Ancillary/Magazine/Magazine.tests.c \
-      Source/Paws.o/Ancillary/Unit/Unit.tests.c \
-      Source/Paws.o/Types/list/ll.tests.c \
-      Source/Paws.o/Types/list/list.tests.c \
-      Source/Paws.o/Types/routine/ast.tests.c \
-      Source/Paws.o/Types/routine/routine.tests.c \
-      Source/Paws.o/Types/execution/execution.tests.c \
-      Source/Paws.o/Types/numeric/numeric.tests.c \
-      Source/Paws.o/Types/string/string.tests.c \
-      Source/Paws.o/Paws.tests.c && \
+      Source/Paws.c/Ancillary/Threading/Threading.c \
+      Source/Paws.c/Ancillary/Threading/Pool/Pool.tests.c \
+      Source/Paws.c/Ancillary/Threading/Thread/Thread.tests.c \
+      Source/Paws.c/Ancillary/Magazine/Magazine.tests.c \
+      Source/Paws.c/Ancillary/Unit/Unit.tests.c \
+      Source/Paws.c/Types/list/ll.tests.c \
+      Source/Paws.c/Types/list/list.tests.c \
+      Source/Paws.c/Types/routine/ast.tests.c \
+      Source/Paws.c/Types/routine/routine.tests.c \
+      Source/Paws.c/Types/execution/execution.tests.c \
+      Source/Paws.c/Types/numeric/numeric.tests.c \
+      Source/Paws.c/Types/string/string.tests.c \
+      Source/Paws.c/Paws.tests.c && \
     gdb -q -se ./Paws.tests.o
     # use `run`
 

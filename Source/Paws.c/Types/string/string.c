@@ -5,11 +5,11 @@
 # define STRING_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 
-#   include "Paws.o/Types/list/list.c"
-#   include "Paws.o/Ancillary/Magazine/Magazine.c"
+#   include "Paws.c/Types/list/list.c"
+#   include "Paws.c/Ancillary/Magazine/Magazine.c"
 #if defined(STRING_C__BEHEST)
 # undef DECLARATIONS
 #endif
@@ -64,9 +64,9 @@ void    Paws__register_String   ( void );
 #if !defined(DECLARATIONS) && !defined(STRING_IMPLEMENTATION) /* ======================================== BODY */
 # define                               STRING_IMPLEMENTATION
 # define DECLARATIONS
-#   include "Paws.o/Types/list/list.c"
+#   include "Paws.c/Types/list/list.c"
 
-#   include "Paws.o/Paws.c"
+#   include "Paws.c/Paws.c"
 #   include <stdlib.h>
 #   include <string.h>
 # undef  DECLARATIONS

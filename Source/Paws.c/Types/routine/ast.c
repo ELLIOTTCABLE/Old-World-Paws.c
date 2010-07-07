@@ -5,8 +5,8 @@
 # define AST_C__BEHEST
 # define DECLARATIONS
 #endif
-#   include "Paws.o/Core.h"
-#   include "Paws.o/Types/Types.h"
+#   include "Paws.c/Core.h"
+#   include "Paws.c/Types/Types.h"
 #if defined(AST_C__BEHEST)
 # undef DECLARATIONS
 #endif
