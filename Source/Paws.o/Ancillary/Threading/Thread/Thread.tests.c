@@ -23,6 +23,8 @@ CEST(Thread, allocate) {
     ASSERT(              a_thread->pool        == a_pool );
     ASSERT(              a_thread->initialized == true   ); // Redundant, but… whatever.
     
+    PEND;
+    
     // Can’t currently test this; we need to move it into a `routine` and put it in the work queue, so it
     // actually gets run *in the `thread`*.
     // ASSERT( pthread_getspecific(Thread->current_thread_key) == a_thread );
