@@ -232,7 +232,7 @@ void Paws__register_Element(void) { Element   = malloc(sizeof(struct Element));
   struct Element // »
   data = {
     .allocate   = Element__allocate,
-
+    
     .prefix   = element__prefix,
     .affix    = element__affix
   };
