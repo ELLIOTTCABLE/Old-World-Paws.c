@@ -31,11 +31,10 @@
 		511960B811D211D100DE67CF /* Thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Thread.c; sourceTree = "<group>"; };
 		511960BA11D211D100DE67CF /* Thread.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Thread.tests.c; sourceTree = "<group>"; };
 		511960BB11D211D100DE67CF /* Threading.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Threading.c; sourceTree = "<group>"; };
-		511960BD11D211D100DE67CF /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Source/Paws.o/Core.h; sourceTree = "<group>"; };
-		511960BE11D211D100DE67CF /* Paws.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.c; path = Source/Paws.o/Paws.c; sourceTree = "<group>"; };
-		511960BF11D211D100DE67CF /* Paws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paws.h; path = Source/Paws.o/Paws.h; sourceTree = "<group>"; };
-		511960C011D211D100DE67CF /* Paws.o.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.o.c; path = Source/Paws.o/Paws.o.c; sourceTree = "<group>"; };
-		511960C111D211D100DE67CF /* Paws.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.tests.c; path = Source/Paws.o/Paws.tests.c; sourceTree = "<group>"; };
+		511960BD11D211D100DE67CF /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Source/Paws.c/Core.h; sourceTree = "<group>"; };
+		511960BE11D211D100DE67CF /* Paws.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.c; path = Source/Paws.c/Paws.c; sourceTree = "<group>"; };
+		511960BF11D211D100DE67CF /* Paws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paws.h; path = Source/Paws.c/Paws.h; sourceTree = "<group>"; };
+		511960C111D211D100DE67CF /* Paws.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Paws.tests.c; path = Source/Paws.c/Paws.tests.c; sourceTree = "<group>"; };
 		511960C411D211D100DE67CF /* execution.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = execution.c; sourceTree = "<group>"; };
 		511960C611D211D100DE67CF /* execution.tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = execution.tests.c; sourceTree = "<group>"; };
 		511960C811D211D100DE67CF /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
@@ -93,7 +92,6 @@
 				511960BD11D211D100DE67CF /* Core.h */,
 				511960BE11D211D100DE67CF /* Paws.c */,
 				511960BF11D211D100DE67CF /* Paws.h */,
-				511960C011D211D100DE67CF /* Paws.o.c */,
 				511960C111D211D100DE67CF /* Paws.tests.c */,
 				511960C211D211D100DE67CF /* Types */,
 			);
@@ -108,7 +106,7 @@
 				51B5349511D5BA0E00A0EBD8 /* Unit */,
 			);
 			name = Ancillary;
-			path = Source/Paws.o/Ancillary;
+			path = Source/Paws.c/Ancillary;
 			sourceTree = "<group>";
 		};
 		511960AE11D211D100DE67CF /* Magazine */ = {
@@ -159,7 +157,7 @@
 				511960DD11D211D100DE67CF /* Types.h */,
 			);
 			name = Types;
-			path = Source/Paws.o/Types;
+			path = Source/Paws.c/Types;
 			sourceTree = "<group>";
 		};
 		511960C311D211D100DE67CF /* execution */ = {
