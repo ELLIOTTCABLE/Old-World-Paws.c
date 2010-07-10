@@ -49,7 +49,7 @@ struct E(routine) {
   bool    simple; /* Whether or not `implementation` (if `native`) is to be treated ‘simply.’ */
   struct {
     bool    native; /* Whether or not `implementation` is a pointer to a native function */
-    union { node scope; native function; } //»
+    union { E(node) scope; E(native) function; } //»
             _; /* A pointer to either a `SCOPE` `node` (this routine’s AST), or a native function */
   }       implementation;
 };
@@ -59,8 +59,8 @@ struct E(routine) {
 
 struct E(Routine) {
   /* `Routine` functions */
-  E(routine)    (*allocate)   ( node implementation );
-  E(routine)    (*expose)     ( native implementation, bool simple );
+  E(routine)    (*allocate)   ( E(node) implementation );
+  E(routine)    (*expose)     ( E(native) implementation, bool simple );
   
   /* `struct routine` methods */
   E(thing)      (*thing)      ( E(routine) this );
