@@ -24,6 +24,24 @@ so… these:
     # This is just a shortcut. You can use `gcc` instead of `clang` here; it takes the same arguments.
     C() { eval local last="\$$#"; last=${last##*/}; clang -o "${last%.*}.o" "$@" }
     
+    # The command-line interface’s binary, `Paws.c` itself
+    clang -O0 -std=c99 -pedantic-errors -Wall -ISource \
+      Source/Paws.c/Ancillary/Threading/Threading.c \
+      Source/Paws.c/Ancillary/Threading/Pool/Pool.c \
+      Source/Paws.c/Ancillary/Threading/Thread/Thread.c \
+      Source/Paws.c/Ancillary/Magazine/Magazine.c \
+      Source/Paws.c/Ancillary/Unit/Unit.c \
+      Source/Paws.c/Types/list/ll.c \
+      Source/Paws.c/Types/list/list.c \
+      Source/Paws.c/Types/routine/ast.c \
+      Source/Paws.c/Types/routine/routine.c \
+      Source/Paws.c/Types/execution/execution.c \
+      Source/Paws.c/Types/numeric/numeric.c \
+      Source/Paws.c/Types/string/string.c \
+      Source/Paws.c/Paws.c \
+    Source/Paws.c/Tools/Paws.c.c -o Paws.o && ./Paws.o
+    
+    
     # The ‘cests’ (tests) for Paws
     C -O0 -std=c99 -pedantic-errors -Wall -ISource Source/Cest.c \
       Source/Paws.c/Ancillary/Threading/Threading.c \
