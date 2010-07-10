@@ -13,8 +13,8 @@ CEST(Routine, allocate) {
   
   a_scope       = Node->scope();
   an_expression = Node->expression();   Node->affix(a_scope,       an_expression);
-  a_word        = Node->word("foo", 4); Node->affix(an_expression, a_word);
-  another_word  = Node->word("bar", 4); Node->affix(an_expression, another_word);
+  a_word        = Node->word("foo"); Node->affix(an_expression, a_word);
+  another_word  = Node->word("bar"); Node->affix(an_expression, another_word);
   
   a_routine = Routine->allocate(a_scope);
   ASSERT( a_routine->content->first  == NULL );

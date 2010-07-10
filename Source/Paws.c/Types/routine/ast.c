@@ -55,7 +55,7 @@ struct E(Node) {
   E(node)   (*allocate)       ( enum E(node_type) type );
   E(node)   (*scope)          ( void );
   E(node)   (*expression)     ( void );
-  E(node)   (*word)           ( char *content, E(node_size) bytes );
+  E(node)   (*word)           ( char *content );
   
   /* `struct node` methods */
   void      (*insert)         ( E(node) this, E(node) child, E(node_size) idx );
@@ -104,7 +104,7 @@ void Paws__register_AST(void) { AST   = malloc(sizeof(struct AST));
 node    Node__allocate      (enum node_type type);
 node    Node__scope         (void);
 node    Node__expression    (void);
-node    Node__word          (char *content, node_size bytes);
+node    Node__word          (char *content);
 
 void    node__insert        (node this, node child, node_size idx);
 void    node__prefix        (node this, node child);
@@ -177,14 +177,14 @@ node Node__expression(void) {
 
 /* This method initializes a new `node` with `.type` set to `WORD`, and then initializes the `.content` to an
  * empty cstring. */
-node Node__word(char *content, node_size bytes) {
+node Node__word(char *content) {
   node this = Node->allocate(WORD);
   
-  char *copy = malloc(bytes);
-  STRCPY(copy, content, bytes);
-  this->content = copy;
+  this->size = strlen(content) + 1;
   
-  this->size = bytes;
+  char *copy = malloc(this->size);
+  STRCPY(copy, content, this->size);
+  this->content = copy;
   
   return this;
 }
@@ -250,7 +250,7 @@ node _node__duplicate(node this, bool set_archetype) {
   node new;
   
   if (this->type == WORD)
-    new = Node->word(this->content, this->size);
+    new = Node->word(this->content);
   else {
     /* FIXME: If we use `Node->word()` here, we should use
               `Node->scope()` and `Node->expression()` as well. */
