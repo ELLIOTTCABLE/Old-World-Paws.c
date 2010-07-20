@@ -1,6 +1,25 @@
 Paws.c
 ======
-It’s Paws, in ISO/IEC 9899:1999. That’s C99, for people too lazy to google it.
+A (currently) naïve, slow, and *completely* unoptimized reference implementation of the
+[Paws programming language][Paws] (including Paws’ <del>pre-compilation system¹ and</del> concurrency runtime),
+in ISO C ’99.
+
+  [Paws]: <http://Paws.elliottcable.name/> (The Paws Programming Language)
+
+### Status
+- **Does not, yet, actually interpret documents!** This codebase is not yet prepared for user-consumption.
+- `numeric` ignored; will probably shim directly with math-stack-less native implementation of basic arithmetic
+  in the short-term
+- *Real* interpretation Units are completely ignored at the moment; we only implement enough for a single Unit to
+  handle things within itself (such as the `label` magazine)
+
+- **Many previously–partially-implemented things have had to be ripped out for the rewrite )-:**
+
+- The doubly-linked-list backing every datatype is completely and robustly implemented
+- The opaque AST type behind our `routine`s is also complete
+- `fork`s are almost entirely implemented; probably need a few more tweaks and some new native `routine`s, but…
+- `label` datatype, and the ‘uniques-store’ magazine, for the most part, are fully implemented
+- Implementation infrastructure: testing framework, internal typing, and preprocessor magic, all completed
 
 Building
 --------
@@ -88,3 +107,6 @@ filter the commit list by these words. Some of the more common ones:
   least compile, if not pass all tests, at any commit you decide to `git checkout`. Filtering out this label will
   provide with a list of commits that should be *somewhat* safe to compile against.
 - `doc`: Only affects the documentation, does not change any implementation or the test suite.
+
+---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- 
+  1. (Pre-compilation is not yet implemented)
