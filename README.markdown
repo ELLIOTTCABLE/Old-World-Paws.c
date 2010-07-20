@@ -84,7 +84,30 @@ so… these:
 
 Conventions
 -----------
-Several coding conventions used in this project:
+In addition to those specifically listed below; if contributing, please try to maintain the general feel and
+style exhibited throughout the codebase. Pay attention to your indentation, whitespace, bracket and semicolon
+placement and omission… and keep the code clean and beautiful. It’s appreciated.
+
+Oh, and don’t use hard tabs. Ever.
+
+### Externalization
+Much of the `Paws.c` codebase utilizes an ‘externalization’ system to ease safe incorporation of the tools we
+provide into others’ codebases. It revolves around the `E()` macro (defined and documented in `Core.h`). We
+ensure all C tags, labels, variables, and function names… really, anything defined in any sort of “global
+namespace” and intended for exposure to the outside world… is wrapped in this `E()` macro.
+
+When you include any part of the `Paws.c` codebase into your own project, such names will be provided prefixed
+with the tag `Paws__` (such as `Paws__thing` or `Paws__routine`). (If you wish to use the same un-prefixed names
+that are utilized *within* the `Paws.c` codebase, you can `#define INTERNALIZE` prior to including the code you
+plan to utilize.)
+
+### Namespacing `struct`s
+We make extensive use of `struct`s as namespacing tools. Since ISO C provides nearly no tools for namespacing, we
+improvise to avoid horrible prefixed labels for every piece of data or function.
+
+These are publicized under the external `Paws` global variable; and are often stored in sub-structs such as
+`Paws->Routine`. Most C functions exposed by the `Paws.c` API are available via these structs; for example,
+`Paws->Routine->allocate()`.
 
 ### Commit labels
 Most commits are ‘labeled’ by space-separated words in parenthesis at the start of the commit message. You can
