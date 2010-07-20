@@ -87,7 +87,7 @@ Conventions
 Several coding conventions used in this project:
 
 ### Commit labels
-Some commits are ‘labeled’ by space-separated words in parenthesis at the start of the commit message. You can
+Most commits are ‘labeled’ by space-separated words in parenthesis at the start of the commit message. You can
 filter the commit list by these words. Some of the more common ones:
 
 - `minor`: A commit with little or no consequence, for instance typo fixes, tiny source-code spacing changes, and
