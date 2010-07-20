@@ -1,5 +1,5 @@
-Paws.c
-======
+`Paws.c`
+========
 A (currently) naïve, slow, and *completely* unoptimized reference implementation of the
 [Paws programming language][Paws] (including Paws’ <del>pre-compilation system¹ and</del> concurrency runtime),
 in ISO C ’99.
